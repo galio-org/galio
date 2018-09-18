@@ -14,7 +14,7 @@ const Article = props => (
     <View
       style={{
         position: 'absolute',
-        top: '30%',
+        top: '31%',
         bottom: 0,
         left: 0,
         right: 0,
