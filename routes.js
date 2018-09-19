@@ -11,7 +11,7 @@ const ArticleFeed = createStackNavigator({
   ArticleCard: {screen: ArticleFeed1, navigationOptions: {
     header: null
   }},
-  News: {screen: News, navigationOptions: { header: null }},
+  News: {screen: News, navigationOptions: { header: null }}, // bug de background
 });
 
 const GalioApp = createDrawerNavigator({

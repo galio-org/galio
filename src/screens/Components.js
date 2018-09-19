@@ -112,7 +112,7 @@ export default class Components extends React.Component {
             />
             <Typography h5 muted>
               //TODO//:: , >Add icons to buttons, >Work on shadows, >Typography style prop warning, >Navbar component,
-              >Location component, >SafeArea iPhone X, >Card height %*Dimension, >Padding for screen containers
+              >Location component, >SafeArea iPhone X, >Card height %*Dimension(??), >Padding for screen containers, >Find wtf is going on with the style prop
             </Typography>
           </View>
         </ScrollView>

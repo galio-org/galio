@@ -42,10 +42,8 @@ const ArticleCover = props => (
       }}
     >
     <View style={{ alignSelf: 'flex-start', marginTop: '7%', marginLeft: '5%' }}>
-      <TouchableOpacity style={{ width: 20, height: 20, backgroundColor: 'red' }}
-            onPress={() => props.navigation.openDrawer()}>
-        <Typography p style={{ alignSelf: 'center' }}>I</Typography>
-      </TouchableOpacity>
+      <TouchableOpacity style={{ width: 20, height: 20, backgroundColor: '#A833FE' }}
+            onPress={() => props.navigation.openDrawer()} />
     </View>
       <View style={styles.articleSummary}>
         <Typography h3 style={[styles.textColor, styles.headline]}>

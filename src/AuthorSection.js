@@ -28,7 +28,7 @@ const AuthorSection = ({
 );
 
 AuthorSection.propTypes = {
-  style: PropTypes.node,
+  style: PropTypes.any,
   imageSource: PropTypes.string,
   title: PropTypes.string,
   subTitle: PropTypes.string,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginBottom: 5,
     marginTop: 5,
-    flex: 1,
+    // flex: 1,
     backgroundColor: 'transparent',
   },
   fixed: {
