@@ -77,7 +77,11 @@ export default class Components extends React.Component {
             >
               Warning
             </Button>
-            <Button color="success" round>Success</Button>
+            <Button style={styles.marginBottomButton} color="success" round>Success</Button>
+            <Button style={styles.marginBottomButton} color="theme" radius={14}>borderRadius 14</Button>
+            <Button style={styles.marginBottomButton} uppercase>uppercase text</Button>
+            <Button style={styles.marginBottomButton} lowercase>LOWERCASE TEXT</Button>
+            <Button style={styles.marginBottomButton} capitalize>capitalize text</Button>
 
             <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Cards:
