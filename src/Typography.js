@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import normalize from './helpers/normalize';
 
 const Typography = props => {
-  const { style, h1, h2, h3, h4, h5, p, muted, bold,children, ...rest } = props;
+  const { style, h1, h2, h3, h4, h5, p, muted, size, color, bold, italic, children, ...rest } = props;
   return (
     <Text
       style={[
@@ -17,6 +17,9 @@ const Typography = props => {
         p && { fontSize: normalize(12) },
         muted && { color: 'rgba(108,117,125,0.65)' },
         bold && { fontWeight: 'bold' },
+        size && { fontSize: size },
+        color && { color },
+        italic && { fontStyle: 'italic' },
         style && style
       ]}
       {...rest}
@@ -36,8 +39,11 @@ Typography.propTypes = {
   h4: PropTypes.bool,
   h5: PropTypes.bool,
   p: PropTypes.bool,
+  size: PropTypes.number,
+  color: PropTypes.string,
   muted: PropTypes.bool,
   bold: PropTypes.bool,
+  italic: PropTypes.bool
 };
 
 export default Typography;
