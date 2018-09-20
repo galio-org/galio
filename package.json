@@ -1,5 +1,5 @@
 {
-  "name": "empty-project-template",
+  "name": "galio-project-template",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
@@ -15,7 +15,8 @@
     "prop-types": "^15.6.2",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
-    "react-navigation": "^2.13.0"
+    "react-navigation": "^2.13.0",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "react-devtools": "^3.3.2"
