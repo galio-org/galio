@@ -25,20 +25,22 @@ class Button extends React.Component {
   }
 
   render() {
-    const { style, color, size, children, disabled, ...rest } = this.props;
-
+    const { style, color, size, children, disabled, round, border, ...rest } = this.props;
+    const buttonStyles = [
+      styles.defaultButton,
+            color && styles[`${color}Color`],
+            color === 'transparent' || styles.androidShadow,
+            color === 'transparent' && { borderWidth: 1, borderColor: 'rgb(250,250,250)' },
+            size === 'big' ? { width: '90%' } : { width: 140 },
+            round && { borderRadius: 24 },
+            { zIndex: 2 },
+            style && style,
+    ];
     return (
         <TouchableOpacity
           disabled={disabled}
           onPress={() => this.onPress}
-          style={[
-            styles.defaultButton,
-            color && styles[`${color}Color`],
-            color === 'transparent' || styles.androidShadow,
-            size === 'big' ? { width: '90%' } : { width: 140 },
-            { zIndex: 2 },
-            style && style,
-          ]}
+          style={buttonStyles}
           {...rest}
         >
           <Text style={styles.customText}>{children}</Text>
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     width: 130,
     height: 42,
     shadowColor: 'rgba(209,0,125,10)',
-    borderRadius: 24,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.25,
     shadowRadius: 12,

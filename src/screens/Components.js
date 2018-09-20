@@ -52,7 +52,7 @@ export default class Components extends React.Component {
             >
               <Button color="transparent">Transparent</Button>
             </View>
-            <Button size="small" style={styles.marginBottomButton}>
+            <Button size="small" style={styles.marginBottomButton} round>
               Primary
             </Button>
             <Button
@@ -65,6 +65,7 @@ export default class Components extends React.Component {
             <Button
               color="error"
               size="small"
+              round
               style={styles.marginBottomButton}
             >
               Error
@@ -76,7 +77,7 @@ export default class Components extends React.Component {
             >
               Warning
             </Button>
-            <Button color="success">Success</Button>
+            <Button color="success" round>Success</Button>
 
             <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Cards:
