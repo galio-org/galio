@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 // galio components
-import { Typography, Button, Card, Navbar } from '../../src';
+import { Typography, Button, Card, Navbar, Input } from '../../src';
 
 export default class Components extends React.Component {
   onBurgerPress() {
@@ -115,6 +115,11 @@ export default class Components extends React.Component {
               rightSideComponent={( <View style={{width: 20, height: 20, backgroundColor:'blue' }}></View> )}
               style={{ backgroundColor: 'cyan' }}
             />
+            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+              Inputs:
+            </Typography>
+              <Input type="phone-pad" placeholder="Enter yo password" />
+              <Input type="numeric" password placeholder="this yo pin" />
             <Typography h5 muted>
               //TODO//:: , >Add icons to buttons, >Work on shadows, >Typography style prop warning, >Navbar component,
               >Location component, >SafeArea iPhone X, >Card height %*Dimension(??), >Padding for screen containers, >Find wtf is going on with the style prop
