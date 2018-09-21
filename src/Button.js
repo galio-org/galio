@@ -28,6 +28,7 @@ const COLORS = {
   - radius: using borderRadius number to display rounded corners
   - loading: using ActivityIndicator - displays a circular loading indicator
   - loadingSize: size for ActivityIndicator - available options (small / large)
+  - opacity: using activeOpacity on touch, values between 0.0 to 1.0, defaults to 0.8
 */
 
 class Button extends React.Component {
@@ -45,6 +46,7 @@ class Button extends React.Component {
     iconSize: 14,
     loading: false,
     loadingSize: 'small',
+    opacity: 0.8,
   };
 
   onPress() {
@@ -104,6 +106,7 @@ class Button extends React.Component {
       textStyle,
       onlyIcon,
       iconSize,
+      opacity,
       ...rest
     } = this.props;
 
@@ -124,9 +127,14 @@ class Button extends React.Component {
     ];
 
     return (
-        <TouchableOpacity disabled={disabled} onPress={() => this.onPress} style={buttonStyles} {...rest}>
-          {this.renderContent()}
-        </TouchableOpacity>
+      <TouchableOpacity
+        disabled={disabled}
+        activeOpacity={opacity}
+        onPress={() => this.onPress}
+        style={buttonStyles}
+        {...rest}>
+        {this.renderContent()}
+      </TouchableOpacity>
     );
   }
 }
@@ -218,6 +226,7 @@ Button.propTypes = {
   loadingSize: PropTypes.oneOf([
     'small', 'large',
   ]),
+  opacity: PropTypes.number,
 };
 
 export default Button;
