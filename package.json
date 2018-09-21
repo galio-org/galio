@@ -10,6 +10,7 @@
     "devtools": "react-devtools"
   },
   "dependencies": {
+    "@expo/vector-icons": "^6.3.1",
     "expo": "^29.0.0",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",

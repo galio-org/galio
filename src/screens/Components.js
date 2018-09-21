@@ -6,8 +6,9 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+
 // galio components
-import { Typography, Button, Card, Navbar } from '../../src';
+import { Typography, Button, Card, Navbar, Icon } from '../';
 
 export default class Components extends React.Component {
   onBurgerPress() {
@@ -82,6 +83,18 @@ export default class Components extends React.Component {
             <Button style={styles.marginBottomButton} uppercase>uppercase text</Button>
             <Button style={styles.marginBottomButton} lowercase>LOWERCASE TEXT</Button>
             <Button style={styles.marginBottomButton} capitalize>capitalize text</Button>
+            <Button style={styles.marginBottomButton} color="success">
+              <Icon name="star" family="FontAwesome" /> rating
+            </Button>
+      
+            <Button style={styles.marginBottomButton} size={200} color="#3A3C39" round>
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star-half-empty" family="FontAwesome" />
+            </Button>
+            <Button style={styles.marginBottomButton} onlyIcon icon="heart" iconFamily="FontAwesome" iconSize={24} color="transparent" />
 
             <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Cards:

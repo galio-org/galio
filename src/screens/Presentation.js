@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, StatusBar, Image } from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Typography, Button } from '../index';
+import { Typography, Button } from '../';
 
 const Presentation = props => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

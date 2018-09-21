@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "galio-v001",
+    "name": "galio-ui-kit",
     "description": "This project is really great.",
-    "slug": "galio-v001",
+    "slug": "galio-ui-kit",
     "privacy": "public",
     "sdkVersion": "29.0.0",
     "platforms": ["ios", "android"],

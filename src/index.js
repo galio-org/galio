@@ -3,5 +3,13 @@ import Button from './Button';
 import Card from './Card';
 import Navbar from './Navbar';
 import AuthorSection from './AuthorSection'
+import Icon from './Icon'
 
-export { Typography, Button, Card, Navbar, AuthorSection };
+export {
+  Typography,
+  Button,
+  Card,
+  Navbar,
+  AuthorSection,
+  Icon,
+};
