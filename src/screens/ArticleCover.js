@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Typography } from '../index';
+import { Typography } from '../';
 
 // space-between view and another view for the back button
 

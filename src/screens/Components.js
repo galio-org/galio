@@ -6,8 +6,10 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+
 // galio components
-import { Typography, Button, Card, Navbar, Input } from '../../src';
+import { Typography, Button, Card, Navbar, Icon, Input } from '../';
+
 
 export default class Components extends React.Component {
   onBurgerPress() {
@@ -52,46 +54,28 @@ export default class Components extends React.Component {
             >
               <Button color="transparent">Transparent</Button>
             </View>
-            <Button size="small" style={styles.marginBottomButton} round>
-              Primary
+            <Button size="small" style={styles.marginBottomButton} round>Primary</Button>
+            <Button color="theme" size="small" style={styles.marginBottomButton}>Theme </Button>
+            <Button color="error" size="small" round style={styles.marginBottomButton}>Error</Button>
+            <Button color="warning" size="small" style={styles.marginBottomButton}>Warning</Button>
+            <Button style={styles.marginBottomButton} color="success" round>Success</Button>
+            <Button style={styles.marginBottomButton} color="theme" radius={14}>borderRadius 14</Button>
+            <Button style={styles.marginBottomButton} uppercase>uppercase text</Button>
+            <Button style={styles.marginBottomButton} lowercase>LOWERCASE TEXT</Button>
+            <Button style={styles.marginBottomButton} capitalize>capitalize text</Button>
+            <Button style={styles.marginBottomButton} color="success">
+              <Icon name="star" family="FontAwesome" /> rating
             </Button>
-            <Button
-              color="theme"
-              size="small"
-              style={styles.marginBottomButton}
-            >
-              Theme
+      
+            <Button style={styles.marginBottomButton} size={200} color="#3A3C39" round>
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star" family="FontAwesome" />
+              <Icon size={24} color="orange" name="star-half-empty" family="FontAwesome" />
             </Button>
-            <Button
-              color="error"
-              size="small"
-              round
-              style={styles.marginBottomButton}
-            >
-              Error
-            </Button>
-            <Button
-              color="warning"
-              size="small"
-              style={styles.marginBottomButton}
-            >
-              Warning
-            </Button>
-            <Button style={styles.marginBottomButton} color="success" round>
-              Success
-            </Button>
-            <Button style={styles.marginBottomButton} color="theme" radius={14}>
-              borderRadius 14
-            </Button>
-            <Button style={styles.marginBottomButton} uppercase>
-              uppercase text
-            </Button>
-            <Button style={styles.marginBottomButton} lowercase>
-              LOWERCASE TEXT
-            </Button>
-            <Button style={styles.marginBottomButton} capitalize>
-              capitalize text
-            </Button>
+            <Button style={styles.marginBottomButton} onlyIcon icon="heart" iconFamily="FontAwesome" iconSize={24} color="transparent" />
+            <Button style={styles.marginBottomButton} loading color="black" />
 
             <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Cards:

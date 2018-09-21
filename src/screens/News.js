@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo';
 // Galio components
-import { Typography, AuthorSection, Navbar } from '../index';
+import { Typography, AuthorSection, Navbar } from '../';
 
 const News = props => (
   <View style={{ flex: 1 }}>

@@ -1,31 +1,96 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from './Icon';
+
+const { width } = Dimensions.get('window');
+
+const COLORS = {
+  PRIMARY: '#102EFF',
+  THEME: '#A833FE',
+  ERROR: '#FF2664',
+  WARNING: '#FF970C',
+  SUCCESS: '#3DDA2B',
+  TRANSPARENT: 'transparent',
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
+}
 
 /*
  Props buton:
   - color: blue, purple, red, orange, green, transparent
   - onlyIcon: boolean
-  - icon: FontAwesome
-  - size: 'small' / 'big'
-  - children prop should be changed or NOT -- IT DEPENDS ON HOW I WANT THEM TO PUT ICONS
-  - radius: number
+  - icon: name of the icon from font family, e.g.: menu
+  - iconFamily: name of the icon font family, e.g.: FontAwesome
+  - iconSize: size of the icon using number, e.g: 12, 21 or 42
+  - size: 'small', 'large' or any number
+  - children: should be changed or NOT -- IT DEPENDS ON HOW I WANT THEM TO PUT ICONS
+  - radius: using borderRadius number to display rounded corners
+  - loading: using ActivityIndicator - displays a circular loading indicator
+  - loadingSize: size for ActivityIndicator - available options (small / large)
+  - opacity: using activeOpacity on touch, values between 0.0 to 1.0, defaults to 0.8
 */
 
 class Button extends React.Component {
   static defaultProps = {
     color: 'primary',
-    size: 'big',
+    size: 'large',
     disabled: false,
     radius: 0,
     uppercase: false,
     lowercase: false,
     capitalize: false,
+    onlyIcon: false,
+    icon: false,
+    iconFamily: false,
+    iconSize: 14,
+    loading: false,
+    loadingSize: 'small',
+    opacity: 0.8,
   };
 
   onPress() {
     const { onPress } = this.props;
     onPress && onPress();
+  }
+
+  renderContent = () => {
+    const {
+      loading,
+      loadingSize,
+      children,
+      onlyIcon,
+      icon,
+      iconFamily,
+      iconSize,
+      uppercase,
+      lowercase,
+      capitalize,
+      textStyle,
+    } = this.props;
+
+    const textStyles = [
+      styles.customText,
+      textStyle
+    ];
+
+    // workaround for textTransform not supported on Expo SDK 29.0.0 or 30.0.0
+    // More info: https://docs.expo.io/versions/latest/sdk/index.html#sdk-version
+    // waiting for Expo SDK to support react-native 56.0.0
+
+    let content = children;
+    const isString = children && typeof children === 'string';
+
+    if (uppercase && isString) content = children.toUpperCase();
+    if (lowercase && isString) content = children.toLowerCase();
+    if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
+
+    if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} />;
+    else content = <Text style={textStyles}>{content}</Text>;
+    
+    if (loading) content = <ActivityIndicator size={loadingSize} color={COLORS.WHITE} />;
+
+    return content;
   }
 
   render() {
@@ -38,47 +103,38 @@ class Button extends React.Component {
       round,
       border,
       radius,
-      uppercase,
-      lowercase,
-      capitalize,
       textStyle,
+      onlyIcon,
+      iconSize,
+      opacity,
       ...rest
     } = this.props;
 
+    const colorStyle = styles[`${color}Color`];
+
     const buttonStyles = [
       styles.defaultButton,
-      color && styles[`${color}Color`],
+      color && colorStyle,
+      color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
       color === 'transparent' || styles.androidShadow,
       color === 'transparent' && { borderWidth: 1, borderColor: 'rgb(250,250,250)' },
-      size === 'big' ? { width: '90%' } : { width: 140 },
+      size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
       radius && { borderRadius: radius },
+      onlyIcon && { width: iconSize * 2, borderWidth: 0, },
       { zIndex: 2 },
       style,
     ];
 
-    const textStyles = [
-      styles.customText,
-      textStyle
-    ];
-
-    // workaround for textTransform not supported on Expo SDK 29.0.0 or 30.0.0
-    // More info: https://docs.expo.io/versions/latest/sdk/index.html#sdk-version
-    // waiting for Expo SDK to support react-native 56.0.0
-
-    let buttonContent = children;
-    if (uppercase) buttonContent = children.toUpperCase();
-    if (lowercase) buttonContent = children.toLowerCase();
-    if (capitalize) buttonContent = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
-
     return (
-        <TouchableOpacity
-          disabled={disabled}
-          onPress={() => this.onPress}
-          style={buttonStyles}
-          {...rest}>
-          <Text style={textStyles}>{buttonContent}</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        disabled={disabled}
+        activeOpacity={opacity}
+        onPress={() => this.onPress}
+        style={buttonStyles}
+        {...rest}>
+        {this.renderContent()}
+      </TouchableOpacity>
     );
   }
 }
@@ -96,26 +152,26 @@ const styles = StyleSheet.create({
   },
   customText: {
     fontSize: 18,
-    color: '#fff',
+    color: COLORS.WHITE,
     fontWeight: '800',
   },
   primaryColor: {
-    backgroundColor: '#102EFF',
+    backgroundColor: COLORS.PRIMARY,
   },
   themeColor: {
-    backgroundColor: '#A833FE',
+    backgroundColor: COLORS.THEME,
   },
   errorColor: {
-    backgroundColor: '#FF2664',
+    backgroundColor: COLORS.ERROR,
   },
   warningColor: {
-    backgroundColor: '#FF970C',
+    backgroundColor: COLORS.WARNING,
   },
   successColor: {
-    backgroundColor: '#3DDA2B',
+    backgroundColor: COLORS.SUCCESS,
   },
   transparentColor: {
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
   androidShadow: {
     elevation: 1,
@@ -136,24 +192,41 @@ Button.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
   ]),
 
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   
-  color: PropTypes.oneOf([
-    'primary',
-    'theme',
-    'error',
-    'warning',
-    'success',
-    'transparent',
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'primary',
+      'theme',
+      'error',
+      'warning',
+      'success',
+      'transparent',
+    ]),
+    PropTypes.string,
   ]),
 
-  size: PropTypes.oneOf(['big', 'small']),
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'large', 'small',
+    ]),
+    PropTypes.number,
+  ]),
+
   disabled: PropTypes.bool,
   onPress: PropTypes.func,
   radius: PropTypes.number,
   uppercase: PropTypes.bool,
   lowercase: PropTypes.bool,
   capitalize: PropTypes.bool,
+  loading: PropTypes.bool,
+  loadingSize: PropTypes.oneOf([
+    'small', 'large',
+  ]),
+  opacity: PropTypes.number,
 };
 
 export default Button;

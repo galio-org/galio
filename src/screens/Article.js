@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, StatusBar, Image, TouchableOpacity } from 'react-native';
 // galio components
-import { Typography, AuthorSection } from '../index';
+import { Typography, AuthorSection } from '../';
 
 const Article = props => (
   <View style={{ flex: 1 }}>
