@@ -1,6 +1,8 @@
 # galio
 Something fresh coming soon
 
+![Galio Icon](https://github.com/galio-org/galio/blob/6f0efa242513ae1c19feff8dec8029d25e8eb888/assets/icon.png)
+
 #### 1. Project Setup
 ```bash
 git clone https://github.com/galio-org/galio.git
