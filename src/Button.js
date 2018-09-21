@@ -1,9 +1,20 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const { width } = Dimensions.get('window');
+
+const COLORS = {
+  PRIMARY: '#102EFF',
+  THEME: '#A833FE',
+  ERROR: '#FF2664',
+  WARNING: '#FF970C',
+  SUCCESS: '#3DDA2B',
+  TRANSPARENT: 'transparent',
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
+}
 
 /*
  Props buton:
@@ -12,15 +23,17 @@ const { width } = Dimensions.get('window');
   - icon: name of the icon from font family, e.g.: menu
   - iconFamily: name of the icon font family, e.g.: FontAwesome
   - iconSize: size of the icon using number, e.g: 12, 21 or 42
-  - size: 'small', 'big' or any number
-  - children prop should be changed or NOT -- IT DEPENDS ON HOW I WANT THEM TO PUT ICONS
-  - radius: number
+  - size: 'small', 'large' or any number
+  - children: should be changed or NOT -- IT DEPENDS ON HOW I WANT THEM TO PUT ICONS
+  - radius: using borderRadius number to display rounded corners
+  - loading: using ActivityIndicator - displays a circular loading indicator
+  - loadingSize: size for ActivityIndicator - available options (small / large)
 */
 
 class Button extends React.Component {
   static defaultProps = {
     color: 'primary',
-    size: 'big',
+    size: 'large',
     disabled: false,
     radius: 0,
     uppercase: false,
@@ -30,6 +43,8 @@ class Button extends React.Component {
     icon: false,
     iconFamily: false,
     iconSize: 14,
+    loading: false,
+    loadingSize: 'small',
   };
 
   onPress() {
@@ -39,6 +54,8 @@ class Button extends React.Component {
 
   renderContent = () => {
     const {
+      loading,
+      loadingSize,
       children,
       onlyIcon,
       icon,
@@ -68,6 +85,8 @@ class Button extends React.Component {
 
     if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} />;
     else content = <Text style={textStyles}>{content}</Text>;
+    
+    if (loading) content = <ActivityIndicator size={loadingSize} color={COLORS.WHITE} />;
 
     return content;
   }
@@ -96,7 +115,7 @@ class Button extends React.Component {
       color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
       color === 'transparent' || styles.androidShadow,
       color === 'transparent' && { borderWidth: 1, borderColor: 'rgb(250,250,250)' },
-      size === 'big' ? { width: width * 0.9 } : { width: width * 0.5 },
+      size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
       radius && { borderRadius: radius },
       onlyIcon && { width: iconSize * 2, borderWidth: 0, },
@@ -125,26 +144,26 @@ const styles = StyleSheet.create({
   },
   customText: {
     fontSize: 18,
-    color: '#fff',
+    color: COLORS.WHITE,
     fontWeight: '800',
   },
   primaryColor: {
-    backgroundColor: '#102EFF',
+    backgroundColor: COLORS.PRIMARY,
   },
   themeColor: {
-    backgroundColor: '#A833FE',
+    backgroundColor: COLORS.THEME,
   },
   errorColor: {
-    backgroundColor: '#FF2664',
+    backgroundColor: COLORS.ERROR,
   },
   warningColor: {
-    backgroundColor: '#FF970C',
+    backgroundColor: COLORS.WARNING,
   },
   successColor: {
-    backgroundColor: '#3DDA2B',
+    backgroundColor: COLORS.SUCCESS,
   },
   transparentColor: {
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.TRANSPARENT,
   },
   androidShadow: {
     elevation: 1,
@@ -184,7 +203,7 @@ Button.propTypes = {
 
   size: PropTypes.oneOfType([
     PropTypes.oneOf([
-      'big', 'small',
+      'large', 'small',
     ]),
     PropTypes.number,
   ]),
@@ -195,6 +214,10 @@ Button.propTypes = {
   uppercase: PropTypes.bool,
   lowercase: PropTypes.bool,
   capitalize: PropTypes.bool,
+  loading: PropTypes.bool,
+  loadingSize: PropTypes.oneOf([
+    'small', 'large',
+  ]),
 };
 
 export default Button;
