@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+
 // galio components
-import { Typography } from './index';
+import { Typography, Icon } from './';
 
 class Navbar extends React.Component {
   static defaultProps = {
@@ -12,10 +13,8 @@ class Navbar extends React.Component {
     const { buttonFunction, title, rightSideComponent, style } = this.props;
     return (
       <View style={[styles.navBar, style]}>
-        <TouchableOpacity
-          onPress={() => buttonFunction && buttonFunction()}
-        >
-          <View style={styles.burgerButton} />
+        <TouchableOpacity onPress={() => buttonFunction && buttonFunction()}>
+          <Icon name="menu" family="Entypo" size={25} />
         </TouchableOpacity>
         <Typography h4>{title}</Typography>
         <View style={styles.rightSideComponent}>

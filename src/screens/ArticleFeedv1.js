@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 // Galio components
-import { Navbar, Card } from '../index';
+import { Navbar, Card } from '../';
 
 export default class ArticleFull extends React.Component {
   onBurgerPress() {

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 
 // Galio components
-import { Navbar, Card, Typography } from '../index';
+import { Navbar, Card, Typography } from '../';
 
 export default class ArticleHalf extends React.Component {
   onBurgerPress() {
