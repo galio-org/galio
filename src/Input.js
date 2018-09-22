@@ -13,12 +13,13 @@ const { width } = Dimensions.get('window');
 const BASE_SIZE = 14;
 const COLOR_DEFAULT = `#293042`;
 const COLOR_BACKGROUND = `#FFFFFF`;
+const COLOR_BLACK = "#000";
 
 class Input extends React.Component {
   static defaultProps = {
     type: 'default',
     password: false,
-    placeholderTextColor: 'rgb(0,0,0)',
+    placeholderTextColor: COLOR_BLACK,
     label: null,
     help: null,
     rounded: false,
