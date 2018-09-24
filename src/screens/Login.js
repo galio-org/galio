@@ -28,8 +28,7 @@ class Login extends React.Component {
                 type="email-address"
                 placeholder="kanyewest@thegreatkanye.com"
                 label="Email"
-                borderColor="rgb(0,0,0)"
-                placeholderTextColor="rgba(0,0,0,0.6)"
+                placeholderTextColor="#757575"
                 icon="email-secure"
                 family="MaterialCommunityIcons"
               />
@@ -41,8 +40,7 @@ class Login extends React.Component {
                 label="Password"
                 help="Your password must have between 6 and 9 characters"
                 bottomHelp
-                borderColor="rgb(0,0,0)"
-                placeholderTextColor="rgba(0,0,0,0.6)"
+                placeholderTextColor="#757575"
                 icon="textbox-password"
                 family="MaterialCommunityIcons"
                 password
@@ -77,6 +75,7 @@ class Login extends React.Component {
 const styles = StyleSheet.create({
   inputStyles: {
     borderBottomWidth: 2,
+    borderColor: '#212121',
     borderRadius: 0,
   },
   container: {

@@ -51,7 +51,6 @@ class Input extends React.Component {
       help,
       bgColor,
       borderless,
-      borderColor,
       viewPass,
       rounded,
       icon,
@@ -70,7 +69,6 @@ class Input extends React.Component {
       bgColor && { backgroundColor: bgColor },
       rounded && styles.rounded,
       borderless && styles.borderless,
-      borderColor && { borderColor: borderColor},
       style,
     ];
 
@@ -171,7 +169,6 @@ Input.propTypes = {
   type: PropTypes.string,
   password: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
-  borderColor: PropTypes.string,
   label: PropTypes.string,
   bgColor: PropTypes.string,
   rounded: PropTypes.bool,
