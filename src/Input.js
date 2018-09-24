@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { Icon } from 'expo';
+import { Icon } from './';
 
 // TO-DO:
 // 1. State functionality for Redux/Context/basic state stuff
@@ -56,6 +56,7 @@ class Input extends React.Component {
       family,
       left,
       right,
+      iconColor,
       ...props
     } = this.props;
     const inputViewStyles = [
@@ -75,13 +76,13 @@ class Input extends React.Component {
       color && { color }
     ];
 
-    const { [family]: IconFamily } = Icon;
     const iconContent =
-      icon && IconFamily ? (
-        <IconFamily
+      icon ? (
+        <Icon
           name={icon}
+          family={family}
           size={BASE_SIZE * 2}
-          color={placeholderTextColor}
+          color={iconColor || placeholderTextColor}
         />
       ) : null;
     const viewPassElement = password && viewPass && <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => this.setState({password: !this.state.password})}><Text style={styles.viewPass}>View</Text></TouchableOpacity>;
@@ -169,7 +170,14 @@ Input.propTypes = {
   bgColor: PropTypes.string,
   rounded: PropTypes.bool,
   borderless: PropTypes.bool,
-  viewPass: PropTypes.bool
+  viewPass: PropTypes.bool,
+  iconColor: PropTypes.string,
+  icon: PropTypes.string,
+  family: PropTypes.string,
+  color: PropTypes.string,
+  help: PropTypes.string,
+  left: PropTypes.bool,
+  right: PropTypes.bool
 };
 
 export default Input;
