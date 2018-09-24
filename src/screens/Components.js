@@ -136,10 +136,10 @@ export default class Components extends React.Component {
               help="A pin should have 4 numbers"
             />
             <Typography h5 muted>
-              //TODO//:: , >Add icons to buttons, >Work on shadows, >Typography
-              style prop warning, >Navbar component, >Location component,
+              //TODO//:: >color prop needs reword for more colors, >Work on shadows, >Typography
+              style prop warning, >Navbar component icon customize, >Location component,
               >SafeArea iPhone X, >Card height %*Dimension(??), >Padding for
-              screen containers, >Find wtf is going on with the style prop
+              screen containers, >Find wtf is going on with the style prop, >Refactor style
             </Typography>
           </View>
         </ScrollView>
