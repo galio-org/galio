@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 
 // galio components
-import { Typography, Button, Card, Navbar, Icon } from '../';
+import { Typography, Button, Card, Navbar, Icon, Input } from '../';
+
 
 export default class Components extends React.Component {
   onBurgerPress() {
@@ -17,7 +18,7 @@ export default class Components extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Navbar 
+        <Navbar
           buttonFunction={this.onBurgerPress.bind(this)}
           title="All components"
         />
@@ -105,12 +106,40 @@ export default class Components extends React.Component {
             </Typography>
             <Navbar
               title="Custom style"
-              rightSideComponent={( <View style={{width: 20, height: 20, backgroundColor:'blue' }}></View> )}
+              rightSideComponent={
+                <View
+                  style={{ width: 20, height: 20, backgroundColor: 'blue' }}
+                />
+              }
               style={{ backgroundColor: 'cyan' }}
             />
+            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+              Inputs:
+            </Typography>
+            <Input
+              type="phone-pad"
+              placeholder="+40763023212"
+              label="Phone Number"
+              borderColor="rgb(0,0,0)"
+              help="Your phone number"
+              color="yellow"
+              placeholderTextColor="green"
+              icon="github"
+              family="Entypo"
+            />
+            <Input
+              type="numeric" 
+              password
+              viewPass
+              placeholder="2233"
+              label="This is yo pin, yo"
+              help="A pin should have 4 numbers"
+            />
             <Typography h5 muted>
-              //TODO//:: , >Add icons to buttons, >Work on shadows, >Typography style prop warning, >Navbar component,
-              >Location component, >SafeArea iPhone X, >Card height %*Dimension(??), >Padding for screen containers, >Find wtf is going on with the style prop
+              //TODO//:: , >Add icons to buttons, >Work on shadows, >Typography
+              style prop warning, >Navbar component, >Location component,
+              >SafeArea iPhone X, >Card height %*Dimension(??), >Padding for
+              screen containers, >Find wtf is going on with the style prop
             </Typography>
           </View>
         </ScrollView>
