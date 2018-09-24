@@ -5,14 +5,20 @@ import ArticleCover from './src/screens/ArticleCover';
 import ArticleFeed1 from './src/screens/ArticleFeedv1';
 import ArticleFeed2 from './src/screens/ArticleFeedv2';
 import Components from './src/screens/Components';
+import Dashboard from './src/screens/Dashboard';
+import Login from './src/screens/Login';
 import News from './src/screens/News';
 import Presentation from './src/screens/Presentation';
+import Register from './src/screens/Register';
 
 const ArticleFeed = createStackNavigator({
-  ArticleCard: {screen: ArticleFeed1, navigationOptions: {
-    header: null
-  }},
-  News: {screen: News, navigationOptions: { header: null }}, // bug de background
+  ArticleCard: {
+    screen: ArticleFeed1,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  News: { screen: News, navigationOptions: { header: null } }, // bug de background
 });
 
 const GalioApp = createDrawerNavigator({
@@ -27,11 +33,23 @@ const GalioApp = createDrawerNavigator({
   },
   Article: {
     screen: Article,
-    navigationOptions: { drawerLabel: 'Article Screen' }
+    navigationOptions: { drawerLabel: 'Article Screen' },
   },
   ArticleCover: {
     screen: ArticleCover,
-    navigationOptions: { drawerLabel: 'Article Cover' }
+    navigationOptions: { drawerLabel: 'Article Cover' },
+  },
+  Dashboard: {
+    screen: Dashboard,
+    navigationOptions: {
+      drawerLabel: 'Dashboard screen',
+    },
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      drawerLabel: 'Login Screen',
+    },
   },
   News: {
     screen: News,
@@ -39,9 +57,14 @@ const GalioApp = createDrawerNavigator({
   },
   Presentation: {
     screen: Presentation,
-    navigationOptions: { drawerLabel: 'Presentation Screen' }
-  }
+    navigationOptions: { drawerLabel: 'Presentation Screen' },
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: {
+      drawerLabel: 'Register Screen',
+    },
+  },
 });
-
 
 export default GalioApp;

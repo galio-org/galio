@@ -25,7 +25,9 @@ class Input extends React.Component {
     rounded: false,
     left: true,
     right: false,
-    viewPass: false
+    viewPass: false,
+    topHelp: true,
+    bottomHelp: false,
   };
 
   state = {
@@ -49,7 +51,6 @@ class Input extends React.Component {
       help,
       bgColor,
       borderless,
-      borderColor,
       viewPass,
       rounded,
       icon,
@@ -57,21 +58,23 @@ class Input extends React.Component {
       left,
       right,
       iconColor,
+      topHelp,
+      bottomHelp,
       ...props
     } = this.props;
+
     const inputViewStyles = [
       styles.inputStyle,
       styles.inputContainer,
       bgColor && { backgroundColor: bgColor },
       rounded && styles.rounded,
       borderless && styles.borderless,
-      borderColor && { borderColor: borderColor},
       style,
     ];
 
     const inputStyles = [
       styles.inputView,
-      styles.inputIcon,
+      (!borderless || borderless && icon) && styles.inputIcon,
       styles.inputText,
       color && { color }
     ];
@@ -79,6 +82,7 @@ class Input extends React.Component {
     const iconContent =
       icon ? (
         <Icon
+          style={{ marginHorizontal: 1 }}
           name={icon}
           family={family}
           size={BASE_SIZE * 2}
@@ -92,7 +96,7 @@ class Input extends React.Component {
     return (
       <View style={{ marginVertical: BASE_SIZE / 2 }}>
         {lebelContent}
-        {helpContent}
+        {topHelp && !bottomHelp && helpContent}
         <View
           style={inputViewStyles}
         >
@@ -108,6 +112,7 @@ class Input extends React.Component {
           {right && iconContent}
           {viewPassElement}
         </View>
+        {bottomHelp && helpContent}
       </View>
     );
   }
@@ -121,7 +126,6 @@ const styles = StyleSheet.create({
     borderColor: COLOR_DEFAULT,
     height: BASE_SIZE * 3,
     width: width * 0.8,
-    paddingHorizontal: BASE_SIZE,
   },
   inputText: {
     color: COLOR_DEFAULT,
@@ -165,7 +169,6 @@ Input.propTypes = {
   type: PropTypes.string,
   password: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
-  borderColor: PropTypes.string,
   label: PropTypes.string,
   bgColor: PropTypes.string,
   rounded: PropTypes.bool,
@@ -177,7 +180,9 @@ Input.propTypes = {
   color: PropTypes.string,
   help: PropTypes.string,
   left: PropTypes.bool,
-  right: PropTypes.bool
+  right: PropTypes.bool,
+  topHelp: PropTypes.bool,
+  bottomHelp: PropTypes.bool
 };
 
 export default Input;
