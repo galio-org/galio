@@ -54,20 +54,10 @@ const cards = [
 ]
 const statsActive = [1.5, 1, 1.4, 1.5, 1.8, 1.35, 1.84, 1.83, 1.9, 1.05, 1.06, 1.7, 1.35, 1.35, 1.5];
 const statsInactive = [2, 1.7, 1.65, 1.1, 1.06, 1.05, 1.3, 1, 1.84, 1.8, 1.85, 1.75, 1.74, 1.7, 1.5];
+const statsTitles = [ '04/18', '05/18', '06/18', '07/18', '08/18' ];
 
 class Dashboard extends React.Component {
   renderHeader = () => {
-    // need to refactor the NavBar aka Header to support full customization
-    // const rightSideComponent = <Button onlyIcon iconSize={24} color="transparent" icon="ios-options" iconFamily="Ionicons" style={styles.settings} />
-    // const title = <Text h5>Dashboard</Text>;
-
-    // return (
-    //   <Navbar
-    //     title={title}
-    //     style={{ borderColor: 'transparent' }}
-    //     buttonFunction={() => this.props.navigation.openDrawer()}
-    //     rightSideComponent={rightSideComponent} />
-    // );
     return (
       <View style={styles.header}>
         <Button
@@ -97,30 +87,33 @@ class Dashboard extends React.Component {
       </Defs>
     )
 
-    return ([
+    return (
+      <View style={{ marginBottom: BASE_SIZE * 3 }}>
+        <AreaChart
+          yMin={0}
+          yMax={3}
+          data={statsInactive}
+          curve={shape.curveNatural}
+          style={[StyleSheet.absoluteFill]}
+          contentInset={{ bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15 }}
+          svg={{ strokeWidth: BASE_SIZE * 0.15, stroke: COLOR_GREY }}>
+          <Gradient />
+        </AreaChart>
       <AreaChart
-        key='inactive'
-        yMin={0}
-        yMax={3}
-        data={statsInactive}
-        curve={shape.curveNatural}
-        style={[StyleSheet.absoluteFill]}
-        contentInset={{ bottom: -2, right: -2, left: -2 }}
-        svg={{ strokeWidth: 2, stroke: COLOR_GREY }}>
-        <Gradient />
-      </AreaChart>,
-      <AreaChart
-        key='active'
-        yMin={0}
-        yMax={3}
-        data={statsActive}
-        curve={shape.curveNatural}
-        style={{ height: 100 }}
-        contentInset={{ bottom: -3, right: -3, left: -3 }}
-        svg={{ strokeWidth: 3, stroke: 'url(#gradient)'}}>
-        <Gradient />
-      </AreaChart>,
-    ])
+          yMin={0}
+          yMax={3}
+          data={statsActive}
+          curve={shape.curveNatural}
+          style={{ height: BASE_SIZE * 7 }}
+          contentInset={{ bottom: -BASE_SIZE * 0.21, right: -BASE_SIZE * 0.21, left: -BASE_SIZE * 0.21 }}
+          svg={{ strokeWidth: BASE_SIZE * 0.21, stroke: 'url(#gradient)' }}>
+          <Gradient />
+        </AreaChart>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: BASE_SIZE }}>
+          {statsTitles.map(title => <Typography key={title} muted>{title}</Typography>)}
+        </View>
+      </View>
+    )
   }
 
   renderCard = (props, index) => {
@@ -151,9 +144,7 @@ class Dashboard extends React.Component {
     )
   }
 
-  renderCards = () => {
-    return cards.map((card, index) => this.renderCard(card, index))
-  }
+  renderCards = () => cards.map((card, index) => this.renderCard(card, index))
 
   render() {
     return (
@@ -163,16 +154,7 @@ class Dashboard extends React.Component {
         {this.renderHeader()}
         
         {/* stats */}
-        <View style={{marginBottom: BASE_SIZE * 3, }}>
-          {this.renderStats()}
-          <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginTop: BASE_SIZE}}>
-            <Typography muted>04/18</Typography>
-            <Typography muted>05/18</Typography>
-            <Typography muted>06/18</Typography>
-            <Typography muted>07/18</Typography>
-            <Typography muted>08/18</Typography>
-          </View>
-        </View>
+        {this.renderStats()}
         
         {/* cards */}
         <ScrollView style={{flex: 1}}>
@@ -191,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'flex-start',
     justifyContent: 'space-between',
-    borderRadius: 5,
+    borderRadius: BASE_SIZE * 0.35,
     marginHorizontal: BASE_SIZE,
     marginVertical: BASE_SIZE / 1.25,
     padding: BASE_SIZE,
@@ -199,9 +181,9 @@ const styles = StyleSheet.create({
   },
   shadow: {
     shadowColor: COLOR_BLACK,
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: BASE_SIZE * 0.28 },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowRadius: BASE_SIZE * 0.57,
     elevation: 1,
   },
   header: {
