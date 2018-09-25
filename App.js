@@ -12,13 +12,11 @@ export default class App extends React.Component {
   }
   onBurgerPress(){
     this.props.openDrawer();
-
-    console.log('slbz');
   }
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#F9F9F9' }}>
-      <StatusBar hidden />
+      <View style={{ flex: 1 }}>
+        <StatusBar hidden />
         <GalioApp />
       </View>
     );

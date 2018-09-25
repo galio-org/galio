@@ -181,6 +181,7 @@ const styles = StyleSheet.create({
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
   style: PropTypes.oneOfType([
+    PropTypes.array,
     PropTypes.object,
     PropTypes.number,
     PropTypes.arrayOf(PropTypes.object),
@@ -195,6 +196,7 @@ Button.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
+    PropTypes.node,
   ]),
   
   color: PropTypes.oneOfType([
