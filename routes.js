@@ -7,6 +7,7 @@ import ArticleFeed2 from './src/screens/ArticleFeedv2';
 import Components from './src/screens/Components';
 import News from './src/screens/News';
 import Presentation from './src/screens/Presentation';
+import Dashboard from './src/screens/Dashboard';
 
 const ArticleFeed = createStackNavigator({
   ArticleCard: {screen: ArticleFeed1, navigationOptions: {
@@ -40,8 +41,11 @@ const GalioApp = createDrawerNavigator({
   Presentation: {
     screen: Presentation,
     navigationOptions: { drawerLabel: 'Presentation Screen' }
-  }
+  },
+  Dashboard: {
+    screen: Dashboard,
+    navigationOptions: { drawerLabel: 'Dashboard Screen' }
+  },
 });
-
 
 export default GalioApp;
