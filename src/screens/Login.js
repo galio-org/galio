@@ -30,8 +30,6 @@ class Login extends React.Component {
                 placeholder="kanyewest@thegreatkanye.com"
                 label="Email"
                 placeholderTextColor="#757575"
-                icon="email-secure"
-                family="MaterialCommunityIcons"
               />
               <Input
                 style={styles.inputStyles}
@@ -42,8 +40,6 @@ class Login extends React.Component {
                 help="Your password must have between 6 and 9 characters"
                 bottomHelp
                 placeholderTextColor="#757575"
-                icon="textbox-password"
-                family="MaterialCommunityIcons"
                 password
                 viewPass
               />
