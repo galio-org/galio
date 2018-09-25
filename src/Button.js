@@ -47,6 +47,7 @@ class Button extends React.Component {
     loading: false,
     loadingSize: 'small',
     opacity: 0.8,
+    iconColor: COLORS.BLACK
   };
 
   onPress() {
@@ -63,6 +64,7 @@ class Button extends React.Component {
       icon,
       iconFamily,
       iconSize,
+      iconColor,
       uppercase,
       lowercase,
       capitalize,
@@ -85,7 +87,7 @@ class Button extends React.Component {
     if (lowercase && isString) content = children.toLowerCase();
     if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
 
-    if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} />;
+    if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor}/>;
     else content = <Text style={textStyles}>{content}</Text>;
     
     if (loading) content = <ActivityIndicator size={loadingSize} color={COLORS.WHITE} />;
@@ -120,8 +122,8 @@ class Button extends React.Component {
       color === 'transparent' && { borderWidth: 1, borderColor: 'rgb(250,250,250)' },
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
+      onlyIcon && { width: iconSize * 2, height: iconSize * 2, borderWidth: 0, borderRadius: iconSize },
       radius && { borderRadius: radius },
-      onlyIcon && { width: iconSize * 2, borderWidth: 0, },
       { zIndex: 2 },
       style,
     ];
@@ -217,7 +219,7 @@ Button.propTypes = {
     ]),
     PropTypes.number,
   ]),
-
+  iconColor: PropTypes.string,
   disabled: PropTypes.bool,
   onPress: PropTypes.func,
   radius: PropTypes.number,

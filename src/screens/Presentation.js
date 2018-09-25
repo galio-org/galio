@@ -19,7 +19,7 @@ const Presentation = props => (
       <Typography p center color="rgb(255,255,255)" style={{ marginBottom: 30 }}>
         This is created and was created just for your eyes only. Oh yeah, you really want a piece of this cool UI kit.
       </Typography>
-      <Button size="big" color="transparent" round>
+      <Button size="large" color="transparent" round>
         Get Started
       </Button>
     </View>
