@@ -5,7 +5,6 @@ import ArticleCover from './src/screens/ArticleCover';
 import ArticleFeed1 from './src/screens/ArticleFeedv1';
 import ArticleFeed2 from './src/screens/ArticleFeedv2';
 import Components from './src/screens/Components';
-import Dashboard from './src/screens/Dashboard';
 import Login from './src/screens/Login';
 import News from './src/screens/News';
 import Presentation from './src/screens/Presentation';
