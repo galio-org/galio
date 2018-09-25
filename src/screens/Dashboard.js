@@ -16,7 +16,7 @@ const COLOR_WHITE = `#FFFFFF`;
 const COLOR_BLACK = `#000000`;
 const COLOR_GREY = `#D8DDE1`;
 
-// mock datas
+// mock data
 const cards = [
   {
     title: `Settings`,
@@ -57,6 +57,7 @@ const statsInactive = [2, 1.7, 1.65, 1.1, 1.06, 1.05, 1.3, 1, 1.84, 1.8, 1.85, 1
 
 class Dashboard extends React.Component {
   renderHeader = () => {
+    // need to refactor the NavBar aka Header to support full customization
     // const rightSideComponent = <Button onlyIcon iconSize={24} color="transparent" icon="ios-options" iconFamily="Ionicons" style={styles.settings} />
     // const title = <Text h5>Dashboard</Text>;
 
@@ -105,7 +106,7 @@ class Dashboard extends React.Component {
         curve={shape.curveNatural}
         style={[StyleSheet.absoluteFill]}
         contentInset={{ bottom: -2, right: -2, left: -2 }}
-        svg={{ strokeWidth: 2, stroke: COLOR_GREY, fill: 'none' }}>
+        svg={{ strokeWidth: 2, stroke: COLOR_GREY }}>
         <Gradient />
       </AreaChart>,
       <AreaChart
@@ -116,7 +117,7 @@ class Dashboard extends React.Component {
         curve={shape.curveNatural}
         style={{ height: 100 }}
         contentInset={{ bottom: -3, right: -3, left: -3 }}
-        svg={{ strokeWidth: 3, stroke: 'url(#gradient)', fill: 'none'}}>
+        svg={{ strokeWidth: 3, stroke: 'url(#gradient)'}}>
         <Gradient />
       </AreaChart>,
     ])
