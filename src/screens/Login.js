@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 // galio component
 import { Navbar, Typography, Input, Button } from '../';
 
@@ -8,6 +8,7 @@ class Login extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <Navbar buttonFunction={() => this.props.navigation.openDrawer()} />
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <View style={styles.container}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Typography h3 center>
@@ -67,6 +68,7 @@ class Login extends React.Component {
             </View>
           </View>
         </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
