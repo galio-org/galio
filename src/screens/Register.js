@@ -17,90 +17,90 @@ const COLORS = {
 const Register = props => (
   <View style={{ flex: 1 }}>
     <Navbar buttonFunction={() => props.navigation.openDrawer()} />
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
-      <View style={styles.container}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Button
-              onlyIcon
-              icon="facebook"
-              iconFamily="FontAwesome"
-              iconSize={28}
-              style={{ marginRight: 15 }}
-              color={COLORS.FACEBOOK}
-              iconColor="#fff"
-            />
-            <Button
-              onlyIcon
-              icon="twitter"
-              iconFamily="FontAwesome"
-              iconSize={28}
-              style={{ marginRight: 15 }}
-              color={COLORS.TWITTER}
-              iconColor="#fff"
-            />
-            <Button
-              onlyIcon
-              icon="dribbble"
-              iconFamily="FontAwesome"
-              iconSize={28}
-              color={COLORS.DRIBBBLE}
-              iconColor="#fff"
-            />
-          </View>
-          <Typography h4 muted center style={{ marginTop: 15 }}>or be classical</Typography>
-        </View>
-
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <View
           style={{
-            flex: 2,
-            justifyContent: 'space-evenly',
+            flexDirection: 'row',
+            justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <View>
-            <Input
-              style={styles.inputStyles}
-              borderless
-              bgColor="transparent"
-              placeholder="MigosFan29324"
-              label="Username"
-              placeholderTextColor="#757575"
-            />
-            <Input
-              style={styles.inputStyles}
-              borderless
-              bgColor="transparent"
-              type="email-address"
-              placeholder="kanyewest@thegreatkanye.com"
-              label="Email"
-              placeholderTextColor="#757575"
-            />
-            <Input
-              style={styles.inputStyles}
-              borderless
-              bgColor="transparent"
-              placeholder="My awesome password"
-              label="Password"
-              help="Your password must have between 6 and 9 characters"
-              bottomHelp
-              placeholderTextColor="#757575"
-              password
-              viewPass
-            />
-          </View>
+          <Button
+            onlyIcon
+            icon="facebook"
+            iconFamily="FontAwesome"
+            iconSize={28}
+            style={{ marginRight: 15 }}
+            color={COLORS.FACEBOOK}
+            iconColor="#fff"
+          />
+          <Button
+            onlyIcon
+            icon="twitter"
+            iconFamily="FontAwesome"
+            iconSize={28}
+            style={{ marginRight: 15 }}
+            color={COLORS.TWITTER}
+            iconColor="#fff"
+          />
+          <Button
+            onlyIcon
+            icon="dribbble"
+            iconFamily="FontAwesome"
+            iconSize={28}
+            color={COLORS.DRIBBBLE}
+            iconColor="#fff"
+          />
+        </View>
+        <Typography h4 muted center style={{ marginTop: 15 }}>
+          or be classical
+        </Typography>
+      </View>
 
-          <View>
-            <Button color="error" round>
-              Sign up
-            </Button>
-          </View>
+      <View
+        style={{
+          flex: 2,
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+        }}
+      >
+        <View>
+          <Input
+            style={styles.inputStyles}
+            borderless
+            bgColor="transparent"
+            placeholder="MigosFan29324"
+            label="Username"
+            placeholderTextColor="#757575"
+          />
+          <Input
+            style={styles.inputStyles}
+            borderless
+            bgColor="transparent"
+            type="email-address"
+            placeholder="kanyewest@thegreatkanye.com"
+            label="Email"
+            placeholderTextColor="#757575"
+          />
+          <Input
+            style={styles.inputStyles}
+            borderless
+            bgColor="transparent"
+            placeholder="My awesome password"
+            label="Password"
+            help="Your password must have between 6 and 9 characters"
+            bottomHelp
+            placeholderTextColor="#757575"
+            password
+            viewPass
+          />
+        </View>
+
+        <View>
+          <Button color="error" round>
+            Sign up
+          </Button>
         </View>
       </View>
     </KeyboardAvoidingView>
