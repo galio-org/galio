@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from 'react-native';
 // galio component
 import { Navbar, Typography, Input, Button } from '../';
 
@@ -8,8 +13,14 @@ class Login extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <Navbar buttonFunction={() => this.props.navigation.openDrawer()} />
-        <View style={styles.container}>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior="padding"
+          enabled
+        >
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
             <Typography h3 center>
               Galio - react native kit
             </Typography>
@@ -19,7 +30,13 @@ class Login extends React.Component {
             </Typography>
           </View>
 
-          <View style={{flex: 2, justifyContent: 'space-evenly', alignItems: 'center'}}>
+          <View
+            style={{
+              flex: 2,
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+            }}
+          >
             <View>
               <Input
                 style={styles.inputStyles}
@@ -29,8 +46,6 @@ class Login extends React.Component {
                 placeholder="kanyewest@thegreatkanye.com"
                 label="Email"
                 placeholderTextColor="#757575"
-                icon="email-secure"
-                family="MaterialCommunityIcons"
               />
               <Input
                 style={styles.inputStyles}
@@ -41,8 +56,6 @@ class Login extends React.Component {
                 help="Your password must have between 6 and 9 characters"
                 bottomHelp
                 placeholderTextColor="#757575"
-                icon="textbox-password"
-                family="MaterialCommunityIcons"
                 password
                 viewPass
               />
@@ -60,13 +73,18 @@ class Login extends React.Component {
                 Sign in
               </Button>
               <TouchableOpacity>
-                <Typography size={14} center color="rgb(209,0,125)" style={{ marginTop: 10 }}>
+                <Typography
+                  size={14}
+                  center
+                  color="rgb(209,0,125)"
+                  style={{ marginTop: 10 }}
+                >
                   Don't have an account? Sign up
                 </Typography>
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }

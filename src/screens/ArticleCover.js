@@ -1,8 +1,14 @@
 import React from 'react';
-import { View, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Typography } from '../';
+import { Typography, Icon } from '../';
 
 // space-between view and another view for the back button
 
@@ -38,13 +44,17 @@ const ArticleCover = props => (
         left: 0,
         right: 0,
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
-    <View style={{ alignSelf: 'flex-start', marginTop: '7%', marginLeft: '5%' }}>
-      <TouchableOpacity style={{ width: 20, height: 20, backgroundColor: '#A833FE' }}
-            onPress={() => props.navigation.openDrawer()} />
-    </View>
+      <View style={{ alignSelf: 'flex-start' }}>
+        <TouchableOpacity
+          onPress={() => props.navigation.openDrawer()}
+          style={styles.backButton}
+        >
+          <Icon name="menu" family="Entypo" size={25} color="#fff" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.articleSummary}>
         <Typography h3 style={[styles.textColor, styles.headline]}>
           Why is 'The Thing' always looking at you?
@@ -87,6 +97,12 @@ const styles = StyleSheet.create({
   },
   summary: {
     marginBottom: 5,
+  },
+  backButton: {
+    width: 25,
+    height: 25,
+    marginTop: '7%',
+    marginLeft: '6%'
   },
 });
 
