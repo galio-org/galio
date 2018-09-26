@@ -16,21 +16,6 @@ const COLORS = {
   BLACK: '#000000',
 }
 
-/*
- Props buton:
-  - color: blue, purple, red, orange, green, transparent
-  - onlyIcon: boolean
-  - icon: name of the icon from font family, e.g.: menu
-  - iconFamily: name of the icon font family, e.g.: FontAwesome
-  - iconSize: size of the icon using number, e.g: 12, 21 or 42
-  - size: 'small', 'large' or any number
-  - children: should be changed or NOT -- IT DEPENDS ON HOW I WANT THEM TO PUT ICONS
-  - radius: using borderRadius number to display rounded corners
-  - loading: using ActivityIndicator - displays a circular loading indicator
-  - loadingSize: size for ActivityIndicator - available options (small / large)
-  - opacity: using activeOpacity on touch, values between 0.0 to 1.0, defaults to 0.8
-*/
-
 class Button extends React.Component {
   static defaultProps = {
     color: 'primary',
@@ -40,6 +25,7 @@ class Button extends React.Component {
     uppercase: false,
     lowercase: false,
     capitalize: false,
+    shadowless: false,
     onlyIcon: false,
     icon: false,
     iconFamily: false,
@@ -109,6 +95,7 @@ class Button extends React.Component {
       onlyIcon,
       iconSize,
       opacity,
+      shadowless,
       ...rest
     } = this.props;
 
@@ -119,11 +106,13 @@ class Button extends React.Component {
       color && colorStyle,
       color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
       color === 'transparent' || styles.androidShadow,
-      color === 'transparent' && { borderWidth: 1, borderColor: 'rgb(250,250,250)' },
+      color === 'transparent' && { borderWidth: 1, borderColor: COLORS.WHITE },
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
       onlyIcon && { width: iconSize * 2, height: iconSize * 2, borderWidth: 0, borderRadius: iconSize },
       radius && { borderRadius: radius },
+      !shadowless && styles.shadow,
+      { shadowColor: COLORS[color.toUpperCase()] },
       { zIndex: 2 },
       style,
     ];
@@ -145,12 +134,14 @@ const styles = StyleSheet.create({
   defaultButton: {
     width: 130,
     height: 42,
-    shadowColor: 'rgba(209,0,125,10)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  shadow: {
+    shadowColor: COLORS.BLACK,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.25,
     shadowRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   customText: {
     fontSize: 18,
@@ -231,6 +222,7 @@ Button.propTypes = {
     'small', 'large',
   ]),
   opacity: PropTypes.number,
+  shadowless: PropTypes.bool
 };
 
 export default Button;
