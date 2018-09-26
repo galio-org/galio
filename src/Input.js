@@ -101,21 +101,12 @@ class Input extends React.Component {
           style={{ marginLeft: 2 }}
           onPress={() => this.setState({ password: !this.state.password })}
         >
-          {this.state.password ? (
-            <Icon
-              size={BASE_SIZE}
-              color={COLOR_BLACK}
-              name="eye"
-              family="Entypo"
-            />
-          ) : (
-            <Icon
-              size={BASE_SIZE}
-              color={COLOR_BLACK}
-              name="eye-with-line"
-              family="Entypo"
-            />
-          )}
+          <Icon
+            size={BASE_SIZE}
+            color={COLOR_BLACK}
+            name={`eye${this.state.password ? '' : '-with-line'}`}
+            family="Entypo"
+          />
         </TouchableOpacity>
       );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
