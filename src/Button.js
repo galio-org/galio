@@ -106,7 +106,7 @@ class Button extends React.Component {
       color && colorStyle,
       color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
       color === 'transparent' || styles.androidShadow,
-      color === 'transparent' && { borderWidth: 1, borderColor: 'rgb(250,250,250)' },
+      color === 'transparent' && { borderWidth: 1, borderColor: COLORS.WHITE },
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
       onlyIcon && { width: iconSize * 2, height: iconSize * 2, borderWidth: 0, borderRadius: iconSize },
