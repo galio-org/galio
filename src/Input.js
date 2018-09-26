@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { Icon } from './';
 
@@ -13,7 +20,7 @@ const { width } = Dimensions.get('window');
 const BASE_SIZE = 14;
 const COLOR_DEFAULT = `#293042`;
 const COLOR_BACKGROUND = `#FFFFFF`;
-const COLOR_BLACK = "#000";
+const COLOR_BLACK = '#000';
 
 class Input extends React.Component {
   static defaultProps = {
@@ -31,13 +38,13 @@ class Input extends React.Component {
   };
 
   state = {
-    password: false
-  }
+    password: false,
+  };
 
   componentDidMount() {
     this.setState({
-      password: this.props.password
-    })
+      password: this.props.password,
+    });
   }
 
   render() {
@@ -74,22 +81,43 @@ class Input extends React.Component {
 
     const inputStyles = [
       styles.inputView,
-      (!borderless || borderless && icon) && styles.inputIcon,
+      (!borderless || (borderless && icon)) && styles.inputIcon,
       styles.inputText,
-      color && { color }
+      color && { color },
     ];
 
-    const iconContent =
-      icon ? (
-        <Icon
-          style={{ marginHorizontal: 1 }}
-          name={icon}
-          family={family}
-          size={BASE_SIZE * 2}
-          color={iconColor || placeholderTextColor}
-        />
-      ) : null;
-    const viewPassElement = password && viewPass && <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => this.setState({password: !this.state.password})}><Text style={styles.viewPass}>View</Text></TouchableOpacity>;
+    const iconContent = icon ? (
+      <Icon
+        style={{ marginHorizontal: 1 }}
+        name={icon}
+        family={family}
+        size={BASE_SIZE * 2}
+        color={iconColor || placeholderTextColor}
+      />
+    ) : null;
+    const viewPassElement = password &&
+      viewPass && (
+        <TouchableOpacity
+          style={{ marginLeft: 2 }}
+          onPress={() => this.setState({ password: !this.state.password })}
+        >
+          {this.state.password ? (
+            <Icon
+              size={BASE_SIZE}
+              color={COLOR_BLACK}
+              name="eye"
+              family="Entypo"
+            />
+          ) : (
+            <Icon
+              size={BASE_SIZE}
+              color={COLOR_BLACK}
+              name="eye-with-line"
+              family="Entypo"
+            />
+          )}
+        </TouchableOpacity>
+      );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
@@ -97,9 +125,7 @@ class Input extends React.Component {
       <View style={{ marginVertical: BASE_SIZE / 2 }}>
         {lebelContent}
         {topHelp && !bottomHelp && helpContent}
-        <View
-          style={inputViewStyles}
-        >
+        <View style={inputViewStyles}>
           {left && !right && iconContent}
           <TextInput
             style={inputStyles}
@@ -135,7 +161,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   inputView: {
     flex: 1,
@@ -158,10 +184,6 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     borderWidth: 0,
   },
-  viewPass: {
-    fontSize: BASE_SIZE * 0.9,
-    color: 'rgb(90,200,250)'
-  }
 });
 
 Input.propTypes = {
@@ -182,7 +204,7 @@ Input.propTypes = {
   left: PropTypes.bool,
   right: PropTypes.bool,
   topHelp: PropTypes.bool,
-  bottomHelp: PropTypes.bool
+  bottomHelp: PropTypes.bool,
 };
 
 export default Input;
