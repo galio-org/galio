@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Typography, NavBar } from '../';
+import { Text, NavBar } from '../';
 
 // space-between view and another view for the back button
 
@@ -49,16 +49,16 @@ const ArticleCover = props => (
     >
       <NavBar transparent leftIconColor='#FFF' onLeftPress={() => props.navigation.openDrawer()} />
       <View style={styles.articleSummary}>
-        <Typography h3 style={[styles.textColor, styles.headline]}>
+        <Text h3 style={[styles.textColor, styles.headline]}>
           Why is 'The Thing' always looking at you?
-        </Typography>
-        <Typography h5 style={[styles.textColor, styles.subHeadline]}>
+        </Text>
+        <Text h5 style={[styles.textColor, styles.subHeadline]}>
           Just small talk from the Fantastic Four.
-        </Typography>
-        <Typography h5 style={[styles.textColor, styles.summary]}>
+        </Text>
+        <Text h5 style={[styles.textColor, styles.summary]}>
           So... Did you ever think about this bus? Like... How could this bus
           have all these weird colors. This purple is really cute though.
-        </Typography>
+        </Text>
       </View>
     </View>
   </View>

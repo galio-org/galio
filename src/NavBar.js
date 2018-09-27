@@ -8,7 +8,7 @@ const COLOR_BACKGROUND = `#F9F9F9`;
 const COLOR_DEFAULT = `#000000`;
 
 // galio components
-import { Typography, Icon } from '.';
+import { Text, Icon } from '.';
 
 class NavBar extends React.Component {
   static defaultProps = {
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Typography h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT}, titleStyle ]}>{title}</Typography>
+          <Text h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT}, titleStyle ]}>{title}</Text>
         </View>
       )
     }

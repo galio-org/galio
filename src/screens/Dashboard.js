@@ -7,7 +7,7 @@ import { AreaChart } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 
 // galio components
-import { Button, Icon, Typography, NavBar } from '../';
+import { Button, Icon, Text, NavBar } from '../';
 
 const BASE_SIZE = 14;
 const GRADIENT_BLUE = ['#6C3CF7', '#4F3DF2', '#2734EF'];
@@ -115,7 +115,7 @@ class Dashboard extends React.Component {
           <Gradient />
         </AreaChart>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: BASE_SIZE }}>
-          {statsTitles.map(title => <Typography key={title} muted>{title}</Typography>)}
+          {statsTitles.map(title => <Text key={title} muted>{title}</Text>)}
         </View>
       </View>
     )
@@ -139,8 +139,8 @@ class Dashboard extends React.Component {
         </Gradient>
 
         <View style={{flex: 1}}>
-          <Typography h5>{props.title}</Typography>
-          <Typography muted>{props.subtitle}</Typography>
+          <Text h5>{props.title}</Text>
+          <Text muted>{props.subtitle}</Text>
         </View>
         <Button style={styles.right}>
           <Icon size={BASE_SIZE * 2} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />

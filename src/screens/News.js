@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo';
 // Galio components
-import { Typography, AuthorSection, NavBar } from '../';
+import { Text, AuthorSection, NavBar } from '../';
 
 const News = props => (
   <View style={{ flex: 1 }}>
@@ -27,27 +27,27 @@ const News = props => (
           style={styles.articleThumbnail}
         />
         <View style={styles.article}>
-          <Typography h2>
+          <Text h2>
             What's going on with this little Cactus? Is he going crazy?
-          </Typography>
-          <Typography h5 muted style={{ marginTop: 10 }}>
+          </Text>
+          <Text h5 muted style={{ marginTop: 10 }}>
             A chat with a little Cactus.
-          </Typography>
-          <Typography h4 bold style={{ marginTop: 20 }}>
+          </Text>
+          <Text h4 bold style={{ marginTop: 20 }}>
             You should totally read this stuff, like seriously all yo homies
             love sneak dissing but at least u're true, right?
-          </Typography>
-          <Typography h5 style={{ marginTop: 13 }}>
+          </Text>
+          <Text h5 style={{ marginTop: 13 }}>
             Spicy jalapeno bacon ipsum dolor amet short loin cupidatat est, pork
             pancetta velit kevin occaecat ipsum aliqua ham tri-tip incididunt.
-          </Typography>
-          <Typography h5 style={{ marginTop: 7 }}>
+          </Text>
+          <Text h5 style={{ marginTop: 7 }}>
             Irure sirloin nostrud filet mignon capicola strip steak, sint pork
             dolore pig short ribs. Et pariatur sunt, ribeye esse frankfurter
             biltong nostrud. Elit do filet mignon turkey, tempor pastrami ea
             bacon. In tri-tip id cupim tail ham irure. Drumstick esse ut
             andouille strip steak.
-          </Typography>
+          </Text>
         </View>
       </View>
     </ScrollView>

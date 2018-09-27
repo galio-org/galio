@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 
 // Galio components
-import { Card, Typography, NavBar } from '../';
+import { Card, Text, NavBar } from '../';
 
 export default class ArticleHalf extends React.Component {
 
@@ -23,7 +23,7 @@ export default class ArticleHalf extends React.Component {
                   <Image source={{ uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/location-pin-127-595049.png' }}
                     style={{ width: 15, height: 15 }}
                   />
-                  <Typography p muted>Los Angeles, CA</Typography>
+                  <Text p muted>Los Angeles, CA</Text>
                 </View>
               }
             />
@@ -43,7 +43,7 @@ export default class ArticleHalf extends React.Component {
                   <Image source={{ uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/location-pin-127-595049.png' }}
                     style={{ width: 15, height: 15, marginRight: 2 }}
                   />
-                  <Typography p muted>Los Angeles, CA</Typography>
+                  <Text p muted>Los Angeles, CA</Text>
                 </View>
               }
             />

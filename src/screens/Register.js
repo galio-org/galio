@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 // galio components
-import { NavBar, Input, Button, Typography } from '../';
+import { NavBar, Input, Button, Text } from '../';
 
 const COLORS = {
   FACEBOOK: '#3B5998',
@@ -54,9 +54,9 @@ const Register = props => (
             iconColor="#fff"
           />
         </View>
-        <Typography h4 muted center style={{ marginTop: 15 }}>
+        <Text h4 muted center style={{ marginTop: 15 }}>
           or be classical
-        </Typography>
+        </Text>
       </View>
 
       <View
