@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 // galio components
-import { Typography, AuthorSection, NavBar } from '../';
+import { Text, AuthorSection, NavBar } from '../';
 
 const Article = props => (
   <View style={{ flex: 1 }}>
@@ -22,10 +22,10 @@ const Article = props => (
     <NavBar transparent onLeftPress={() => this.props.navigation.openDrawer()} />
     
     <View style={styles.articleContainer}>
-      <Typography h2>I would happily watch a TV show about crabs</Typography>
-      <Typography p muted style={{ marginTop: 5 }}>
+      <Text h2>I would happily watch a TV show about crabs</Text>
+      <Text p muted style={{ marginTop: 5 }}>
         Interviewing this super star
-      </Typography>
+      </Text>
       <AuthorSection
         imageSource="http://i.pravatar.cc/100"
         title="Alin Gheorghe"
@@ -33,15 +33,15 @@ const Article = props => (
         style={{ marginTop: 15 }}
         optionalComponent={<View />}
       />
-      <Typography p bold style={{ marginTop: 10 }}>
+      <Text p bold style={{ marginTop: 10 }}>
         You should totally like check this out, ok? Why would you use another UI
         library when you have so many components written by Creative Tim and the
         whole React Native community. Galio was created by developers for
         developers.
-      </Typography>
-      <Typography p style={{ marginTop: 10 }}>
+      </Text>
+      <Text p style={{ marginTop: 10 }}>
         A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
-      </Typography>
+      </Text>
     </View>
   </View>
 );

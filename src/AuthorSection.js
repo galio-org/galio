@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Typography from './Typography';
+import { Text } from './';
 
 const AuthorSection = ({
   style,
@@ -17,10 +17,10 @@ const AuthorSection = ({
     <View style={styles.authorFullSpace}>
       <Image source={{ uri: imageSource }} style={styles.authorAvatar} />
       <View style={styles.authorInfo}>
-        <Typography h5 style={reverseColor && styles.titleWhite}>{title}</Typography>
-        <Typography p muted>
+        <Text h5 style={reverseColor && styles.titleWhite}>{title}</Text>
+        <Text p muted>
           {subTitle}
-        </Typography>
+        </Text>
       </View>
     </View>
     {optionalComponent && <View style={{ flex: 2 }}>{optionalComponent}</View>}

@@ -4,7 +4,7 @@ import Card from './Card';
 import Icon from './Icon'
 import Input from './Input';
 import NavBar from './NavBar';
-import Typography from './Typography';
+import Text from './Typography';
 
 export {
   AuthorSection,
@@ -13,5 +13,5 @@ export {
   Icon,
   Input,
   NavBar,
-  Typography,
+  Text,
 };

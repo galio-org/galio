@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 // galio component
-import { NavBar, Typography, Input, Button } from '../';
+import { NavBar, Text, Input, Button } from '../';
 
 class Login extends React.Component {
   render() {
@@ -21,13 +21,13 @@ class Login extends React.Component {
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
           >
-            <Typography h3 center>
+            <Text h3 center>
               Galio - react native kit
-            </Typography>
-            <Typography p muted center style={{ paddingHorizontal: 12 }}>
+            </Text>
+            <Text p muted center style={{ paddingHorizontal: 12 }}>
               This is the perfect place to write a short description of this
               step and even the next steps ahead.
-            </Typography>
+            </Text>
           </View>
 
           <View
@@ -61,9 +61,9 @@ class Login extends React.Component {
               />
               <View style={{ flexDirection: 'row-reverse' }}>
                 <TouchableOpacity>
-                  <Typography size={10} color="rgb(209,0,125)">
+                  <Text size={10} color="rgb(209,0,125)">
                     Forgot your password?
-                  </Typography>
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -73,14 +73,14 @@ class Login extends React.Component {
                 Sign in
               </Button>
               <TouchableOpacity>
-                <Typography
+                <Text
                   size={14}
                   center
                   color="rgb(209,0,125)"
                   style={{ marginTop: 10 }}
                 >
                   Don't have an account? Sign up
-                </Typography>
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
