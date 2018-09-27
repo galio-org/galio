@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { Text } from './';
+import { Text } from '.';
 
 const AuthorSection = ({
   style,

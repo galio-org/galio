@@ -6,7 +6,7 @@ import { Constants } from 'expo';
 
 // galio components
 import {
-  Button, Icon, Block, Typography,
+  Button, Icon, Block, Text,
 } from '..';
 
 const BASE_SIZE = 14;
@@ -25,7 +25,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-facebook" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Facebook</Typography>
+                  <Text>Facebook</Text>
                 </Block>
               </Button>
             </Block>
@@ -33,7 +33,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-github" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>GitHub</Typography>
+                  <Text>GitHub</Text>
                 </Block>
               </Button>
             </Block>
@@ -41,7 +41,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-instagram" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Instagram</Typography>
+                  <Text>Instagram</Text>
                 </Block>
               </Button>
             </Block>
@@ -49,7 +49,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-windows" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Windows</Typography>
+                  <Text>Windows</Text>
                 </Block>
               </Button>
             </Block>
@@ -59,7 +59,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-facebook" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Typography>Facebook</Typography>
+                  <Text>Facebook</Text>
                 </Block>
               </Button>
             </Block>
@@ -67,7 +67,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-github" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Typography>GitHub</Typography>
+                  <Text>GitHub</Text>
                 </Block>
               </Button>
             </Block>
@@ -75,7 +75,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-instagram" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Typography>Instagram</Typography>
+                  <Text>Instagram</Text>
                 </Block>
               </Button>
             </Block>
@@ -83,7 +83,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-tumblr" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Typography>Tumblr</Typography>
+                  <Text>Tumblr</Text>
                 </Block>
               </Button>
             </Block>
@@ -93,7 +93,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-android" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Android</Typography>
+                  <Text>Android</Text>
                 </Block>
               </Button>
             </Block>
@@ -101,7 +101,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-apple" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Apple</Typography>
+                  <Text>Apple</Text>
                 </Block>
               </Button>
             </Block>
@@ -109,7 +109,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-digg" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Digg</Typography>
+                  <Text>Digg</Text>
                 </Block>
               </Button>
             </Block>
@@ -117,7 +117,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-dribbble" family="Foundation" size={BASE_SIZE * 3} />
-                  <Typography>Dribbble</Typography>
+                  <Text>Dribbble</Text>
                 </Block>
               </Button>
             </Block>
@@ -127,7 +127,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="500px" family="Entypo" size={BASE_SIZE * 3} />
-                  <Typography>500px</Typography>
+                  <Text>500px</Text>
                 </Block>
               </Button>
             </Block>
@@ -135,7 +135,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="app-store" family="Entypo" size={BASE_SIZE * 3} />
-                  <Typography>App Store</Typography>
+                  <Text>App Store</Text>
                 </Block>
               </Button>
             </Block>
@@ -143,7 +143,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="baidu" family="Entypo" size={BASE_SIZE * 3} />
-                  <Typography>Baidu</Typography>
+                  <Text>Baidu</Text>
                 </Block>
               </Button>
             </Block>
@@ -151,7 +151,7 @@ class Grid extends React.Component {
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="behance" family="Entypo" size={BASE_SIZE * 3} />
-                  <Typography>Behance</Typography>
+                  <Text>Behance</Text>
                 </Block>
               </Button>
             </Block>
