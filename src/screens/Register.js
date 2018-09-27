@@ -6,7 +6,9 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 // galio components
-import { NavBar, Input, Button, Typography } from '../';
+import {
+  NavBar, Input, Button, Typography,
+} from '..';
 
 const COLORS = {
   FACEBOOK: '#3B5998',

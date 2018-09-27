@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Image, StyleSheet, ScrollView } from 'react-native';
+import {
+  View, Image, StyleSheet, ScrollView,
+} from 'react-native';
 import { LinearGradient } from 'expo';
 // Galio components
-import { Typography, AuthorSection, NavBar } from '../';
+import { Typography, AuthorSection, NavBar } from '..';
 
 const News = props => (
   <View style={{ flex: 1 }}>
@@ -53,12 +55,12 @@ const News = props => (
     </ScrollView>
     <AuthorSection
       fixed
-      imageSource='https://api.adorable.io/avatars/100/raul@not-so-adorable.io.png'
-      title='Young Einstein'
-      subTitle='420 minutes ago'
-      
+      imageSource="https://api.adorable.io/avatars/100/raul@not-so-adorable.io.png"
+      title="Young Einstein"
+      subTitle="420 minutes ago"
+
     />
-    
+
   </View>
 );
 

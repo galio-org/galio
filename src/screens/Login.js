@@ -6,7 +6,9 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 // galio component
-import { NavBar, Typography, Input, Button } from '../';
+import {
+  NavBar, Typography, Input, Button,
+} from '..';
 
 class Login extends React.Component {
   render() {

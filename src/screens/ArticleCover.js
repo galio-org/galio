@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Typography, NavBar } from '../';
+import { Typography, NavBar } from '..';
 
 // space-between view and another view for the back button
 
@@ -47,7 +47,7 @@ const ArticleCover = props => (
         alignItems: 'center',
       }}
     >
-      <NavBar transparent leftIconColor='#FFF' onLeftPress={() => props.navigation.openDrawer()} />
+      <NavBar transparent leftIconColor="#FFF" onLeftPress={() => props.navigation.openDrawer()} />
       <View style={styles.articleSummary}>
         <Typography h3 style={[styles.textColor, styles.headline]}>
           Why is 'The Thing' always looking at you?
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   articleSummary: {
-    /*position: 'absolute',
+    /* position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginTop: '7%',
-    marginLeft: '6%'
+    marginLeft: '6%',
   },
 });
 

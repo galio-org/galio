@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 import normalize from './helpers/normalize';
 
-const Typography = props => {
-  const { style, h1, h2, h3, h4, h5, p, muted, size, color, bold, italic, center, children, ...rest } = props;
+const Typography = (props) => {
+  const {
+    style, h1, h2, h3, h4, h5, p, muted, size, color, bold, italic, center, children, ...rest
+  } = props;
   return (
     <Text
       style={[
@@ -21,7 +23,7 @@ const Typography = props => {
         italic && { fontStyle: 'italic' },
         bold && { fontWeight: 'bold' },
         center && { textAlign: 'center' },
-        style && style
+        style && style,
       ]}
       {...rest}
     >
@@ -44,7 +46,7 @@ Typography.propTypes = {
   color: PropTypes.string,
   muted: PropTypes.bool,
   bold: PropTypes.bool,
-  italic: PropTypes.bool
+  italic: PropTypes.bool,
 };
 
 export default Typography;

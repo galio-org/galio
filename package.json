@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "devtools": "react-devtools"
+    "devtools": "react-devtools",
+    "lint": "eslint src/**.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
@@ -17,8 +18,15 @@
     "react-navigation": "^2.13.0"
   },
   "devDependencies": {
-    "prop-types": "^15.6.2",
+    "babel-eslint": "^10.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-flowtype": "^2.50.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "prettier": "^1.14.2",
+    "prop-types": "^15.6.2",
     "react-devtools": "^3.3.2",
     "react-native-svg": "^7.0.3",
     "react-native-svg-charts": "^5.2.0",

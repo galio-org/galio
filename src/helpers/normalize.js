@@ -9,7 +9,8 @@
 // version: 03
 //
 
-const React = require('react-native'); // eslint-disable-line no-undef
+const React = require('react-native');
+// eslint-disable-line no-undef
 const { PixelRatio, Dimensions } = React;
 
 const pixelRatio = PixelRatio.get();
@@ -17,7 +18,7 @@ const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
 
-const normalize = size => {
+const normalize = (size) => {
   if (pixelRatio >= 2 && pixelRatio < 3) {
     // iphone 5s and older Androids
     if (deviceWidth < 360) {
@@ -27,12 +28,12 @@ const normalize = size => {
     if (deviceHeight < 667) {
       return size;
       // iphone 6-6s
-    } else if (deviceHeight >= 667 && deviceHeight <= 735) {
+    } if (deviceHeight >= 667 && deviceHeight <= 735) {
       return size * 1.15;
     }
     // older phablets
     return size * 1.25;
-  } else if (pixelRatio >= 3 && pixelRatio < 3.5) {
+  } if (pixelRatio >= 3 && pixelRatio < 3.5) {
     // catch Android font scaling on small machines
     // where pixel ratio / font scale ratio => 3:3
     if (deviceWidth <= 360) {
@@ -50,7 +51,7 @@ const normalize = size => {
     // catch larger devices
     // ie iphone 6s plus / 7 plus / mi note 等等
     return size * 1.27;
-  } else if (pixelRatio >= 3.5) {
+  } if (pixelRatio >= 3.5) {
     // catch Android font scaling on small machines
     // where pixel ratio / font scale ratio => 3:3
     if (deviceWidth <= 360) {
@@ -67,9 +68,7 @@ const normalize = size => {
     }
     // catch larger phablet devices
     return size * 1.4;
-  } else
-    // if older device ie pixelRatio !== 2 || 3 || 3.5
-    return size;
+  } return size;
 };
 
 module.exports = normalize; // eslint-disable-line no-undefƒ

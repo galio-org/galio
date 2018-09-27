@@ -14,7 +14,9 @@ class Icon extends React.Component {
   };
 
   render() {
-    const { name, family, size, color, ...rest } = this.props;
+    const {
+      name, family, size, color, ...rest
+    } = this.props;
     const { [family]: IconInstance } = Icons;
 
     return name && IconInstance ? <IconInstance size={size} name={name} color={color} {...rest} /> : null;

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 // galio components
-import { Typography, AuthorSection, NavBar } from '../';
+import { Typography, AuthorSection, NavBar } from '..';
 
 const Article = props => (
   <View style={{ flex: 1 }}>
@@ -20,7 +20,7 @@ const Article = props => (
       }}
     />
     <NavBar transparent onLeftPress={() => this.props.navigation.openDrawer()} />
-    
+
     <View style={styles.articleContainer}>
       <Typography h2>I would happily watch a TV show about crabs</Typography>
       <Typography p muted style={{ marginTop: 5 }}>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: 25,
     position: 'absolute',
     top: '5%',
-    left: '5%'
+    left: '5%',
   },
 });
 
