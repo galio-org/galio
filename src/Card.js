@@ -5,8 +5,7 @@ import {
 import { LinearGradient } from 'expo';
 import PropTypes from 'prop-types';
 // Galio components
-import AuthorSection from './AuthorSection';
-// import Typography from './Typography';
+import { AuthorSection } from './';
 
 // TO-DO CARD COMPONENT:
 // 1. Refactor code -- we can address the 2 options in a cleaner way (w/ the styles object)

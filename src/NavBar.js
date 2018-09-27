@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 // galio components
-import { Typography, Icon } from '.';
+import { Text, Icon } from '.';
 
 const { height, width } = Dimensions.get('screen');
 const BASE_SIZE = 14;
@@ -34,7 +34,7 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Typography h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT }, titleStyle]}>{title}</Typography>
+          <Text h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT }, titleStyle]}>{title}</Text>
         </View>
       );
     }

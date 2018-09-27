@@ -8,7 +8,7 @@ import {
 
 // galio components
 import {
-  Typography, Button, Card, NavBar, Icon, Input,
+  Text, Button, Card, NavBar, Icon, Input,
 } from '..';
 
 export default class Components extends React.Component {
@@ -32,22 +32,22 @@ export default class Components extends React.Component {
 
         <ScrollView style={{ flex: 1 }}>
           <View style={[styles.container, { backgroundColor: 'rgb(255,255,255)' }]}>
-            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+            <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Typography:
-            </Typography>
-            <Typography h1>Heading 1</Typography>
-            <Typography h2>Heading 2</Typography>
-            <Typography h3>Heading 3</Typography>
-            <Typography h4>Heading 4</Typography>
-            <Typography h5>Heading 5</Typography>
-            <Typography p>Paragraph</Typography>
-            <Typography p muted>
+            </Text>
+            <Text h1>Heading 1</Text>
+            <Text h2>Heading 2</Text>
+            <Text h3>Heading 3</Text>
+            <Text h4>Heading 4</Text>
+            <Text h5>Heading 5</Text>
+            <Text p>Paragraph</Text>
+            <Text p muted>
               This is a muted paragraph.
-            </Typography>
+            </Text>
 
-            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+            <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Buttons:
-            </Typography>
+            </Text>
             <View
               style={[
                 {
@@ -85,9 +85,9 @@ rating
             <Button style={styles.marginBottomButton} onlyIcon icon="heart" iconFamily="FontAwesome" iconSize={24} color="transparent" />
             <Button style={styles.marginBottomButton} loading color="black" />
 
-            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+            <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Cards:
-            </Typography>
+            </Text>
             <Card
               image="https://images.unsplash.com/photo-1524562787295-1608217aa823?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4bae0aef9eca31f164025ae3ebe6fb24&auto=format&fit=crop&w=1327&q=80"
               authorImageSrc="http://i.pravatar.cc/100"
@@ -95,9 +95,9 @@ rating
               authorSubTitle="16 minutes ago"
               rightSideComponent={(
                 <View>
-                  <Typography p muted>
+                  <Text p muted>
                     Salut, eu sunt Mircea si imi place sa mananc ciuperci.
-                  </Typography>
+                  </Text>
                 </View>
 )}
             />
@@ -109,9 +109,9 @@ rating
               authorSubTitle="420 minutes ago"
             />
 
-            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+            <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               NavBars:
-            </Typography>
+            </Text>
             <NavBar
               title="Custom style"
               right={(
@@ -121,9 +121,9 @@ rating
 )}
               style={{ backgroundColor: 'cyan' }}
             />
-            <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
+            <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Inputs:
-            </Typography>
+            </Text>
             <Input
               type="phone-pad"
               placeholder="+40763023212"
@@ -143,12 +143,6 @@ rating
               label="This is yo pin, yo"
               help="A pin should have 4 numbers"
             />
-            <Typography h5 muted>
-              //TODO//:: >color prop needs reword for more colors, >Work on shadows, >Typography
-              style prop warning, >Navbar component icon customize, >Location component,
-              >SafeArea iPhone X, >Card height %*Dimension(??), >Padding for
-              screen containers, >Find wtf is going on with the style prop, >Refactor style
-            </Typography>
           </View>
         </ScrollView>
       </View>

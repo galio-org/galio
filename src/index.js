@@ -16,4 +16,5 @@ export {
   Input,
   NavBar,
   Typography,
+  Text,
 };

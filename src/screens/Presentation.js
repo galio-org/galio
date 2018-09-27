@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Typography, Button } from '..';
+import { Text, Button } from '..';
 
 const Presentation = props => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -15,12 +15,12 @@ const Presentation = props => (
       style={styles.backgroundGradient}
     />
     <View style={styles.container}>
-      <Typography h2 color="rgb(255,255,255)" style={{ marginBottom: 15 }}>
+      <Text h2 color="rgb(255,255,255)" style={{ marginBottom: 15 }}>
         Check this out
-      </Typography>
-      <Typography p center color="rgb(255,255,255)" style={{ marginBottom: 30 }}>
+      </Text>
+      <Text p center color="rgb(255,255,255)" style={{ marginBottom: 30 }}>
         This is created and was created just for your eyes only. Oh yeah, you really want a piece of this cool UI kit.
-      </Typography>
+      </Text>
       <Button size="large" color="transparent" round onPress={() => props.navigation.openDrawer()}>
         Get Started
       </Button>
