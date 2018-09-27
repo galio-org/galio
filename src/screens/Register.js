@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 // galio components
-import { Navbar, Input, Button, Typography } from '../';
+import { NavBar, Input, Button, Typography } from '../';
 
 const COLORS = {
   FACEBOOK: '#3B5998',
@@ -16,7 +16,8 @@ const COLORS = {
 
 const Register = props => (
   <View style={{ flex: 1 }}>
-    <Navbar buttonFunction={() => props.navigation.openDrawer()} />
+    <NavBar onLeftPress={() => props.navigation.openDrawer()} />
+
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <View

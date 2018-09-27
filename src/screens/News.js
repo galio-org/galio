@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Image, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo';
 // Galio components
-import { Typography, AuthorSection, Navbar } from '../';
+import { Typography, AuthorSection, NavBar } from '../';
 
 const News = props => (
   <View style={{ flex: 1 }}>
-    <Navbar title="News" buttonFunction={() => props.navigation.goBack()}/>
+    <NavBar back title="News" onLeftPress={() => props.navigation.goBack()} />
+
     <ScrollView style={{ flex: 1 }}>
       <View
         style={{

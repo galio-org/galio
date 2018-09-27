@@ -3,29 +3,31 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Text,
-  TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 // galio components
-import { Typography, Button, Card, Navbar, Icon, Input } from '../';
-
+import { Typography, Button, Card, NavBar, Icon, Input } from '../';
 
 export default class Components extends React.Component {
-  onBurgerPress() {
-    this.props.navigation.openDrawer();
-  }
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Navbar
-          buttonFunction={this.onBurgerPress.bind(this)}
+        <NavBar
           title="All components"
-        />
+          right={
+            <Button
+              onlyIcon
+              icon="heart"
+              iconFamily="FontAwesome"
+              iconSize={18}
+              color="transparent"
+              onPress={() => Alert.alert('Like it!')} />
+          }
+          onLeftPress={() => this.props.navigation.openDrawer()} />
+
         <ScrollView style={{ flex: 1 }}>
-          <View
-            style={[styles.container, { backgroundColor: 'rgb(255,255,255)' }]}
-          >
+          <View style={[styles.container, { backgroundColor: 'rgb(255,255,255)' }]}>
             <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Typography:
             </Typography>
@@ -102,11 +104,11 @@ export default class Components extends React.Component {
             />
 
             <Typography h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
-              Navbars:
+              NavBars:
             </Typography>
-            <Navbar
+            <NavBar
               title="Custom style"
-              rightSideComponent={
+              right={
                 <View
                   style={{ width: 20, height: 20, backgroundColor: 'blue' }}
                 />
@@ -120,7 +122,7 @@ export default class Components extends React.Component {
               type="phone-pad"
               placeholder="+40763023212"
               label="Phone Number"
-              borderColor="rgb(0,0,0)"
+              borderColor="#000"
               help="Your phone number"
               color="yellow"
               placeholderTextColor="green"
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 3,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },

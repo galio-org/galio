@@ -2,61 +2,141 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-// galio components
-import { Typography, Icon } from './';
+const { height, width } = Dimensions.get('screen');
+const BASE_SIZE = 14;
+const COLOR_BACKGROUND = `#F9F9F9`;
+const COLOR_DEFAULT = `#000000`;
 
-class Navbar extends React.Component {
+// galio components
+import { Typography, Icon } from '.';
+
+class NavBar extends React.Component {
   static defaultProps = {
-    title: '🍑',
+    back: false,
+    borderless: false,
+    transparent: false,
+    title: null, // '🍑',
+    titleStyle: null,
+    left: null,
+    leftStyle: null,
+    leftIconColor: COLOR_DEFAULT,
+    onLeftPress: () => {},
+    right: null,
+    rightStyle: null,
   };
-  render() {
-    const { buttonFunction, title, rightSideComponent, style } = this.props;
-    return (
-      <View style={[styles.navBar, style]}>
-        <TouchableOpacity onPress={() => buttonFunction && buttonFunction()}>
-          <Icon name="menu" family="Entypo" size={25} />
-        </TouchableOpacity>
-        <Typography h4>{title}</Typography>
-        <View style={styles.rightSideComponent}>
-          {rightSideComponent && rightSideComponent}
+
+  renderTitle = () => {
+    const { title, titleStyle } = this.props;
+    const hasExtraStyles = titleStyle;
+
+    if (typeof title === 'string') {
+      return (
+        <View style={styles.title}>
+          <Typography h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT}, titleStyle ]}>{title}</Typography>
         </View>
+      )
+    }
+
+    return title;
+  }
+
+  renderLeft = () => {
+    const { back, left, leftStyle, leftIconColor, onLeftPress } = this.props;
+
+    if (left) return (
+      <View style={[styles.left, leftStyle]}>{left}</View>
+    );
+
+    return (
+      <View style={[styles.left, leftStyle]}>
+        <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
+          <Icon name={back ? 'chevron-left' : 'menu'} family="Entypo" size={BASE_SIZE * 1.75} color={leftIconColor} />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  renderRight = () => {
+    const { right, rightStyle } = this.props;
+
+    return <View style={[styles.right, rightStyle]}>{right}</View>
+  }
+
+  render() {
+    const { borderless, transparent, style } = this.props;
+    const navStyles = [
+      styles.navBar,
+      borderless && styles.borderless,
+      transparent && styles.transparent,
+      style
+    ];
+
+    return (
+      <View style={navStyles}>
+        {this.renderLeft()}
+        {this.renderTitle()}
+        {this.renderRight()}
       </View>
     );
   }
 }
 
-Navbar.propTypes = {
-  style: PropTypes.any,
-  buttonFunction: PropTypes.func,
-  title: PropTypes.string,
-  rightSideComponent: PropTypes.node,
+NavBar.propTypes = {
+  back: PropTypes.bool,
+  borderless: PropTypes.bool,
+  transparent: PropTypes.bool,
+  title: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.string,
+  ]),
+  titleStyle: PropTypes.any,
+  left: PropTypes.node,
+  leftStyle: PropTypes.any,
+  leftIconColor: PropTypes.string,
+  onLeftPress: PropTypes.func,
+  right: PropTypes.node,
+  rightStyle: PropTypes.any,
 };
-
-const HEIGHT = Dimensions.get('screen').height;
-const navHeight = HEIGHT * 0.075;
 
 const styles = StyleSheet.create({
   navBar: {
-    height: navHeight,
-    width: '100%',
-    backgroundColor: '#F9F9F9',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    width: width,
+    height: height * 0.075,
+    backgroundColor: COLOR_BACKGROUND,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgb(0,0,0)'
+    borderColor: COLOR_DEFAULT,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
-  burgerButton: {
-    width: 25,
-    height: 25,
-    backgroundColor: 'red',
-  },
-  rightSideComponent: {
-    width: 20,
-    height: 20,
+  title: {
+    flex: 2,
+    height: height * 0.07,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  left: {
+    flex: 1,
+    height: height * 0.07,
+    justifyContent: 'center',
+    marginLeft: BASE_SIZE,
+  },
+  right: {
+    flex: 1,
+    height: height * 0.07,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    marginRight: BASE_SIZE,
+  },
+  borderless: {
+    borderColor: `transparent`,
+    borderWidth: 0,
+  },
+  transparent: {
+    backgroundColor: `transparent`,
+    borderColor: `transparent`,
+    borderWidth: 0,
+  },
 });
 
-export default Navbar;
+export default NavBar;
