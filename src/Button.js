@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const { width } = Dimensions.get('window');
-
+const BASE_SIZE = 14;
 const COLORS = {
   PRIMARY: '#102EFF',
   THEME: '#A833FE',
@@ -37,11 +37,6 @@ class Button extends React.Component {
     opacity: 0.8,
     iconColor: COLORS.BLACK,
   };
-
-  onPress() {
-    const { onPress } = this.props;
-    onPress && onPress();
-  }
 
   renderContent = () => {
     const {
@@ -125,7 +120,6 @@ class Button extends React.Component {
       <TouchableOpacity
         disabled={disabled}
         activeOpacity={opacity}
-        onPress={() => this.onPress}
         style={buttonStyles}
         {...rest}
       >
@@ -137,8 +131,8 @@ class Button extends React.Component {
 
 const styles = StyleSheet.create({
   defaultButton: {
-    width: 130,
-    height: 42,
+    width: BASE_SIZE * 9,
+    height: BASE_SIZE * 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -178,25 +172,6 @@ const styles = StyleSheet.create({
 
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.object),
-  ]),
-
-  textStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.object),
-  ]),
-
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.node,
-  ]),
-
   color: PropTypes.oneOfType([
     PropTypes.oneOf([
       'primary',
@@ -217,7 +192,6 @@ Button.propTypes = {
   ]),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
-  onPress: PropTypes.func,
   radius: PropTypes.number,
   uppercase: PropTypes.bool,
   lowercase: PropTypes.bool,

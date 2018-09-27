@@ -15,12 +15,12 @@ export default class Block extends Component {
     bottom: false,
     right: false,
     left: false,
-    borderless: false,
+    card: false,
     shadow: false,
     space: false,
     fluid: false,
     height: false,
-    width: 'auto',
+    width: false,
     shadowColor: false,
   }
 
@@ -39,7 +39,7 @@ export default class Block extends Component {
       fluid,
       height,
       shadowColor,
-      borderless,
+      card,
       width,
       children,
       style,
@@ -59,10 +59,10 @@ export default class Block extends Component {
       space && { justifyContent: `space-${space}` },
       shadow && styles.shadow,
       fluid && styles.fluid,
+      card && styles.card,
       height && { height },
       width && { width },
       shadowColor && { shadowColor },
-      borderless && { borderWidth: 0 },
       style,
     ];
 
@@ -77,12 +77,6 @@ export default class Block extends Component {
 const styles = StyleSheet.create({
   block: {
     flexDirection: 'column',
-    backgroundColor: COLOR_BACKGROUND,
-    borderRadius: BASE_SIZE * 0.4,
-    borderWidth: BASE_SIZE * 0.05,
-    borderColor: COLOR_DEFAULT,
-    paddingHorizontal: BASE_SIZE,
-    color: COLOR_DEFAULT,
   },
   row: {
     flexDirection: 'row',
@@ -99,6 +93,11 @@ const styles = StyleSheet.create({
   },
   bottom: {
     alignSelf: 'flex-end',
+  },
+  card: {
+    borderRadius: BASE_SIZE * 0.4,
+    borderWidth: BASE_SIZE * 0.05,
+    borderColor: COLOR_DEFAULT,
   },
   shadow: {
     shadowColor: COLOR_DEFAULT,
