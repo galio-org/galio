@@ -1,17 +1,17 @@
-import Typography from './Typography';
+import AuthorSection from './AuthorSection'
 import Button from './Button';
 import Card from './Card';
-import NavBar from './NavBar';
-import AuthorSection from './AuthorSection'
 import Icon from './Icon'
 import Input from './Input';
+import NavBar from './NavBar';
+import Typography from './Typography';
 
 export {
-  Typography,
+  AuthorSection,
   Button,
   Card,
-  NavBar,
-  AuthorSection,
   Icon,
-  Input
+  Input,
+  NavBar,
+  Typography,
 };
