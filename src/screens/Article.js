@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 // galio components
-import { Typography, AuthorSection, Icon } from '../';
+import { Typography, AuthorSection, NavBar } from '../';
 
 const Article = props => (
   <View style={{ flex: 1 }}>
@@ -19,12 +19,8 @@ const Article = props => (
           'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fc7f17d00c13cf50d62f4ebd5743a9bc&auto=format&fit=crop&w=1950&q=80',
       }}
     />
-    <TouchableOpacity
-      style={styles.backButton}
-      onPress={() => props.navigation.openDrawer()}
-    >
-      <Icon name="menu" family="Entypo" size={25} color="#fff" />
-    </TouchableOpacity>
+    <NavBar transparent onLeftPress={() => this.props.navigation.openDrawer()} />
+    
     <View style={styles.articleContainer}>
       <Typography h2>I would happily watch a TV show about crabs</Typography>
       <Typography p muted style={{ marginTop: 5 }}>

@@ -7,7 +7,7 @@ import { AreaChart } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 
 // galio components
-import { Button, Icon, Typography } from '../';
+import { Button, Icon, Typography, NavBar } from '../';
 
 const BASE_SIZE = 14;
 const GRADIENT_BLUE = ['#6C3CF7', '#4F3DF2', '#2734EF'];
@@ -59,21 +59,26 @@ const statsTitles = [ '04/18', '05/18', '06/18', '07/18', '08/18' ];
 class Dashboard extends React.Component {
   renderHeader = () => {
     return (
-      <View style={styles.header}>
-        <Button
-          color="transparent"
-          style={styles.menu}
-          onPress={() => this.props.navigation.openDrawer()}>
-          <Icon size={BASE_SIZE * 2} name='menu' family='Entypo' color={COLOR_GREY} />
-        </Button>
-        <Typography h5>Dashboard</Typography>
-        <Button
-          color="transparent"
-          style={styles.settings}
-          onPress={() => this.props.navigation.openDrawer()}>
-          <Icon size={BASE_SIZE * 1.5} name='ios-options' family='Ionicons' color={COLOR_GREY} />
-        </Button>
-      </View>
+      <NavBar
+        transparent
+        title='Dashboard'
+        left={
+          <Button
+            color="transparent"
+            style={styles.menu}
+            onPress={() => this.props.navigation.openDrawer()}>
+            <Icon size={BASE_SIZE * 2} name='menu' family='Entypo' color={COLOR_GREY} />
+          </Button>
+        }
+        right={
+          <Button
+            color="transparent"
+            style={styles.settings}
+            onPress={() => this.props.navigation.openDrawer()}>
+            <Icon size={BASE_SIZE * 1.5} name='ios-options' family='Ionicons' color={COLOR_GREY} />
+          </Button>
+        }
+        />
     )
   }
 
@@ -190,7 +195,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: BASE_SIZE
   },
   menu: {
     width: BASE_SIZE * 2,

@@ -19,16 +19,15 @@ const Presentation = props => (
       <Typography p center color="rgb(255,255,255)" style={{ marginBottom: 30 }}>
         This is created and was created just for your eyes only. Oh yeah, you really want a piece of this cool UI kit.
       </Typography>
-      <Button size="large" color="transparent" round>
+      <Button size="large" color="transparent" round onPress={() => props.navigation.openDrawer()}>
         Get Started
       </Button>
     </View>
     <Image
-        source={{ uri: 'http://pngimg.com/uploads/iphone/iphone_PNG5744.png' }}
-        style={{ width: '100%', height: '100%', position: 'absolute', bottom: -400  }}
-        resizeMethod="resize"
-        resizeMode='contain'
-      />
+      source={{ uri: 'http://pngimg.com/uploads/iphone/iphone_PNG5744.png' }}
+      style={{ width: '100%', height: '100%', position: 'absolute', bottom: -400  }}
+      resizeMethod="resize"
+      resizeMode='contain' />
   </View>
 );
 

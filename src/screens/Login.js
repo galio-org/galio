@@ -6,13 +6,13 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 // galio component
-import { Navbar, Typography, Input, Button } from '../';
+import { NavBar, Typography, Input, Button } from '../';
 
 class Login extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <Navbar buttonFunction={() => this.props.navigation.openDrawer()} />
+        <NavBar onLeftPress={() => this.props.navigation.openDrawer()} />
         <KeyboardAvoidingView
           style={styles.container}
           behavior="padding"

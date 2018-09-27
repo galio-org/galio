@@ -1,19 +1,15 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 // Galio components
-import { Navbar, Card } from '../';
+import { Card, NavBar } from '../';
 
 export default class ArticleFull extends React.Component {
-  onBurgerPress() {
-    this.props.navigation.openDrawer();
-  }
+  
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Navbar
-          buttonFunction={this.onBurgerPress.bind(this)}
-          title="Article Feed v1"
-        />
+        <NavBar title="Article Feed v1" onLeftPress={() => this.props.navigation.openDrawer()} />
+
         <ScrollView style={{ flex: 1 }}>
           <View style={styles.container}>
             <Card 
