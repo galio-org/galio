@@ -14,7 +14,6 @@ import {
 export default class Components extends React.Component {
   render() {
     const { navigation } = this.props;
-    
     return (
       <View style={{ flex: 1 }}>
         <NavBar

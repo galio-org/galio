@@ -202,6 +202,10 @@ Button.propTypes = {
   ]),
   opacity: PropTypes.number,
   shadowless: PropTypes.bool,
+  onlyIcon: PropTypes.bool,
+  icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  iconFamily: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  iconSize: PropTypes.number,
 };
 
 export default Button;

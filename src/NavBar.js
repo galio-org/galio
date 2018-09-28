@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, Dimensions, SafeAreaView
+  View, TouchableOpacity, StyleSheet, Dimensions, SafeAreaView,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
