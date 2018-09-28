@@ -14,7 +14,7 @@ class Login extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <NavBar onLeftPress={() => this.props.navigation.openDrawer()} />
+        <NavBar transparent onLeftPress={() => this.props.navigation.openDrawer()} />
         <KeyboardAvoidingView
           style={styles.container}
           behavior="padding"

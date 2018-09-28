@@ -9,7 +9,6 @@ import { Card, Text, NavBar } from '..';
 export default class ArticleHalf extends React.Component {
   render() {
     const { navigation } = this.props;
-
     return (
       <View style={{ flex: 1 }}>
         <NavBar transparent title="Article Feed v2" onLeftPress={() => navigation.openDrawer()} />

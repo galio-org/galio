@@ -28,7 +28,7 @@ const Presentation = props => (
     <Image
       source={{ uri: 'http://pngimg.com/uploads/iphone/iphone_PNG5744.png' }}
       style={{
-        width: '100%', height: '100%', position: 'absolute', bottom: -400,
+        width: '100%', height: '100%', position: 'absolute', top: '60%',
       }}
       resizeMethod="resize"
       resizeMode="contain"
