@@ -18,6 +18,7 @@ export default class Components extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <NavBar
+          transparent
           title="All components"
           right={(
             <Button

@@ -12,7 +12,7 @@ export default class ArticleHalf extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <NavBar title="Article Feed v2" onLeftPress={() => navigation.openDrawer()} />
+        <NavBar transparent title="Article Feed v2" onLeftPress={() => navigation.openDrawer()} />
 
         <ScrollView style={{ flex: 1 }}>
           <View style={styles.container}>

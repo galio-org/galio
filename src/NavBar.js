@@ -107,7 +107,7 @@ NavBar.propTypes = {
 const styles = StyleSheet.create({
   navBar: {
     width,
-    height: height * 0.075,
+    // height: height * 0.075,
     backgroundColor: COLOR_BACKGROUND,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: COLOR_DEFAULT,
