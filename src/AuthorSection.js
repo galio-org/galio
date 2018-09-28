@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { Text } from './';
+import { Text } from '.';
 
 const AuthorSection = ({
   style,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   titleWhite: {
-    color: 'rgb(255,255,255)'
+    color: 'rgb(255,255,255)',
   },
   fixed: {
     position: 'absolute',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(255,255,255)',
     borderRadius: 5,
     elevation: 1,
-  }
+  },
 });
 
 export default AuthorSection;

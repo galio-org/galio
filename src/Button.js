@@ -1,10 +1,12 @@
 import React from 'react';
-import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import {
+  ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const { width } = Dimensions.get('window');
-
+const BASE_SIZE = 14;
 const COLORS = {
   PRIMARY: '#102EFF',
   THEME: '#A833FE',
@@ -14,7 +16,7 @@ const COLORS = {
   TRANSPARENT: 'transparent',
   WHITE: '#FFFFFF',
   BLACK: '#000000',
-}
+};
 
 class Button extends React.Component {
   static defaultProps = {
@@ -33,13 +35,8 @@ class Button extends React.Component {
     loading: false,
     loadingSize: 'small',
     opacity: 0.8,
-    iconColor: COLORS.BLACK
+    iconColor: COLORS.BLACK,
   };
-
-  onPress() {
-    const { onPress } = this.props;
-    onPress && onPress();
-  }
 
   renderContent = () => {
     const {
@@ -59,7 +56,7 @@ class Button extends React.Component {
 
     const textStyles = [
       styles.customText,
-      textStyle
+      textStyle,
     ];
 
     // workaround for textTransform not supported on Expo SDK 29.0.0 or 30.0.0
@@ -73,9 +70,9 @@ class Button extends React.Component {
     if (lowercase && isString) content = children.toLowerCase();
     if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
 
-    if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor}/>;
+    if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
     else content = <Text style={textStyles}>{content}</Text>;
-    
+
     if (loading) content = <ActivityIndicator size={loadingSize} color={COLORS.WHITE} />;
 
     return content;
@@ -109,7 +106,9 @@ class Button extends React.Component {
       color === 'transparent' && { borderWidth: 1, borderColor: COLORS.WHITE },
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
-      onlyIcon && { width: iconSize * 2, height: iconSize * 2, borderWidth: 0, borderRadius: iconSize },
+      onlyIcon && {
+        width: iconSize * 2, height: iconSize * 2, borderWidth: 0, borderRadius: iconSize,
+      },
       radius && { borderRadius: radius },
       !shadowless && styles.shadow,
       { shadowColor: COLORS[color.toUpperCase()] },
@@ -121,9 +120,9 @@ class Button extends React.Component {
       <TouchableOpacity
         disabled={disabled}
         activeOpacity={opacity}
-        onPress={() => this.onPress}
         style={buttonStyles}
-        {...rest}>
+        {...rest}
+      >
         {this.renderContent()}
       </TouchableOpacity>
     );
@@ -132,8 +131,8 @@ class Button extends React.Component {
 
 const styles = StyleSheet.create({
   defaultButton: {
-    width: 130,
-    height: 42,
+    width: BASE_SIZE * 9,
+    height: BASE_SIZE * 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -173,25 +172,6 @@ const styles = StyleSheet.create({
 
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.object),
-  ]),
-  
-  textStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.object),
-  ]),
-
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-    PropTypes.node,
-  ]),
-  
   color: PropTypes.oneOfType([
     PropTypes.oneOf([
       'primary',
@@ -212,7 +192,6 @@ Button.propTypes = {
   ]),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
-  onPress: PropTypes.func,
   radius: PropTypes.number,
   uppercase: PropTypes.bool,
   lowercase: PropTypes.bool,
@@ -222,7 +201,7 @@ Button.propTypes = {
     'small', 'large',
   ]),
   opacity: PropTypes.number,
-  shadowless: PropTypes.bool
+  shadowless: PropTypes.bool,
 };
 
 export default Button;

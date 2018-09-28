@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Image } from 'react-native';
+import {
+  View, ScrollView, StyleSheet, Image,
+} from 'react-native';
 
 // Galio components
-import { Card, Text, NavBar } from '../';
+import { Card, Text, NavBar } from '..';
 
 export default class ArticleHalf extends React.Component {
-
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -18,14 +19,15 @@ export default class ArticleHalf extends React.Component {
               authorImageSrc="http://i.pravatar.cc/100"
               authorTitle="Alin Gheorghe"
               authorSubTitle="420 minutes ago"
-              rightSideComponent={
+              rightSideComponent={(
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                  <Image source={{ uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/location-pin-127-595049.png' }}
+                  <Image
+                    source={{ uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/location-pin-127-595049.png' }}
                     style={{ width: 15, height: 15 }}
                   />
                   <Text p muted>Los Angeles, CA</Text>
                 </View>
-              }
+)}
             />
             <Card
               image="https://images.unsplash.com/photo-1536396123481-991b5b636cbb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=01130bc0b065f8e937e2791bab41bb19&auto=format&fit=crop&w=1331&q=80"
@@ -38,14 +40,15 @@ export default class ArticleHalf extends React.Component {
               authorImageSrc="http://i.pravatar.cc/100"
               authorTitle="Lil' Pump"
               authorSubTitle="420 minutes ago"
-              rightSideComponent={
+              rightSideComponent={(
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                  <Image source={{ uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/location-pin-127-595049.png' }}
+                  <Image
+                    source={{ uri: 'https://cdn.iconscout.com/icon/premium/png-256-thumb/location-pin-127-595049.png' }}
                     style={{ width: 15, height: 15, marginRight: 2 }}
                   />
                   <Text p muted>Los Angeles, CA</Text>
                 </View>
-              }
+)}
             />
             <Card
               image="https://images.unsplash.com/photo-1536567893079-f54abdc73dc2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e6a56a131b11a6366446c42381192329&auto=format&fit=crop&w=1350&q=80"

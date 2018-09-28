@@ -10,6 +10,7 @@ import News from './src/screens/News';
 import Presentation from './src/screens/Presentation';
 import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
+import Grid from './src/screens/Grid';
 
 const ArticleFeed = createStackNavigator({
   ArticleCard: {
@@ -57,7 +58,7 @@ const GalioApp = createDrawerNavigator({
   },
   Presentation: {
     screen: Presentation,
-    navigationOptions: { drawerLabel: 'Presentation Screen' }
+    navigationOptions: { drawerLabel: 'Presentation Screen' },
   },
   Register: {
     screen: Register,
@@ -65,9 +66,11 @@ const GalioApp = createDrawerNavigator({
       drawerLabel: 'Register Screen',
     },
   },
-  Dashboard: {
-    screen: Dashboard,
-    navigationOptions: { drawerLabel: 'Dashboard Screen' }
+  Grid: {
+    screen: Grid,
+    navigationOptions: {
+      drawerLabel: 'Grid Screen',
+    },
   },
 });
 

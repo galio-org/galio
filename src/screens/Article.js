@@ -19,15 +19,9 @@ const Article = props => (
           'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fc7f17d00c13cf50d62f4ebd5743a9bc&auto=format&fit=crop&w=1950&q=80',
       }}
     />
-    <View style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0
-    }}>
-    <NavBar transparent leftIconColor='#FFF' onLeftPress={() => props.navigation.openDrawer()} />
+    <View style={{position: 'absolute', top: 0, left: 0, right: 0}}>
+      <NavBar transparent leftIconColor="#FFF" onLeftPress={() => props.navigation.openDrawer()} />
     </View>
-    
     <View style={styles.articleContainer}>
       <Text h2>I would happily watch a TV show about crabs</Text>
       <Text p muted style={{ marginTop: 5 }}>
@@ -72,7 +66,7 @@ const styles = StyleSheet.create({
     height: 25,
     position: 'absolute',
     top: '5%',
-    left: '5%'
+    left: '5%',
   },
 });
 

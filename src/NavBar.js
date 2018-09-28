@@ -1,14 +1,16 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import {
+  View, TouchableOpacity, StyleSheet, Dimensions,
+} from 'react-native';
 import PropTypes from 'prop-types';
-
-const { height, width } = Dimensions.get('screen');
-const BASE_SIZE = 14;
-const COLOR_BACKGROUND = `#F9F9F9`;
-const COLOR_DEFAULT = `#000000`;
 
 // galio components
 import { Text, Icon } from '.';
+
+const { height, width } = Dimensions.get('screen');
+const BASE_SIZE = 14;
+const COLOR_BACKGROUND = '#F9F9F9';
+const COLOR_DEFAULT = '#000000';
 
 class NavBar extends React.Component {
   static defaultProps = {
@@ -32,20 +34,24 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT}, titleStyle ]}>{title}</Text>
+          <Text h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT }, titleStyle]}>{title}</Text>
         </View>
-      )
+      );
     }
 
     return title;
   }
 
   renderLeft = () => {
-    const { back, left, leftStyle, leftIconColor, onLeftPress } = this.props;
+    const {
+      back, left, leftStyle, leftIconColor, onLeftPress,
+    } = this.props;
 
-    if (left) return (
-      <View style={[styles.left, leftStyle]}>{left}</View>
-    );
+    if (left) {
+      return (
+        <View style={[styles.left, leftStyle]}>{left}</View>
+      );
+    }
 
     return (
       <View style={[styles.left, leftStyle]}>
@@ -53,13 +59,13 @@ class NavBar extends React.Component {
           <Icon name={back ? 'chevron-left' : 'menu'} family="Entypo" size={BASE_SIZE * 1.75} color={leftIconColor} />
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 
   renderRight = () => {
     const { right, rightStyle } = this.props;
 
-    return <View style={[styles.right, rightStyle]}>{right}</View>
+    return <View style={[styles.right, rightStyle]}>{right}</View>;
   }
 
   render() {
@@ -68,7 +74,7 @@ class NavBar extends React.Component {
       styles.navBar,
       borderless && styles.borderless,
       transparent && styles.transparent,
-      style
+      style,
     ];
 
     return (
@@ -100,7 +106,7 @@ NavBar.propTypes = {
 
 const styles = StyleSheet.create({
   navBar: {
-    width: width,
+    width,
     height: height * 0.075,
     backgroundColor: COLOR_BACKGROUND,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -129,12 +135,12 @@ const styles = StyleSheet.create({
     marginRight: BASE_SIZE,
   },
   borderless: {
-    borderColor: `transparent`,
+    borderColor: 'transparent',
     borderWidth: 0,
   },
   transparent: {
-    backgroundColor: `transparent`,
-    borderColor: `transparent`,
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
     borderWidth: 0,
   },
 });

@@ -1,13 +1,15 @@
-import AuthorSection from './AuthorSection'
+import AuthorSection from './AuthorSection';
+import Block from './Block';
 import Button from './Button';
 import Card from './Card';
-import Icon from './Icon'
+import Icon from './Icon';
 import Input from './Input';
 import NavBar from './NavBar';
-import Text from './Typography';
+import Text from './Text';
 
 export {
   AuthorSection,
+  Block,
   Button,
   Card,
   Icon,

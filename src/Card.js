@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View, Image, StyleSheet, TouchableOpacity,
+} from 'react-native';
 import { LinearGradient } from 'expo';
 import PropTypes from 'prop-types';
 // Galio components
@@ -48,8 +50,8 @@ class Card extends React.Component {
           <Image
             source={{ uri: image }}
             style={
-              (fullBackgroundImage && styles.fullBackgroundImage) ||
-              styles.thumbnailImage
+              (fullBackgroundImage && styles.fullBackgroundImage)
+              || styles.thumbnailImage
             }
           />
           {fullBackgroundImage && (

@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar, Image } from 'react-native';
+import {
+  View, StyleSheet, StatusBar, Image,
+} from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Text, Button } from '../';
+import { Text, Button } from '..';
 
 const Presentation = props => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -25,9 +27,12 @@ const Presentation = props => (
     </View>
     <Image
       source={{ uri: 'http://pngimg.com/uploads/iphone/iphone_PNG5744.png' }}
-      style={{ width: '100%', height: '100%', position: 'absolute', bottom: -400  }}
+      style={{
+        width: '100%', height: '100%', position: 'absolute', bottom: -400,
+      }}
       resizeMethod="resize"
-      resizeMode='contain' />
+      resizeMode="contain"
+    />
   </View>
 );
 

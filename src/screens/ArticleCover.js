@@ -4,11 +4,10 @@ import {
   Image,
   StyleSheet,
   StatusBar,
-  TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 // galio components
-import { Text, NavBar } from '../';
+import { Text, NavBar } from '..';
 
 // space-between view and another view for the back button
 
@@ -47,10 +46,10 @@ const ArticleCover = props => (
         alignItems: 'center',
       }}
     >
-      <NavBar transparent leftIconColor='#FFF' onLeftPress={() => props.navigation.openDrawer()} />
+      <NavBar transparent leftIconColor="#FFF" onLeftPress={() => props.navigation.openDrawer()} />
       <View style={styles.articleSummary}>
         <Text h3 style={[styles.textColor, styles.headline]}>
-          Why is 'The Thing' always looking at you?
+          {"Why is 'The Thing' always looking at you?"}
         </Text>
         <Text h5 style={[styles.textColor, styles.subHeadline]}>
           Just small talk from the Fantastic Four.
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   articleSummary: {
-    /*position: 'absolute',
+    /* position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginTop: '7%',
-    marginLeft: '6%'
+    marginLeft: '6%',
   },
 });
 

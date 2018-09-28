@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 
 // galio components
-import { Text, Button, Card, NavBar, Icon, Input } from '../';
+import {
+  Text, Button, Card, NavBar, Icon, Input,
+} from '..';
 
 export default class Components extends React.Component {
   render() {
@@ -15,16 +17,18 @@ export default class Components extends React.Component {
       <View style={{ flex: 1 }}>
         <NavBar
           title="All components"
-          right={
+          right={(
             <Button
               onlyIcon
               icon="heart"
               iconFamily="FontAwesome"
               iconSize={18}
               color="transparent"
-              onPress={() => Alert.alert('Like it!')} />
-          }
-          onLeftPress={() => this.props.navigation.openDrawer()} />
+              onPress={() => Alert.alert('Like it!')}
+            />
+)}
+          onLeftPress={() => this.props.navigation.openDrawer()}
+        />
 
         <ScrollView style={{ flex: 1 }}>
           <View style={[styles.container, { backgroundColor: 'rgb(255,255,255)' }]}>
@@ -66,9 +70,11 @@ export default class Components extends React.Component {
             <Button style={styles.marginBottomButton} lowercase>LOWERCASE TEXT</Button>
             <Button style={styles.marginBottomButton} capitalize>capitalize text</Button>
             <Button style={styles.marginBottomButton} color="success">
-              <Icon name="star" family="FontAwesome" /> rating
+              <Icon name="star" family="FontAwesome" />
+              {' '}
+rating
             </Button>
-      
+
             <Button style={styles.marginBottomButton} size={200} color="#3A3C39" round>
               <Icon size={24} color="orange" name="star" family="FontAwesome" />
               <Icon size={24} color="orange" name="star" family="FontAwesome" />
@@ -87,13 +93,13 @@ export default class Components extends React.Component {
               authorImageSrc="http://i.pravatar.cc/100"
               authorTitle="Alin Talent"
               authorSubTitle="16 minutes ago"
-              rightSideComponent={
+              rightSideComponent={(
                 <View>
                   <Text p muted>
                     Salut, eu sunt Mircea si imi place sa mananc ciuperci.
                   </Text>
                 </View>
-              }
+)}
             />
             <Card
               fullBackgroundImage
@@ -108,11 +114,11 @@ export default class Components extends React.Component {
             </Text>
             <NavBar
               title="Custom style"
-              right={
+              right={(
                 <View
                   style={{ width: 20, height: 20, backgroundColor: 'blue' }}
                 />
-              }
+)}
               style={{ backgroundColor: 'cyan' }}
             />
             <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
@@ -130,7 +136,7 @@ export default class Components extends React.Component {
               family="Entypo"
             />
             <Input
-              type="numeric" 
+              type="numeric"
               password
               viewPass
               placeholder="2233"

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Icon } from './';
+import { Icon } from '.';
 
 // TO-DO:
 // 1. State functionality for Redux/Context/basic state stuff
@@ -18,8 +18,8 @@ import { Icon } from './';
 const { width } = Dimensions.get('window');
 
 const BASE_SIZE = 14;
-const COLOR_DEFAULT = `#293042`;
-const COLOR_BACKGROUND = `#FFFFFF`;
+const COLOR_DEFAULT = '#293042';
+const COLOR_BACKGROUND = '#FFFFFF';
 const COLOR_BLACK = '#000';
 
 class Input extends React.Component {
@@ -95,8 +95,8 @@ class Input extends React.Component {
         color={iconColor || placeholderTextColor}
       />
     ) : null;
-    const viewPassElement = password &&
-      viewPass && (
+    const viewPassElement = password
+      && viewPass && (
         <TouchableOpacity
           style={{ marginLeft: 2 }}
           onPress={() => this.setState({ password: !this.state.password })}
@@ -108,7 +108,7 @@ class Input extends React.Component {
             family="Entypo"
           />
         </TouchableOpacity>
-      );
+    );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
@@ -123,7 +123,7 @@ class Input extends React.Component {
             keyboardType={type}
             secureTextEntry={this.state.password}
             placeholderTextColor={placeholderTextColor}
-            underlineColorAndroid={'transparent'}
+            underlineColorAndroid="transparent"
             {...props}
           />
           {right && iconContent}
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   inputText: {
     color: COLOR_DEFAULT,
     fontSize: BASE_SIZE,
-    textDecorationColor: `transparent`,
-    textShadowColor: `transparent`,
+    textDecorationColor: 'transparent',
+    textShadowColor: 'transparent',
   },
   inputContainer: {
     flexDirection: 'row',

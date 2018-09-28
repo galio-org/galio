@@ -2,11 +2,12 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
 // galio components
-import { NavBar, Input, Button, Text } from '../';
+import {
+  NavBar, Input, Button, Text,
+} from '..';
 
 const COLORS = {
   FACEBOOK: '#3B5998',
