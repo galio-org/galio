@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, Dimensions,
+  View, TouchableOpacity, StyleSheet, Dimensions, SafeAreaView
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -78,11 +78,11 @@ class NavBar extends React.Component {
     ];
 
     return (
-      <View style={navStyles}>
+      <SafeAreaView style={navStyles}>
         {this.renderLeft()}
         {this.renderTitle()}
         {this.renderRight()}
-      </View>
+      </SafeAreaView>
     );
   }
 }

@@ -13,6 +13,8 @@ import {
 
 export default class Components extends React.Component {
   render() {
+    const { navigation } = this.props;
+    
     return (
       <View style={{ flex: 1 }}>
         <NavBar
@@ -27,7 +29,7 @@ export default class Components extends React.Component {
               onPress={() => Alert.alert('Like it!')}
             />
 )}
-          onLeftPress={() => this.props.navigation.openDrawer()}
+          onLeftPress={() => navigation.openDrawer()}
         />
 
         <ScrollView style={{ flex: 1 }}>
