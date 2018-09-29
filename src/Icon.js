@@ -1,16 +1,14 @@
 import React from 'react';
 import Icons from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-
-const DEFAULT_COLOR = '#000000';
-const DEFAULT_SIZE = 14;
+import theme from './theme';
 
 class Icon extends React.Component {
   static defaultProps = {
     name: null,
     family: null,
-    size: DEFAULT_SIZE,
-    color: DEFAULT_COLOR,
+    size: theme.SIZES.BASE,
+    color: theme.COLORS.BLACK,
   };
 
   render() {

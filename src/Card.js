@@ -5,7 +5,8 @@ import {
 import { LinearGradient } from 'expo';
 import PropTypes from 'prop-types';
 // Galio components
-import { AuthorSection } from './';
+import { AuthorSection, Block } from '.';
+import theme from './theme';
 
 // TO-DO CARD COMPONENT:
 // 1. Refactor code -- we can address the 2 options in a cleaner way (w/ the styles object)
@@ -16,14 +17,14 @@ class Card extends React.Component {
   static defaultProps = {
     fullBackgroundImage: false,
     onPress: () => {},
+    style: null,
+    image: null,
+    authorImageSrc: null,
+    authorTitle: null,
+    authorSubTitle: null,
+    authorStyle: null,
+    rightSideComponent: null,
   };
-
-  onPress() {
-    const { onPress } = this.props;
-
-    // do some specific shit regarding this component
-    onPress();
-  }
 
   render() {
     const {
@@ -35,18 +36,15 @@ class Card extends React.Component {
       authorTitle,
       rightSideComponent,
       fullBackgroundImage,
-      ...rest
+      onPress,
     } = this.props;
 
     return (
-      <View
-        style={[
-          styles.container,
-          !fullBackgroundImage && styles.cardShadow,
-          style,
-        ]}
+      <Block
+        shadow={!fullBackgroundImage}
+        style={[styles.container, style]}
       >
-        <TouchableOpacity onPress={() => this.props.onPress()}>
+        <TouchableOpacity onPress={() => onPress && onPress()}>
           <Image
             source={{ uri: image }}
             style={
@@ -56,7 +54,7 @@ class Card extends React.Component {
           />
           {fullBackgroundImage && (
             <LinearGradient
-              colors={['transparent', 'rgb(0,0,0)']}
+              colors={['transparent', theme.COLORS.BLACK]}
               style={{
                 position: 'absolute',
                 bottom: 0,
@@ -81,7 +79,7 @@ class Card extends React.Component {
             optionalComponent={rightSideComponent}
           />
         </TouchableOpacity>
-      </View>
+      </Block>
     );
   }
 }
@@ -90,17 +88,10 @@ const styles = StyleSheet.create({
   container: {
     width: '92.5%',
     borderRadius: 5,
-    marginBottom: 10,
-    paddingBottom: 0,
-    backgroundColor: 'rgb(255,255,255)',
-  },
-  cardShadow: {
-    elevation: 1,
-    shadowColor: 'rgba(0,0,0,100)',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
+    marginBottom: theme.SIZES.BASE * 2,
     padding: 7,
+    paddingBottom: 0,
+    backgroundColor: theme.COLORS.WHITE,
   },
   thumbnailImage: {
     width: '100%',

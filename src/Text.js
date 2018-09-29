@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import normalize from './helpers/normalize';
+import theme from './theme';
 
 const Typography = (props) => {
   const {
@@ -17,7 +18,7 @@ const Typography = (props) => {
         h4 && { fontSize: normalize(20) },
         h5 && { fontSize: normalize(16) },
         p && { fontSize: normalize(12) },
-        muted && { color: 'rgba(108,117,125,0.65)' },
+        muted && { color: theme.COLORS.MUTED },
         size && { fontSize: normalize(size) },
         color && { color },
         italic && { fontStyle: 'italic' },
@@ -32,8 +33,23 @@ const Typography = (props) => {
   );
 };
 
+Typography.defaultProps = {
+  children: null,
+  style: null,
+  h1: false,
+  h2: false,
+  h3: false,
+  h4: false,
+  h5: false,
+  p: false,
+  size: 0,
+  color: null,
+  muted: false,
+  bold: false,
+  italic: false,
+};
+
 Typography.propTypes = {
-  ...Text.propTypes,
   children: PropTypes.any,
   style: PropTypes.any,
   h1: PropTypes.bool,
