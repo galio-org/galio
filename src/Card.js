@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Image, StyleSheet, TouchableOpacity,
+  Image, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 import PropTypes from 'prop-types';

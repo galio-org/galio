@@ -70,8 +70,11 @@ class Button extends React.Component {
     if (lowercase && isString) content = children.toLowerCase();
     if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
 
-    if (onlyIcon) content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
-    else content = <Text style={textStyles}>{content}</Text>;
+    if (onlyIcon) {
+      content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
+    } else {
+      content = <Text style={textStyles}>{content}</Text>;
+    }
 
     if (loading) content = <ActivityIndicator size={loadingSize} color={COLORS.WHITE} />;
 

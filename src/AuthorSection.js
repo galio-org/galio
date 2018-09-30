@@ -27,6 +27,16 @@ const AuthorSection = ({
   </View>
 );
 
+AuthorSection.defaultProps = {
+  style: null,
+  imageSource: null,
+  title: null,
+  subTitle: null,
+  fixed: false,
+  optionalComponent: null,
+  reverseColor: false,
+};
+
 AuthorSection.propTypes = {
   style: PropTypes.any,
   imageSource: PropTypes.string,
