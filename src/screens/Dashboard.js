@@ -9,14 +9,15 @@ import { AreaChart } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 
 // galio components
-import { Button, Icon, Text, NavBar } from '../';
+import { Button, Icon, Text, NavBar } from '..';
+import theme from '../theme';
 
-const BASE_SIZE = 14;
+const BASE_SIZE = theme.SIZES.BASE;
 const GRADIENT_BLUE = ['#6C3CF7', '#4F3DF2', '#2734EF'];
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
-const COLOR_WHITE = '#FFFFFF';
-const COLOR_BLACK = '#000000';
-const COLOR_GREY = '#D8DDE1';
+const COLOR_WHITE = theme.COLORS.WHITE;
+const COLOR_BLACK = theme.COLORS.BLACK;
+const COLOR_GREY = theme.COLORS.GREY; // '#D8DDE1';
 
 // mock data
 const cards = [
@@ -89,7 +90,7 @@ class Dashboard extends React.Component {
   )
 
   renderStats = () => {
-    const Gradient = () => (
+    const GradientStats = () => (
       <Defs key="gradient">
         <LinearGradient id="gradient" x1="0" y="0%" x2="100%" y2="0%">
           <Stop offset="0%" stopColor="#9B40F8" />
@@ -109,7 +110,7 @@ class Dashboard extends React.Component {
           contentInset={{ bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15 }}
           svg={{ strokeWidth: BASE_SIZE * 0.15, stroke: COLOR_GREY }}
         >
-          <Gradient />
+          <GradientStats />
         </AreaChart>
         <AreaChart
           yMin={0}
@@ -120,7 +121,7 @@ class Dashboard extends React.Component {
           contentInset={{ bottom: -BASE_SIZE * 0.21, right: -BASE_SIZE * 0.21, left: -BASE_SIZE * 0.21 }}
           svg={{ strokeWidth: BASE_SIZE * 0.21, stroke: 'url(#gradient)' }}
         >
-          <Gradient />
+          <GradientStats />
         </AreaChart>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: BASE_SIZE }}>
           {statsTitles.map(title => <Text key={title} muted>{title}</Text>)}

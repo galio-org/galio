@@ -13,15 +13,14 @@ const BASE_SIZE = 14;
 const COLOR_WHITE = '#FFFFFF';
 
 class Grid extends React.Component {
-
   render() {
     const { navigation } = this.props;
 
     return (
       <ScrollView contentContainerStyle={styles.grid}>
-        <Block flex space="around">
+        <Block>
           <Block row space="evenly">
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-facebook" family="Foundation" size={BASE_SIZE * 3} />
@@ -29,7 +28,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-github" family="Foundation" size={BASE_SIZE * 3} />
@@ -37,7 +36,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-instagram" family="Foundation" size={BASE_SIZE * 3} />
@@ -45,7 +44,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-windows" family="Foundation" size={BASE_SIZE * 3} />
@@ -55,7 +54,7 @@ class Grid extends React.Component {
             </Block>
           </Block>
           <Block row space="evenly">
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-facebook" family="SimpleLineIcons" size={BASE_SIZE * 3} />
@@ -63,7 +62,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-github" family="SimpleLineIcons" size={BASE_SIZE * 3} />
@@ -71,7 +70,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-instagram" family="SimpleLineIcons" size={BASE_SIZE * 3} />
@@ -79,7 +78,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-tumblr" family="SimpleLineIcons" size={BASE_SIZE * 3} />
@@ -89,7 +88,7 @@ class Grid extends React.Component {
             </Block>
           </Block>
           <Block row space="evenly">
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-android" family="Foundation" size={BASE_SIZE * 3} />
@@ -97,7 +96,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-apple" family="Foundation" size={BASE_SIZE * 3} />
@@ -105,7 +104,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-digg" family="Foundation" size={BASE_SIZE * 3} />
@@ -113,7 +112,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="social-dribbble" family="Foundation" size={BASE_SIZE * 3} />
@@ -123,7 +122,7 @@ class Grid extends React.Component {
             </Block>
           </Block>
           <Block row space="evenly">
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="500px" family="Entypo" size={BASE_SIZE * 3} />
@@ -131,7 +130,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="app-store" family="Entypo" size={BASE_SIZE * 3} />
@@ -139,7 +138,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="baidu" family="Entypo" size={BASE_SIZE * 3} />
@@ -147,7 +146,7 @@ class Grid extends React.Component {
                 </Block>
               </Button>
             </Block>
-            <Block card shadow middle style={styles.block}>
+            <Block flex card shadow middle style={styles.block}>
               <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                 <Block flex middle>
                   <Icon name="behance" family="Entypo" size={BASE_SIZE * 3} />
@@ -166,11 +165,13 @@ const styles = StyleSheet.create({
   grid: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
+    justifyContent: 'center',
   },
   block: {
-    paddingHorizontal: BASE_SIZE,
+    paddingHorizontal: BASE_SIZE * 0.7,
     paddingVertical: BASE_SIZE * 2,
     backgroundColor: COLOR_WHITE,
+    borderRadius: 0,
   },
   button: {
     width: 'auto',
