@@ -42,8 +42,9 @@ class Input extends React.Component {
   };
 
   componentDidMount() {
+    const { password } = this.props;
     this.setState({
-      password: this.props.password,
+      password,
     });
   }
 

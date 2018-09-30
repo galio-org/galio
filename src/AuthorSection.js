@@ -48,13 +48,6 @@ const styles = StyleSheet.create({
     // flex: 1,
     backgroundColor: 'transparent',
   },
-  fixed: {
-    borderRadius: 6,
-    shadowColor: 'rgba(0,0,0,0.3)',
-    shadowOffset: { width: 0, height: 7 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-  },
   authorFullSpace: {
     flex: 3,
     flexDirection: 'row',
@@ -82,7 +75,6 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     borderRadius: 5,
     backgroundColor: 'rgb(255,255,255)',
-    borderRadius: 5,
     elevation: 1,
   },
 });

@@ -1,19 +1,23 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import {
+  View, ScrollView, StyleSheet,
+} from 'react-native';
+
 // Galio components
 import { Card, NavBar } from '..';
 
 export default class ArticleFull extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={{ flex: 1 }}>
-        <NavBar title="Article Feed v1" onLeftPress={() => this.props.navigation.openDrawer()} />
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <NavBar transparent title="Article Feed v1" onLeftPress={() => navigation.openDrawer()} />
 
         <ScrollView style={{ flex: 1 }}>
           <View style={styles.container}>
             <Card
               fullBackgroundImage
-              onPress={() => this.props.navigation.navigate('News')}
+              onPress={() => navigation.navigate('News')}
               image="https://images.unsplash.com/photo-1536523552737-74ded3c0591c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c93e90e0868aa428ec388db1ce633272&auto=format&fit=crop&w=1351&q=80"
               authorImageSrc="http://i.pravatar.cc/100"
               authorTitle="Alin Gheorghe"

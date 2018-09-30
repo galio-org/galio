@@ -201,11 +201,6 @@ const styles = StyleSheet.create({
     shadowRadius: BASE_SIZE * 0.57,
     elevation: 1,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   menu: {
     width: BASE_SIZE * 2,
     borderColor: 'transparent',

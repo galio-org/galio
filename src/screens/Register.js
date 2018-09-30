@@ -17,7 +17,7 @@ const COLORS = {
 
 const Register = props => (
   <View style={{ flex: 1 }}>
-    <NavBar onLeftPress={() => props.navigation.openDrawer()} />
+    <NavBar transparent onLeftPress={() => props.navigation.openDrawer()} />
 
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

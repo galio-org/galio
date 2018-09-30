@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 const BASE_SIZE = 14;
-const COLOR_BACKGROUND = '#FFFFFF';
+// const COLOR_BACKGROUND = '#FFFFFF';
 const COLOR_DEFAULT = '#808080';
 
 export default class Block extends Component {
@@ -73,6 +74,24 @@ export default class Block extends Component {
     );
   }
 }
+
+Block.propTypes = {
+  row: PropTypes.bool,
+  // flex: PropTypes.bool,
+  center: PropTypes.bool,
+  middle: PropTypes.bool,
+  top: PropTypes.bool,
+  bottom: PropTypes.bool,
+  right: PropTypes.bool,
+  card: PropTypes.bool,
+  left: PropTypes.bool,
+  shadow: PropTypes.bool,
+  space: PropTypes.string,
+  fluid: PropTypes.bool,
+  height: PropTypes.number,
+  width: PropTypes.number,
+  shadowColor: PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   block: {
