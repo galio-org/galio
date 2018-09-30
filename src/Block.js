@@ -18,11 +18,11 @@ export default class Block extends Component {
     left: false,
     card: false,
     shadow: false,
-    space: false,
+    space: null,
     fluid: false,
-    height: false,
-    width: false,
-    shadowColor: false,
+    height: null,
+    width: null,
+    shadowColor: null,
   }
 
   render() {
@@ -77,7 +77,7 @@ export default class Block extends Component {
 
 Block.propTypes = {
   row: PropTypes.bool,
-  // flex: PropTypes.bool,
+  flex: PropTypes.bool,
   center: PropTypes.bool,
   middle: PropTypes.bool,
   top: PropTypes.bool,

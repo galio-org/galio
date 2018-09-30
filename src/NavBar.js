@@ -25,6 +25,7 @@ class NavBar extends React.Component {
     onLeftPress: () => {},
     right: null,
     rightStyle: null,
+    style: null,
   };
 
   renderTitle = () => {
@@ -102,6 +103,7 @@ NavBar.propTypes = {
   onLeftPress: PropTypes.func,
   right: PropTypes.node,
   rightStyle: PropTypes.any,
+  style: PropTypes.any,
 };
 
 const styles = StyleSheet.create({

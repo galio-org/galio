@@ -35,17 +35,22 @@ class Input extends React.Component {
     viewPass: false,
     topHelp: true,
     bottomHelp: false,
+    style: null,
+    borderless: false,
+    bgColor: null,
+    iconColor: null,
+    icon: null,
+    family: null,
+    color: null,
   };
 
   state = {
-    password: false,
+    isPassword: false,
   };
 
   componentDidMount() {
     const { password } = this.props;
-    this.setState({
-      password,
-    });
+    this.setState({ isPassword: password });
   }
 
   render() {
@@ -96,20 +101,22 @@ class Input extends React.Component {
         color={iconColor || placeholderTextColor}
       />
     ) : null;
-    const viewPassElement = password
-      && viewPass && (
+
+    const { isPassword } = this.state;
+    const viewPassElement = password && viewPass
+      && (
         <TouchableOpacity
           style={{ marginLeft: 2 }}
-          onPress={() => this.setState({ password: !this.state.password })}
+          onPress={() => this.setState({ isPassword: !isPassword })}
         >
           <Icon
             size={BASE_SIZE}
             color={COLOR_BLACK}
-            name={`eye${this.state.password ? '' : '-with-line'}`}
+            name={`eye${isPassword ? '' : '-with-line'}`}
             family="Entypo"
           />
         </TouchableOpacity>
-    );
+      );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
@@ -122,7 +129,7 @@ class Input extends React.Component {
           <TextInput
             style={inputStyles}
             keyboardType={type}
-            secureTextEntry={this.state.password}
+            secureTextEntry={isPassword}
             placeholderTextColor={placeholderTextColor}
             underlineColorAndroid="transparent"
             {...props}
