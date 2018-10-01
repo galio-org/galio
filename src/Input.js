@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     borderWidth: theme.SIZES.BASE * 0.05,
     borderColor: theme.COLORS.INPUT,
     height: theme.SIZES.BASE * 3,
-    width: width * 0.8,
+    width: '100%',
   },
   inputText: {
     color: theme.COLORS.INPUT,

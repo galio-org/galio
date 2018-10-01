@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Alert,
-} from 'react-native';
+import { StyleSheet, View, ScrollView, Alert, Dimensions } from 'react-native';
 
 // galio components
-import {
-  Text, Button, Card, NavBar, Icon, Input,
-} from '..';
+import { Text, Button, Card, NavBar, Icon, Input } from '..';
+
+const { width } = Dimensions.get('window');
 
 export default class Components extends React.Component {
   render() {
@@ -28,12 +23,14 @@ export default class Components extends React.Component {
               color="transparent"
               onPress={() => Alert.alert('Like it!')}
             />
-)}
+          )}
           onLeftPress={() => navigation.openDrawer()}
         />
 
         <ScrollView style={{ flex: 1 }}>
-          <View style={[styles.container, { backgroundColor: 'rgb(255,255,255)' }]}>
+          <View
+            style={[styles.container, { backgroundColor: 'rgb(255,255,255)' }]}
+          >
             <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Typography:
             </Text>
@@ -62,29 +59,75 @@ export default class Components extends React.Component {
             >
               <Button color="transparent">Transparent</Button>
             </View>
-            <Button size="small" style={styles.marginBottomButton} round>Primary</Button>
-            <Button color="theme" size="small" style={styles.marginBottomButton}>Theme </Button>
-            <Button color="error" size="small" round style={styles.marginBottomButton}>Error</Button>
-            <Button color="warning" size="small" style={styles.marginBottomButton}>Warning</Button>
-            <Button style={styles.marginBottomButton} color="success" round>Success</Button>
-            <Button style={styles.marginBottomButton} color="theme" radius={14}>borderRadius 14</Button>
-            <Button style={styles.marginBottomButton} uppercase>uppercase text</Button>
-            <Button style={styles.marginBottomButton} lowercase>LOWERCASE TEXT</Button>
-            <Button style={styles.marginBottomButton} capitalize>capitalize text</Button>
+            <Button size="small" style={styles.marginBottomButton} round>
+              Primary
+            </Button>
+            <Button
+              color="theme"
+              size="small"
+              style={styles.marginBottomButton}
+            >
+              Theme
+            </Button>
+            <Button
+              color="error"
+              size="small"
+              round
+              style={styles.marginBottomButton}
+            >
+              Error
+            </Button>
+            <Button
+              color="warning"
+              size="small"
+              style={styles.marginBottomButton}
+            >
+              Warning
+            </Button>
+            <Button style={styles.marginBottomButton} color="success" round>
+              Success
+            </Button>
+            <Button style={styles.marginBottomButton} color="theme" radius={14}>
+              borderRadius 14
+            </Button>
+            <Button style={styles.marginBottomButton} uppercase>
+              uppercase text
+            </Button>
+            <Button style={styles.marginBottomButton} lowercase>
+              LOWERCASE TEXT
+            </Button>
+            <Button style={styles.marginBottomButton} capitalize>
+              capitalize text
+            </Button>
             <Button style={styles.marginBottomButton} color="success">
-              <Icon name="star" family="FontAwesome" />
-              {' '}
-rating
+              <Icon name="star" family="FontAwesome" />rating
             </Button>
 
-            <Button style={styles.marginBottomButton} size={200} color="#3A3C39" round>
+            <Button
+              style={styles.marginBottomButton}
+              size={200}
+              color="#3A3C39"
+              round
+            >
               <Icon size={24} color="orange" name="star" family="FontAwesome" />
               <Icon size={24} color="orange" name="star" family="FontAwesome" />
               <Icon size={24} color="orange" name="star" family="FontAwesome" />
               <Icon size={24} color="orange" name="star" family="FontAwesome" />
-              <Icon size={24} color="orange" name="star-half-empty" family="FontAwesome" />
+              <Icon
+                size={24}
+                color="orange"
+                name="star-half-empty"
+                family="FontAwesome"
+              />
             </Button>
-            <Button style={styles.marginBottomButton} onlyIcon icon="heart" iconFamily="FontAwesome" iconSize={24} color="transparent" />
+            <Button
+              style={styles.marginBottomButton}
+              onlyIcon
+              icon="heart"
+              iconFamily="FontAwesome"
+              iconSize={24}
+              color="transparent"
+            />
             <Button style={styles.marginBottomButton} loading color="black" />
 
             <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
@@ -101,7 +144,7 @@ rating
                     Salut, eu sunt Mircea si imi place sa mananc ciuperci.
                   </Text>
                 </View>
-)}
+              )}
             />
             <Card
               fullBackgroundImage
@@ -120,31 +163,33 @@ rating
                 <View
                   style={{ width: 20, height: 20, backgroundColor: 'blue' }}
                 />
-)}
+              )}
               style={{ backgroundColor: 'cyan' }}
             />
             <Text h1 style={{ alignSelf: 'flex-start', marginLeft: 10 }}>
               Inputs:
             </Text>
-            <Input
-              type="phone-pad"
-              placeholder="+40763023212"
-              label="Phone Number"
-              borderColor="#000"
-              help="Your phone number"
-              color="yellow"
-              placeholderTextColor="green"
-              icon="github"
-              family="Entypo"
-            />
-            <Input
-              type="numeric"
-              password
-              viewPass
-              placeholder="2233"
-              label="This is yo pin, yo"
-              help="A pin should have 4 numbers"
-            />
+            <View style={{ width: width * 0.8, alignSelf: 'center' }}>
+              <Input
+                type="phone-pad"
+                placeholder="+40763023212"
+                label="Phone Number"
+                borderColor="#000"
+                help="Your phone number"
+                color="yellow"
+                placeholderTextColor="green"
+                icon="github"
+                family="Entypo"
+              />
+              <Input
+                type="numeric"
+                password
+                viewPass
+                placeholder="2233"
+                label="This is yo pin, yo"
+                help="A pin should have 4 numbers"
+              />
+            </View>
           </View>
         </ScrollView>
       </View>
