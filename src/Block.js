@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-
-const BASE_SIZE = 14;
-// const COLOR_BACKGROUND = '#FFFFFF';
-const COLOR_DEFAULT = '#808080';
+import theme from './theme';
 
 export default class Block extends Component {
   static defaultProps = {
@@ -114,12 +111,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   card: {
-    borderRadius: BASE_SIZE * 0.4,
-    borderWidth: BASE_SIZE * 0.05,
-    borderColor: COLOR_DEFAULT,
+    borderRadius: theme.SIZES.BASE * 0.4,
+    borderWidth: theme.SIZES.BASE * 0.05,
+    borderColor: theme.COLORS.BLOCK,
   },
   shadow: {
-    shadowColor: COLOR_DEFAULT,
+    shadowColor: theme.COLORS.BLOCK,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
     shadowRadius: 8,

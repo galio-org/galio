@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
+// galio components
 import { Icon } from '.';
+import theme from './theme';
 
 // TO-DO:
 // 1. State functionality for Redux/Context/basic state stuff
@@ -17,16 +19,11 @@ import { Icon } from '.';
 
 const { width } = Dimensions.get('window');
 
-const BASE_SIZE = 14;
-const COLOR_DEFAULT = '#293042';
-const COLOR_BACKGROUND = '#FFFFFF';
-const COLOR_BLACK = '#000';
-
 class Input extends React.Component {
   static defaultProps = {
     type: 'default',
     password: false,
-    placeholderTextColor: COLOR_BLACK,
+    placeholderTextColor: theme.COLORS.BLACK,
     label: null,
     help: null,
     rounded: false,
@@ -97,7 +94,7 @@ class Input extends React.Component {
         style={{ marginHorizontal: 1 }}
         name={icon}
         family={family}
-        size={BASE_SIZE * 2}
+        size={theme.SIZES.BASE * 2}
         color={iconColor || placeholderTextColor}
       />
     ) : null;
@@ -110,8 +107,8 @@ class Input extends React.Component {
           onPress={() => this.setState({ isPassword: !isPassword })}
         >
           <Icon
-            size={BASE_SIZE}
-            color={COLOR_BLACK}
+            size={theme.SIZES.BASE}
+            color={theme.COLORS.BLACK}
             name={`eye${isPassword ? '' : '-with-line'}`}
             family="Entypo"
           />
@@ -121,7 +118,7 @@ class Input extends React.Component {
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
     return (
-      <View style={{ marginVertical: BASE_SIZE / 2 }}>
+      <View style={{ marginVertical: theme.SIZES.BASE / 2 }}>
         {lebelContent}
         {topHelp && !bottomHelp && helpContent}
         <View style={inputViewStyles}>
@@ -145,16 +142,16 @@ class Input extends React.Component {
 
 const styles = StyleSheet.create({
   inputStyle: {
-    backgroundColor: COLOR_BACKGROUND,
-    borderRadius: BASE_SIZE * 0.5,
-    borderWidth: BASE_SIZE * 0.05,
-    borderColor: COLOR_DEFAULT,
-    height: BASE_SIZE * 3,
+    backgroundColor: theme.COLORS.WHITE,
+    borderRadius: theme.SIZES.BASE * 0.5,
+    borderWidth: theme.SIZES.BASE * 0.05,
+    borderColor: theme.COLORS.INPUT,
+    height: theme.SIZES.BASE * 3,
     width: width * 0.8,
   },
   inputText: {
-    color: COLOR_DEFAULT,
-    fontSize: BASE_SIZE,
+    color: theme.COLORS.INPUT,
+    fontSize: theme.SIZES.BASE,
     textDecorationColor: 'transparent',
     textShadowColor: 'transparent',
   },
@@ -166,18 +163,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputIcon: {
-    marginHorizontal: BASE_SIZE / 2,
+    marginHorizontal: theme.SIZES.BASE / 2,
   },
   label: {
-    marginBottom: BASE_SIZE / 4,
+    marginBottom: theme.SIZES.BASE / 4,
     fontWeight: 'bold',
   },
   helpText: {
-    fontSize: BASE_SIZE * 0.8,
+    fontSize: theme.SIZES.BASE * 0.8,
     fontStyle: 'italic',
   },
   rounded: {
-    borderRadius: BASE_SIZE * 1.7,
+    borderRadius: theme.SIZES.BASE * 1.7,
   },
   borderless: {
     borderColor: 'transparent',

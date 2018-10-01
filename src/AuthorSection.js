@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-
+// galio components
 import { Text } from '.';
+import theme from './theme';
 
 const AuthorSection = ({
   style,
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 5,
     // flex: 1,
-    backgroundColor: 'transparent',
+    backgroundColor: theme.COLORS.TRANSPARENT,
   },
   authorFullSpace: {
     flex: 3,
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   titleWhite: {
-    color: 'rgb(255,255,255)',
+    color: theme.COLORS.WHITE,
   },
   fixed: {
     position: 'absolute',
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 10,
     borderRadius: 5,
-    backgroundColor: 'rgb(255,255,255)',
+    backgroundColor: theme.COLORS.WHITE,
     elevation: 1,
   },
 });

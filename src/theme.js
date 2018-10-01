@@ -10,6 +10,7 @@ const COLORS = {
   TRANSPARENT: 'transparent',
   INPUT: '#293042',
   NAVBAR: '#F9F9F9',
+  BLOCK: '#808080',
   MUTED: 'rgba(108, 117, 125, 0.65)',
 };
 
