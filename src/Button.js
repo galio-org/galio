@@ -3,20 +3,11 @@ import {
   ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
+// galio components
+import { Icon } from '.';
+import theme from './theme';
 
 const { width } = Dimensions.get('window');
-const BASE_SIZE = 14;
-const COLORS = {
-  PRIMARY: '#102EFF',
-  THEME: '#A833FE',
-  ERROR: '#FF2664',
-  WARNING: '#FF970C',
-  SUCCESS: '#3DDA2B',
-  TRANSPARENT: 'transparent',
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
-};
 
 class Button extends React.Component {
   static defaultProps = {
@@ -35,7 +26,7 @@ class Button extends React.Component {
     loading: false,
     loadingSize: 'small',
     opacity: 0.8,
-    iconColor: COLORS.BLACK,
+    iconColor: theme.COLORS.BLACK,
   };
 
   renderContent = () => {
@@ -76,7 +67,7 @@ class Button extends React.Component {
       content = <Text style={textStyles}>{content}</Text>;
     }
 
-    if (loading) content = <ActivityIndicator size={loadingSize} color={COLORS.WHITE} />;
+    if (loading) content = <ActivityIndicator size={loadingSize} color={theme.COLORS.WHITE} />;
 
     return content;
   }
@@ -106,7 +97,7 @@ class Button extends React.Component {
       color && colorStyle,
       color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
       color === 'transparent' || styles.androidShadow,
-      color === 'transparent' && { borderWidth: 1, borderColor: COLORS.WHITE },
+      color === 'transparent' && { borderWidth: 1, borderColor: theme.COLORS.WHITE },
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
       onlyIcon && {
@@ -114,7 +105,7 @@ class Button extends React.Component {
       },
       radius && { borderRadius: radius },
       !shadowless && styles.shadow,
-      { shadowColor: COLORS[color.toUpperCase()] },
+      { shadowColor: theme.COLORS[color.toUpperCase()] },
       { zIndex: 2 },
       style,
     ];
@@ -134,39 +125,39 @@ class Button extends React.Component {
 
 const styles = StyleSheet.create({
   defaultButton: {
-    width: BASE_SIZE * 9,
-    height: BASE_SIZE * 3,
+    width: theme.SIZES.BASE * 9,
+    height: theme.SIZES.BASE * 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
   shadow: {
-    shadowColor: COLORS.BLACK,
+    shadowColor: theme.COLORS.BLACK,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.25,
     shadowRadius: 12,
   },
   customText: {
     fontSize: 18,
-    color: COLORS.WHITE,
+    color: theme.COLORS.WHITE,
     fontWeight: '800',
   },
   primaryColor: {
-    backgroundColor: COLORS.PRIMARY,
+    backgroundColor: theme.COLORS.PRIMARY,
   },
   themeColor: {
-    backgroundColor: COLORS.THEME,
+    backgroundColor: theme.COLORS.THEME,
   },
   errorColor: {
-    backgroundColor: COLORS.ERROR,
+    backgroundColor: theme.COLORS.ERROR,
   },
   warningColor: {
-    backgroundColor: COLORS.WARNING,
+    backgroundColor: theme.COLORS.WARNING,
   },
   successColor: {
-    backgroundColor: COLORS.SUCCESS,
+    backgroundColor: theme.COLORS.SUCCESS,
   },
   transparentColor: {
-    backgroundColor: COLORS.TRANSPARENT,
+    backgroundColor: theme.COLORS.TRANSPARENT,
   },
   androidShadow: {
     elevation: 1,

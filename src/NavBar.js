@@ -6,11 +6,9 @@ import PropTypes from 'prop-types';
 
 // galio components
 import { Text, Icon } from '.';
+import theme from './theme';
 
 const { height, width } = Dimensions.get('screen');
-const BASE_SIZE = 14;
-const COLOR_BACKGROUND = '#F9F9F9';
-const COLOR_DEFAULT = '#000000';
 
 class NavBar extends React.Component {
   static defaultProps = {
@@ -21,7 +19,7 @@ class NavBar extends React.Component {
     titleStyle: null,
     left: null,
     leftStyle: null,
-    leftIconColor: COLOR_DEFAULT,
+    leftIconColor: theme.COLORS.black,
     onLeftPress: () => {},
     right: null,
     rightStyle: null,
@@ -35,7 +33,7 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text h5={!hasExtraStyles} style={[{ color: COLOR_DEFAULT }, titleStyle]}>{title}</Text>
+          <Text h5={!hasExtraStyles} style={[{ color: theme.COLORS.BLACK }, titleStyle]}>{title}</Text>
         </View>
       );
     }
@@ -57,7 +55,7 @@ class NavBar extends React.Component {
     return (
       <View style={[styles.left, leftStyle]}>
         <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
-          <Icon name={back ? 'chevron-left' : 'menu'} family="Entypo" size={BASE_SIZE * 1.75} color={leftIconColor} />
+          <Icon name={back ? 'chevron-left' : 'menu'} family="Entypo" size={theme.SIZES.BASE * 1.75} color={leftIconColor} />
         </TouchableOpacity>
       </View>
     );
@@ -110,9 +108,9 @@ const styles = StyleSheet.create({
   navBar: {
     width,
     // height: height * 0.075,
-    backgroundColor: COLOR_BACKGROUND,
+    backgroundColor: theme.COLORS.NAVBAR,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: COLOR_DEFAULT,
+    borderColor: theme.COLORS.BLACK,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
@@ -127,14 +125,14 @@ const styles = StyleSheet.create({
     flex: 1,
     height: height * 0.07,
     justifyContent: 'center',
-    marginLeft: BASE_SIZE,
+    marginLeft: theme.SIZES.BASE,
   },
   right: {
     flex: 1,
     height: height * 0.07,
     alignItems: 'flex-end',
     justifyContent: 'center',
-    marginRight: BASE_SIZE,
+    marginRight: theme.SIZES.BASE,
   },
   borderless: {
     borderColor: 'transparent',
