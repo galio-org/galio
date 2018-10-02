@@ -2,16 +2,18 @@ const COLORS = {
   WHITE: '#FFFFFF',
   BLACK: '#000000',
   GREY: '#898989',
-  PRIMARY: '#102EFF',
-  THEME: '#A833FE',
-  ERROR: '#FF2664',
-  WARNING: '#FF970C',
-  SUCCESS: '#3DDA2B',
+  THEME: '#B23AFC',
+  PRIMARY: '#B23AFC',
+  INFO: '#1232FF',
+  ERROR: '#FF2B70',
+  WARNING: '#FFA206',
+  SUCCESS: '#45DF31',
   TRANSPARENT: 'transparent',
   INPUT: '#293042',
   NAVBAR: '#F9F9F9',
   BLOCK: '#808080',
   MUTED: 'rgba(108, 117, 125, 0.65)',
+  NEUTRAL: 'rgba(255,255,255, 0.65)',
 };
 
 const SIZES = {

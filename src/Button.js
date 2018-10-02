@@ -20,12 +20,12 @@ class Button extends React.Component {
     capitalize: false,
     shadowless: false,
     onlyIcon: false,
-    icon: false,
-    iconFamily: false,
-    iconSize: 14,
     loading: false,
     loadingSize: 'small',
     opacity: 0.8,
+    icon: false,
+    iconFamily: false,
+    iconSize: 14,
     iconColor: theme.COLORS.BLACK,
   };
 
@@ -101,7 +101,10 @@ class Button extends React.Component {
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
       round && { borderRadius: 24 },
       onlyIcon && {
-        width: iconSize * 2, height: iconSize * 2, borderWidth: 0, borderRadius: iconSize,
+        width: iconSize * 1.25,
+        height: iconSize * 2,
+        borderWidth: 0,
+        borderRadius: iconSize,
       },
       radius && { borderRadius: radius },
       !shadowless && styles.shadow,
@@ -125,27 +128,30 @@ class Button extends React.Component {
 
 const styles = StyleSheet.create({
   defaultButton: {
+    borderRadius: 3,
     width: theme.SIZES.BASE * 9,
     height: theme.SIZES.BASE * 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
   shadow: {
-    shadowColor: theme.COLORS.BLACK,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
+    shadowColor: theme.COLORS.BLOCK,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
   },
   customText: {
-    fontSize: 18,
+    fontSize: 14,
     color: theme.COLORS.WHITE,
-    fontWeight: '800',
   },
   primaryColor: {
     backgroundColor: theme.COLORS.PRIMARY,
   },
   themeColor: {
     backgroundColor: theme.COLORS.THEME,
+  },
+  infoColor: {
+    backgroundColor: theme.COLORS.INFO,
   },
   errorColor: {
     backgroundColor: theme.COLORS.ERROR,

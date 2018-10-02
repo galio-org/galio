@@ -7,7 +7,22 @@ import theme from './theme';
 
 const Typography = (props) => {
   const {
-    style, h1, h2, h3, h4, h5, p, muted, size, color, bold, italic, center, children, ...rest
+    style,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p,
+    muted,
+    neutral,
+    size,
+    color,
+    bold,
+    italic,
+    center,
+    children,
+    ...rest
   } = props;
   return (
     <Text
@@ -19,6 +34,7 @@ const Typography = (props) => {
         h5 && { fontSize: normalize(16) },
         p && { fontSize: normalize(12) },
         muted && { color: theme.COLORS.MUTED },
+        neutral && { color: theme.COLORS.NEUTRAL },
         size && { fontSize: normalize(size) },
         color && { color },
         italic && { fontStyle: 'italic' },

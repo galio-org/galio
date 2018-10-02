@@ -1,72 +1,87 @@
 import React from 'react';
 import {
-  View,
   StyleSheet,
   StatusBar,
   Image,
-  TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
+import { LinearGradient } from 'expo';
+
 // galio components
-import { Text, AuthorSection, NavBar } from '../';
+import { Block, Text, AuthorSection, NavBar } from '..';
+
+import theme from '../theme';
+
+const bgImage = 'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?fit=crop&w=760&q=80';
 
 const Article = props => (
-  <View style={{ flex: 1 }}>
-    <StatusBar hidden={false} barStyle="light-content" />
-    <Image
-      style={{ width: '100%', height: '45%' }}
-      source={{
-        uri:
-          'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fc7f17d00c13cf50d62f4ebd5743a9bc&auto=format&fit=crop&w=1950&q=80',
-      }}
-    />
-    <View style={{position: 'absolute', top: 0, left: 0, right: 0}}>
-      <NavBar transparent leftIconColor="#FFF" onLeftPress={() => props.navigation.openDrawer()} />
-    </View>
-    <View style={styles.articleContainer}>
-      <Text h2>I would happily watch a TV show about crabs</Text>
-      <Text p muted style={{ marginTop: 5 }}>
-        Interviewing this super star
-      </Text>
-      <AuthorSection
-        imageSource="http://i.pravatar.cc/100"
-        title="Alin Gheorghe"
-        subTitle="420 minutes ago"
-        style={{ marginTop: 15 }}
-        optionalComponent={<View />}
-      />
-      <Text p bold style={{ marginTop: 10 }}>
-        You should totally like check this out, ok? Why would you use another UI
-        library when you have so many components written by Creative Tim and the
-        whole React Native community. Galio was created by developers for
-        developers.
-      </Text>
-      <Text p style={{ marginTop: 10 }}>
-        A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
-      </Text>
-    </View>
-  </View>
+  <ImageBackground source={{ uri: bgImage }} style={{ width: '100%', height: '100%' }}>
+    <Block flex style={styles.bottom}>
+      <StatusBar hidden={false} barStyle="light-content" />
+      <Block style={styles.navbar}>
+        <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+      </Block>
+
+      <Block style={styles.articleContainer}>
+        <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
+          <Text h3>I would happily watch a TV show about crabs</Text>
+          <Text muted size={theme.SIZES.FONT} style={{ marginTop: theme.SIZES.BASE, fontWeight: '600' }}>
+            InterBlocking this super star
+          </Text>
+        </Block>
+        <Block flex>
+          <AuthorSection
+            imageSource="http://i.pravatar.cc/100"
+            title="Alin Gheorghe"
+            subTitle="420 minutes ago"
+            style={{ paddingHorizontal: 0 }}
+          />
+        </Block>
+        <Block flex>
+          <Text style={{ marginTop: 10, lineHeight: theme.SIZES.FONT * 1.4 }}>
+            You should totally like check this out, ok? Why would you use another UI
+            library when you have so many components written by Creative Tim and the
+            whole React Native community. Galio was created by developers for
+            developers.
+          </Text>
+          <Text style={{ marginTop: 10 }}>
+            A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
+          </Text>
+        </Block>
+        <LinearGradient
+          colors={['rgba(255,255,255,0.25)', 'rgba(255,255,255,0.6)', 'rgba(255,255,255,0.9)']}
+          style={styles.gradient}
+        />
+      </Block>
+    </Block>
+  </ImageBackground>
 );
 
 const styles = StyleSheet.create({
   articleContainer: {
+    backgroundColor: theme.COLORS.WHITE,
+    borderTopLeftRadius: theme.SIZES.BASE * 2,
+    borderTopRightRadius: theme.SIZES.BASE * 2,
+    paddingHorizontal: theme.SIZES.BASE * 2,
+    paddingTop: theme.SIZES.BASE * 2,
+    paddingBottom: theme.SIZES.BASE * 5,
+    height: '58%',
+  },
+  navbar: {
     position: 'absolute',
-    top: '38%',
+    top: theme.SIZES.BASE,
+    left: 0,
+    right: 0,
+  },
+  bottom: {
+    justifyContent: 'flex-end',
+  },
+  gradient: {
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgb(250,250,250)',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    paddingTop: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  backButton: {
-    width: 25,
-    height: 25,
     position: 'absolute',
-    top: '5%',
-    left: '5%',
+    height: theme.SIZES.BASE * 12,
   },
 });
 

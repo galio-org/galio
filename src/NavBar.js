@@ -13,13 +13,12 @@ const { height, width } = Dimensions.get('screen');
 class NavBar extends React.Component {
   static defaultProps = {
     back: false,
-    borderless: false,
     transparent: false,
     title: null, // '🍑',
     titleStyle: null,
     left: null,
     leftStyle: null,
-    leftIconColor: theme.COLORS.black,
+    leftIconColor: theme.COLORS.MUTED,
     onLeftPress: () => {},
     right: null,
     rightStyle: null,
@@ -28,12 +27,13 @@ class NavBar extends React.Component {
 
   renderTitle = () => {
     const { title, titleStyle } = this.props;
-    const hasExtraStyles = titleStyle;
 
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text h5={!hasExtraStyles} style={[{ color: theme.COLORS.BLACK }, titleStyle]}>{title}</Text>
+          <Text style={[styles.titleTextStyle, titleStyle]}>
+            {title}
+          </Text>
         </View>
       );
     }
@@ -63,15 +63,20 @@ class NavBar extends React.Component {
 
   renderRight = () => {
     const { right, rightStyle } = this.props;
+    const hasIcons = React.Children.count(right) > 1;
+    const rightStyles = [
+      styles.right,
+      hasIcons ? { flexDirection: 'row', justifyContent: 'flex-end' } : null,
+      rightStyle,
+    ];
 
-    return <View style={[styles.right, rightStyle]}>{right}</View>;
+    return <View style={rightStyles}>{right}</View>;
   }
 
   render() {
-    const { borderless, transparent, style } = this.props;
+    const { transparent, style } = this.props;
     const navStyles = [
       styles.navBar,
-      borderless && styles.borderless,
       transparent && styles.transparent,
       style,
     ];
@@ -88,7 +93,6 @@ class NavBar extends React.Component {
 
 NavBar.propTypes = {
   back: PropTypes.bool,
-  borderless: PropTypes.bool,
   transparent: PropTypes.bool,
   title: PropTypes.oneOfType([
     PropTypes.node,
@@ -106,20 +110,22 @@ NavBar.propTypes = {
 
 const styles = StyleSheet.create({
   navBar: {
-    width,
-    // height: height * 0.075,
-    backgroundColor: theme.COLORS.NAVBAR,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: theme.COLORS.BLACK,
+    width: 'auto',
+    height: 'auto',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    backgroundColor: theme.COLORS.WHITE,
   },
   title: {
     flex: 2,
     height: height * 0.07,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  textStyle: {
+    color: theme.COLORS.BLACK,
+    fontWeight: '400',
   },
   left: {
     flex: 1,
@@ -133,10 +139,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
     marginRight: theme.SIZES.BASE,
-  },
-  borderless: {
-    borderColor: 'transparent',
-    borderWidth: 0,
   },
   transparent: {
     backgroundColor: 'transparent',

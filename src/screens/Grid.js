@@ -1,162 +1,128 @@
 import React from 'react';
 import {
-  StyleSheet, ScrollView,
+  Dimensions, StyleSheet,
 } from 'react-native';
-import { Constants } from 'expo';
-
 // galio components
 import {
-  Button, Icon, Block, Text,
+  Button, Icon, Block, Text, NavBar,
 } from '..';
+import theme from '../theme';
 
-const BASE_SIZE = 14;
-const COLOR_WHITE = '#FFFFFF';
+const { width } = Dimensions.get('screen');
+const BASE_SIZE = theme.SIZES.BASE;
+const COLOR_WHITE = theme.COLORS.WHITE;
 
 class Grid extends React.Component {
   render() {
     const { navigation } = this.props;
-
     return (
-      <ScrollView contentContainerStyle={styles.grid}>
-        <Block>
-          <Block row space="evenly">
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-facebook" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Facebook</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-github" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>GitHub</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-instagram" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Instagram</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-windows" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Windows</Text>
-                </Block>
-              </Button>
-            </Block>
+      <Block style={styles.grid}>
+        <NavBar title="Grid" onLeftPress={() => navigation.openDrawer()} />
+        <Block row space="evenly">
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-facebook" family="Foundation" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Facebook</Text>
+              </Block>
+            </Button>
           </Block>
-          <Block row space="evenly">
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-facebook" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Text>Facebook</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-github" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Text>GitHub</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-instagram" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Text>Instagram</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-tumblr" family="SimpleLineIcons" size={BASE_SIZE * 3} />
-                  <Text>Tumblr</Text>
-                </Block>
-              </Button>
-            </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-github" family="Foundation" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>GitHub</Text>
+              </Block>
+            </Button>
           </Block>
-          <Block row space="evenly">
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-android" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Android</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-apple" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Apple</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-digg" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Digg</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="social-dribbble" family="Foundation" size={BASE_SIZE * 3} />
-                  <Text>Dribbble</Text>
-                </Block>
-              </Button>
-            </Block>
-          </Block>
-          <Block row space="evenly">
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="500px" family="Entypo" size={BASE_SIZE * 3} />
-                  <Text>500px</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="app-store" family="Entypo" size={BASE_SIZE * 3} />
-                  <Text>App Store</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="baidu" family="Entypo" size={BASE_SIZE * 3} />
-                  <Text>Baidu</Text>
-                </Block>
-              </Button>
-            </Block>
-            <Block flex card shadow middle style={styles.block}>
-              <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                <Block flex middle>
-                  <Icon name="behance" family="Entypo" size={BASE_SIZE * 3} />
-                  <Text>Behance</Text>
-                </Block>
-              </Button>
-            </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-instagram" family="Foundation" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Instagram</Text>
+              </Block>
+            </Button>
           </Block>
         </Block>
-      </ScrollView>
+        <Block row space="evenly">
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-facebook" family="SimpleLineIcons" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Facebook</Text>
+              </Block>
+            </Button>
+          </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-github" family="SimpleLineIcons" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>GitHub</Text>
+              </Block>
+            </Button>
+          </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-instagram" family="SimpleLineIcons" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Instagram</Text>
+              </Block>
+            </Button>
+          </Block>
+        </Block>
+        <Block row space="evenly">
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-android" family="Foundation" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Android</Text>
+              </Block>
+            </Button>
+          </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-apple" family="Foundation" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Apple</Text>
+              </Block>
+            </Button>
+          </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="social-digg" family="Foundation" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Digg</Text>
+              </Block>
+            </Button>
+          </Block>
+        </Block>
+        <Block row space="evenly">
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="500px" family="Entypo" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>500px</Text>
+              </Block>
+            </Button>
+          </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="app-store" family="Entypo" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>App Store</Text>
+              </Block>
+            </Button>
+          </Block>
+          <Block shadow middle style={styles.block}>
+            <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
+              <Block flex middle>
+                <Icon name="baidu" family="Entypo" size={BASE_SIZE * 2.5} />
+                <Text size={BASE_SIZE * 0.8}>Baidu</Text>
+              </Block>
+            </Button>
+          </Block>
+        </Block>
+      </Block>
     );
   }
 }
@@ -164,19 +130,18 @@ class Grid extends React.Component {
 const styles = StyleSheet.create({
   grid: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
   block: {
-    paddingHorizontal: BASE_SIZE * 0.7,
-    paddingVertical: BASE_SIZE * 2,
+    padding: BASE_SIZE,
     backgroundColor: COLOR_WHITE,
-    borderRadius: 0,
+    borderRadius: BASE_SIZE / 2,
+    height: width * 0.28,
+    width: width * 0.28,
   },
   button: {
     width: 'auto',
-    height: BASE_SIZE * 3,
-    borderWidth: 0,
+    height: 'auto',
   },
 });
 
