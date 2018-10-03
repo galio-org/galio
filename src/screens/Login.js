@@ -37,11 +37,59 @@ class Login extends React.Component {
               This is the perfect place to write a short description
               of this step and even the next steps ahead
             </Text>
+            <Block row center space="between" style={{ marginTop: theme.SIZES.BASE }}>
+              <Block flex middle right>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="facebook"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.FACEBOOK}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+              <Block flex middle center>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="twitter"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.TWITTER}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+              <Block flex middle left>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="dribbble"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.DRIBBBLE}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+            </Block>
+            <Text muted center style={{ padding: theme.SIZES.BASE }}>
+              or be classical
+            </Text>
           </Block>
 
           <Block flex={2} space="evenly" center>
             <Block>
               <Input
+                rounded
                 type="email-address"
                 placeholder="Email"
                 autoCapitalize="none"
@@ -49,6 +97,7 @@ class Login extends React.Component {
                 onChangeText={text => this.handleChange('email', text)}
               />
               <Input
+                rounded
                 password
                 viewPass
                 placeholder="Password"

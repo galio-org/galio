@@ -108,6 +108,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
+  left: {
+    alignItems: 'flex-start',
+  },
+  right: {
+    alignItems: 'flex-end',
+  },
   top: {
     alignItems: 'flex-start',
     alignSelf: 'flex-start',

@@ -1,128 +1,150 @@
 import React from 'react';
 import {
-  View,
+  Alert,
+  Dimensions,
   StyleSheet,
   KeyboardAvoidingView,
 } from 'react-native';
-// galio components
+// galio component
 import {
-  NavBar, Input, Button, Text,
+  Block, Button, Input, Text, NavBar,
 } from '..';
+import theme from '../theme';
 
-const COLORS = {
-  FACEBOOK: '#3B5998',
-  DRIBBBLE: '#ea4c89',
-  TWITTER: '#00aced',
-};
+const { width } = Dimensions.get('window');
 
-const Register = props => (
-  <View style={{ flex: 1 }}>
-    <NavBar transparent onLeftPress={() => props.navigation.openDrawer()} />
+class Login extends React.Component {
+  state = {
+    user: '-',
+    email: '-',
+    password: '-',
+  }
 
-    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Button
-            onlyIcon
-            icon="facebook"
-            iconFamily="FontAwesome"
-            iconSize={28}
-            style={{ marginRight: 15 }}
-            color={COLORS.FACEBOOK}
-            iconColor="#fff"
-          />
-          <Button
-            onlyIcon
-            icon="twitter"
-            iconFamily="FontAwesome"
-            iconSize={28}
-            style={{ marginRight: 15 }}
-            color={COLORS.TWITTER}
-            iconColor="#fff"
-          />
-          <Button
-            onlyIcon
-            icon="dribbble"
-            iconFamily="FontAwesome"
-            iconSize={28}
-            color={COLORS.DRIBBBLE}
-            iconColor="#fff"
-          />
-        </View>
-        <Text h4 muted center style={{ marginTop: 15 }}>
-          or be classical
-        </Text>
-      </View>
+  handleChange = (name, value) => {
+    this.setState({ [name]: value });
+  }
 
-      <View
-        style={{
-          flex: 2,
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-        }}
-      >
-        <View>
-          <Input
-            style={styles.inputStyles}
-            borderless
-            bgColor="transparent"
-            placeholder="MigosFan29324"
-            label="Username"
-            placeholderTextColor="#757575"
-          />
-          <Input
-            style={styles.inputStyles}
-            borderless
-            bgColor="transparent"
-            type="email-address"
-            placeholder="kanyewest@thegreatkanye.com"
-            label="Email"
-            placeholderTextColor="#757575"
-          />
-          <Input
-            style={styles.inputStyles}
-            borderless
-            bgColor="transparent"
-            placeholder="My awesome password"
-            label="Password"
-            help="Your password must have between 6 and 9 characters"
-            bottomHelp
-            placeholderTextColor="#757575"
-            password
-            viewPass
-          />
-        </View>
+  render() {
+    const { navigation } = this.props;
+    const { user, email, password } = this.state;
 
-        <View>
-          <Button color="error" round>
-            Sign up
-          </Button>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
-  </View>
-);
+    return (
+      <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+        <NavBar back transparent onLeftPress={() => navigation.openDrawer()} />
+        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+          <Block flex center style={{ marginTop: theme.SIZES.BASE }}>
+            <Block row center space="between">
+              <Block flex middle right>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="facebook"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.FACEBOOK}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+              <Block flex middle center>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="twitter"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.TWITTER}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+              <Block flex middle left>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="dribbble"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.DRIBBBLE}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+            </Block>
+            <Text muted center style={{ padding: theme.SIZES.BASE }}>
+              or be classical
+            </Text>
+          </Block>
+
+          <Block flex={2} space="evenly" center>
+            <Block>
+              <Input
+                rounded
+                placeholder="Username"
+                autoCapitalize="none"
+                style={{ width: width * 0.9 }}
+                right
+                icon="user"
+                family="Feather"
+                onChangeText={text => this.handleChange('user', text)}
+              />
+              <Input
+                rounded
+                type="email-address"
+                placeholder="Email"
+                autoCapitalize="none"
+                style={{ width: width * 0.9 }}
+                right
+                icon="mail"
+                family="Feather"
+                onChangeText={text => this.handleChange('email', text)}
+              />
+              <Input
+                rounded
+                password
+                viewPass
+                placeholder="Password"
+                style={{ width: width * 0.9 }}
+                onChangeText={text => this.handleChange('password', text)}
+              />
+            </Block>
+            <Block>
+              <Button
+                round
+                color="error"
+                onPress={() => Alert.alert(
+                  'Sign up action',
+                  `
+Username: ${user}
+Email: ${email}
+Password: ${password}`,
+                )}
+              >
+                Sign up
+              </Button>
+            </Block>
+          </Block>
+        </KeyboardAvoidingView>
+      </Block>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 3,
     flex: 1,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-around',
-  },
-  inputStyles: {
-    borderBottomWidth: 2,
-    borderColor: '#212121',
-    borderRadius: 0,
+    paddingTop: theme.SIZES.BASE * 0.3,
+    paddingHorizontal: theme.SIZES.BASE,
+    backgroundColor: theme.COLORS.WHITE,
   },
 });
 
-export default Register;
+export default Login;

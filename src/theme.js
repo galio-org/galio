@@ -14,6 +14,9 @@ const COLORS = {
   BLOCK: '#808080',
   MUTED: 'rgba(108, 117, 125, 0.65)',
   NEUTRAL: 'rgba(255,255,255, 0.65)',
+  FACEBOOK: '#3B5998',
+  TWITTER: '#5BC0DE',
+  DRIBBBLE: '#EA4C89',
 };
 
 const SIZES = {

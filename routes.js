@@ -121,13 +121,6 @@ const screens = {
       drawerIcon: props => <MenuIcon name="dashboard" family="FontAwesome" focused={props.focused} />,
     },
   },
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      drawerLabel: 'Login Screen',
-      drawerIcon: props => <MenuIcon name="login-variant" family="MaterialCommunityIcons" focused={props.focused} />,
-    },
-  },
   News: {
     screen: News,
     navigationOptions: {
@@ -142,11 +135,18 @@ const screens = {
       drawerIcon: props => <MenuIcon name="presentation" family="MaterialCommunityIcons" focused={props.focused} />,
     },
   },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      drawerLabel: 'Login Screen',
+      drawerIcon: props => <MenuIcon name="login-variant" family="MaterialCommunityIcons" focused={props.focused} />,
+    },
+  },
   Register: {
     screen: Register,
     navigationOptions: {
       drawerLabel: 'Register Screen',
-      drawerIcon: props => <MenuIcon name="registered" family="FontAwesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="person-add" family="MaterialIcons" focused={props.focused} />,
     },
   },
   Grid: {
