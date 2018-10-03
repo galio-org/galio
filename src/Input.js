@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -16,8 +15,6 @@ import theme from './theme';
 // 1. State functionality for Redux/Context/basic state stuff
 // 2. Maybe options for changind the View text for the viewPass button
 // 3. Idk. What else should we do in order to make this even more reusable.
-
-const { width } = Dimensions.get('window');
 
 class Input extends React.Component {
   static defaultProps = {
