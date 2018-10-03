@@ -44,8 +44,6 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: theme.SIZES.BASE,
     paddingBottom: theme.SIZES.BASE / 2,
-    // borderBottomColor: theme.COLORS.BLOCK,
-    // borderBottomWidth: StyleSheet.hairlineWidth,
   },
   avatar: {
     width: 40,
