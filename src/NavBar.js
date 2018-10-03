@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { Text, Icon } from '.';
 import theme from './theme';
 
-const { height, width } = Dimensions.get('screen');
+const { height } = Dimensions.get('screen');
 
 class NavBar extends React.Component {
   static defaultProps = {
@@ -55,7 +55,12 @@ class NavBar extends React.Component {
     return (
       <View style={[styles.left, leftStyle]}>
         <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
-          <Icon name={back ? 'chevron-left' : 'menu'} family="Entypo" size={theme.SIZES.BASE * 1.75} color={leftIconColor} />
+          <Icon
+            color={leftIconColor}
+            family="MaterialIcons"
+            size={theme.SIZES.BASE * 1.5}
+            name={back ? 'chevron-left' : 'format-align-center'}
+          />
         </TouchableOpacity>
       </View>
     );
@@ -123,9 +128,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textStyle: {
-    color: theme.COLORS.BLACK,
+  titleTextStyle: {
     fontWeight: '400',
+    fontSize: theme.SIZES.FONT * 1.1,
+    color: theme.COLORS.BLACK,
   },
   left: {
     flex: 1,
