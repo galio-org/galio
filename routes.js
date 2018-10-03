@@ -164,7 +164,7 @@ const options = {
     labelStyle: {
       fontWeight: '500',
       color: theme.COLORS.BLOCK,
-      fontSize: theme.SIZES.FONT * 0.85,
+      fontSize: theme.SIZES.FONT,
     },
     activeLabelStyle: {
       color: theme.COLORS.WHITE,
