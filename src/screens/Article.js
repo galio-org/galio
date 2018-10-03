@@ -13,7 +13,7 @@ import theme from '../theme';
 
 const { width, height } = Dimensions.get('screen');
 
-const bgImage = 'https://images.unsplash.com/photo-1516651029879-bcd191e7d33b?fit=crop&w=330&q=80';
+const bgImage = 'https://images.unsplash.com/photo-1516651029879-bcd191e7d33b?fit=crop&w=900&q=80';
 
 const Article = props => (
   <Block>

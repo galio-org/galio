@@ -58,7 +58,7 @@ class NavBar extends React.Component {
           <Icon
             color={leftIconColor}
             family="MaterialIcons"
-            size={theme.SIZES.BASE * 1.5}
+            size={theme.SIZES.BASE * 1.6}
             name={back ? 'chevron-left' : 'format-align-center'}
           />
         </TouchableOpacity>

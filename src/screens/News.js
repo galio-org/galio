@@ -1,76 +1,159 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  View, Image, StyleSheet, ScrollView,
+  Alert, Image, StyleSheet, ScrollView,
 } from 'react-native';
+
 // Galio components
-import { Text, AuthorSection, NavBar } from '..';
+import {
+  Button, Block, Text, Icon, NavBar,
+} from '..';
+import theme from '../theme';
+
+const Author = props => (
+  <Block row shadow middle space="between" style={styles.author}>
+    <Block flex={0.25}>
+      <Image source={{ uri: props.avatar }} style={styles.avatar} />
+    </Block>
+    <Block flex={0.7} style={styles.middle}>
+      <Text style={{ fontWeight: '500' }}>{props.title}</Text>
+      <Text p muted>{props.caption}</Text>
+    </Block>
+    <Block flex={0.5} row middle space="around">
+      <Block row middle>
+        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
+        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
+      </Block>
+      <Block row middle>
+        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
+        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
+      </Block>
+    </Block>
+  </Block>
+);
+
+Author.defaultProps = {
+  author: null,
+  title: null,
+  caption: null,
+};
+
+Author.propsTypes = {
+  author: PropTypes.string,
+  title: PropTypes.string,
+  caption: PropTypes.string,
+};
+
 
 const News = props => (
-  <View style={{ flex: 1 }}>
-    <NavBar back title="News" onLeftPress={() => props.navigation.goBack()} />
+  <Block flex>
+    <NavBar
+      back
+      title="News"
+      titleStyle={{ alignSelf: 'flex-start' }}
+      onLeftPress={() => props.navigation.goBack()}
+      rightStyle={{ flexDirection: 'row' }}
+      leftStyle={{ flex: 0.5 }}
+      right={[
+        <Button
+          key="right-options"
+          onlyIcon
+          icon="ios-options"
+          iconFamily="Ionicons"
+          color="transparent"
+          iconColor={theme.COLORS.MUTED}
+          iconSize={theme.SIZES.BASE * 1.6}
+          style={{ transform: [{ rotate: '90deg' }], marginRight: theme.SIZES.BASE }}
+          onPress={() => Alert.alert('Settings')}
+        />,
+        <Button
+          key="right-search"
+          onlyIcon
+          icon="ios-search"
+          color="transparent"
+          iconFamily="Ionicons"
+          iconColor={theme.COLORS.MUTED}
+          iconSize={theme.SIZES.BASE * 1.6}
+          onPress={() => Alert.alert('Search')}
+        />,
+      ]}
+    />
 
     <ScrollView style={{ flex: 1 }}>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          alignSelf: 'center',
-          marginTop: 5,
-          paddingBottom: 5,
-          width: '93.5%',
-        }}
-      >
+      <Block flex style={styles.news}>
         <Image
-          source={{
-            uri:
-              'https://images.unsplash.com/photo-1536523552737-74ded3c0591c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c93e90e0868aa428ec388db1ce633272&auto=format&fit=crop&w=1351&q=80',
-          }}
+          source={{ uri: 'https://images.unsplash.com/photo-1536523552737-74ded3c0591c?fit=crop&w=1300&q=80', }}
           style={styles.articleThumbnail}
         />
-        <View style={styles.article}>
-          <Text h2>
+        <Block style={styles.article}>
+          <Text h4>
             What's going on with this little Cactus? Is he going crazy?
           </Text>
-          <Text h5 muted style={{ marginTop: 10 }}>
+          <Text muted style={[styles.text, { marginVertical: theme.SIZES.BASE * 1.3 }]}>
             A chat with a little Cactus.
           </Text>
-          <Text h4 bold style={{ marginTop: 20 }}>
+          <Text style={styles.text}>
             You should totally read this stuff, like seriously all yo homies
             love sneak dissing but at least u're true, right?
           </Text>
-          <Text h5 style={{ marginTop: 13 }}>
+          <Text muted style={styles.text}>
             Spicy jalapeno bacon ipsum dolor amet short loin cupidatat est, pork
             pancetta velit kevin occaecat ipsum aliqua ham tri-tip incididunt.
           </Text>
-          <Text h5 style={{ marginTop: 7 }}>
+          <Text muted style={styles.text}>
             Irure sirloin nostrud filet mignon capicola strip steak, sint pork
             dolore pig short ribs. Et pariatur sunt, ribeye esse frankfurter
             biltong nostrud. Elit do filet mignon turkey, tempor pastrami ea
             bacon. In tri-tip id cupim tail ham irure. Drumstick esse ut
             andouille strip steak.
           </Text>
-        </View>
-      </View>
+        </Block>
+      </Block>
     </ScrollView>
-    <AuthorSection
-      fixed
-      imageSource="https://api.adorable.io/avatars/100/raul@not-so-adorable.io.png"
-      title="Young Einstein"
-      subTitle="420 minutes ago"
 
+    <Author
+      title="Galio Framework"
+      caption="27 minutes ago"
+      avatar="https://api.adorable.io/avatars/100/galio.io.png"
     />
 
-  </View>
+  </Block>
 );
 
 const styles = StyleSheet.create({
   articleThumbnail: {
-    borderRadius: 5,
-    width: '100%',
+    borderRadius: theme.SIZES.BASE / 2,
     height: 220,
   },
   article: {
-    marginTop: 20,
+    marginTop: theme.SIZES.BASE * 2,
+    paddingHorizontal: theme.SIZES.BASE,
+  },
+  news: {
+    marginTop: theme.SIZES.BASE / 2,
+    paddingBottom: theme.SIZES.BASE / 2,
+    justifyContent: 'flex-start',
+    paddingHorizontal: theme.SIZES.BASE,
+  },
+  author: {
+    position: 'absolute',
+    right: theme.SIZES.BASE,
+    left: theme.SIZES.BASE,
+    bottom: theme.SIZES.BASE * 1.75,
+    backgroundColor: theme.COLORS.WHITE,
+    padding: theme.SIZES.BASE,
+    borderRadius: theme.SIZES.BASE / 3,
+  },
+  avatar: {
+    width: theme.SIZES.BASE * 3,
+    height: theme.SIZES.BASE * 3,
+    borderRadius: theme.SIZES.BASE * 1.5,
+  },
+  text: {
+    fontWeight: '500',
+    fontSize: theme.SIZES.FONT,
+    lineHeight: theme.SIZES.FONT * 1.4,
+    marginBottom: theme.SIZES.BASE,
   },
 });
 

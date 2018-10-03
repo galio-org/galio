@@ -130,6 +130,7 @@ Card.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
   ]),
   rightSideComponent: PropTypes.any,
+  neutral: PropTypes.bool,
 };
 
 export default Card;

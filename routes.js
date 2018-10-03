@@ -1,5 +1,8 @@
 import React from 'react';
-import { Image, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import PropTypes from 'prop-types';
+import {
+  Image, StyleSheet, ScrollView, SafeAreaView,
+} from 'react-native';
 import {
   createDrawerNavigator,
   createStackNavigator,
@@ -55,13 +58,26 @@ const styles = StyleSheet.create({
   },
 });
 
-const MenuIcon = ({name, family, focused}) => (
+const MenuIcon = ({ name, family, focused }) => (
   <Icon
     name={name}
     family={family}
     size={theme.SIZES.FONT * 1.25}
-    color={theme.COLORS[focused ? 'WHITE' : 'GREY']} />
+    color={theme.COLORS[focused ? 'WHITE' : 'GREY']}
+  />
 );
+
+MenuIcon.defaultProps = {
+  name: null,
+  family: null,
+  focused: false,
+};
+
+MenuIcon.propTypes = {
+  name: PropTypes.string,
+  family: PropTypes.string,
+  focused: PropTypes.bool,
+};
 
 const ArticleFeed = createStackNavigator({
   ArticleCard: {
@@ -83,7 +99,7 @@ const screens = {
     screen: Components,
     navigationOptions: {
       drawerLabel: 'Components',
-      drawerIcon: props => <MenuIcon name="home" family="MaterialCommunityIcons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="sitemap" family="FontAwesome" focused={props.focused} />,
     },
   },
   ArticleFull: {

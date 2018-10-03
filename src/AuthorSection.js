@@ -23,7 +23,7 @@ const AuthorSection = ({
         <Text muted neutral={neutral} size={theme.SIZES.FONT * 0.75}>{subTitle}</Text>
       </Block>
     </Block>
-    {optionalComponent && <Block>{optionalComponent}</Block>}
+    {optionalComponent && <Block flex>{optionalComponent}</Block>}
   </Block>
 );
 
