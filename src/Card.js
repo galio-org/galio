@@ -15,21 +15,23 @@ import theme from './theme';
 
 class Card extends React.Component {
   static defaultProps = {
-    fullBackgroundImage: false,
     onPress: () => {},
     style: null,
     image: null,
+    neutral: false,
     authorImageSrc: null,
     authorTitle: null,
     authorSubTitle: null,
     authorStyle: null,
     rightSideComponent: null,
+    fullBackgroundImage: false,
   };
 
   render() {
     const {
       style,
       image,
+      neutral,
       authorImageSrc,
       authorStyle,
       authorSubTitle,
@@ -40,17 +42,14 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <Block
-        shadow={!fullBackgroundImage}
-        style={[styles.container, style]}
-      >
-        <TouchableOpacity onPress={() => onPress && onPress()}>
+      <Block shadow style={[styles.container, style]}>
+        <TouchableOpacity onPress={() => onPress && onPress()} activeOpacity={0.8}>
           <Image
             source={{ uri: image }}
-            style={
-              (fullBackgroundImage && styles.fullBackgroundImage)
-              || styles.thumbnailImage
-            }
+            style={[
+              styles.thumbnailImage,
+              fullBackgroundImage && styles.fullBackgroundImage,
+            ]}
           />
           {fullBackgroundImage && (
             <LinearGradient
@@ -68,15 +67,13 @@ class Card extends React.Component {
             />
           )}
           <AuthorSection
-            reverseColor={fullBackgroundImage}
-            imageSource={authorImageSrc}
+            neutral={neutral}
             title={authorTitle}
             subTitle={authorSubTitle}
-            style={[
-              authorStyle,
-              fullBackgroundImage && styles.authorFullBackground,
-            ]}
+            imageSource={authorImageSrc}
+            reverseColor={fullBackgroundImage}
             optionalComponent={rightSideComponent}
+            style={[authorStyle, fullBackgroundImage && styles.authorFullBackground]}
           />
         </TouchableOpacity>
       </Block>
@@ -88,21 +85,23 @@ const styles = StyleSheet.create({
   container: {
     width: '92.5%',
     borderRadius: 5,
-    marginBottom: theme.SIZES.BASE * 2,
-    padding: 7,
     paddingBottom: 0,
+    marginBottom: theme.SIZES.BASE * 2,
     backgroundColor: theme.COLORS.WHITE,
   },
   thumbnailImage: {
     width: '100%',
     height: 200,
-    borderRadius: 5,
+    borderRadius: theme.SIZES.BASE * 0.5,
   },
   fullBackgroundImage: {
     flex: 1,
     width: '100%',
     height: 220,
-    borderRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
   },
   authorFullBackground: {
     position: 'absolute',
@@ -131,6 +130,7 @@ Card.propTypes = {
     PropTypes.arrayOf(PropTypes.object),
   ]),
   rightSideComponent: PropTypes.any,
+  neutral: PropTypes.bool,
 };
 
 export default Card;

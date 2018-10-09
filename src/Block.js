@@ -74,7 +74,10 @@ export default class Block extends Component {
 
 Block.propTypes = {
   row: PropTypes.bool,
-  flex: PropTypes.bool,
+  flex: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
   center: PropTypes.bool,
   middle: PropTypes.bool,
   top: PropTypes.bool,
@@ -102,12 +105,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   center: {
+    alignItems: 'center',
     alignSelf: 'center',
   },
+  left: {
+    alignItems: 'flex-start',
+  },
+  right: {
+    alignItems: 'flex-end',
+  },
   top: {
+    alignItems: 'flex-start',
     alignSelf: 'flex-start',
   },
   bottom: {
+    alignItems: 'flex-end',
     alignSelf: 'flex-end',
   },
   card: {

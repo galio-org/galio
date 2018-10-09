@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Text } from '.';
+import { Block, Text } from '.';
 import theme from './theme';
 
 const AuthorSection = ({
@@ -13,19 +13,18 @@ const AuthorSection = ({
   fixed,
   optionalComponent,
   reverseColor,
+  neutral,
 }) => (
-  <View style={[styles.container, fixed && styles.fixed, style]}>
-    <View style={styles.authorFullSpace}>
+  <Block flex row style={[styles.container, fixed && styles.fixed, style]}>
+    <Block flex row>
       <Image source={{ uri: imageSource }} style={styles.authorAvatar} />
-      <View style={styles.authorInfo}>
-        <Text h5 style={reverseColor && styles.titleWhite}>{title}</Text>
-        <Text p muted>
-          {subTitle}
-        </Text>
-      </View>
-    </View>
-    {optionalComponent && <View style={{ flex: 2 }}>{optionalComponent}</View>}
-  </View>
+      <Block style={styles.authorInfo}>
+        <Text style={reverseColor && styles.titleWhite}>{title}</Text>
+        <Text muted neutral={neutral} size={theme.SIZES.FONT * 0.75}>{subTitle}</Text>
+      </Block>
+    </Block>
+    {optionalComponent && <Block flex>{optionalComponent}</Block>}
+  </Block>
 );
 
 AuthorSection.defaultProps = {
@@ -36,6 +35,7 @@ AuthorSection.defaultProps = {
   fixed: false,
   optionalComponent: null,
   reverseColor: false,
+  neutral: false,
 };
 
 AuthorSection.propTypes = {
@@ -46,23 +46,17 @@ AuthorSection.propTypes = {
   fixed: PropTypes.bool,
   optionalComponent: PropTypes.any,
   reverseColor: PropTypes.bool,
+  neutral: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 5,
-    marginBottom: 5,
-    marginTop: 5,
-    // flex: 1,
+    marginVertical: 5,
+    paddingHorizontal: theme.SIZES.BASE,
+    paddingVertical: theme.SIZES.BASE / 2,
     backgroundColor: theme.COLORS.TRANSPARENT,
-  },
-  authorFullSpace: {
-    flex: 3,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   authorAvatar: {
     width: 40,
@@ -71,6 +65,7 @@ const styles = StyleSheet.create({
   },
   authorInfo: {
     marginLeft: 15,
+    alignSelf: 'center',
   },
   titleWhite: {
     color: theme.COLORS.WHITE,

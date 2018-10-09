@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, StyleSheet, StatusBar, ScrollView,
+  StyleSheet, StatusBar, ScrollView,
 } from 'react-native';
 import { Constants } from 'expo';
 import Gradient from 'expo/src/effects/LinearGradient';
@@ -9,14 +9,15 @@ import { AreaChart } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 
 // galio components
-import { Button, Icon, Text, NavBar } from '..';
+import {
+  Button, Block, Icon, Text, NavBar,
+} from '..';
 import theme from '../theme';
 
 const BASE_SIZE = theme.SIZES.BASE;
 const GRADIENT_BLUE = ['#6C3CF7', '#4F3DF2', '#2734EF'];
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
 const COLOR_WHITE = theme.COLORS.WHITE;
-const COLOR_BLACK = theme.COLORS.BLACK;
 const COLOR_GREY = theme.COLORS.GREY; // '#D8DDE1';
 
 // mock data
@@ -68,15 +69,7 @@ class Dashboard extends React.Component {
     <NavBar
       transparent
       title="Dashboard"
-      left={(
-        <Button
-          color="transparent"
-          style={styles.menu}
-          onPress={() => this.props.navigation.openDrawer()}
-        >
-          <Icon size={BASE_SIZE * 2} name="menu" family="Entypo" color={COLOR_GREY} />
-        </Button>
-)}
+      onLeftPress={() => this.props.navigation.openDrawer()}
       right={(
         <Button
           color="transparent"
@@ -85,7 +78,7 @@ class Dashboard extends React.Component {
         >
           <Icon size={BASE_SIZE * 1.5} name="ios-options" family="Ionicons" color={COLOR_GREY} />
         </Button>
-)}
+      )}
     />
   )
 
@@ -100,14 +93,16 @@ class Dashboard extends React.Component {
     );
 
     return (
-      <View style={{ marginBottom: BASE_SIZE * 3 }}>
+      <Block style={{ marginBottom: BASE_SIZE * 3 }}>
         <AreaChart
           yMin={0}
           yMax={3}
           data={statsInactive}
           curve={shape.curveNatural}
           style={[StyleSheet.absoluteFill]}
-          contentInset={{ bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15 }}
+          contentInset={{
+            bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15
+          }}
           svg={{ strokeWidth: BASE_SIZE * 0.15, stroke: COLOR_GREY }}
         >
           <GradientStats />
@@ -118,15 +113,17 @@ class Dashboard extends React.Component {
           data={statsActive}
           curve={shape.curveNatural}
           style={{ height: BASE_SIZE * 7 }}
-          contentInset={{ bottom: -BASE_SIZE * 0.21, right: -BASE_SIZE * 0.21, left: -BASE_SIZE * 0.21 }}
+          contentInset={{
+            bottom: -BASE_SIZE * 0.21, right: -BASE_SIZE * 0.21, left: -BASE_SIZE * 0.21
+          }}
           svg={{ strokeWidth: BASE_SIZE * 0.21, stroke: 'url(#gradient)' }}
         >
           <GradientStats />
         </AreaChart>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginTop: BASE_SIZE }}>
-          {statsTitles.map(title => <Text key={title} muted>{title}</Text>)}
-        </View>
-      </View>
+        <Block row space="evenly" style={{ marginTop: BASE_SIZE }}>
+          {statsTitles.map(title => <Text key={title} size={theme.SIZES.FONT * 0.85} muted>{title}</Text>)}
+        </Block>
+      </Block>
     );
   }
 
@@ -134,7 +131,7 @@ class Dashboard extends React.Component {
     const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
 
     return (
-      <View key={props.title} style={[styles.card, styles.shadow]}>
+      <Block row center card shadow space="between" style={styles.card} key={props.title}>
         <Gradient
           start={[0.45, 0.45]}
           end={[0.90, 0.90]}
@@ -142,21 +139,21 @@ class Dashboard extends React.Component {
           style={[styles.gradient, styles.left]}
         >
           <Icon
-            size={BASE_SIZE * 1.5}
+            size={BASE_SIZE}
             name={props.icon}
-            family={props.iconFamily}
             color={COLOR_WHITE}
+            family={props.iconFamily}
           />
         </Gradient>
 
-        <View style={{ flex: 1 }}>
+        <Block flex>
           <Text h5>{props.title}</Text>
           <Text muted>{props.subtitle}</Text>
-        </View>
+        </Block>
         <Button style={styles.right}>
-          <Icon size={BASE_SIZE * 2} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
+          <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
         </Button>
-      </View>
+      </Block>
     );
   }
 
@@ -164,7 +161,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <View style={{ marginTop: Constants.statusBarHeight * 1.25, flex: 1, flexDirection: 'column' }}>
+      <Block flex style={{ marginTop: Constants.statusBarHeight * 1.25 }}>
         <StatusBar hidden={false} />
         {/* header */}
         {this.renderHeader()}
@@ -176,30 +173,18 @@ class Dashboard extends React.Component {
         <ScrollView style={{ flex: 1 }}>
           {this.renderCards()}
         </ScrollView>
-      </View>
+      </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignContent: 'flex-start',
-    justifyContent: 'space-between',
-    borderRadius: BASE_SIZE * 0.35,
+    borderColor: 'transparent',
     marginHorizontal: BASE_SIZE,
     marginVertical: BASE_SIZE / 1.25,
     padding: BASE_SIZE,
     backgroundColor: COLOR_WHITE,
-  },
-  shadow: {
-    shadowColor: COLOR_BLACK,
-    shadowOffset: { width: 0, height: BASE_SIZE * 0.28 },
-    shadowOpacity: 0.1,
-    shadowRadius: BASE_SIZE * 0.57,
-    elevation: 1,
   },
   menu: {
     width: BASE_SIZE * 2,
@@ -218,9 +203,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   gradient: {
-    width: BASE_SIZE * 4,
-    height: BASE_SIZE * 4,
-    borderRadius: BASE_SIZE * 4,
+    width: BASE_SIZE * 3,
+    height: BASE_SIZE * 3,
+    borderRadius: BASE_SIZE * 3,
     alignItems: 'center',
     justifyContent: 'center',
   },

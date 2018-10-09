@@ -1,110 +1,151 @@
 import React from 'react';
 import {
-  View,
+  Alert,
+  Dimensions,
   StyleSheet,
-  TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
 // galio component
 import {
-  NavBar, Text, Input, Button,
+  Block, Button, Input, Text, NavBar,
 } from '..';
+import theme from '../theme';
+
+const { width } = Dimensions.get('window');
 
 class Login extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <NavBar transparent onLeftPress={() => this.props.navigation.openDrawer()} />
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior="padding"
-          enabled
-        >
-          <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-          >
-            <Text h3 center>
-              Galio - react native kit
-            </Text>
-            <Text p muted center style={{ paddingHorizontal: 12 }}>
-              This is the perfect place to write a short description of this
-              step and even the next steps ahead.
-            </Text>
-          </View>
+  state = {
+    email: '-',
+    password: '-',
+  }
 
-          <View
-            style={{
-              flex: 2,
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-            }}
-          >
-            <View>
+  handleChange = (name, value) => {
+    this.setState({ [name]: value });
+  }
+
+  render() {
+    const { navigation } = this.props;
+    const { email, password } = this.state;
+
+    return (
+      <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+        <NavBar back transparent onLeftPress={() => navigation.openDrawer()} />
+        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+          <Block flex center style={{ marginTop: theme.SIZES.BASE }}>
+            <Text h5 center>Galio - react native kit</Text>
+            <Text muted center size={theme.SIZES.FONT * 0.8} style={{ padding: theme.SIZES.BASE }}>
+              This is the perfect place to write a short description
+              of this step and even the next steps ahead
+            </Text>
+            <Block row center space="between" style={{ marginTop: theme.SIZES.BASE }}>
+              <Block flex middle right>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="facebook"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.FACEBOOK}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+              <Block flex middle center>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="twitter"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.TWITTER}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+              <Block flex middle left>
+                <Button
+                  round
+                  onlyIcon
+                  shadowless
+                  iconSize={28}
+                  icon="dribbble"
+                  iconFamily="FontAwesome"
+                  onPress={() => Alert.alert('Not implemented')}
+                  color={theme.COLORS.DRIBBBLE}
+                  iconColor={theme.COLORS.WHITE}
+                  style={{ width: theme.SIZES.BASE * 4 }}
+                />
+              </Block>
+            </Block>
+            <Text muted center style={{ padding: theme.SIZES.BASE }}>
+              or be classical
+            </Text>
+          </Block>
+
+          <Block flex={2} space="evenly" center>
+            <Block>
               <Input
-                style={styles.inputStyles}
-                borderless
-                bgColor="transparent"
+                rounded
                 type="email-address"
-                placeholder="kanyewest@thegreatkanye.com"
-                label="Email"
-                placeholderTextColor="#757575"
+                placeholder="Email"
+                autoCapitalize="none"
+                style={{ width: width * 0.9 }}
+                onChangeText={text => this.handleChange('email', text)}
               />
               <Input
-                style={styles.inputStyles}
-                borderless
-                bgColor="transparent"
-                placeholder="My awesome password"
-                label="Password"
-                help="Your password must have between 6 and 9 characters"
-                bottomHelp
-                placeholderTextColor="#757575"
+                rounded
                 password
                 viewPass
+                placeholder="Password"
+                style={{ width: width * 0.9 }}
+                onChangeText={text => this.handleChange('password', text)}
               />
-              <View style={{ flexDirection: 'row-reverse' }}>
-                <TouchableOpacity>
-                  <Text size={10} color="rgb(209,0,125)">
-                    Forgot your password?
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <View>
-              <Button color="error" round>
+              <Text
+                color={theme.COLORS.ERROR}
+                size={theme.SIZES.FONT * 0.75}
+                onPress={() => Alert.alert('Not implemented')}
+                style={{ alignSelf: 'flex-end', lineHeight: theme.SIZES.FONT * 2 }}
+              >
+                Forgot your password?
+              </Text>
+            </Block>
+            <Block>
+              <Button
+                round
+                color="error"
+                onPress={() => Alert.alert(
+                  'Sign in action',
+                  `Email: ${email}
+Password: ${password}`,
+                )}
+              >
                 Sign in
               </Button>
-              <TouchableOpacity>
-                <Text
-                  size={14}
-                  center
-                  color="rgb(209,0,125)"
-                  style={{ marginTop: 10 }}
-                >
+              <Button color="transparent" shadowless onPress={() => navigation.navigate('Register')}>
+                <Text center color={theme.COLORS.ERROR} size={theme.SIZES.FONT}>
                   Don't have an account? Sign up
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              </Button>
+            </Block>
+          </Block>
         </KeyboardAvoidingView>
-      </View>
+      </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  inputStyles: {
-    borderBottomWidth: 2,
-    borderColor: '#212121',
-    borderRadius: 0,
-  },
   container: {
-    paddingTop: 3,
     flex: 1,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-around',
+    paddingTop: theme.SIZES.BASE * 0.3,
+    paddingHorizontal: theme.SIZES.BASE,
+    backgroundColor: theme.COLORS.WHITE,
   },
 });
 

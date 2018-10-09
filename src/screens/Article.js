@@ -1,72 +1,98 @@
 import React from 'react';
 import {
-  View,
-  StyleSheet,
-  StatusBar,
   Image,
-  TouchableOpacity,
+  StatusBar,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
 } from 'react-native';
+
 // galio components
-import { Text, AuthorSection, NavBar } from '../';
+import { Block, Text, Icon, NavBar } from '..';
+import theme from '../theme';
+
+const { width, height } = Dimensions.get('screen');
+
+const bgImage = 'https://images.unsplash.com/photo-1516651029879-bcd191e7d33b?fit=crop&w=900&q=80';
 
 const Article = props => (
-  <View style={{ flex: 1 }}>
+  <Block>
     <StatusBar hidden={false} barStyle="light-content" />
-    <Image
-      style={{ width: '100%', height: '45%' }}
-      source={{
-        uri:
-          'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fc7f17d00c13cf50d62f4ebd5743a9bc&auto=format&fit=crop&w=1950&q=80',
-      }}
-    />
-    <View style={{position: 'absolute', top: 0, left: 0, right: 0}}>
-      <NavBar transparent leftIconColor="#FFF" onLeftPress={() => props.navigation.openDrawer()} />
-    </View>
-    <View style={styles.articleContainer}>
-      <Text h2>I would happily watch a TV show about crabs</Text>
-      <Text p muted style={{ marginTop: 5 }}>
-        Interviewing this super star
-      </Text>
-      <AuthorSection
-        imageSource="http://i.pravatar.cc/100"
-        title="Alin Gheorghe"
-        subTitle="420 minutes ago"
-        style={{ marginTop: 15 }}
-        optionalComponent={<View />}
-      />
-      <Text p bold style={{ marginTop: 10 }}>
-        You should totally like check this out, ok? Why would you use another UI
-        library when you have so many components written by Creative Tim and the
-        whole React Native community. Galio was created by developers for
-        developers.
-      </Text>
-      <Text p style={{ marginTop: 10 }}>
-        A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
-      </Text>
-    </View>
-  </View>
+    <Block style={styles.navbar}>
+      <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+    </Block>
+
+    <Image source={{ uri: bgImage }} resizeMode="cover" style={{ width, height: height * 0.55 }} />
+
+    <Block center style={{ marginTop: -theme.SIZES.BASE * 2 }}>
+      <Block flex style={styles.header}>
+        <Block>
+          <Text h3>I would happily watch a TV show about crabs</Text>
+          <Text muted style={{ marginTop: theme.SIZES.BASE, fontWeight: '500' }}>
+            InterBlocking this super star
+          </Text>
+        </Block>
+        <Block space="between" row style={styles.stats}>
+          <Block flex={0.25}>
+            <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} />
+          </Block>
+          <Block flex={0.7} style={styles.middle}>
+            <Text style={{ fontWeight: '500' }}>Galio Framework</Text>
+            <Text p muted>16 minutes ago</Text>
+          </Block>
+          <Block flex={0.5} row middle space="around">
+            <Block row middle>
+              <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
+              <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
+            </Block>
+            <Block row middle>
+              <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
+              <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
+            </Block>
+          </Block>
+        </Block>
+        <ScrollView>
+          <Text style={{ lineHeight: theme.SIZES.FONT * 1.3 }}>
+            You should totally like check this out, ok? Why would you use another UI
+            library when you have so many components written by Creative Tim and the
+            whole React Native community. Galio was created by developers for
+            developers.
+          </Text>
+          <Text style={{ lineHeight: theme.SIZES.FONT * 1.3 }}>
+          A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
+          </Text>
+        </ScrollView>
+      </Block>
+    </Block>
+  </Block>
 );
 
 const styles = StyleSheet.create({
-  articleContainer: {
-    position: 'absolute',
-    top: '38%',
-    bottom: 0,
+  header: {
+    backgroundColor: theme.COLORS.WHITE,
+    borderTopLeftRadius: theme.SIZES.BASE * 2,
+    borderTopRightRadius: theme.SIZES.BASE * 2,
+    paddingVertical: theme.SIZES.BASE * 2,
+    paddingHorizontal: theme.SIZES.BASE * 1.5,
+    width,
+  },
+  navbar: {
+    top: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgb(250,250,250)',
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    paddingTop: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  backButton: {
-    width: 25,
-    height: 25,
+    zIndex: 9999,
     position: 'absolute',
-    top: '5%',
-    left: '5%',
+  },
+  stats: {
+    marginVertical: theme.SIZES.BASE * 2,
+  },
+  avatar: {
+    width: theme.SIZES.BASE * 3,
+    height: theme.SIZES.BASE * 3,
+    borderRadius: theme.SIZES.BASE * 1.5,
+  },
+  middle: {
+    justifyContent: 'center',
   },
 });
 

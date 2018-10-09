@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -17,13 +16,11 @@ import theme from './theme';
 // 2. Maybe options for changind the View text for the viewPass button
 // 3. Idk. What else should we do in order to make this even more reusable.
 
-const { width } = Dimensions.get('window');
-
 class Input extends React.Component {
   static defaultProps = {
     type: 'default',
     password: false,
-    placeholderTextColor: theme.COLORS.BLACK,
+    placeholderTextColor: theme.COLORS.MUTED,
     label: null,
     help: null,
     rounded: false,
@@ -84,17 +81,17 @@ class Input extends React.Component {
 
     const inputStyles = [
       styles.inputView,
-      (!borderless || (borderless && icon)) && styles.inputIcon,
+      (borderless && icon) && styles.inputIcon,
       styles.inputText,
       color && { color },
     ];
 
     const iconContent = icon ? (
       <Icon
-        style={{ marginHorizontal: 1 }}
         name={icon}
         family={family}
-        size={theme.SIZES.BASE * 2}
+        size={theme.SIZES.BASE * 1.25}
+        style={{ marginRight: (left && !right) ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor}
       />
     ) : null;
@@ -107,7 +104,7 @@ class Input extends React.Component {
           onPress={() => this.setState({ isPassword: !isPassword })}
         >
           <Icon
-            size={theme.SIZES.BASE}
+            size={theme.SIZES.BASE * 1.25}
             color={theme.COLORS.BLACK}
             name={`eye${isPassword ? '' : '-with-line'}`}
             family="Entypo"
@@ -118,7 +115,7 @@ class Input extends React.Component {
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
     return (
-      <View style={{ marginVertical: theme.SIZES.BASE / 2 }}>
+      <View style={{ marginVertical: theme.SIZES.BASE / 2, alignContent: 'center' }}>
         {lebelContent}
         {topHelp && !bottomHelp && helpContent}
         <View style={inputViewStyles}>
@@ -147,27 +144,30 @@ const styles = StyleSheet.create({
     borderWidth: theme.SIZES.BASE * 0.05,
     borderColor: theme.COLORS.INPUT,
     height: theme.SIZES.BASE * 3,
+    paddingHorizontal: theme.SIZES.BASE,
     width: '100%',
   },
   inputText: {
     color: theme.COLORS.INPUT,
-    fontSize: theme.SIZES.BASE,
+    fontSize: theme.SIZES.BASE * 0.85,
     textDecorationColor: 'transparent',
     textShadowColor: 'transparent',
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   inputView: {
     flex: 1,
   },
   inputIcon: {
-    marginHorizontal: theme.SIZES.BASE / 2,
+    marginHorizontal: theme.SIZES.BASE,
   },
   label: {
+    fontWeight: '500',
+    fontSize: theme.SIZES.BASE * 0.9,
     marginBottom: theme.SIZES.BASE / 4,
-    fontWeight: 'bold',
   },
   helpText: {
     fontSize: theme.SIZES.BASE * 0.8,
