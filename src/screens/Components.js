@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Alert } from 'react-native';
+import { Dimensions, StyleSheet, ScrollView, Alert } from 'react-native';
 
 // galio components
 import { Text, Block, Button, Card, NavBar, Icon, Input } from '..';
 import theme from '../theme';
+
+const { width } = Dimensions.get('screen');
 
 export default class Components extends React.Component {
   render() {
@@ -58,13 +60,13 @@ export default class Components extends React.Component {
                 <Text h5>Typography</Text>
               </Block>
               <Block style={{ padding: theme.SIZES.BASE }}>
-                <Text h1>Heading 1</Text>
-                <Text h2>Heading 2</Text>
-                <Text h3>Heading 3</Text>
-                <Text h4>Heading 4</Text>
-                <Text h5>Heading 5</Text>
-                <Text p>Paragraph</Text>
-                <Text p muted>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h1>Heading 1</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h2>Heading 2</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h3>Heading 3</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h4>Heading 4</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h5>Heading 5</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p>Paragraph</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p muted>
                   This is a muted paragraph.
                 </Text>
               </Block>
@@ -127,8 +129,10 @@ export default class Components extends React.Component {
                 <NavBar
                   back
                   title="Chat"
+                  leftStyle={{ marginRight: 0 }}
                   rightStyle={{ alignSelf: 'flex-end' }}
                   onLeftPress={() => Alert.alert('Back')}
+                  style={{ width, marginHorizontal: -theme.SIZES.BASE }}
                   right={(
                     <Button
                       onlyIcon
@@ -148,6 +152,7 @@ export default class Components extends React.Component {
                   onLeftPress={() => Alert.alert('Menu')}
                   rightStyle={{ flexDirection: 'row' }}
                   leftStyle={{ flex: 0.5 }}
+                  style={{ width, marginHorizontal: -theme.SIZES.BASE }}
                   right={[
                     <Button
                       key="right-heart"
@@ -178,7 +183,7 @@ export default class Components extends React.Component {
                   leftStyle={{ flex: 0.5 }}
                   onLeftPress={() => Alert.alert('Back')}
                   titleStyle={{ alignSelf: 'flex-start' }}
-                  // rightStyle={{ alignItems: 'flex-end' }}
+                  style={{ width, marginHorizontal: -theme.SIZES.BASE }}
                   right={[
                     <Button
                       key="right-location"
@@ -205,7 +210,7 @@ export default class Components extends React.Component {
 
                 <NavBar
                   title="Discover"
-                  style={{ backgroundColor: theme.COLORS.THEME }}
+                  style={{ backgroundColor: theme.COLORS.THEME, width, marginHorizontal: -theme.SIZES.BASE }}
                   titleStyle={{ color: theme.COLORS.WHITE }}
                   rightStyle={{ alignSelf: 'flex-end' }}
                   leftIconColor={theme.COLORS.WHITE}

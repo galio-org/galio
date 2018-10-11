@@ -43,13 +43,13 @@ class Login extends React.Component {
                   round
                   onlyIcon
                   shadowless
-                  iconSize={28}
+                  iconSize={theme.SIZES.BASE * 2}
                   icon="facebook"
                   iconFamily="FontAwesome"
-                  onPress={() => Alert.alert('Not implemented')}
                   color={theme.COLORS.FACEBOOK}
                   iconColor={theme.COLORS.WHITE}
                   style={{ width: theme.SIZES.BASE * 4 }}
+                  onPress={() => Alert.alert('Not implemented')}
                 />
               </Block>
               <Block flex middle center>
@@ -57,13 +57,13 @@ class Login extends React.Component {
                   round
                   onlyIcon
                   shadowless
-                  iconSize={28}
+                  iconSize={theme.SIZES.BASE * 2}
                   icon="twitter"
                   iconFamily="FontAwesome"
-                  onPress={() => Alert.alert('Not implemented')}
                   color={theme.COLORS.TWITTER}
                   iconColor={theme.COLORS.WHITE}
                   style={{ width: theme.SIZES.BASE * 4 }}
+                  onPress={() => Alert.alert('Not implemented')}
                 />
               </Block>
               <Block flex middle left>
@@ -71,13 +71,13 @@ class Login extends React.Component {
                   round
                   onlyIcon
                   shadowless
-                  iconSize={28}
+                  iconSize={theme.SIZES.BASE * 2}
                   icon="dribbble"
                   iconFamily="FontAwesome"
-                  onPress={() => Alert.alert('Not implemented')}
                   color={theme.COLORS.DRIBBBLE}
                   iconColor={theme.COLORS.WHITE}
                   style={{ width: theme.SIZES.BASE * 4 }}
+                  onPress={() => Alert.alert('Not implemented')}
                 />
               </Block>
             </Block>
@@ -126,8 +126,8 @@ Password: ${password}`,
                 Sign in
               </Button>
               <Button color="transparent" shadowless onPress={() => navigation.navigate('Register')}>
-                <Text center color={theme.COLORS.ERROR} size={theme.SIZES.FONT}>
-                  Don't have an account? Sign up
+                <Text center color={theme.COLORS.ERROR}>
+                  Don't have an account? Sign Up
                 </Text>
               </Button>
             </Block>

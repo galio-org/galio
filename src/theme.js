@@ -20,8 +20,8 @@ const COLORS = {
 };
 
 const SIZES = {
-  BASE: 14,
-  FONT: 14,
+  BASE: 16,
+  FONT: 16,
   OPACITY: 0.8,
 };
 

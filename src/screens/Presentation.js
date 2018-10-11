@@ -2,13 +2,18 @@ import React from 'react';
 import {
   View, StyleSheet, StatusBar, Image,
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient, Constants } from 'expo';
 // galio components
-import { Text, Button } from '..';
+import { Text, Button, Block, NavBar } from '..';
+import theme from '../theme';
 
 const Presentation = props => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  <Block flex style={{ marginTop: Constants.statusBarHeight * 1.25 }}>
     <StatusBar hidden={false} barStyle="light-content" />
+    <Block style={styles.navbar}>
+      <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+    </Block>
+
     <LinearGradient
       colors={['#ad5389', '#3c1053']}
       end={[0.5, 0.9]}
@@ -33,7 +38,7 @@ const Presentation = props => (
       resizeMethod="resize"
       resizeMode="contain"
     />
-  </View>
+  </Block>
 );
 
 const styles = StyleSheet.create({
@@ -54,6 +59,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: '10%',
     paddingRight: '10%',
+  },
+  navbar: {
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 9999,
+    position: 'absolute',
   },
 });
 

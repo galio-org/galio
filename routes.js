@@ -5,15 +5,13 @@ import {
 } from 'react-native';
 import {
   createDrawerNavigator,
-  createStackNavigator,
   DrawerItems,
 } from 'react-navigation';
 
 // screens
 import Article from './src/screens/Article';
 import ArticleCover from './src/screens/ArticleCover';
-import ArticleFeed1 from './src/screens/ArticleFeedv1';
-import ArticleFeed2 from './src/screens/ArticleFeedv2';
+import Cards from './src/screens/Cards';
 import Components from './src/screens/Components';
 import Login from './src/screens/Login';
 import News from './src/screens/News';
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: theme.SIZES.BASE,
-    paddingBottom: theme.SIZES.BASE / 2,
+    paddingBottom: theme.SIZES.BASE / 3,
   },
   avatar: {
     width: 40,
@@ -79,21 +77,6 @@ MenuIcon.propTypes = {
   focused: PropTypes.bool,
 };
 
-const ArticleFeed = createStackNavigator({
-  ArticleCard: {
-    screen: ArticleFeed1,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  News: {
-    screen: News,
-    navigationOptions: {
-      header: null,
-    },
-  },
-});
-
 const screens = {
   Home: {
     screen: Components,
@@ -102,18 +85,11 @@ const screens = {
       drawerIcon: props => <MenuIcon name="sitemap" family="FontAwesome" focused={props.focused} />,
     },
   },
-  ArticleFull: {
-    screen: ArticleFeed,
+  Cards: {
+    screen: Cards,
     navigationOptions: {
-      drawerLabel: 'Full Background Cards',
+      drawerLabel: 'Cards',
       drawerIcon: props => <MenuIcon name="view-grid" family="MaterialCommunityIcons" focused={props.focused} />,
-    },
-  },
-  ArticleHalf: {
-    screen: ArticleFeed2,
-    navigationOptions: {
-      drawerLabel: 'Normal Cards',
-      drawerIcon: props => <MenuIcon name="grid-large" family="MaterialCommunityIcons" focused={props.focused} />,
     },
   },
   Article: {
@@ -187,12 +163,14 @@ const options = {
     },
     activeBackgroundColor: theme.COLORS.THEME,
     itemStyle: {
-      borderBottomColor: theme.COLORS.BLOCK,
+      borderBottomColor: theme.COLORS.MUTED,
       borderBottomWidth: StyleSheet.hairlineWidth,
+      paddingVertical: theme.SIZES.BASE * 0.45,
     },
     iconContainerStyle: {
       marginHorizontal: 0,
-      marginLeft: theme.SIZES.BASE * 0.75,
+      marginLeft: theme.SIZES.BASE * 1.65,
+      marginRight: theme.SIZES.BASE * 0.76,
     },
   },
 };

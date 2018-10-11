@@ -39,7 +39,7 @@ class Login extends React.Component {
                   round
                   onlyIcon
                   shadowless
-                  iconSize={28}
+                  iconSize={theme.SIZES.BASE * 2}
                   icon="facebook"
                   iconFamily="FontAwesome"
                   onPress={() => Alert.alert('Not implemented')}
@@ -53,7 +53,7 @@ class Login extends React.Component {
                   round
                   onlyIcon
                   shadowless
-                  iconSize={28}
+                  iconSize={theme.SIZES.BASE * 2}
                   icon="twitter"
                   iconFamily="FontAwesome"
                   onPress={() => Alert.alert('Not implemented')}
@@ -67,7 +67,7 @@ class Login extends React.Component {
                   round
                   onlyIcon
                   shadowless
-                  iconSize={28}
+                  iconSize={theme.SIZES.BASE * 2}
                   icon="dribbble"
                   iconFamily="FontAwesome"
                   onPress={() => Alert.alert('Not implemented')}
