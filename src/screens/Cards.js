@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo';
 
 // Galio components
 import {
-  Block, Icon, NavBar, Text,
+  Card, Block, Icon, NavBar, Text,
 } from '..';
 import theme from '../theme';
 
@@ -84,13 +84,13 @@ export default class Cards extends React.Component {
     );
 
     return (
-      <Block flex card shadow shadowColor={theme.COLORS.BLACK} style={styles.card} key={`card-${id}}`}>
+      <Card flex shadowColor={theme.COLORS.BLACK} style={styles.card} key={`card-${id}}`}>
         <Block card style={[styles.imageContainer, !full ? styles.noRadius : null]}>
           {imageContent}
         </Block>
         {full ? <LinearGradient colors={['transparent', theme.COLORS.MUTED]} style={styles.gradient} /> : null}
         {bodyContent}
-      </Block>
+      </Card>
     );
   }
 

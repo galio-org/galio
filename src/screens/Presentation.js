@@ -2,13 +2,13 @@ import React from 'react';
 import {
   View, StyleSheet, StatusBar, Image,
 } from 'react-native';
-import { LinearGradient, Constants } from 'expo';
+import { LinearGradient } from 'expo';
 // galio components
 import { Text, Button, Block, NavBar } from '..';
 import theme from '../theme';
 
 const Presentation = props => (
-  <Block flex style={{ marginTop: Constants.statusBarHeight * 1.25 }}>
+  <Block flex>
     <StatusBar hidden={false} barStyle="light-content" />
     <Block style={styles.navbar}>
       <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
@@ -20,10 +20,10 @@ const Presentation = props => (
       style={styles.backgroundGradient}
     />
     <View style={styles.container}>
-      <Text h2 color="rgb(255,255,255)" style={{ marginBottom: 15 }}>
+      <Text h2 color={theme.COLORS.WHITE} style={{ marginBottom: 15 }}>
         Check this out
       </Text>
-      <Text p center color="rgb(255,255,255)" style={{ marginBottom: 30 }}>
+      <Text p center color={theme.COLORS.WHITE} style={{ marginBottom: 30 }}>
         This is created and was created just for your eyes only. Oh yeah, you really want a piece of this cool UI kit.
       </Text>
       <Button size="large" color="transparent" round onPress={() => props.navigation.openDrawer()}>
