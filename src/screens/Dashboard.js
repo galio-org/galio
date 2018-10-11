@@ -18,7 +18,7 @@ const BASE_SIZE = theme.SIZES.BASE;
 const GRADIENT_BLUE = ['#6C3CF7', '#4F3DF2', '#2734EF'];
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
 const COLOR_WHITE = theme.COLORS.WHITE;
-const COLOR_GREY = theme.COLORS.GREY; // '#D8DDE1';
+const COLOR_GREY = theme.COLORS.MUTED; // '#D8DDE1';
 
 // mock data
 const cards = [
@@ -56,13 +56,14 @@ const cards = [
   },
 
 ];
-const statsActive = [
-  1.5, 1, 1.4, 1.5, 1.8, 1.35, 1.84, 1.83, 1.9, 1.05, 1.06, 1.7, 1.35, 1.35, 1.5,
-];
-const statsInactive = [
-  2, 1.7, 1.65, 1.1, 1.06, 1.05, 1.3, 1, 1.84, 1.8, 1.85, 1.75, 1.74, 1.7, 1.5,
-];
-const statsTitles = ['04/18', '05/18', '06/18', '07/18', '08/18'];
+// const statsActive = [
+//   1.5, 1, 1.4, 1.5, 1.8, 1.35, 1.84, 1.83, 1.9, 1.05, 1.06, 1.7, 1.35, 1.35, 1.5,
+// ];
+// const statsInactive = [
+//   2, 1.7, 1.65, 1.1, 1.06, 1.05, 1.3, 1, 1.84, 1.8, 1.85, 1.75, 1.74, 1.7, 1.5,
+// ];
+// const statsTitles = ['07/18', '08/18', '09/18', '10/18', '11/18'];
+const statsTitles = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
 
 class Dashboard extends React.Component {
   renderHeader = () => (
@@ -85,31 +86,38 @@ class Dashboard extends React.Component {
   renderStats = () => {
     const GradientStats = () => (
       <Defs key="gradient">
-        <LinearGradient id="gradient" x1="0" y="0%" x2="100%" y2="0%">
-          <Stop offset="0%" stopColor="#9B40F8" />
-          <Stop offset="100%" stopColor="#6C3CF7" />
+        <LinearGradient id="gradient" x1="0" y="0%" x2="0%" y2="100%">
+          <Stop offset="0%" stopColor={theme.COLORS.THEME} />
+          <Stop offset="100%" stopColor={theme.COLORS.INFO} />
         </LinearGradient>
       </Defs>
     );
+
+    const statsActive = [
+      ...Array.from({ length: theme.SIZES.BASE * 1.2 }, () => parseFloat((Math.random() * 0.8 + 1).toFixed(3))),
+    ];
+    const statsInactive = [
+      ...Array.from({ length: theme.SIZES.BASE * 0.7 }, () => parseFloat((Math.random() * 0.7 + 1).toFixed(3))),
+    ];
 
     return (
       <Block style={{ marginBottom: BASE_SIZE * 3 }}>
         <AreaChart
           yMin={0}
-          yMax={3}
+          yMax={Math.max(...statsActive) + 1}
           data={statsInactive}
           curve={shape.curveNatural}
           style={[StyleSheet.absoluteFill]}
           contentInset={{
-            bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15
+            bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15,
           }}
-          svg={{ strokeWidth: BASE_SIZE * 0.15, stroke: COLOR_GREY }}
+          svg={{ strokeWidth: BASE_SIZE * 0.05, stroke: COLOR_GREY, strokeDasharray: 4 }}
         >
           <GradientStats />
         </AreaChart>
         <AreaChart
           yMin={0}
-          yMax={3}
+          yMax={Math.max(...statsActive) + 1}
           data={statsActive}
           curve={shape.curveNatural}
           style={{ height: BASE_SIZE * 7 }}

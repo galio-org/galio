@@ -4,6 +4,8 @@ import {
   Alert, Image, StyleSheet, ScrollView,
 } from 'react-native';
 
+import { LinearGradient } from 'expo';
+
 // Galio components
 import {
   Button, Block, Text, Icon, NavBar,
@@ -22,11 +24,11 @@ const Author = props => (
     <Block flex={0.5} row middle space="around">
       <Block row middle>
         <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
+        <Text size={theme.SIZES.FONT * 0.7} p muted style={{ marginLeft: theme.SIZES.FONT * 0.25 }}>25.6k</Text>
       </Block>
       <Block row middle>
         <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
+        <Text size={theme.SIZES.FONT * 0.7} p muted style={{ marginLeft: theme.SIZES.FONT * 0.25 }}>936</Text>
       </Block>
     </Block>
   </Block>
@@ -111,6 +113,8 @@ const News = props => (
       </Block>
     </ScrollView>
 
+    <LinearGradient colors={['transparent', theme.COLORS.WHITE]} style={styles.gradient} />
+
     <Author
       title="Galio Framework"
       caption="27 minutes ago"
@@ -123,7 +127,7 @@ const News = props => (
 const styles = StyleSheet.create({
   articleThumbnail: {
     borderRadius: theme.SIZES.BASE / 2,
-    height: 220,
+    height: theme.SIZES.BASE * 16,
   },
   article: {
     marginTop: theme.SIZES.BASE * 2,
@@ -141,19 +145,26 @@ const styles = StyleSheet.create({
     left: theme.SIZES.BASE,
     bottom: theme.SIZES.BASE * 1.75,
     backgroundColor: theme.COLORS.WHITE,
-    padding: theme.SIZES.BASE,
+    padding: theme.SIZES.BASE * 0.8,
     borderRadius: theme.SIZES.BASE / 3,
   },
   avatar: {
-    width: theme.SIZES.BASE * 3,
-    height: theme.SIZES.BASE * 3,
-    borderRadius: theme.SIZES.BASE * 1.5,
+    width: theme.SIZES.BASE * 2.5,
+    height: theme.SIZES.BASE * 2.5,
+    borderRadius: theme.SIZES.BASE * 1.25,
   },
   text: {
     fontWeight: '500',
     fontSize: theme.SIZES.FONT,
     lineHeight: theme.SIZES.FONT * 1.4,
     marginBottom: theme.SIZES.BASE,
+  },
+  gradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: theme.SIZES.BASE * 6,
   },
 });
 

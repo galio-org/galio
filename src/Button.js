@@ -99,7 +99,7 @@ class Button extends React.Component {
       color === 'transparent' || styles.androidShadow,
       color === 'transparent' && !shadowless && { borderWidth: 1, borderColor: theme.COLORS.WHITE },
       size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
-      round && { borderRadius: 24 },
+      round && { borderRadius: theme.SIZES.BASE * 2 },
       onlyIcon && {
         width: iconSize * 1.25,
         height: iconSize * 2,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   defaultButton: {
     borderRadius: 3,
     width: theme.SIZES.BASE * 9,
-    height: theme.SIZES.BASE * 3,
+    height: theme.SIZES.BASE * 2.75,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
   },
   customText: {
-    fontSize: 14,
+    fontSize: theme.SIZES.FONT,
     color: theme.COLORS.WHITE,
   },
   primaryColor: {
