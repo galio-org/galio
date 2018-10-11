@@ -236,33 +236,6 @@ export default class Components extends React.Component {
                 <Text h5>Cards</Text>
               </Block>
               <Block flex space="between" style={styles.cards}>
-                <Card
-                  image="https://images.unsplash.com/photo-1524562787295-1608217aa823?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4bae0aef9eca31f164025ae3ebe6fb24&auto=format&fit=crop&w=1327&q=80"
-                  authorImageSrc="http://i.pravatar.cc/100"
-                  authorTitle="Alin Talent"
-                  authorSubTitle="16 minutes ago"
-                  rightSideComponent={(
-                    <Block flex row middle space="around">
-                      <Block row middle>
-                        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-                        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
-                      </Block>
-                      <Block row middle>
-                        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-                        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
-                      </Block>
-                    </Block>
-                  )}
-                />
-                <Card
-                  neutral
-                  fullBackgroundImage
-                  image="https://images.unsplash.com/photo-1535649168324-4198731b2252?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=461ccd152d44ae618d6de5f3fe5cb7d2&auto=format&fit=crop&w=2375&q=80"
-                  authorImageSrc="http://i.pravatar.cc/100"
-                  authorTitle="Alin cu y"
-                  authorSubTitle="420 minutes ago"
-                />
-
                 <Card flex borderless shadowColor={theme.COLORS.BLACK} style={styles.card}>
                   <Block card style={[styles.cardImageContainer, styles.cardNoRadius]}>
                     <Image
