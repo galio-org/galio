@@ -129,8 +129,8 @@ The documentation for Galio is hosted at our [our website](https://galio.io)
 
 ## Resources
 
-* Website: [https://galio.io]
-* Expo: [https://expo.io]
+* Website: <https://galio.io>
+* Expo: <https://expo.io>
 * Issues: [GitHub Issues Page](https://github.com/galio-org/galio/issues)
 
 
@@ -144,7 +144,7 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 
 ## Licensing
 
-* Licensed under MIT ([https://github.com/galio-org/galio/blob/master/LICENSE])
+* Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
 
 ## Useful Links
 
