@@ -39,7 +39,7 @@ const Presentation = props => (
           Get Started
         </Button>
       </Block>
-      <Block flex bottom>
+      <Block flex bottom style={{ marginBottom: -theme.SIZES.BASE / 3 }}>
         <Image source={iphoneImage} style={{ width }} />
       </Block>
     </Block>
@@ -56,10 +56,6 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   container: {
-    // width: '100%',
-    // height: '100%',
-    // justifyContent: 'flex-end',
-    // alignItems: 'flex-end',
     paddingHorizontal: theme.SIZES.BASE,
   },
   navbar: {

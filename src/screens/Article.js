@@ -38,7 +38,7 @@ const Article = props => (
         <Block center>
           <Card
             borderless
-            style={[styles.cardFooter, styles.author]}
+            style={styles.stats}
             title="Christopher Moon"
             caption="139 minutes ago"
             avatar="http://i.pravatar.cc/100?id=article"
