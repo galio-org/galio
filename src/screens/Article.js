@@ -8,7 +8,9 @@ import {
 } from 'react-native';
 
 // galio components
-import { Block, Text, Icon, NavBar } from '..';
+import {
+  Block, Card, Text, Icon, NavBar,
+} from '..';
 import theme from '../theme';
 
 const { width, height } = Dimensions.get('screen');
@@ -32,39 +34,43 @@ const Article = props => (
             InterBlocking this super star
           </Text>
         </Block>
-        <Block row style={styles.stats}>
-          <Block flex={1.2} row>
-            <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} />
-            <Block style={styles.title}>
-              <Text size={theme.SIZES.FONT * 0.875}>Christopher Moon</Text>
-              <Text p muted size={theme.SIZES.FONT * 0.875}>138 minutes ago</Text>
-            </Block>
-          </Block>
-          <Block flex row middle space="around">
-            <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-              <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
-              <Text
-                p
-                color={theme.COLORS.MUTED}
-                size={theme.SIZES.FONT * 0.875}
-                style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-              >
-                25.6k
-              </Text>
-            </Block>
-            <Block row middle>
-              <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
-              <Text
-                p
-                color={theme.COLORS.MUTED}
-                size={theme.SIZES.FONT * 0.875}
-                style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-              >
-                936
-              </Text>
-            </Block>
-          </Block>
+
+        <Block center>
+          <Card
+            borderless
+            style={[styles.cardFooter, styles.author]}
+            title="Christopher Moon"
+            caption="139 minutes ago"
+            avatar="http://i.pravatar.cc/100?id=article"
+            location={(
+              <Block row right>
+                <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+                  <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+                  <Text
+                    p
+                    color={theme.COLORS.MUTED}
+                    size={theme.SIZES.FONT * 0.875}
+                    style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+                  >
+                    25.6k
+                  </Text>
+                </Block>
+                <Block row middle>
+                  <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+                  <Text
+                    p
+                    color={theme.COLORS.MUTED}
+                    size={theme.SIZES.FONT * 0.875}
+                    style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+                  >
+                    936
+                  </Text>
+                </Block>
+              </Block>
+            )}
+          />
         </Block>
+
         <ScrollView>
           <Text style={styles.text}>
             You should totally like check this out, ok? Why would you use another UI
@@ -73,7 +79,7 @@ const Article = props => (
             developers.
           </Text>
           <Text style={styles.text}>
-          A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
+            {"A lot of Bacon. I'd really like to eat like a LOT of Bacon :(."}
           </Text>
         </ScrollView>
       </Block>
@@ -98,10 +104,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   stats: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingVertical: theme.SIZES.BASE,
-    marginVertical: theme.SIZES.BASE,
+    borderWidth: 0,
+    width: width - theme.SIZES.BASE * 2,
+    height: theme.SIZES.BASE * 4,
+    marginVertical: theme.SIZES.BASE * 0.875,
   },
   title: {
     justifyContent: 'center',

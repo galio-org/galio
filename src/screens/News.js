@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Alert, Image, StyleSheet, ScrollView,
+  Image, StyleSheet, ScrollView,
 } from 'react-native';
 
 // Galio components
 import {
-  Button, Block, Text, Icon, NavBar,
+  Button, Block, Card, Text, Icon, NavBar,
 } from '..';
 import theme from '../theme';
 
@@ -48,10 +48,9 @@ Author.propsTypes = {
 const News = props => (
   <Block flex>
     <NavBar
-      back
       title="News"
       titleStyle={{ alignSelf: 'flex-start' }}
-      onLeftPress={() => props.navigation.goBack()}
+      onLeftPress={() => props.navigation.openDrawer()}
       leftIconColor={theme.COLORS.MUTED}
       right={[
         <Button
@@ -76,7 +75,7 @@ const News = props => (
     <ScrollView style={{ flex: 1 }}>
       <Block flex style={styles.news}>
         <Image
-          source={{ uri: 'https://images.unsplash.com/photo-1514518926461-30c892e455ee?fit=crop&w=1300&q=80' }}
+          source={{ uri: 'https://images.unsplash.com/photo-1535649168324-4198731b2252?fit=crop&w=1300&q=80' }}
           style={styles.articleImage}
         />
         <Block style={styles.article}>
@@ -110,39 +109,41 @@ const News = props => (
       </Block>
     </ScrollView>
 
-    <Block card shadow row style={[styles.cardFooter, styles.author]}>
-      <Block flex={1.2} row>
-        <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.cardAvatar} />
-        <Block style={styles.cardTitle}>
-          <Text size={theme.SIZES.FONT * 0.875}>Christopher Moon</Text>
-          <Text p muted size={theme.SIZES.FONT * 0.875}>138 minutes ago</Text>
+    <Card
+      flex
+      borderless
+      shadowColor={theme.COLORS.BLACK}
+      style={styles.author}
+      title="Christopher Moon"
+      caption="139 minutes ago"
+      avatar="http://i.pravatar.cc/100?id=article"
+      location={(
+        <Block row right>
+          <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+            <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+            <Text
+              p
+              color={theme.COLORS.MUTED}
+              size={theme.SIZES.FONT * 0.875}
+              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+            >
+              25.6k
+            </Text>
+          </Block>
+          <Block row middle>
+            <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+            <Text
+              p
+              color={theme.COLORS.MUTED}
+              size={theme.SIZES.FONT * 0.875}
+              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+            >
+              936
+            </Text>
+          </Block>
         </Block>
-      </Block>
-      <Block flex row middle space="around">
-        <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-          <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
-          <Text
-            p
-            color={theme.COLORS.MUTED}
-            size={theme.SIZES.FONT * 0.875}
-            style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-          >
-            25.6k
-          </Text>
-        </Block>
-        <Block row middle>
-          <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
-          <Text
-            p
-            color={theme.COLORS.MUTED}
-            size={theme.SIZES.FONT * 0.875}
-            style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-          >
-            936
-          </Text>
-        </Block>
-      </Block>
-    </Block>
+      )}
+    />
   </Block>
 );
 
@@ -170,26 +171,8 @@ const styles = StyleSheet.create({
     left: theme.SIZES.BASE,
     bottom: theme.SIZES.BASE * 1.56,
     backgroundColor: theme.COLORS.WHITE,
-    borderRadius: theme.SIZES.BASE * 0.5,
-  },
-  cardFooter: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingVertical: theme.SIZES.BASE,
-    paddingHorizontal: theme.SIZES.BASE * 0.625,
-    borderColor: theme.COLORS.TRANSPARENT,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.7,
-    shadowRadius: 16,
-  },
-  cardAvatar: {
-    width: theme.SIZES.BASE * 2.5,
-    height: theme.SIZES.BASE * 2.5,
-    borderRadius: theme.SIZES.BASE * 1.25,
-  },
-  cardTitle: {
-    justifyContent: 'center',
-    paddingLeft: theme.SIZES.BASE / 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
   },
   text: {
     fontWeight: '400',

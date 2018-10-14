@@ -3,11 +3,15 @@ import {
   Dimensions, StyleSheet, StatusBar, Image,
 } from 'react-native';
 import { LinearGradient } from 'expo';
+
 // galio components
-import { Text, Button, Block, NavBar } from '..';
+import {
+  Text, Button, Block, NavBar,
+} from '..';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');
+const iphoneImage = require('../../assets/iphone.png');
 
 const Presentation = props => (
   <Block flex>
@@ -36,7 +40,7 @@ const Presentation = props => (
         </Button>
       </Block>
       <Block flex bottom>
-        <Image source={require('../../assets/iphone.png')} style={{ width }} />
+        <Image source={iphoneImage} style={{ width }} />
       </Block>
     </Block>
   </Block>

@@ -1,9 +1,13 @@
 import React from 'react';
-import { Dimensions, StyleSheet, ScrollView, Alert, Image } from 'react-native';
+import {
+  Dimensions, StyleSheet, ScrollView, Alert,
+} from 'react-native';
 import { LinearGradient } from 'expo';
 
 // galio components
-import { Text, Block, Button, Card, NavBar, Icon, Input } from '..';
+import {
+  Text, Block, Button, Card, NavBar, Icon, Input,
+} from '..';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');
@@ -237,83 +241,83 @@ export default class Components extends React.Component {
                 <Text h5>Cards</Text>
               </Block>
               <Block flex space="between" style={styles.cards}>
-                <Card flex borderless shadowColor={theme.COLORS.BLACK} style={styles.card}>
-                  <Block card style={[styles.cardImageContainer, styles.cardNoRadius]}>
-                    <Image
-                      source={{ uri: 'https://images.unsplash.com/photo-1494252713559-f26b4bf0b174?w=840&q=300' }}
-                      style={styles.cardImage}
-                    />
-                  </Block>
-                  <Block flex row style={styles.cardFooter} space="around">
-                    <Block flex={1.2} row>
-                      <Image source={{ uri: 'http://i.pravatar.cc/100?id=pineaple' }} style={styles.cardAvatar} />
-                      <Block style={styles.cardTitle}>
-                        <Text size={theme.SIZES.FONT * 0.875}>Christopher Moon</Text>
-                        <Text p muted size={theme.SIZES.FONT * 0.875}>139 minutes ago</Text>
-                      </Block>
-                    </Block>
-                    <Block flex row middle space="around">
-                      <Block row center>
-                        <Icon name="pin-3" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT} />
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  caption="139 minutes ago"
+                  location="Los Angeles, CA"
+                  avatar="http://i.pravatar.cc/100?id=pineaple"
+                  imageBlockStyle={styles.cardNoRadius}
+                  image="https://images.unsplash.com/photo-1494252713559-f26b4bf0b174?w=840&q=300"
+                />
+
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  caption="139 minutes ago"
+                  avatar="http://i.pravatar.cc/100?id=pineaple"
+                  location={(
+                    <Block row right>
+                      <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+                        <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
                         <Text
-                          muted
+                          p
+                          color={theme.COLORS.MUTED}
                           size={theme.SIZES.FONT * 0.875}
                           style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
                         >
-                          Los Angeles, CA
+                          25.6k
                         </Text>
                       </Block>
-                    </Block>
-                  </Block>
-                </Card>
-
-                <Card flex borderless shadowColor={theme.COLORS.BLACK} style={styles.card}>
-                  <Block card style={[styles.cardImageContainer, { padding: theme.SIZES.BASE / 2 }]}>
-                    <Image
-                      style={[styles.cardImage, styles.cardImageRadius]}
-                      source={{ uri: 'https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300' }}
-                    />
-                  </Block>
-                  <Block flex row style={styles.cardFooter} space="around">
-                    <Block flex={1.2} row>
-                      <Image source={{ uri: 'http://i.pravatar.cc/100?id=skater' }} style={styles.cardAvatar} />
-                      <Block style={styles.cardTitle}>
-                        <Text size={theme.SIZES.FONT * 0.875}>Christopher Moon</Text>
-                        <Text p muted size={theme.SIZES.FONT * 0.875}>139 minutes ago</Text>
-                      </Block>
-                    </Block>
-                    <Block flex row middle space="around">
-                      <Block row center>
-                        <Icon name="pin-3" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT} />
+                      <Block row middle>
+                        <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
                         <Text
-                          muted
+                          p
+                          color={theme.COLORS.MUTED}
                           size={theme.SIZES.FONT * 0.875}
                           style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
                         >
-                          Los Angeles, CA
+                          936
                         </Text>
                       </Block>
                     </Block>
-                  </Block>
-                </Card>
+                  )}
+                />
 
-                <Card flex borderless shadowColor={theme.COLORS.BLACK} style={styles.card}>
-                  <Block card style={styles.cardImageContainer}>
-                    <Image
-                      source={{ uri: 'https://images.unsplash.com/photo-1506321806993-0e39f809ae59?&w=1200&h=1200&fit=crop&crop=entropy&q=300' }}
-                      style={[styles.cardImage, { height: theme.SIZES.BASE * 13.75 }]}
-                    />
-                  </Block>
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  caption="139 minutes ago"
+                  location="Los Angeles, CA"
+                  avatar="http://i.pravatar.cc/100?id=skater"
+                  imageStyle={styles.cardImageRadius}
+                  imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
+                  image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
+                />
+
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  titleColor={theme.COLORS.WHITE}
+                  caption="139 minutes ago"
+                  avatar="http://i.pravatar.cc/100?id=skater"
+                  footerStyle={styles.cardFull}
+                  imageStyle={{ height: theme.SIZES.BASE * 13.75 }}
+                  image="https://images.unsplash.com/photo-1506321806993-0e39f809ae59?&w=1200&h=1200&fit=crop&crop=entropy&q=300"
+                >
                   <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} />
-                  <Block flex row style={[styles.cardFooter, styles.cardFull]} space="around">
-                    <Block flex={1.2} row>
-                      <Image source={{ uri: 'http://i.pravatar.cc/100?id=paint' }} style={styles.cardAvatar} />
-                      <Block style={styles.cardTitle}>
-                        <Text size={theme.SIZES.FONT * 0.875} color={theme.COLORS.WHITE}>Christopher Moon</Text>
-                        <Text p muted size={theme.SIZES.FONT * 0.875}>139 minutes ago</Text>
-                      </Block>
-                    </Block>
-                  </Block>
                 </Card>
               </Block>
             </Block>

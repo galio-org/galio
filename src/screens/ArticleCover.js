@@ -24,7 +24,7 @@ const ArticleCover = props => (
       <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
       <Block style={styles.articleSummary}>
         <Block row style={{ marginBottom: theme.SIZES.BASE }}>
-          <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+          <Block row middle style={{ marginRight: theme.SIZES.BASE }}>
             <Icon name="eye" family="Galio" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
             <Text
               p

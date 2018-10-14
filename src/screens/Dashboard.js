@@ -2,7 +2,7 @@ import React from 'react';
 import {
   StyleSheet, ScrollView,
 } from 'react-native';
-import Gradient from 'expo/src/effects/LinearGradient';
+import { LinearGradient as Gradient } from 'expo';
 import { Defs, LinearGradient, Stop } from 'react-native-svg';
 import { AreaChart } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';

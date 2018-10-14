@@ -1,10 +1,12 @@
 import React from 'react';
 import {
-  View, ScrollView, StyleSheet, Image,
+  ScrollView, StyleSheet, Image,
 } from 'react-native';
 
 // Galio components
-import { Block, Card, Text, NavBar } from '..';
+import {
+  Block, Card, Text, NavBar,
+} from '..';
 import theme from '../theme';
 
 export default class ArticleHalf extends React.Component {

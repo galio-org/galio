@@ -11,7 +11,7 @@ import {
 } from '..';
 import theme from '../theme';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 class Login extends React.Component {
   state = {
@@ -30,10 +30,19 @@ class Login extends React.Component {
 
     return (
       <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar title="Sign Up"  onLeftPress={() => navigation.openDrawer()} />
+        <NavBar title="Sign Up" onLeftPress={() => navigation.openDrawer()} />
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-          <Block flex center style={{ marginTop: theme.SIZES.BASE * 1.875 }}>
-            <Text muted center size={theme.SIZES.FONT * 0.875} style={{ paddingHorizontal: theme.SIZES.BASE * 2.3 }}>
+          <Block
+            flex
+            center
+            style={{ marginTop: theme.SIZES.BASE * 1.875, marginBottom: height * 0.1 }}
+          >
+            <Text
+              muted
+              center
+              size={theme.SIZES.FONT * 0.875}
+              style={{ paddingHorizontal: theme.SIZES.BASE * 2.3 }}
+            >
               This is the perfect place to write a short description
               of this step and even the next steps ahead
             </Text>
@@ -86,16 +95,13 @@ class Login extends React.Component {
             </Text>
           </Block>
 
-          <Block flex={2} space="evenly" center>
-            <Block>
+          <Block flex={2} center space="between">
+            <Block flex={2}>
               <Input
                 rounded
                 placeholder="Username"
                 autoCapitalize="none"
                 style={{ width: width * 0.9 }}
-                right
-                icon="user"
-                family="Feather"
                 onChangeText={text => this.handleChange('user', text)}
               />
               <Input
@@ -104,9 +110,6 @@ class Login extends React.Component {
                 placeholder="Email"
                 autoCapitalize="none"
                 style={{ width: width * 0.9 }}
-                right
-                icon="mail"
-                family="Feather"
                 onChangeText={text => this.handleChange('email', text)}
               />
               <Input
@@ -118,7 +121,7 @@ class Login extends React.Component {
                 onChangeText={text => this.handleChange('password', text)}
               />
             </Block>
-            <Block>
+            <Block flex middle>
               <Button
                 round
                 color="error"

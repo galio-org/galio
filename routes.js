@@ -92,7 +92,7 @@ const screens = {
     screen: Cards,
     navigationOptions: {
       drawerLabel: 'Cards',
-      drawerIcon: props => <MenuIcon name="ui-04" family="Galio" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="grid-square" family="Galio" focused={props.focused} />,
     },
   },
   Article: {

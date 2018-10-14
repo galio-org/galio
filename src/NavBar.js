@@ -117,11 +117,12 @@ NavBar.propTypes = {
 const styles = StyleSheet.create({
   navBar: {
     width: 'auto',
-    height: theme.SIZES.BASE * 3.5,
+    height: theme.SIZES.BASE * 4.125,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
     backgroundColor: theme.COLORS.WHITE,
+    paddingVertical: theme.SIZES.BASE,
   },
   title: {
     flex: 2,

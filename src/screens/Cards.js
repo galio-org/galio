@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Image, ScrollView, StyleSheet, Dimensions,
+  ScrollView, StyleSheet, Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 
 // Galio components
 import {
-  Card, Block, Icon, NavBar, Text,
+  Card, Block, NavBar,
 } from '..';
 import theme from '../theme';
 
@@ -66,62 +66,6 @@ const cards = [
 ];
 
 export default class Cards extends React.Component {
-  renderCard = (card) => {
-    const {
-      id, image, title, caption, avatar, location, full, padded,
-    } = card;
-
-    const imageContent = image ? (
-      <Image
-        source={{ uri: image }}
-        style={[
-          styles.image,
-          padded ? styles.rounded : null,
-          full ? { height: theme.SIZES.BASE * 13.75 } : null,
-        ]}
-      />
-    ) : null;
-
-    const bodyContent = (
-      <Block flex row style={[styles.footer, full ? styles.full : null]} space="around">
-        <Block flex={1.2} row>
-          <Image source={{ uri: `${avatar}?id=${id}` }} style={styles.avatar} />
-          <Block style={styles.title}>
-            <Text size={theme.SIZES.FONT * 0.875} color={full ? theme.COLORS.WHITE : null}>{title}</Text>
-            <Text muted size={theme.SIZES.FONT * 0.875} color={full ? theme.COLORS.MUTED : null}>{caption}</Text>
-          </Block>
-        </Block>
-        {!location ? null : (
-          <Block flex row middle>
-            <Icon name="pin-3" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT} />
-            <Text
-              muted
-              size={theme.SIZES.FONT * 0.875}
-              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-            >
-              {location}
-            </Text>
-          </Block>
-        )}
-      </Block>
-    );
-    const imageStyles = [
-      styles.imageContainer,
-      !full ? styles.noRadius : null,
-      padded ? { padding: theme.SIZES.BASE / 2 } : null,
-    ];
-
-    return (
-      <Card flex shadowColor={theme.COLORS.BLACK} style={styles.card} key={`card-${id}}`}>
-        <Block card style={imageStyles}>
-          {imageContent}
-        </Block>
-        {full ? <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.gradient} /> : null}
-        {bodyContent}
-      </Card>
-    );
-  }
-
   render() {
     const { navigation } = this.props;
     return (
@@ -129,7 +73,29 @@ export default class Cards extends React.Component {
         <NavBar title="Cards" onLeftPress={() => navigation.openDrawer()} />
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
-            {cards && cards.map(card => this.renderCard(card))}
+            {cards && cards.map((card, id) => (
+              <Card
+                key={`card-${card.image}`}
+                flex
+                borderless
+                shadowColor={theme.COLORS.BLACK}
+                titleColor={card.full ? theme.COLORS.WHITE : null}
+                style={styles.card}
+                title={card.title}
+                caption={card.caption}
+                location={card.location}
+                avatar={`${card.avatar}?${id}`}
+                image={card.image}
+                imageStyle={[card.padded ? styles.rounded : null]}
+                imageBlockStyle={[
+                  card.padded ? { padding: theme.SIZES.BASE / 2 } : null,
+                  card.full ? null : styles.noRadius,
+                ]}
+                footerStyle={card.full ? styles.full : null}
+              >
+                {card.full ? <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.gradient} /> : null}
+              </Card>
+            ))}
           </Block>
         </ScrollView>
       </Block>
@@ -145,18 +111,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   card: {
-    borderWidth: 0,
     backgroundColor: theme.COLORS.WHITE,
     width: width - theme.SIZES.BASE * 2,
     marginVertical: theme.SIZES.BASE * 0.875,
-  },
-  footer: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginVertical: theme.SIZES.BASE / 2,
-    paddingHorizontal: theme.SIZES.BASE,
-    paddingVertical: theme.SIZES.BASE / 2,
-    backgroundColor: theme.COLORS.TRANSPARENT,
   },
   full: {
     position: 'absolute',
@@ -164,33 +121,12 @@ const styles = StyleSheet.create({
     right: 0,
     left: 0,
   },
-  imageContainer: {
-    borderWidth: 0,
-    overflow: 'hidden',
-  },
   noRadius: {
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
-  title: {
-    justifyContent: 'center',
-    paddingLeft: theme.SIZES.BASE / 2,
-  },
-  image: {
-    width: 'auto',
-    height: theme.SIZES.BASE * 12.5,
-  },
   rounded: {
     borderRadius: theme.SIZES.BASE * 0.1875,
-  },
-  extraMargin: {
-    marginTop: theme.SIZES.BASE,
-    marginHorizontal: theme.SIZES.BASE,
-  },
-  avatar: {
-    width: theme.SIZES.BASE * 2.5,
-    height: theme.SIZES.BASE * 2.5,
-    borderRadius: theme.SIZES.BASE * 1.25,
   },
   gradient: {
     bottom: 0,

@@ -11,7 +11,7 @@ import {
 } from '..';
 import theme from '../theme';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 class Login extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class Login extends React.Component {
       <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
         <NavBar title="Sign In" onLeftPress={() => navigation.openDrawer()} />
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-          <Block flex center style={{ marginTop: theme.SIZES.BASE * 1.875 }}>
+          <Block flex center style={{ marginTop: theme.SIZES.BASE * 1.875, marginBottom: height * 0.1 }}>
             <Text muted center size={theme.SIZES.FONT * 0.875} style={{ paddingHorizontal: theme.SIZES.BASE * 2.3 }}>
               This is the perfect place to write a short description
               of this step and even the next steps ahead
@@ -85,8 +85,8 @@ class Login extends React.Component {
             </Text>
           </Block>
 
-          <Block flex={2} space="evenly" center>
-            <Block>
+          <Block flex={2} center space="evenly">
+            <Block flex={2}>
               <Input
                 rounded
                 type="email-address"
@@ -112,7 +112,7 @@ class Login extends React.Component {
                 Forgot your password?
               </Text>
             </Block>
-            <Block>
+            <Block flex middle>
               <Button
                 round
                 color="error"
@@ -126,7 +126,7 @@ Password: ${password}`,
               </Button>
               <Button color="transparent" shadowless onPress={() => navigation.navigate('Register')}>
                 <Text center color={theme.COLORS.ERROR} size={theme.SIZES.FONT * 0.75}>
-                  Don't have an account? Sign Up
+                  {"Don't have an account? Sign Up"}
                 </Text>
               </Button>
             </Block>

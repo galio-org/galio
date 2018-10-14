@@ -37,12 +37,12 @@ const grids = [
   {
     title: 'Facebook',
     icon: 'social-facebook',
-    family: 'SimpleLineIcons'
+    family: 'SimpleLineIcons',
   },
   {
     title: 'Github',
     icon: 'social-github',
-    family: 'SimpleLineIcons'
+    family: 'SimpleLineIcons',
   },
   {
     title: 'Instagram',
@@ -67,7 +67,7 @@ const grids = [
   {
     title: '500px',
     icon: '500px',
-    family: 'Entypo'
+    family: 'Entypo',
   },
   {
     title: 'App Store',
@@ -97,7 +97,10 @@ class Grid extends React.Component {
                       <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
                         <Block flex middle>
                           <Icon name={grid.icon} family={grid.family} size={BASE_SIZE * 1.875} />
-                          <Text size={BASE_SIZE * 0.875}>{grid.title} </Text>
+                          <Text size={BASE_SIZE * 0.875}>
+                            {grid.title}
+                            {' '}
+                          </Text>
                         </Block>
                       </Button>
                     </Block>
