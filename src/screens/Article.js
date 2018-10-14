@@ -27,38 +27,52 @@ const Article = props => (
     <Block center style={{ marginTop: -theme.SIZES.BASE * 2 }}>
       <Block flex style={styles.header}>
         <Block>
-          <Text h3>I would happily watch a TV show about crabs</Text>
-          <Text muted style={{ marginTop: theme.SIZES.BASE, fontWeight: '500' }}>
+          <Text size={theme.SIZES.BASE * 1.875}>I would happily watch a TV show about crabs</Text>
+          <Text muted t size={theme.SIZES.BASE * 0.875} style={{ marginTop: theme.SIZES.BASE, fontWeight: '500' }}>
             InterBlocking this super star
           </Text>
         </Block>
-        <Block space="between" row style={styles.stats}>
-          <Block flex={0.25}>
+        <Block row style={styles.stats}>
+          <Block flex={1.2} row>
             <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} />
+            <Block style={styles.title}>
+              <Text size={theme.SIZES.FONT * 0.875}>Christopher Moon</Text>
+              <Text p muted size={theme.SIZES.FONT * 0.875}>138 minutes ago</Text>
+            </Block>
           </Block>
-          <Block flex={0.7} style={styles.middle}>
-            <Text style={{ fontWeight: '500' }}>Galio Framework</Text>
-            <Text p muted>16 minutes ago</Text>
-          </Block>
-          <Block flex={0.5} row middle space="around">
-            <Block row middle>
-              <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-              <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
+          <Block flex row middle space="around">
+            <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+              <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+              <Text
+                p
+                color={theme.COLORS.MUTED}
+                size={theme.SIZES.FONT * 0.875}
+                style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+              >
+                25.6k
+              </Text>
             </Block>
             <Block row middle>
-              <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-              <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
+              <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+              <Text
+                p
+                color={theme.COLORS.MUTED}
+                size={theme.SIZES.FONT * 0.875}
+                style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+              >
+                936
+              </Text>
             </Block>
           </Block>
         </Block>
         <ScrollView>
-          <Text style={{ lineHeight: theme.SIZES.FONT * 1.3 }}>
+          <Text style={styles.text}>
             You should totally like check this out, ok? Why would you use another UI
             library when you have so many components written by Creative Tim and the
             whole React Native community. Galio was created by developers for
             developers.
           </Text>
-          <Text style={{ lineHeight: theme.SIZES.FONT * 1.3 }}>
+          <Text style={styles.text}>
           A lot of Bacon. I'd really like to eat like a LOT of Bacon :(.
           </Text>
         </ScrollView>
@@ -84,15 +98,26 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   stats: {
-    marginVertical: theme.SIZES.BASE * 2,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingVertical: theme.SIZES.BASE,
+    marginVertical: theme.SIZES.BASE,
+  },
+  title: {
+    justifyContent: 'center',
+    paddingLeft: theme.SIZES.BASE / 2,
   },
   avatar: {
-    width: theme.SIZES.BASE * 3,
-    height: theme.SIZES.BASE * 3,
-    borderRadius: theme.SIZES.BASE * 1.5,
+    width: theme.SIZES.BASE * 2.5,
+    height: theme.SIZES.BASE * 2.5,
+    borderRadius: theme.SIZES.BASE * 1.25,
   },
   middle: {
     justifyContent: 'center',
+  },
+  text: {
+    fontSize: theme.SIZES.FONT * 0.875,
+    lineHeight: theme.SIZES.FONT * 1.25,
   },
 });
 

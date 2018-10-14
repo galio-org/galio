@@ -28,8 +28,8 @@ const GalioDrawer = props => (
     <Block space="between" row style={styles.header}>
       <Block flex={0.3}><Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} /></Block>
       <Block flex style={styles.middle}>
-        <Text>Galio Framework</Text>
-        <Text p muted>React Native</Text>
+        <Text size={theme.SIZES.FONT * 0.875}>Galio Framework</Text>
+        <Text muted size={theme.SIZES.FONT * 0.875}>React Native</Text>
       </Block>
     </Block>
     <ScrollView>
@@ -44,12 +44,15 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: theme.SIZES.BASE,
-    paddingBottom: theme.SIZES.BASE / 3,
+    paddingTop: theme.SIZES.BASE * 0.6875,
+    paddingBottom: theme.SIZES.BASE * 1.6875,
+    borderBottomColor: '#D8D8D8',
+    borderBottomWidth: 0.5,
   },
   avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: theme.SIZES.BASE * 2.5,
+    height: theme.SIZES.BASE * 2.5,
+    borderRadius: theme.SIZES.BASE * 1.25,
   },
   middle: {
     justifyContent: 'center',
@@ -60,8 +63,8 @@ const MenuIcon = ({ name, family, focused }) => (
   <Icon
     name={name}
     family={family}
-    size={theme.SIZES.FONT * 1.25}
-    color={theme.COLORS[focused ? 'WHITE' : 'GREY']}
+    size={theme.SIZES.FONT}
+    color={focused ? theme.COLORS.WHITE : '#5D5D5D'}
   />
 );
 
@@ -82,70 +85,70 @@ const screens = {
     screen: Components,
     navigationOptions: {
       drawerLabel: 'Components',
-      drawerIcon: props => <MenuIcon name="sitemap" family="FontAwesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="ui-04" family="Galio" focused={props.focused} />,
     },
   },
   Cards: {
     screen: Cards,
     navigationOptions: {
       drawerLabel: 'Cards',
-      drawerIcon: props => <MenuIcon name="view-grid" family="MaterialCommunityIcons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="ui-04" family="Galio" focused={props.focused} />,
     },
   },
   Article: {
     screen: Article,
     navigationOptions: {
       drawerLabel: 'Article Screen',
-      drawerIcon: props => <MenuIcon name="ios-paper-outline" family="Ionicons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="tablet-reader-31" family="Galio" focused={props.focused} />,
     },
   },
   ArticleCover: {
     screen: ArticleCover,
     navigationOptions: {
       drawerLabel: 'Article Cover',
-      drawerIcon: props => <MenuIcon name="ios-paper" family="Ionicons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="single-paragraph" family="Galio" focused={props.focused} />,
     },
   },
   Dashboard: {
     screen: Dashboard,
     navigationOptions: {
       drawerLabel: 'Dashboard screen',
-      drawerIcon: props => <MenuIcon name="dashboard" family="FontAwesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="analytics" family="Galio" focused={props.focused} />,
     },
   },
   News: {
     screen: News,
     navigationOptions: {
       drawerLabel: 'News Screen',
-      drawerIcon: props => <MenuIcon name="newspaper-o" family="FontAwesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="paper-2" family="Galio" focused={props.focused} />,
     },
   },
   Presentation: {
     screen: Presentation,
     navigationOptions: {
       drawerLabel: 'Presentation Screen',
-      drawerIcon: props => <MenuIcon name="presentation" family="MaterialCommunityIcons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="presentation" family="Galio" focused={props.focused} />,
     },
   },
   Login: {
     screen: Login,
     navigationOptions: {
       drawerLabel: 'Login Screen',
-      drawerIcon: props => <MenuIcon name="login-variant" family="MaterialCommunityIcons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="log-in" family="Galio" focused={props.focused} />,
     },
   },
   Register: {
     screen: Register,
     navigationOptions: {
       drawerLabel: 'Register Screen',
-      drawerIcon: props => <MenuIcon name="person-add" family="MaterialIcons" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="add-27" family="Galio" focused={props.focused} />,
     },
   },
   Grid: {
     screen: Grid,
     navigationOptions: {
       drawerLabel: 'Grid Screen',
-      drawerIcon: props => <MenuIcon name="grid" family="Feather" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
     },
   },
 };
@@ -155,22 +158,21 @@ const options = {
   contentOptions: {
     labelStyle: {
       fontWeight: '500',
-      color: theme.COLORS.BLOCK,
-      fontSize: theme.SIZES.FONT,
+      color: theme.COLORS.GREY,
+      fontSize: theme.SIZES.FONT * 0.875,
+      marginLeft: theme.SIZES.BASE * 0.75,
     },
     activeLabelStyle: {
       color: theme.COLORS.WHITE,
     },
     activeBackgroundColor: theme.COLORS.THEME,
-    itemStyle: {
-      borderBottomColor: theme.COLORS.MUTED,
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      paddingVertical: theme.SIZES.BASE * 0.45,
+    itemsContainerStyle: {
+      paddingVertical: 0,
     },
     iconContainerStyle: {
       marginHorizontal: 0,
       marginLeft: theme.SIZES.BASE * 1.65,
-      marginRight: theme.SIZES.BASE * 0.76,
+      // marginRight: theme.SIZES.BASE * 0.76,
     },
   },
 };

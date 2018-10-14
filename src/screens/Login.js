@@ -29,26 +29,25 @@ class Login extends React.Component {
 
     return (
       <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar back transparent onLeftPress={() => navigation.openDrawer()} />
+        <NavBar title="Sign In" onLeftPress={() => navigation.openDrawer()} />
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-          <Block flex center style={{ marginTop: theme.SIZES.BASE }}>
-            <Text h5 center>Galio - react native kit</Text>
-            <Text muted center size={theme.SIZES.FONT * 0.8} style={{ padding: theme.SIZES.BASE }}>
+          <Block flex center style={{ marginTop: theme.SIZES.BASE * 1.875 }}>
+            <Text muted center size={theme.SIZES.FONT * 0.875} style={{ paddingHorizontal: theme.SIZES.BASE * 2.3 }}>
               This is the perfect place to write a short description
               of this step and even the next steps ahead
             </Text>
-            <Block row center space="between" style={{ marginTop: theme.SIZES.BASE }}>
+            <Block row center space="between" style={{ marginVertical: theme.SIZES.BASE * 1.875 }}>
               <Block flex middle right>
                 <Button
                   round
                   onlyIcon
-                  shadowless
-                  iconSize={theme.SIZES.BASE * 2}
+                  iconSize={theme.SIZES.BASE * 1.625}
                   icon="facebook"
                   iconFamily="FontAwesome"
                   color={theme.COLORS.FACEBOOK}
+                  shadowColor={theme.COLORS.FACEBOOK}
                   iconColor={theme.COLORS.WHITE}
-                  style={{ width: theme.SIZES.BASE * 4 }}
+                  style={styles.social}
                   onPress={() => Alert.alert('Not implemented')}
                 />
               </Block>
@@ -56,13 +55,13 @@ class Login extends React.Component {
                 <Button
                   round
                   onlyIcon
-                  shadowless
-                  iconSize={theme.SIZES.BASE * 2}
+                  iconSize={theme.SIZES.BASE * 1.625}
                   icon="twitter"
                   iconFamily="FontAwesome"
                   color={theme.COLORS.TWITTER}
+                  shadowColor={theme.COLORS.TWITTER}
                   iconColor={theme.COLORS.WHITE}
-                  style={{ width: theme.SIZES.BASE * 4 }}
+                  style={styles.social}
                   onPress={() => Alert.alert('Not implemented')}
                 />
               </Block>
@@ -70,18 +69,18 @@ class Login extends React.Component {
                 <Button
                   round
                   onlyIcon
-                  shadowless
-                  iconSize={theme.SIZES.BASE * 2}
+                  iconSize={theme.SIZES.BASE * 1.625}
                   icon="dribbble"
                   iconFamily="FontAwesome"
                   color={theme.COLORS.DRIBBBLE}
+                  shadowColor={theme.COLORS.DRIBBBLE}
                   iconColor={theme.COLORS.WHITE}
-                  style={{ width: theme.SIZES.BASE * 4 }}
+                  style={styles.social}
                   onPress={() => Alert.alert('Not implemented')}
                 />
               </Block>
             </Block>
-            <Text muted center style={{ padding: theme.SIZES.BASE }}>
+            <Text muted center size={theme.SIZES.FONT * 0.875}>
               or be classical
             </Text>
           </Block>
@@ -126,7 +125,7 @@ Password: ${password}`,
                 Sign in
               </Button>
               <Button color="transparent" shadowless onPress={() => navigation.navigate('Register')}>
-                <Text center color={theme.COLORS.ERROR}>
+                <Text center color={theme.COLORS.ERROR} size={theme.SIZES.FONT * 0.75}>
                   Don't have an account? Sign Up
                 </Text>
               </Button>
@@ -146,6 +145,12 @@ const styles = StyleSheet.create({
     paddingTop: theme.SIZES.BASE * 0.3,
     paddingHorizontal: theme.SIZES.BASE,
     backgroundColor: theme.COLORS.WHITE,
+  },
+  social: {
+    width: theme.SIZES.BASE * 3.5,
+    height: theme.SIZES.BASE * 3.5,
+    borderRadius: theme.SIZES.BASE * 1.75,
+    justifyContent: 'center',
   },
 });
 

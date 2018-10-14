@@ -27,15 +27,15 @@ const Typography = (props) => {
   return (
     <Text
       style={[
-        h1 && { fontSize: normalize(38) },
-        h2 && { fontSize: normalize(32) },
-        h3 && { fontSize: normalize(26) },
-        h4 && { fontSize: normalize(20) },
-        h5 && { fontSize: normalize(16) },
-        p && { fontSize: normalize(12) },
+        h1 && { fontSize: normalize(44) },
+        h2 && { fontSize: normalize(38) },
+        h3 && { fontSize: normalize(30) },
+        h4 && { fontSize: normalize(24) },
+        h5 && { fontSize: normalize(18) },
+        p && { fontSize: normalize(16) },
         muted && { color: theme.COLORS.MUTED },
         neutral && { color: theme.COLORS.NEUTRAL },
-        size && { fontSize: normalize(size) },
+        size && { fontSize: size },
         color && { color },
         italic && { fontStyle: 'italic' },
         bold && { fontWeight: 'bold' },

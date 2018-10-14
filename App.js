@@ -7,7 +7,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar hidden />
+        <StatusBar hidden={false} />
         <GalioApp />
       </View>
     );

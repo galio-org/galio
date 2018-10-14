@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 // galio components
-import { Text, Icon } from '.';
+import { Block, Text, Icon } from '.';
 import theme from './theme';
 
 const { height } = Dimensions.get('screen');
@@ -14,11 +14,11 @@ class NavBar extends React.Component {
   static defaultProps = {
     back: false,
     transparent: false,
-    title: null, // '🍑',
+    title: null,
     titleStyle: null,
     left: null,
     leftStyle: null,
-    leftIconColor: theme.COLORS.MUTED,
+    leftIconColor: theme.COLORS.ICON,
     onLeftPress: () => {},
     right: null,
     rightStyle: null,
@@ -38,6 +38,8 @@ class NavBar extends React.Component {
       );
     }
 
+    if (!title) return null;
+
     return title;
   }
 
@@ -56,10 +58,10 @@ class NavBar extends React.Component {
       <View style={[styles.left, leftStyle]}>
         <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
           <Icon
+            family="Galio"
             color={leftIconColor}
-            family="MaterialIcons"
-            size={theme.SIZES.BASE * 1.6}
-            name={back ? 'chevron-left' : 'format-align-center'}
+            size={theme.SIZES.BASE * 1.0625}
+            name={back ? 'minimal-left' : 'segmentation'}
           />
         </TouchableOpacity>
       </View>
@@ -71,11 +73,10 @@ class NavBar extends React.Component {
     const hasIcons = React.Children.count(right) > 1;
     const rightStyles = [
       styles.right,
-      hasIcons ? { flexDirection: 'row', justifyContent: 'flex-end' } : null,
       rightStyle,
     ];
 
-    return <View style={rightStyles}>{right}</View>;
+    return <Block right row={hasIcons} style={rightStyles}>{right}</Block>;
   }
 
   render() {
@@ -116,7 +117,7 @@ NavBar.propTypes = {
 const styles = StyleSheet.create({
   navBar: {
     width: 'auto',
-    height: 'auto',
+    height: theme.SIZES.BASE * 3.5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
@@ -130,17 +131,17 @@ const styles = StyleSheet.create({
   },
   titleTextStyle: {
     fontWeight: '400',
-    fontSize: theme.SIZES.FONT * 1.1,
+    fontSize: theme.SIZES.FONT * 0.875,
     color: theme.COLORS.BLACK,
   },
   left: {
-    flex: 1,
+    flex: 0.5,
     height: height * 0.07,
     justifyContent: 'center',
     marginLeft: theme.SIZES.BASE,
   },
   right: {
-    flex: 1,
+    flex: 0.5,
     height: height * 0.07,
     alignItems: 'flex-end',
     justifyContent: 'center',

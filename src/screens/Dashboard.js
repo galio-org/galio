@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  StyleSheet, StatusBar, ScrollView,
+  StyleSheet, ScrollView,
 } from 'react-native';
-import { Constants } from 'expo';
 import Gradient from 'expo/src/effects/LinearGradient';
 import { Defs, LinearGradient, Stop } from 'react-native-svg';
 import { AreaChart } from 'react-native-svg-charts';
@@ -15,7 +14,7 @@ import {
 import theme from '../theme';
 
 const BASE_SIZE = theme.SIZES.BASE;
-const GRADIENT_BLUE = ['#6C3CF7', '#4F3DF2', '#2734EF'];
+const GRADIENT_BLUE = ['#6B84CA', '#8F44CE'];
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
 const COLOR_WHITE = theme.COLORS.WHITE;
 const COLOR_GREY = theme.COLORS.MUTED; // '#D8DDE1';
@@ -23,38 +22,31 @@ const COLOR_GREY = theme.COLORS.MUTED; // '#D8DDE1';
 // mock data
 const cards = [
   {
+    title: 'Tasks',
+    subtitle: '15 completed tasks',
+    icon: 'list-bullet',
+    iconFamily: 'Galio',
+  },
+
+  {
+    title: 'Aquisitions',
+    subtitle: '15 completed tasks',
+    icon: 'bag-17',
+    iconFamily: 'Galio',
+  },
+  {
+    title: 'Cards',
+    subtitle: '15 completed tasks',
+    icon: 'credit-card',
+    iconFamily: 'Galio',
+  },
+
+  {
     title: 'Settings',
     subtitle: '15 completed tasks',
-    icon: 'settings',
-    iconFamily: 'MaterialIcons',
+    icon: 'settings-gear-65',
+    iconFamily: 'Galio',
   },
-
-  {
-    title: 'Locations',
-    subtitle: '14 completed tasks',
-    icon: 'location-pin',
-    iconFamily: 'SimpleLineIcons',
-  },
-  {
-    title: 'Credit cards',
-    subtitle: '7 completed tasks',
-    icon: 'credit-card',
-    iconFamily: 'MaterialIcons',
-  },
-
-  {
-    title: 'Comments',
-    subtitle: '7 completed tasks',
-    icon: 'comment-text-outline',
-    iconFamily: 'MaterialCommunityIcons',
-  },
-  {
-    title: 'Statistics',
-    subtitle: '11 completed tasks',
-    icon: 'bar-chart',
-    iconFamily: 'FontAwesome',
-  },
-
 ];
 // const statsActive = [
 //   1.5, 1, 1.4, 1.5, 1.8, 1.35, 1.84, 1.83, 1.9, 1.05, 1.06, 1.7, 1.35, 1.35, 1.5,
@@ -68,16 +60,16 @@ const statsTitles = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
 class Dashboard extends React.Component {
   renderHeader = () => (
     <NavBar
-      transparent
       title="Dashboard"
       onLeftPress={() => this.props.navigation.openDrawer()}
+      leftIconColor={theme.COLORS.MUTED}
       right={(
         <Button
           color="transparent"
           style={styles.settings}
           onPress={() => this.props.navigation.openDrawer()}
         >
-          <Icon size={BASE_SIZE * 1.5} name="ios-options" family="Ionicons" color={COLOR_GREY} />
+          <Icon size={BASE_SIZE} name="heart-2" family="Galio" color={theme.COLORS.MUTED} />
         </Button>
       )}
     />
@@ -111,7 +103,7 @@ class Dashboard extends React.Component {
           contentInset={{
             bottom: -BASE_SIZE * 0.15, right: -BASE_SIZE * 0.15, left: -BASE_SIZE * 0.15,
           }}
-          svg={{ strokeWidth: BASE_SIZE * 0.05, stroke: COLOR_GREY, strokeDasharray: 4 }}
+          svg={{ strokeWidth: 1, stroke: 'rgba(0,0,0,0.2)', strokeDasharray: 4 }}
         >
           <GradientStats />
         </AreaChart>
@@ -120,11 +112,11 @@ class Dashboard extends React.Component {
           yMax={Math.max(...statsActive) + 1}
           data={statsActive}
           curve={shape.curveNatural}
-          style={{ height: BASE_SIZE * 7 }}
+          style={{ height: BASE_SIZE * 10 }}
           contentInset={{
-            bottom: -BASE_SIZE * 0.21, right: -BASE_SIZE * 0.21, left: -BASE_SIZE * 0.21
+            bottom: -BASE_SIZE * 0.21, right: -BASE_SIZE * 0.21, left: -BASE_SIZE * 0.21,
           }}
-          svg={{ strokeWidth: BASE_SIZE * 0.21, stroke: 'url(#gradient)' }}
+          svg={{ strokeWidth: BASE_SIZE * 0.1875, stroke: 'url(#gradient)' }}
         >
           <GradientStats />
         </AreaChart>
@@ -136,7 +128,7 @@ class Dashboard extends React.Component {
   }
 
   renderCard = (props, index) => {
-    const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
+    const gradientColors = index % 2 ? GRADIENT_BLUE : GRADIENT_PINK;
 
     return (
       <Block row center card shadow space="between" style={styles.card} key={props.title}>
@@ -155,11 +147,11 @@ class Dashboard extends React.Component {
         </Gradient>
 
         <Block flex>
-          <Text h5>{props.title}</Text>
-          <Text muted>{props.subtitle}</Text>
+          <Text size={BASE_SIZE * 1.125}>{props.title}</Text>
+          <Text size={BASE_SIZE * 0.875} muted>{props.subtitle}</Text>
         </Block>
         <Button style={styles.right}>
-          <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
+          <Icon size={BASE_SIZE} name="minimal-right" family="Galio" color={COLOR_GREY} />
         </Button>
       </Block>
     );
@@ -169,8 +161,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Block flex style={{ marginTop: Constants.statusBarHeight * 1.25 }}>
-        <StatusBar hidden={false} />
+      <Block flex>
         {/* header */}
         {this.renderHeader()}
 
@@ -190,9 +181,10 @@ const styles = StyleSheet.create({
   card: {
     borderColor: 'transparent',
     marginHorizontal: BASE_SIZE,
-    marginVertical: BASE_SIZE / 1.25,
+    marginVertical: BASE_SIZE / 2,
     padding: BASE_SIZE,
     backgroundColor: COLOR_WHITE,
+    shadowOpacity: 0.40,
   },
   menu: {
     width: BASE_SIZE * 2,
@@ -201,7 +193,6 @@ const styles = StyleSheet.create({
   settings: {
     width: BASE_SIZE * 2,
     borderColor: 'transparent',
-    transform: [{ rotate: '90deg' }],
   },
   left: {
     marginRight: BASE_SIZE,
@@ -211,9 +202,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   gradient: {
-    width: BASE_SIZE * 3,
-    height: BASE_SIZE * 3,
-    borderRadius: BASE_SIZE * 3,
+    width: BASE_SIZE * 3.25,
+    height: BASE_SIZE * 3.25,
+    borderRadius: BASE_SIZE * 3.25,
     alignItems: 'center',
     justifyContent: 'center',
   },
