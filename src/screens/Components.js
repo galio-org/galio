@@ -261,42 +261,6 @@ export default class Components extends React.Component {
                   style={styles.card}
                   title="Christopher Moon"
                   caption="139 minutes ago"
-                  avatar="http://i.pravatar.cc/100?id=pineaple"
-                  location={(
-                    <Block row right>
-                      <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-                        <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
-                        <Text
-                          p
-                          color={theme.COLORS.MUTED}
-                          size={theme.SIZES.FONT * 0.875}
-                          style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-                        >
-                          25.6k
-                        </Text>
-                      </Block>
-                      <Block row middle>
-                        <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
-                        <Text
-                          p
-                          color={theme.COLORS.MUTED}
-                          size={theme.SIZES.FONT * 0.875}
-                          style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
-                        >
-                          936
-                        </Text>
-                      </Block>
-                    </Block>
-                  )}
-                />
-
-                <Card
-                  flex
-                  borderless
-                  shadowColor={theme.COLORS.BLACK}
-                  style={styles.card}
-                  title="Christopher Moon"
-                  caption="139 minutes ago"
                   location="Los Angeles, CA"
                   avatar="http://i.pravatar.cc/100?id=skater"
                   imageStyle={styles.cardImageRadius}
