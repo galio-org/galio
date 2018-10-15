@@ -20,7 +20,7 @@ class Input extends React.Component {
   static defaultProps = {
     type: 'default',
     password: false,
-    placeholderTextColor: theme.COLORS.MUTED,
+    placeholderTextColor: theme.COLORS.PLACEHOLDER,
     label: null,
     help: null,
     rounded: false,
@@ -90,7 +90,7 @@ class Input extends React.Component {
       <Icon
         name={icon}
         family={family}
-        size={theme.SIZES.BASE * 1.25}
+        size={theme.SIZES.BASE * 1.0625}
         style={{ marginRight: (left && !right) ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor}
       />
@@ -104,10 +104,10 @@ class Input extends React.Component {
           onPress={() => this.setState({ isPassword: !isPassword })}
         >
           <Icon
-            size={theme.SIZES.BASE * 1.25}
+            size={theme.SIZES.BASE * 1.0625}
             color={theme.COLORS.BLACK}
-            name={`eye${isPassword ? '' : '-with-line'}`}
-            family="Entypo"
+            name="eye-17"
+            family="Galio"
           />
         </TouchableOpacity>
       );
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     color: theme.COLORS.INPUT,
-    fontSize: theme.SIZES.FONT,
+    fontSize: theme.SIZES.FONT * 0.875,
     textDecorationColor: 'transparent',
     textShadowColor: 'transparent',
   },

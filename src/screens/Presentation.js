@@ -1,11 +1,17 @@
 import React from 'react';
 import {
-  View, StyleSheet, StatusBar, Image,
+  Dimensions, StyleSheet, StatusBar, Image,
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { Constants, LinearGradient } from 'expo';
+
 // galio components
-import { Text, Button, Block, NavBar } from '..';
+import {
+  Text, Button, Block, NavBar,
+} from '..';
 import theme from '../theme';
+
+const { width } = Dimensions.get('screen');
+const iphoneImage = require('../../assets/iphone.png');
 
 const Presentation = props => (
   <Block flex>
@@ -19,25 +25,24 @@ const Presentation = props => (
       end={[0.5, 0.9]}
       style={styles.backgroundGradient}
     />
-    <View style={styles.container}>
-      <Text h2 color={theme.COLORS.WHITE} style={{ marginBottom: 15 }}>
-        Check this out
-      </Text>
-      <Text p center color={theme.COLORS.WHITE} style={{ marginBottom: 30 }}>
-        This is created and was created just for your eyes only. Oh yeah, you really want a piece of this cool UI kit.
-      </Text>
-      <Button size="large" color="transparent" round onPress={() => props.navigation.openDrawer()}>
-        Get Started
-      </Button>
-    </View>
-    <Image
-      source={{ uri: 'http://pngimg.com/uploads/iphone/iphone_PNG5744.png' }}
-      style={{
-        width: '100%', height: '100%', position: 'absolute', top: '60%',
-      }}
-      resizeMethod="resize"
-      resizeMode="contain"
-    />
+    <Block flex center style={styles.container}>
+      <Block flex middle style={{ justifyContent: 'flex-end', marginBottom: theme.SIZES.BASE * 2.5 }}>
+        <Text center size={theme.SIZES.FONT * 2.375} color={theme.COLORS.WHITE} style={{ marginBottom: theme.SIZES.BASE }}>
+          Check this out
+        </Text>
+        <Text center size={theme.SIZES.FONT * 0.875} color={theme.COLORS.WHITE} style={{ marginBottom: theme.SIZES.BASE * 1.875, paddingHorizontal: theme.SIZES.BASE * 2 }}>
+          You should totally read this stuf, like
+          seriously all yo homies love sneak dissing
+          but at least u’re true, right?
+        </Text>
+        <Button size="large" color="transparent" round onPress={() => props.navigation.openDrawer()}>
+          Get Started
+        </Button>
+      </Block>
+      <Block flex style={{ marginBottom: -Constants.statusBarHeight * 2 }}>
+        <Image source={iphoneImage} style={{ width }} />
+      </Block>
+    </Block>
   </Block>
 );
 
@@ -51,17 +56,10 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   container: {
-    width: '100%',
-    height: '100%',
-    paddingTop: '30%',
-    paddingBottom: '30%',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    paddingLeft: '10%',
-    paddingRight: '10%',
+    paddingHorizontal: theme.SIZES.BASE,
   },
   navbar: {
-    top: 0,
+    top: Constants.statusBarHeight,
     left: 0,
     right: 0,
     zIndex: 9999,

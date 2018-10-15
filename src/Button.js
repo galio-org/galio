@@ -19,6 +19,7 @@ class Button extends React.Component {
     lowercase: false,
     capitalize: false,
     shadowless: false,
+    shadowColor: false,
     onlyIcon: false,
     loading: false,
     loadingSize: 'small',
@@ -87,6 +88,7 @@ class Button extends React.Component {
       iconSize,
       opacity,
       shadowless,
+      shadowColor,
       ...rest
     } = this.props;
 
@@ -108,7 +110,7 @@ class Button extends React.Component {
       },
       radius && { borderRadius: radius },
       !shadowless && styles.shadow,
-      { shadowColor: theme.COLORS[color.toUpperCase()] },
+      { shadowColor: shadowColor || theme.COLORS[color.toUpperCase()] },
       { zIndex: 2 },
       style,
     ];
@@ -137,8 +139,8 @@ const styles = StyleSheet.create({
   shadow: {
     shadowColor: theme.COLORS.BLOCK,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
   },
   customText: {
     fontSize: theme.SIZES.FONT,
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.TRANSPARENT,
   },
   androidShadow: {
-    elevation: 1,
+    elevation: 11,
   },
 });
 
@@ -202,6 +204,7 @@ Button.propTypes = {
   ]),
   opacity: PropTypes.number,
   shadowless: PropTypes.bool,
+  shadowColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   onlyIcon: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   iconFamily: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),

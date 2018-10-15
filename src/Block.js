@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import theme from './theme';
 
@@ -20,6 +20,7 @@ export default class Block extends Component {
     height: null,
     width: null,
     shadowColor: null,
+    safe: false,
   }
 
   render() {
@@ -39,6 +40,7 @@ export default class Block extends Component {
       shadowColor,
       card,
       width,
+      safe,
       children,
       style,
       ...props
@@ -63,6 +65,14 @@ export default class Block extends Component {
       shadowColor && { shadowColor },
       style,
     ];
+
+    if (safe) {
+      return (
+        <SafeAreaView style={styleBlock} {...props}>
+          {children}
+        </SafeAreaView>
+      );
+    }
 
     return (
       <View style={styleBlock} {...props}>
@@ -91,6 +101,7 @@ Block.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   shadowColor: PropTypes.string,
+  safe: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -129,10 +140,10 @@ const styles = StyleSheet.create({
   },
   shadow: {
     shadowColor: theme.COLORS.BLOCK,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.15,
     shadowRadius: 8,
-    elevation: 1,
+    elevation: 16,
   },
   fluid: {
     width: 'auto',

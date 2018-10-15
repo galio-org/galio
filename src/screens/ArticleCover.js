@@ -4,7 +4,7 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { Constants, LinearGradient } from 'expo';
 
 // galio components
 import {
@@ -24,29 +24,55 @@ const ArticleCover = props => (
       <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
       <Block style={styles.articleSummary}>
         <Block row style={{ marginBottom: theme.SIZES.BASE }}>
-          <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-            <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-            <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.2k</Text>
+          <Block row middle style={{ marginRight: theme.SIZES.BASE }}>
+            <Icon name="eye" family="Galio" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
+            <Text
+              p
+              color={theme.COLORS.WHITE}
+              size={theme.SIZES.FONT * 0.875}
+              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+            >
+            25.6k
+            </Text>
           </Block>
           <Block row middle>
-            <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-            <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
+            <Icon name="heart-2" family="Galio" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
+            <Text
+              p
+              color={theme.COLORS.WHITE}
+              size={theme.SIZES.FONT * 0.875}
+              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+            >
+            936
+            </Text>
           </Block>
         </Block>
 
         <Block>
-          <Text h3 color={theme.COLORS.WHITE} style={{ marginBottom: theme.SIZES.BASE, fontWeight: '400' }}>
+          <Text
+            color={theme.COLORS.WHITE}
+            size={theme.SIZES.FONT * 0.875}
+            style={{ marginBottom: theme.SIZES.BASE, fontWeight: '400' }}
+          >
             {"Why is 'The Thing' always looking at you?"}
           </Text>
-          <Text color={theme.COLORS.WHITE} style={{ marginBottom: theme.SIZES.BASE, fontWeight: '500', lineHeight: theme.SIZES.FONT * 1.3 }}>
+          <Text
+            size={theme.SIZES.FONT * 0.875}
+            color={theme.COLORS.WHITE}
+            style={{ marginBottom: theme.SIZES.BASE, fontWeight: '500', lineHeight: theme.SIZES.FONT * 1.3 }}
+          >
             Just small talk from the Fantastic Four.
           </Text>
-          <Text color={theme.COLORS.WHITE} style={{ marginBottom: theme.SIZES.BASE / 2, fontWeight: '500', lineHeight: theme.SIZES.FONT * 1.3 }}>
+          <Text
+            size={theme.SIZES.FONT * 0.875}
+            color={theme.COLORS.WHITE}
+            style={{ marginBottom: theme.SIZES.BASE / 2, fontWeight: '500', lineHeight: theme.SIZES.FONT * 1.3 }}
+          >
             So... Did you ever think about this bus? Like... How could this bus
             have all these weird colors. This purple is really cute though.
           </Text>
         </Block>
-        <LinearGradient colors={['transparent', theme.COLORS.BLACK]} style={styles.gradient} />
+        <LinearGradient colors={['transparent', 'rgba(0, 0, 0, 0.7)']} style={styles.gradient} />
       </Block>
     </Block>
   </Block>
@@ -60,7 +86,7 @@ const styles = StyleSheet.create({
   absolute: {
     position: 'absolute',
     bottom: 0,
-    top: 0,
+    top: Constants.statusBarHeight,
     left: 0,
     right: 0,
   },
@@ -69,7 +95,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '30%',
+    height: 90,
   },
   articleSummary: {
     paddingLeft: 20,

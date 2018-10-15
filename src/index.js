@@ -1,4 +1,3 @@
-import AuthorSection from './AuthorSection';
 import Block from './Block';
 import Button from './Button';
 import Card from './Card';
@@ -8,7 +7,6 @@ import NavBar from './NavBar';
 import Text from './Text';
 
 export {
-  AuthorSection,
   Block,
   Button,
   Card,

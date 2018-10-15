@@ -1,9 +1,13 @@
 import React from 'react';
-import { Dimensions, StyleSheet, ScrollView, Alert, Image } from 'react-native';
+import {
+  Dimensions, StyleSheet, ScrollView, Alert,
+} from 'react-native';
 import { LinearGradient } from 'expo';
 
 // galio components
-import { Text, Block, Button, Card, NavBar, Icon, Input } from '..';
+import {
+  Text, Block, Button, Card, NavBar, Icon, Input,
+} from '..';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');
@@ -12,17 +16,16 @@ export default class Components extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <Block flex>
+      <Block safe flex>
         <NavBar
-          transparent
           title="Galio components"
           right={(
             <Button
               onlyIcon
-              icon="heart"
-              iconSize={18}
-              iconFamily="FontAwesome"
-              iconColor={theme.COLORS.MUTED}
+              icon="heart-2"
+              iconFamily="Galio"
+              iconSize={theme.SIZES.BASE}
+              iconColor={theme.COLORS.ICON}
               color="transparent"
               onPress={() => Alert.alert('Like it!')}
             />
@@ -110,7 +113,7 @@ export default class Components extends React.Component {
                   style={{ borderColor: theme.COLORS.SUCCESS }}
                 />
                 <Input rounded password viewPass placeholder="password" />
-                <Input rounded icon="email" family="MaterialIcons" placeholder="icon right" right />
+                <Input rounded icon="heart-2" family="Galio" placeholder="icon right" right />
                 <Input
                   rounded
                   borderless
@@ -129,19 +132,20 @@ export default class Components extends React.Component {
               <Block>
                 <NavBar
                   back
-                  title="Chat"
+                  title="Chart"
                   leftStyle={{ marginRight: 0 }}
+                  leftIconColor={theme.COLORS.MUTED}
                   rightStyle={{ alignSelf: 'flex-end' }}
                   onLeftPress={() => Alert.alert('Back')}
-                  style={{ width, marginHorizontal: -theme.SIZES.BASE }}
+                  style={{ width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
                   right={(
                     <Button
                       onlyIcon
-                      icon="settings"
+                      icon="settings-gear-65"
                       color="transparent"
-                      iconFamily="Feather"
+                      iconFamily="Galio"
                       iconColor={theme.COLORS.MUTED}
-                      iconSize={theme.SIZES.BASE * 1.5}
+                      iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Settings')}
                     />
                   )}
@@ -152,58 +156,59 @@ export default class Components extends React.Component {
                   titleStyle={{ alignSelf: 'flex-start' }}
                   onLeftPress={() => Alert.alert('Menu')}
                   rightStyle={{ flexDirection: 'row' }}
-                  leftStyle={{ flex: 0.5 }}
-                  style={{ width, marginHorizontal: -theme.SIZES.BASE }}
+                  leftStyle={{ flex: 0.4 }}
+                  style={{ width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
                   right={[
                     <Button
                       key="right-heart"
                       onlyIcon
-                      icon="md-heart-outline"
-                      iconFamily="Ionicons"
+                      icon="heart-2"
+                      iconFamily="Galio"
                       color="transparent"
-                      iconColor={theme.COLORS.MUTED}
-                      iconSize={theme.SIZES.BASE * 1.5}
+                      iconColor={theme.COLORS.BLACK}
+                      iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Like!')}
+                      style={{ marginRight: theme.SIZES.BASE }}
                     />,
                     <Button
                       key="right-search"
                       onlyIcon
-                      icon="ios-search"
+                      icon="zoom-split"
                       color="transparent"
-                      iconFamily="Ionicons"
-                      iconColor={theme.COLORS.MUTED}
-                      iconSize={theme.SIZES.BASE * 1.5}
+                      iconFamily="Galio"
+                      iconColor={theme.COLORS.BLACK}
+                      iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}
                     />,
                   ]}
                 />
 
                 <NavBar
-                  back
                   title="Terms of Services"
-                  leftStyle={{ flex: 0.5 }}
+                  leftStyle={{ flex: 0.4 }}
                   onLeftPress={() => Alert.alert('Back')}
                   titleStyle={{ alignSelf: 'flex-start' }}
-                  style={{ width, marginHorizontal: -theme.SIZES.BASE }}
+                  style={{ width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
                   right={[
                     <Button
                       key="right-location"
                       onlyIcon
-                      icon="location"
-                      iconFamily="EvilIcons"
+                      icon="pin-3"
+                      iconFamily="Galio"
                       color="transparent"
                       iconColor={theme.COLORS.MUTED}
-                      iconSize={theme.SIZES.BASE * 1.5}
+                      iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Like!')}
+                      style={{ marginRight: theme.SIZES.BASE }}
                     />,
                     <Button
                       key="right-search"
                       onlyIcon
-                      icon="ios-search"
+                      icon="zoom-split"
                       color="transparent"
-                      iconFamily="Ionicons"
+                      iconFamily="Galio"
                       iconColor={theme.COLORS.MUTED}
-                      iconSize={theme.SIZES.BASE * 1.5}
+                      iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}
                     />,
                   ]}
@@ -219,11 +224,11 @@ export default class Components extends React.Component {
                   right={(
                     <Button
                       onlyIcon
-                      icon="ios-search"
                       color="transparent"
-                      iconFamily="Ionicons"
+                      icon="zoom-split"
+                      iconFamily="Galio"
                       iconColor={theme.COLORS.WHITE}
-                      iconSize={theme.SIZES.BASE * 1.5}
+                      iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}
                     />
                   )}
@@ -236,61 +241,47 @@ export default class Components extends React.Component {
                 <Text h5>Cards</Text>
               </Block>
               <Block flex space="between" style={styles.cards}>
-                <Card flex borderless shadowColor={theme.COLORS.BLACK} style={styles.card}>
-                  <Block card style={[styles.cardImageContainer, styles.cardNoRadius]}>
-                    <Image
-                      source={{ uri: 'https://images.unsplash.com/photo-1524562787295-1608217aa823?w=600&q=200' }}
-                      style={styles.cardImage}
-                    />
-                  </Block>
-                  <Block flex row style={styles.cardFooter} space="around">
-                    <Block flex={1.2} row>
-                      <Image source={{ uri: 'http://i.pravatar.cc/100?id=card' }} style={styles.cardAvatar} />
-                      <Block style={styles.cardTitle}>
-                        <Text>Galio Framework</Text>
-                        <Text muted size={theme.SIZES.FONT * 0.75}>components</Text>
-                      </Block>
-                    </Block>
-                    <Block flex row middle space="around">
-                      <Block row middle>
-                        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-                        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
-                      </Block>
-                      <Block row middle>
-                        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
-                        <Text p muted style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
-                      </Block>
-                    </Block>
-                  </Block>
-                </Card>
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  caption="139 minutes ago"
+                  location="Los Angeles, CA"
+                  avatar="http://i.pravatar.cc/100?id=pineaple"
+                  imageBlockStyle={styles.cardNoRadius}
+                  image="https://images.unsplash.com/photo-1494252713559-f26b4bf0b174?w=840&q=300"
+                />
 
-                <Card flex borderless shadowColor={theme.COLORS.BLACK} style={styles.card}>
-                  <Block card style={styles.cardImageContainer}>
-                    <Image
-                      source={{ uri: 'https://images.unsplash.com/photo-1535649168324-4198731b2252?w=600&q=200' }}
-                      style={styles.cardImage}
-                    />
-                  </Block>
-                  <LinearGradient colors={['transparent', theme.COLORS.BLACK]} style={styles.cardGradient} />
-                  <Block flex row style={[styles.cardFooter, styles.cardFull]} space="around">
-                    <Block flex={1.2} row>
-                      <Image source={{ uri: 'http://i.pravatar.cc/100?id=card' }} style={styles.cardAvatar} />
-                      <Block style={styles.cardTitle}>
-                        <Text color={theme.COLORS.WHITE}>Galio Framework</Text>
-                        <Text color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.75}>components</Text>
-                      </Block>
-                    </Block>
-                    <Block flex row middle space="around">
-                      <Block row middle>
-                        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-                        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.6k</Text>
-                      </Block>
-                      <Block row middle>
-                        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-                        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
-                      </Block>
-                    </Block>
-                  </Block>
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  caption="139 minutes ago"
+                  location="Los Angeles, CA"
+                  avatar="http://i.pravatar.cc/100?id=skater"
+                  imageStyle={styles.cardImageRadius}
+                  imageBlockStyle={{ padding: theme.SIZES.BASE / 2 }}
+                  image="https://images.unsplash.com/photo-1497802176320-541c8e8de98d?&w=1600&h=900&fit=crop&crop=entropy&q=300"
+                />
+
+                <Card
+                  flex
+                  borderless
+                  shadowColor={theme.COLORS.BLACK}
+                  style={styles.card}
+                  title="Christopher Moon"
+                  titleColor={theme.COLORS.WHITE}
+                  caption="139 minutes ago"
+                  avatar="http://i.pravatar.cc/100?id=skater"
+                  footerStyle={styles.cardFull}
+                  imageStyle={{ height: theme.SIZES.BASE * 13.75 }}
+                  image="https://images.unsplash.com/photo-1506321806993-0e39f809ae59?&w=1200&h=1200&fit=crop&crop=entropy&q=300"
+                >
+                  <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} />
                 </Card>
               </Block>
             </Block>
@@ -317,8 +308,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   card: {
+    borderWidth: 0,
     backgroundColor: theme.COLORS.WHITE,
-    marginVertical: theme.SIZES.BASE,
+    width: width - theme.SIZES.BASE * 2,
+    marginVertical: theme.SIZES.BASE * 0.875,
   },
   cardFooter: {
     justifyContent: 'flex-start',
@@ -333,23 +326,24 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 0,
   },
   cardAvatar: {
-    width: theme.SIZES.BASE * 3,
-    height: theme.SIZES.BASE * 3,
-    borderRadius: theme.SIZES.BASE * 1.5,
+    width: theme.SIZES.BASE * 2.5,
+    height: theme.SIZES.BASE * 2.5,
+    borderRadius: theme.SIZES.BASE * 1.25,
   },
   cardTitle: {
     justifyContent: 'center',
-    paddingLeft: theme.SIZES.BASE,
+    paddingLeft: theme.SIZES.BASE / 2,
   },
   cardImageContainer: {
     borderWidth: 0,
     overflow: 'hidden',
   },
+  cardImageRadius: {
+    borderRadius: theme.SIZES.BASE * 0.1875,
+  },
   cardImage: {
-    height: theme.SIZES.BASE * 15,
-    width: width - theme.SIZES.BASE * 2,
-    borderTopRightRadius: theme.SIZES.BASE * 0.5,
-    borderTopLeftRadius: theme.SIZES.BASE * 0.5,
+    width: 'auto',
+    height: theme.SIZES.BASE * 12.5,
   },
   cardRounded: {
     borderRadius: theme.SIZES.BASE * 0.5,
@@ -361,11 +355,11 @@ const styles = StyleSheet.create({
     left: 0,
   },
   cardGradient: {
-    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '30%',
+    height: 90,
+    position: 'absolute',
     overflow: 'hidden',
     borderBottomRightRadius: theme.SIZES.BASE * 0.5,
     borderBottomLeftRadius: theme.SIZES.BASE * 0.5,

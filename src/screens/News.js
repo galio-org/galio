@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Alert, Image, StyleSheet, ScrollView,
+  Image, StyleSheet, ScrollView,
 } from 'react-native';
 
-import { LinearGradient } from 'expo';
+import { Constants } from 'expo';
 
 // Galio components
 import {
-  Button, Block, Text, Icon, NavBar,
+  Button, Block, Card, Text, Icon, NavBar,
 } from '..';
 import theme from '../theme';
 
@@ -48,90 +48,114 @@ Author.propsTypes = {
 
 
 const News = props => (
-  <Block flex>
+  <Block safe flex>
     <NavBar
-      back
       title="News"
       titleStyle={{ alignSelf: 'flex-start' }}
-      onLeftPress={() => props.navigation.goBack()}
-      rightStyle={{ flexDirection: 'row' }}
-      leftStyle={{ flex: 0.5 }}
+      onLeftPress={() => props.navigation.openDrawer()}
+      leftIconColor={theme.COLORS.MUTED}
       right={[
         <Button
           key="right-options"
-          onlyIcon
-          icon="ios-options"
-          iconFamily="Ionicons"
           color="transparent"
-          iconColor={theme.COLORS.MUTED}
-          iconSize={theme.SIZES.BASE * 1.6}
-          style={{ transform: [{ rotate: '90deg' }], marginRight: theme.SIZES.BASE }}
-          onPress={() => Alert.alert('Settings')}
-        />,
+          style={styles.button}
+          onPress={() => props.navigation.openDrawer()}
+        >
+          <Icon size={theme.SIZES.BASE * 1.0625} name="preferences-circle-rotate" family="Galio" color={theme.COLORS.MUTED} />
+        </Button>,
         <Button
           key="right-search"
-          onlyIcon
-          icon="ios-search"
           color="transparent"
-          iconFamily="Ionicons"
-          iconColor={theme.COLORS.MUTED}
-          iconSize={theme.SIZES.BASE * 1.6}
-          onPress={() => Alert.alert('Search')}
-        />,
+          style={styles.button}
+          onPress={() => props.navigation.openDrawer()}
+        >
+          <Icon size={theme.SIZES.BASE * 1.0625} name="zoom-split" family="Galio" color={theme.COLORS.MUTED} />
+        </Button>,
       ]}
     />
 
     <ScrollView style={{ flex: 1 }}>
       <Block flex style={styles.news}>
         <Image
-          source={{ uri: 'https://images.unsplash.com/photo-1536523552737-74ded3c0591c?fit=crop&w=1300&q=80', }}
-          style={styles.articleThumbnail}
+          source={{ uri: 'https://images.unsplash.com/photo-1535649168324-4198731b2252?fit=crop&w=1300&q=80' }}
+          style={styles.articleImage}
         />
         <Block style={styles.article}>
           <Text h4>
-            What's going on with this little Cactus? Is he going crazy?
+            I would happily watch a TV show about crabs
           </Text>
           <Text muted style={[styles.text, { marginVertical: theme.SIZES.BASE * 1.3 }]}>
-            A chat with a little Cactus.
+            InterBlocking is super star
           </Text>
           <Text style={styles.text}>
-            You should totally read this stuff, like seriously all yo homies
-            love sneak dissing but at least u're true, right?
+            You should totally read this sutuff, like seriously all yo homies
+            love sneak dissing but at least u’re true, right?
           </Text>
           <Text muted style={styles.text}>
             Spicy jalapeno bacon ipsum dolor amet short loin cupidatat est, pork
             pancetta velit kevin occaecat ipsum aliqua ham tri-tip incididunt.
           </Text>
           <Text muted style={styles.text}>
-            Irure sirloin nostrud filet mignon capicola strip steak, sint pork
-            dolore pig short ribs. Et pariatur sunt, ribeye esse frankfurter
-            biltong nostrud. Elit do filet mignon turkey, tempor pastrami ea
-            bacon. In tri-tip id cupim tail ham irure. Drumstick esse ut
-            andouille strip steak.
+            Irure sirloin nostrud filet mignon capicola strip
+            steak, sink pork dolore pig shirt ribs. Et pariatur
+            sunt, ribeye esse frankfurter biltong nostrud. Elit
+            do filet mignon turkey, temport pastrami ea bacon. In
+            tritip id cupim tail ham irure. Drumstick esse ut
+            andouille strip steak. Et pariatur sunt, ribeye esse
+            frankfurter biltong nostrud. Elit do filet mignon
+            turkey, temport pastrami ea bacon. In tritip id
+            cupim tail ham irure. Drumstick esse ut andouille
+            strip steak.
           </Text>
         </Block>
       </Block>
     </ScrollView>
 
-    <LinearGradient colors={['transparent', theme.COLORS.WHITE]} style={styles.gradient} />
-
-    <Author
-      title="Galio Framework"
-      caption="27 minutes ago"
-      avatar="https://api.adorable.io/avatars/100/galio.io.png"
+    <Card
+      flex
+      borderless
+      shadowColor={theme.COLORS.BLACK}
+      style={styles.author}
+      title="Christopher Moon"
+      caption="139 minutes ago"
+      avatar="http://i.pravatar.cc/100?id=article"
+      location={(
+        <Block row right>
+          <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+            <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+            <Text
+              p
+              color={theme.COLORS.MUTED}
+              size={theme.SIZES.FONT * 0.875}
+              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+            >
+              25.6k
+            </Text>
+          </Block>
+          <Block row middle>
+            <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+            <Text
+              p
+              color={theme.COLORS.MUTED}
+              size={theme.SIZES.FONT * 0.875}
+              style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
+            >
+              936
+            </Text>
+          </Block>
+        </Block>
+      )}
     />
-
   </Block>
 );
 
 const styles = StyleSheet.create({
-  articleThumbnail: {
-    borderRadius: theme.SIZES.BASE / 2,
-    height: theme.SIZES.BASE * 16,
-  },
   article: {
-    marginTop: theme.SIZES.BASE * 2,
-    paddingHorizontal: theme.SIZES.BASE,
+    marginTop: theme.SIZES.BASE * 1.75,
+  },
+  articleImage: {
+    borderRadius: theme.SIZES.BASE / 2,
+    height: theme.SIZES.BASE * 13.75,
   },
   news: {
     marginTop: theme.SIZES.BASE / 2,
@@ -139,32 +163,25 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: theme.SIZES.BASE,
   },
+  button: {
+    width: theme.SIZES.BASE * 2,
+    borderColor: 'transparent',
+  },
   author: {
     position: 'absolute',
     right: theme.SIZES.BASE,
     left: theme.SIZES.BASE,
-    bottom: theme.SIZES.BASE * 1.75,
+    bottom: Constants.statusBarHeight,
     backgroundColor: theme.COLORS.WHITE,
-    padding: theme.SIZES.BASE * 0.8,
-    borderRadius: theme.SIZES.BASE / 3,
-  },
-  avatar: {
-    width: theme.SIZES.BASE * 2.5,
-    height: theme.SIZES.BASE * 2.5,
-    borderRadius: theme.SIZES.BASE * 1.25,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
   },
   text: {
-    fontWeight: '500',
-    fontSize: theme.SIZES.FONT,
-    lineHeight: theme.SIZES.FONT * 1.4,
+    fontWeight: '400',
+    fontSize: theme.SIZES.FONT * 0.875,
+    lineHeight: theme.SIZES.BASE * 1.25,
+    letterSpacing: 0.3,
     marginBottom: theme.SIZES.BASE,
-  },
-  gradient: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: theme.SIZES.BASE * 6,
   },
 });
 

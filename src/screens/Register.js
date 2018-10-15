@@ -11,7 +11,7 @@ import {
 } from '..';
 import theme from '../theme';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 class Login extends React.Component {
   state = {
@@ -29,69 +29,79 @@ class Login extends React.Component {
     const { user, email, password } = this.state;
 
     return (
-      <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar back transparent onLeftPress={() => navigation.openDrawer()} />
+      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+        <NavBar title="Sign Up" onLeftPress={() => navigation.openDrawer()} />
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-          <Block flex center style={{ marginTop: theme.SIZES.BASE }}>
-            <Block row center space="between">
+          <Block
+            flex
+            center
+            style={{ marginTop: theme.SIZES.BASE * 1.875, marginBottom: height * 0.1 }}
+          >
+            <Text
+              muted
+              center
+              size={theme.SIZES.FONT * 0.875}
+              style={{ paddingHorizontal: theme.SIZES.BASE * 2.3 }}
+            >
+              This is the perfect place to write a short description
+              of this step and even the next steps ahead
+            </Text>
+            <Block row center space="between" style={{ marginVertical: theme.SIZES.BASE * 1.875 }}>
               <Block flex middle right>
                 <Button
                   round
                   onlyIcon
-                  shadowless
-                  iconSize={theme.SIZES.BASE * 2}
+                  iconSize={theme.SIZES.BASE * 1.625}
                   icon="facebook"
                   iconFamily="FontAwesome"
                   onPress={() => Alert.alert('Not implemented')}
                   color={theme.COLORS.FACEBOOK}
+                  shadowColor={theme.COLORS.FACEBOOK}
                   iconColor={theme.COLORS.WHITE}
-                  style={{ width: theme.SIZES.BASE * 4 }}
+                  style={styles.social}
                 />
               </Block>
               <Block flex middle center>
                 <Button
                   round
                   onlyIcon
-                  shadowless
-                  iconSize={theme.SIZES.BASE * 2}
+                  iconSize={theme.SIZES.BASE * 1.625}
                   icon="twitter"
                   iconFamily="FontAwesome"
                   onPress={() => Alert.alert('Not implemented')}
                   color={theme.COLORS.TWITTER}
+                  shadowColor={theme.COLORS.TWITTER}
                   iconColor={theme.COLORS.WHITE}
-                  style={{ width: theme.SIZES.BASE * 4 }}
+                  style={styles.social}
                 />
               </Block>
               <Block flex middle left>
                 <Button
                   round
                   onlyIcon
-                  shadowless
-                  iconSize={theme.SIZES.BASE * 2}
+                  iconSize={theme.SIZES.BASE * 1.625}
                   icon="dribbble"
                   iconFamily="FontAwesome"
                   onPress={() => Alert.alert('Not implemented')}
                   color={theme.COLORS.DRIBBBLE}
+                  shadowColor={theme.COLORS.DRIBBBLE}
                   iconColor={theme.COLORS.WHITE}
-                  style={{ width: theme.SIZES.BASE * 4 }}
+                  style={styles.social}
                 />
               </Block>
             </Block>
-            <Text muted center style={{ padding: theme.SIZES.BASE }}>
+            <Text muted center size={theme.SIZES.FONT * 0.875}>
               or be classical
             </Text>
           </Block>
 
-          <Block flex={2} space="evenly" center>
-            <Block>
+          <Block flex={2} center space="between">
+            <Block flex={2}>
               <Input
                 rounded
                 placeholder="Username"
                 autoCapitalize="none"
                 style={{ width: width * 0.9 }}
-                right
-                icon="user"
-                family="Feather"
                 onChangeText={text => this.handleChange('user', text)}
               />
               <Input
@@ -100,9 +110,6 @@ class Login extends React.Component {
                 placeholder="Email"
                 autoCapitalize="none"
                 style={{ width: width * 0.9 }}
-                right
-                icon="mail"
-                family="Feather"
                 onChangeText={text => this.handleChange('email', text)}
               />
               <Input
@@ -114,7 +121,7 @@ class Login extends React.Component {
                 onChangeText={text => this.handleChange('password', text)}
               />
             </Block>
-            <Block>
+            <Block flex middle>
               <Button
                 round
                 color="error"
@@ -127,6 +134,11 @@ Password: ${password}`,
                 )}
               >
                 Sign up
+              </Button>
+              <Button color="transparent" shadowless onPress={() => navigation.navigate('Login')}>
+                <Text center color={theme.COLORS.ERROR} size={theme.SIZES.FONT * 0.75}>
+                  Already have an account? Sign In
+                </Text>
               </Button>
             </Block>
           </Block>
@@ -144,6 +156,12 @@ const styles = StyleSheet.create({
     paddingTop: theme.SIZES.BASE * 0.3,
     paddingHorizontal: theme.SIZES.BASE,
     backgroundColor: theme.COLORS.WHITE,
+  },
+  social: {
+    width: theme.SIZES.BASE * 3.5,
+    height: theme.SIZES.BASE * 3.5,
+    borderRadius: theme.SIZES.BASE * 1.75,
+    justifyContent: 'center',
   },
 });
 

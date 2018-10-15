@@ -2,6 +2,13 @@
   "name": "galio-project-template",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "version": "1.0.0",
+  "files": [
+    "src/*.js",
+    "src/helpers/*.js",
+    "assets/fonts/galio.json",
+    "assets/fonts/galio.ttf"
+  ],
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -19,6 +26,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.0",
+    "d3-shape": "^1.2.2",
     "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-flowtype": "^2.50.2",
