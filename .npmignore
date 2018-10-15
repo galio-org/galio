@@ -1,0 +1,10 @@
+.expo
+routes.js
+
+assets/
+src/screens/
+
+.babelrc
+.eslintrc
+.prettierrc
+.watchmanconfig
