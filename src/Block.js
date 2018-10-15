@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
-    elevation: 16,
+    elevation: 1,
   },
   fluid: {
     width: 'auto',
