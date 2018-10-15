@@ -2,6 +2,13 @@
   "name": "galio-project-template",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "version": "1.0.0",
+  "files": [
+    "src/*.js",
+    "src/helpers/*.js",
+    "assets/fonts/galio.json",
+    "assets/fonts/galio.ttf"
+  ],
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
