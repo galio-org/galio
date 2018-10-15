@@ -16,7 +16,7 @@ export default class Components extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <Block flex>
+      <Block safe flex>
         <NavBar
           title="Galio components"
           right={(

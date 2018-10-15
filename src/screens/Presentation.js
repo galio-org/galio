@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Dimensions, StyleSheet, StatusBar, Image,
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { Constants, LinearGradient } from 'expo';
 
 // galio components
 import {
@@ -39,7 +39,7 @@ const Presentation = props => (
           Get Started
         </Button>
       </Block>
-      <Block flex bottom style={{ marginBottom: -theme.SIZES.BASE / 3 }}>
+      <Block flex style={{ marginBottom: -Constants.statusBarHeight * 2 }}>
         <Image source={iphoneImage} style={{ width }} />
       </Block>
     </Block>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.SIZES.BASE,
   },
   navbar: {
-    top: 0,
+    top: Constants.statusBarHeight,
     left: 0,
     right: 0,
     zIndex: 9999,

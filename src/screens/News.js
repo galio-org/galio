@@ -4,6 +4,8 @@ import {
   Image, StyleSheet, ScrollView,
 } from 'react-native';
 
+import { Constants } from 'expo';
+
 // Galio components
 import {
   Button, Block, Card, Text, Icon, NavBar,
@@ -46,7 +48,7 @@ Author.propsTypes = {
 
 
 const News = props => (
-  <Block flex>
+  <Block safe flex>
     <NavBar
       title="News"
       titleStyle={{ alignSelf: 'flex-start' }}
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: theme.SIZES.BASE,
     left: theme.SIZES.BASE,
-    bottom: theme.SIZES.BASE * 1.56,
+    bottom: Constants.statusBarHeight,
     backgroundColor: theme.COLORS.WHITE,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,

@@ -7,6 +7,8 @@ import {
   Dimensions,
 } from 'react-native';
 
+import { Constants } from 'expo';
+
 // galio components
 import {
   Block, Card, Text, Icon, NavBar,
@@ -19,12 +21,19 @@ const bgImage = 'https://images.unsplash.com/photo-1516651029879-bcd191e7d33b?fi
 
 const Article = props => (
   <Block>
-    <StatusBar hidden={false} barStyle="light-content" />
+    <StatusBar barStyle="light-content" />
     <Block style={styles.navbar}>
       <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
     </Block>
 
-    <Image source={{ uri: bgImage }} resizeMode="cover" style={{ width, height: height * 0.55 }} />
+    <Image
+      source={{ uri: bgImage }}
+      resizeMode="cover"
+      style={{
+        width,
+        height: height * 0.55,
+      }}
+    />
 
     <Block center style={{ marginTop: -theme.SIZES.BASE * 2 }}>
       <Block flex style={styles.header}>
@@ -97,7 +106,7 @@ const styles = StyleSheet.create({
     width,
   },
   navbar: {
-    top: 0,
+    top: Constants.statusBarHeight,
     left: 0,
     right: 0,
     zIndex: 9999,

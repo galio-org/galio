@@ -69,7 +69,7 @@ export default class Cards extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
         <NavBar title="Cards" onLeftPress={() => navigation.openDrawer()} />
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">

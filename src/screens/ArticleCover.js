@@ -4,7 +4,7 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { Constants, LinearGradient } from 'expo';
 
 // galio components
 import {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   absolute: {
     position: 'absolute',
     bottom: 0,
-    top: 0,
+    top: Constants.statusBarHeight,
     left: 0,
     right: 0,
   },

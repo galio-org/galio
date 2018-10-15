@@ -48,13 +48,6 @@ const cards = [
     iconFamily: 'Galio',
   },
 ];
-// const statsActive = [
-//   1.5, 1, 1.4, 1.5, 1.8, 1.35, 1.84, 1.83, 1.9, 1.05, 1.06, 1.7, 1.35, 1.35, 1.5,
-// ];
-// const statsInactive = [
-//   2, 1.7, 1.65, 1.1, 1.06, 1.05, 1.3, 1, 1.84, 1.8, 1.85, 1.75, 1.74, 1.7, 1.5,
-// ];
-// const statsTitles = ['07/18', '08/18', '09/18', '10/18', '11/18'];
 const statsTitles = ['Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
 
 class Dashboard extends React.Component {
@@ -161,7 +154,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Block flex>
+      <Block safe flex>
         {/* header */}
         {this.renderHeader()}
 

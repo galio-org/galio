@@ -28,7 +28,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
 
     return (
-      <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
         <NavBar title="Sign In" onLeftPress={() => navigation.openDrawer()} />
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
           <Block flex center style={{ marginTop: theme.SIZES.BASE * 1.875, marginBottom: height * 0.1 }}>

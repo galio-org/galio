@@ -85,7 +85,7 @@ class Grid extends React.Component {
   render() {
     const { navigation } = this.props;
     return (
-      <Block flex>
+      <Block safe flex>
         <NavBar fix title="Grid" onLeftPress={() => navigation.openDrawer()} />
         <Block style={styles.grid}>
           {
