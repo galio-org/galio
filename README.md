@@ -8,6 +8,7 @@ Built with real app examples, component demos, guides, and how-to's to get you u
 
 ## Table of Contents
 * [Quick start](#quick-start)
+* [Components](#components)
 * [Examples](#examples)
 * [Documentation](#documentation)
 * [Resources](#resources)
@@ -34,11 +35,33 @@ User our iOS or Android app to directly view Expo projects on your phone.
 
 [Expo Android app](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en)
 
+## Components
+
+Under Galio's belt:
+
+:white_check_mark: NavBar
+
+:white_check_mark: Block
+
+:white_check_mark: Card
+
+:white_check_mark: Button
+
+:white_check_mark: Icon
+
+:white_check_mark: Input
+
+:white_check_mark: Text
+
+:construction: Will follow: :construction:
+
+TBA
+
 ## Examples
 
 Here we will showcase some screens and some sample code of how we've used Galio in order to create them.
 
-<img src="http://oi63.tinypic.com/245g5jq.jpg" width="170" height="320">
+<img src="http://oi65.tinypic.com/2i9m8oz.jpg" width="150" height="320">
 
 ```
 renderCard = (props, index) => {
@@ -72,7 +95,7 @@ renderCard = (props, index) => {
   }
 ```
 
-<img src="http://oi66.tinypic.com/34hbf2a.jpg" width="180" height="320">
+<img src="http://oi68.tinypic.com/25hhggj.jpg" width="150" height="320">
 
 ```
 <Block flex space="between" center style={styles.absolute}>
@@ -92,7 +115,7 @@ renderCard = (props, index) => {
       </Block>
     </Block>
 ```
-<img src="http://oi63.tinypic.com/5v4y09.jpg" width="180" height="320">
+<img src="http://oi66.tinypic.com/el5oqh.jpg" width="150" height="320">
 
 ```
 <Block>
