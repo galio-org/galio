@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ScrollView, StyleSheet, Dimensions,
+  ScrollView, StyleSheet, Dimensions, Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 
@@ -70,7 +70,11 @@ export default class Cards extends React.Component {
     const { navigation } = this.props;
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar title="Cards" onLeftPress={() => navigation.openDrawer()} />
+        <NavBar
+          title="Cards"
+          onLeftPress={() => navigation.openDrawer()}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+        />
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {cards && cards.map((card, id) => (
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.WHITE,
     width: width - theme.SIZES.BASE * 2,
     marginVertical: theme.SIZES.BASE * 0.875,
+    elevation: theme.SIZES.BASE / 2,
   },
   full: {
     position: 'absolute',

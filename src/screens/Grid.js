@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Dimensions, StyleSheet,
+  Dimensions, StyleSheet, Platform,
 } from 'react-native';
 // galio components
 import {
@@ -12,11 +12,11 @@ const { width } = Dimensions.get('screen');
 const BASE_SIZE = theme.SIZES.BASE;
 const COLOR_WHITE = theme.COLORS.WHITE;
 
-const chunk = (arr, size) => arr.reduce(
-  (chunks, el, i) => (i % size
-    ? chunks[chunks.length - 1].push(el)
-    : chunks.push([el])) && chunks, [],
-);
+const chunk = (arr, size) => {
+  const list = new Array(Math.ceil(arr.length / size)).fill()
+    .map(() => arr.splice(0, size));
+  return list;
+};
 
 const grids = [
   {
@@ -86,7 +86,12 @@ class Grid extends React.Component {
     const { navigation } = this.props;
     return (
       <Block safe flex>
-        <NavBar fix title="Grid" onLeftPress={() => navigation.openDrawer()} />
+        <NavBar
+          fix
+          title="Grid"
+          onLeftPress={() => navigation.openDrawer()}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+        />
         <Block style={styles.grid}>
           {
             chunk(grids, 3).map((row, rowId) => (
@@ -121,12 +126,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   block: {
-    // padding: BASE_SIZE,
     backgroundColor: COLOR_WHITE,
     borderRadius: BASE_SIZE / 2,
     height: width * 0.28,
     width: width * 0.28,
     shadowOpacity: 0.4,
+    elevation: BASE_SIZE / 2,
   },
   button: {
     width: 'auto',

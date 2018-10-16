@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Image, StyleSheet, ScrollView, SafeAreaView,
+  Image, StyleSheet, ScrollView, SafeAreaView, Platform,
 } from 'react-native';
 import {
   createDrawerNavigator,
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE * 1.6875,
     borderBottomColor: '#D8D8D8',
     borderBottomWidth: 0.5,
+    marginTop: Platform.OS === 'android' ? theme.SIZES.BASE * 2 : null,
   },
   avatar: {
     width: theme.SIZES.BASE * 2.5,

@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-  Alert,
-  Dimensions,
-  StyleSheet,
-  KeyboardAvoidingView,
+  Alert, Dimensions, KeyboardAvoidingView, StyleSheet, Platform,
 } from 'react-native';
+
 // galio component
 import {
-  Block, Button, Input, Text, NavBar,
+  Block, Button, Input, NavBar, Text,
 } from '..';
 import theme from '../theme';
 
@@ -29,8 +27,12 @@ class Login extends React.Component {
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar title="Sign In" onLeftPress={() => navigation.openDrawer()} />
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+        <NavBar
+          title="Sign In"
+          onLeftPress={() => navigation.openDrawer()}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+        />
+        <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
           <Block flex center style={{ marginTop: theme.SIZES.BASE * 1.875, marginBottom: height * 0.1 }}>
             <Text muted center size={theme.SIZES.FONT * 0.875} style={{ paddingHorizontal: theme.SIZES.BASE * 2.3 }}>
               This is the perfect place to write a short description

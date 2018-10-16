@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet, ScrollView,
+  StyleSheet, ScrollView, Platform,
 } from 'react-native';
 import { LinearGradient as Gradient } from 'expo';
 import { Defs, LinearGradient, Stop } from 'react-native-svg';
@@ -65,6 +65,7 @@ class Dashboard extends React.Component {
           <Icon size={BASE_SIZE} name="heart-2" family="Galio" color={theme.COLORS.MUTED} />
         </Button>
       )}
+      style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
     />
   )
 
@@ -78,12 +79,8 @@ class Dashboard extends React.Component {
       </Defs>
     );
 
-    const statsActive = [
-      ...Array.from({ length: theme.SIZES.BASE * 1.2 }, () => parseFloat((Math.random() * 0.8 + 1).toFixed(3))),
-    ];
-    const statsInactive = [
-      ...Array.from({ length: theme.SIZES.BASE * 0.7 }, () => parseFloat((Math.random() * 0.7 + 1).toFixed(3))),
-    ];
+    const statsActive = Array.from({ length: 20 }, () => parseFloat((Math.random() * 0.8 + 1).toFixed(3)));
+    const statsInactive = Array.from({ length: 12 }, () => parseFloat((Math.random() * 0.7 + 1).toFixed(3)));
 
     return (
       <Block style={{ marginBottom: BASE_SIZE * 3 }}>
@@ -193,6 +190,7 @@ const styles = StyleSheet.create({
   right: {
     width: BASE_SIZE * 2,
     backgroundColor: 'transparent',
+    elevation: 0,
   },
   gradient: {
     width: BASE_SIZE * 3.25,

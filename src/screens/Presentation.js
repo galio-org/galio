@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Dimensions, StyleSheet, StatusBar, Image,
+  Dimensions, StyleSheet, StatusBar, Image, Platform,
 } from 'react-native';
 import { Constants, LinearGradient } from 'expo';
 
@@ -17,7 +17,11 @@ const Presentation = props => (
   <Block flex>
     <StatusBar hidden={false} barStyle="light-content" />
     <Block style={styles.navbar}>
-      <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+      <NavBar
+        transparent
+        leftIconColor={theme.COLORS.WHITE}
+        onLeftPress={() => props.navigation.openDrawer()}
+      />
     </Block>
 
     <LinearGradient

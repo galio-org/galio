@@ -4,6 +4,7 @@ import {
   Dimensions,
   StyleSheet,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 // galio component
 import {
@@ -30,8 +31,12 @@ class Login extends React.Component {
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar title="Sign Up" onLeftPress={() => navigation.openDrawer()} />
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+        <NavBar
+          title="Sign Up"
+          onLeftPress={() => navigation.openDrawer()}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          />
+        <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
           <Block
             flex
             center

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Image, StyleSheet, ScrollView,
+  Image, StyleSheet, ScrollView, Platform,
 } from 'react-native';
 
 import { Constants } from 'expo';
@@ -52,8 +52,9 @@ const News = props => (
     <NavBar
       title="News"
       titleStyle={{ alignSelf: 'flex-start' }}
-      onLeftPress={() => props.navigation.openDrawer()}
       leftIconColor={theme.COLORS.MUTED}
+      onLeftPress={() => props.navigation.openDrawer()}
+      style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
       right={[
         <Button
           key="right-options"
@@ -175,6 +176,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.WHITE,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
+    elevation: theme.SIZES.BASE / 2,
   },
   text: {
     fontWeight: '400',
