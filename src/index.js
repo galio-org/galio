@@ -5,6 +5,7 @@ import Icon from './Icon';
 import Input from './Input';
 import NavBar from './NavBar';
 import Text from './Text';
+import theme from './theme';
 
 export {
   Block,
@@ -14,4 +15,5 @@ export {
   Input,
   NavBar,
   Text,
+  theme,
 };
