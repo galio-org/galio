@@ -4,10 +4,10 @@ import Icons, { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
 import theme from './theme';
-import galioConfig from '../assets/fonts/galio';
+import galioConfig from './fonts/galio';
 
 Icons.Galio = createIconSetFromIcoMoon(galioConfig, 'Galio');
-const GalioFont = require('../assets/fonts/galio.ttf');
+const GalioFont = require('./fonts/galio.ttf');
 
 class Icon extends React.Component {
   static defaultProps = {
