@@ -49,6 +49,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "galio-framework": "^1.0.1",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "react-devtools": "^3.3.2",

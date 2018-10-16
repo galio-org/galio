@@ -12,7 +12,7 @@ import { Constants } from 'expo';
 // galio components
 import {
   Block, Card, Text, Icon, NavBar,
-} from '..';
+} from 'galio-framework';
 import theme from '../theme';
 
 const { width, height } = Dimensions.get('screen');

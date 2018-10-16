@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Dimensions, StyleSheet, StatusBar, Image, Platform,
+  Dimensions, StyleSheet, StatusBar, Image,
 } from 'react-native';
 import { Constants, LinearGradient } from 'expo';
 
 // galio components
 import {
   Text, Button, Block, NavBar,
-} from '..';
+} from 'galio-framework';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');

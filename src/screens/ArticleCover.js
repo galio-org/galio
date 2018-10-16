@@ -9,7 +9,7 @@ import { Constants, LinearGradient } from 'expo';
 // galio components
 import {
   Block, Icon, Text, NavBar,
-} from '..';
+} from 'galio-framework';
 
 import theme from '../theme';
 

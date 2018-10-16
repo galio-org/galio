@@ -5,7 +5,7 @@ import {
 // galio components
 import {
   Button, Icon, Block, Text, NavBar,
-} from '..';
+} from 'galio-framework';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');

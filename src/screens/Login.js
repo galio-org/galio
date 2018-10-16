@@ -6,7 +6,7 @@ import {
 // galio component
 import {
   Block, Button, Input, NavBar, Text,
-} from '..';
+} from 'galio-framework';
 import theme from '../theme';
 
 const { height, width } = Dimensions.get('window');
