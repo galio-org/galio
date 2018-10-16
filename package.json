@@ -1,12 +1,9 @@
 {
-  "name": "galio",
+"name": "galio-framework",
   "main": "src/index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "files": [
-    "src/*.js",
-    "src/helpers/*.js",
-    "assets/fonts/galio.json",
-    "assets/fonts/galio.ttf"
+    "src/"
   ],
   "repository": {
     "type": "git",
