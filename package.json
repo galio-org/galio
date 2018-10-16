@@ -1,5 +1,5 @@
 {
-  "name": "galio-project-template",
+  "name": "galio",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "version": "1.0.0",
@@ -8,6 +8,24 @@
     "src/helpers/*.js",
     "assets/fonts/galio.json",
     "assets/fonts/galio.ttf"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/galio-org/galio.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/galio-org/galio/issues"
+  },
+  "homepage": "https://galio.io/",
+  "keywords": [
+    "android",
+    "ios",
+    "react native",
+    "component library",
+    "ui kit",
+    "bootstrap"
   ],
   "scripts": {
     "start": "expo start",
@@ -18,11 +36,10 @@
     "lint": "eslint src/**.js"
   },
   "dependencies": {
-    "@expo/vector-icons": "^6.3.1",
     "expo": "^29.0.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
-    "react-navigation": "^2.13.0"
+    "react-native-vector-icons": "^6.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.0",
@@ -38,6 +55,12 @@
     "react-devtools": "^3.3.2",
     "react-native-svg": "^7.0.3",
     "react-native-svg-charts": "^5.2.0",
+    "react-navigation": "^2.13.0",
     "whatwg-fetch": "^2.0.4"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-vector-icons": "*"
   }
 }

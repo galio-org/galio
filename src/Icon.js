@@ -1,6 +1,6 @@
 import React from 'react';
 import { Font } from 'expo';
-import Icons, { createIconSetFromIcoMoon } from '@expo/vector-icons';
+import Icons, { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
 import theme from './theme';
