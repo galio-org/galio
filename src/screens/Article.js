@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   Dimensions,
-  Platform,
 } from 'react-native';
 
 import { Constants } from 'expo';
