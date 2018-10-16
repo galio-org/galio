@@ -1,7 +1,6 @@
 {
-  "name": "galio",
-  "main": "node_modules/expo/AppEntry.js",
-  "private": true,
+  "name": "@galio-org/galio",
+  "main": "src/index.js",
   "version": "1.0.0",
   "files": [
     "src/*.js",
