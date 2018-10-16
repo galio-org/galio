@@ -64,7 +64,7 @@ class Button extends React.Component {
 
     if (onlyIcon) {
       content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
-    } else {
+    } else if (isString) {
       content = <Text style={textStyles}>{content}</Text>;
     }
 

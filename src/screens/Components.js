@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Dimensions, StyleSheet, ScrollView, Alert,
+  Dimensions, StyleSheet, ScrollView, Alert, Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 
 // galio components
 import {
-  Text, Block, Button, Card, NavBar, Icon, Input,
+  Text, Block, Button, Card, NavBar, Input,
 } from '..';
 import theme from '../theme';
 
@@ -31,6 +31,7 @@ export default class Components extends React.Component {
             />
           )}
           onLeftPress={() => navigation.openDrawer()}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
 
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
