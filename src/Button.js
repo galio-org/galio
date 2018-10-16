@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.TRANSPARENT,
   },
   androidShadow: {
-    elevation: 11,
+    elevation: 1,
   },
 });
 
