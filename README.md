@@ -171,8 +171,8 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 
 ## Useful Links
 
-Tutorials: <https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w>
+Tutorials: coming soon...
 
-Freebies from Creative Tim: <https://www.creative-tim.com/products>
+Freebies from Galio Team: coming soon...
 
 © 2018 [Galio](https://galio.io), made with love for apps.
