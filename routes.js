@@ -15,6 +15,7 @@ import Cards from './src/screens/Cards';
 import Components from './src/screens/Components';
 import Login from './src/screens/Login';
 import News from './src/screens/News';
+import OrderConfirmed from './src/screens/OrderConfirmed';
 import Presentation from './src/screens/Presentation';
 import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
@@ -121,6 +122,13 @@ const screens = {
     screen: News,
     navigationOptions: {
       drawerLabel: 'News Screen',
+      drawerIcon: props => <MenuIcon name="paper-2" family="Galio" focused={props.focused} />,
+    },
+  },
+  OrderConfirmed: {
+    screen: OrderConfirmed,
+    navigationOptions: {
+      drawerLabel: 'Order Confirmed',
       drawerIcon: props => <MenuIcon name="paper-2" family="Galio" focused={props.focused} />,
     },
   },
