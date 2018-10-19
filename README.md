@@ -35,6 +35,21 @@ User our iOS or Android app to directly view Expo projects on your phone.
 
 [Expo Android app](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en)
 
+#### 3. SDK library instructions
+```bash
+npm install galio-framework
+```
+or 
+```sh
+yarn add galio-framework
+```
+Import UI components to new screens:
+```js
+import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework';
+```
+
+
+
 ## Components
 
 Under Galio's belt:
