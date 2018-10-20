@@ -26,17 +26,14 @@ class OrderConfirmed extends React.Component {
           onLeftPress={() => props.navigation.openDrawer()}
           style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
-        <Block flex center space="between" style={styles.container}>
+        <Block flex center space="around" style={styles.container}>
           <Block center flex={2}>
             <Block center style={{ marginBottom: theme.SIZES.BASE * 2 }}>
               <Image
                 source={orderConfirmedImage}
                 style={{ marginBottom: theme.SIZES.BASE * 2 }}
               />
-              <Text
-                color={theme.COLORS.BLACK}
-                size={theme.SIZES.FONT * 1.5}
-              >
+              <Text h4 color={theme.COLORS.BLACK}>
                 Well done!
               </Text>
             </Block>
@@ -46,7 +43,7 @@ class OrderConfirmed extends React.Component {
             >
               <Text
                 size={theme.SIZES.FONT * 1.675}
-                style={{ fontWeight: 'bold' }}
+                bold
               >
                 #45C23B&nbsp;
               </Text>
@@ -69,9 +66,6 @@ class OrderConfirmed extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
     paddingTop: theme.SIZES.BASE * 0.3,
     paddingHorizontal: theme.SIZES.BASE,
     backgroundColor: theme.COLORS.WHITE,
