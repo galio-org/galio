@@ -1,6 +1,10 @@
 import React from 'react';
 import {
-  Dimensions, StyleSheet, Platform
+  Dimensions,
+  StyleSheet,
+  Platform,
+  Image,
+  Link
 } from 'react-native';
 
 import theme from '../theme';
@@ -11,20 +15,69 @@ import {
 } from 'galio-framework';
 
 const { height, width } = Dimensions.get('window');
-const orderConfirmed = require('../../assets/order_confirmed.svg');
+const orderConfirmedImage = require('../../assets/order_confirmed.png');
 
 class OrderConfirmed extends React.Component {
   render() {
     return (
-      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+      <Block safe flex>
         <NavBar
           title="Confirmed Order"
-          onLeftPress={() => navigation.openDrawer()}
+          onLeftPress={() => props.navigation.openDrawer()}
           style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
+        <Block flex center space="between" style={styles.container}>
+          <Block center flex={2}>
+            <Block center style={{ marginBottom: theme.SIZES.BASE * 2 }}>
+              <Image
+                source={orderConfirmedImage}
+                style={{ marginBottom: theme.SIZES.BASE * 2 }}
+              />
+              <Text
+                color={theme.COLORS.BLACK}
+                size={theme.SIZES.FONT * 1.5}
+              >
+                Well done!
+              </Text>
+            </Block>
+            <Text
+              color={theme.COLORS.BLACK}
+              style={{ marginBottom: theme.SIZES.BASE }}
+            >
+              <Text
+                size={theme.SIZES.FONT * 1.675}
+                style={{ fontWeight: 'bold' }}
+              >
+                #45C23B&nbsp;
+              </Text>
+              <Text >
+                is your order number
+              </Text>
+            </Text>
+            <Text color={theme.COLORS.INFO}>
+              Track your order
+            </Text>
+          </Block>
+          <Button size="large" color="info" round onPress={() => {}}>
+            Continue Shopping
+          </Button>
+        </Block>
       </Block>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingTop: theme.SIZES.BASE * 0.3,
+    paddingHorizontal: theme.SIZES.BASE,
+    backgroundColor: theme.COLORS.WHITE,
+    marginTop: theme.SIZES.BASE * 1.875,
+    marginBottom: height * 0.1
+  }
+});
 
 export default OrderConfirmed;
