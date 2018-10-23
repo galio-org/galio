@@ -50,8 +50,6 @@ Import UI components to new screens:
 import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework';
 ```
 
-
-
 ## Components
 
 Under Galio's belt:
@@ -80,61 +78,61 @@ Here we will showcase some screens and some sample code of how we've used Galio 
 
 <img src="http://oi65.tinypic.com/2i9m8oz.jpg" width="150" height="320">
 
-```
+```js
 renderCard = (props, index) => {
-    const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
+  const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
 
-    return (
-      <Block row center card shadow space="between" style={styles.card} key={props.title}>
-        <Gradient
-          start={[0.45, 0.45]}
-          end={[0.90, 0.90]}
-          colors={gradientColors}
-          style={[styles.gradient, styles.left]}
-        >
-          <Icon
-            size={BASE_SIZE}
-            name={props.icon}
-            color={COLOR_WHITE}
-            family={props.iconFamily}
-          />
-        </Gradient>
+  return (
+    <Block row center card shadow space="between" style={styles.card} key={props.title}>
+      <Gradient
+        start={[0.45, 0.45]}
+        end={[0.90, 0.90]}
+        colors={gradientColors}
+        style={[styles.gradient, styles.left]}
+      >
+        <Icon
+          size={BASE_SIZE}
+          name={props.icon}
+          color={COLOR_WHITE}
+          family={props.iconFamily}
+        />
+      </Gradient>
 
-        <Block flex>
-          <Text h5>{props.title}</Text>
-          <Text muted>{props.subtitle}</Text>
-        </Block>
-        <Button style={styles.right}>
-          <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
-        </Button>
+      <Block flex>
+        <Text h5>{props.title}</Text>
+        <Text muted>{props.subtitle}</Text>
       </Block>
-    );
-  }
+      <Button style={styles.right}>
+        <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
+      </Button>
+    </Block>
+  );
+}
 ```
 
 <img src="http://oi68.tinypic.com/25hhggj.jpg" width="150" height="320">
 
-```
+```js
 <Block flex space="between" center style={styles.absolute}>
-      <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
-      <Block style={styles.articleSummary}>
-        <Block row style={{ marginBottom: theme.SIZES.BASE }}>
-          <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-            <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-            <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.2k</Text>
-          </Block>
-          <Block row middle>
-            <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-            <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
-          </Block>
-        </Block>
-    {/*...more code in the open source files...*/}
+  <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+  <Block style={styles.articleSummary}>
+    <Block row style={{ marginBottom: theme.SIZES.BASE }}>
+      <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
+        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.2k</Text>
+      </Block>
+      <Block row middle>
+        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
+        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
       </Block>
     </Block>
+    {/*...more code in the open source files...*/}
+  </Block>
+</Block>
 ```
 <img src="http://oi66.tinypic.com/el5oqh.jpg" width="150" height="320">
 
-```
+```js
 <Block>
   <Input
     rounded
