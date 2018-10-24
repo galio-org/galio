@@ -2,7 +2,9 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio)
 
-Galio is a 100% free and open source project, licensed under MIT. It will always remain free to use, powered by a massive world-wide community. 
+<img src="assets/galio_thumbnail.jpg">
+
+Galio is a 100% free and open source project, licensed under MIT. It will always remain free to use, powered by a massive world-wide community.
 Carefully crafted. Ready-made components, typography, and a gorgeous base theme that adaps to each project. You'll be building in style.
 Built with real app examples, component demos, guides, and how-to's to get you up and running with mobile apps faster than ever before.
 
@@ -35,6 +37,19 @@ User our iOS or Android app to directly view Expo projects on your phone.
 
 [Expo Android app](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en)
 
+#### 3. SDK library instructions
+```bash
+npm install galio-framework
+```
+or
+```sh
+yarn add galio-framework
+```
+Import UI components to new screens:
+```js
+import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework';
+```
+
 ## Components
 
 Under Galio's belt:
@@ -63,61 +78,61 @@ Here we will showcase some screens and some sample code of how we've used Galio 
 
 <img src="http://oi65.tinypic.com/2i9m8oz.jpg" width="150" height="320">
 
-```
+```js
 renderCard = (props, index) => {
-    const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
+  const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
 
-    return (
-      <Block row center card shadow space="between" style={styles.card} key={props.title}>
-        <Gradient
-          start={[0.45, 0.45]}
-          end={[0.90, 0.90]}
-          colors={gradientColors}
-          style={[styles.gradient, styles.left]}
-        >
-          <Icon
-            size={BASE_SIZE}
-            name={props.icon}
-            color={COLOR_WHITE}
-            family={props.iconFamily}
-          />
-        </Gradient>
+  return (
+    <Block row center card shadow space="between" style={styles.card} key={props.title}>
+      <Gradient
+        start={[0.45, 0.45]}
+        end={[0.90, 0.90]}
+        colors={gradientColors}
+        style={[styles.gradient, styles.left]}
+      >
+        <Icon
+          size={BASE_SIZE}
+          name={props.icon}
+          color={COLOR_WHITE}
+          family={props.iconFamily}
+        />
+      </Gradient>
 
-        <Block flex>
-          <Text h5>{props.title}</Text>
-          <Text muted>{props.subtitle}</Text>
-        </Block>
-        <Button style={styles.right}>
-          <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
-        </Button>
+      <Block flex>
+        <Text h5>{props.title}</Text>
+        <Text muted>{props.subtitle}</Text>
       </Block>
-    );
-  }
+      <Button style={styles.right}>
+        <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
+      </Button>
+    </Block>
+  );
+}
 ```
 
 <img src="http://oi68.tinypic.com/25hhggj.jpg" width="150" height="320">
 
-```
+```js
 <Block flex space="between" center style={styles.absolute}>
-      <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
-      <Block style={styles.articleSummary}>
-        <Block row style={{ marginBottom: theme.SIZES.BASE }}>
-          <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-            <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-            <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.2k</Text>
-          </Block>
-          <Block row middle>
-            <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-            <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
-          </Block>
-        </Block>
-    {/*...more code in the open source files...*/}
+  <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+  <Block style={styles.articleSummary}>
+    <Block row style={{ marginBottom: theme.SIZES.BASE }}>
+      <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
+        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
+        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.2k</Text>
+      </Block>
+      <Block row middle>
+        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
+        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
       </Block>
     </Block>
+    {/*...more code in the open source files...*/}
+  </Block>
+</Block>
 ```
 <img src="http://oi66.tinypic.com/el5oqh.jpg" width="150" height="320">
 
-```
+```js
 <Block>
   <Input
     rounded
@@ -171,8 +186,8 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 
 ## Useful Links
 
-Tutorials: <https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w>
+Tutorials: coming soon...
 
-Freebies from Creative Tim: <https://www.creative-tim.com/products>
+Freebies from Galio Team: coming soon...
 
 © 2018 [Galio](https://galio.io), made with love for apps.
