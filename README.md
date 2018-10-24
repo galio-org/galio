@@ -163,7 +163,7 @@ renderCard = (props, index) => {
 
 ## Documentation
 
-The documentation for Galio is hosted at our [our website](https://galio.io)
+The documentation for Galio is hosted at our [our website](https://galio.io/docs)
 
 ## Resources
 
