@@ -19,6 +19,7 @@ import OrderConfirmed from './src/screens/OrderConfirmed';
 import Presentation from './src/screens/Presentation';
 import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
+import Registerv2 from './src/screens/Registerv2';
 import Grid from './src/screens/Grid';
 
 import theme from './src/theme';
@@ -150,6 +151,13 @@ const screens = {
     screen: Register,
     navigationOptions: {
       drawerLabel: 'Register Screen',
+      drawerIcon: props => <MenuIcon name="add-27" family="Galio" focused={props.focused} />,
+    },
+  },
+  Registerv2: {
+    screen: Registerv2,
+    navigationOptions: {
+      drawerLabel: 'Register Screen v2',
       drawerIcon: props => <MenuIcon name="add-27" family="Galio" focused={props.focused} />,
     },
   },
