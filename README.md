@@ -4,8 +4,8 @@
 
 <img src="assets/galio_thumbnail.jpg">
 
-Galio is a 100% free and open source project, licensed under MIT. It will always remain free to use, powered by a massive world-wide community.
-Carefully crafted. Ready-made components, typography, and a gorgeous base theme that adaps to each project. You'll be building in style.
+Galio is a 100% free and open source project, licensed under MIT License. You'll be building Android and iOS apps in style. Galio will always remain free to use and it is powered by a massive world-wide community.
+It comes with a lot of carefully crafted, ready to be used components and a beautiful typography. Galio has a gorgeous base theme that adaps to each project. 
 Built with real app examples, component demos, guides, and how-to's to get you up and running with mobile apps faster than ever before.
 
 ## Table of Contents
