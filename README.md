@@ -180,6 +180,15 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 2. Provide us with reproductible steps for the issue.
 3. Some issues may be platform specific, so specifying what platform and if it's a simulator or a hardware device will help a lot.
 
+## Contributors
+
+[//]: contributor-faces
+
+<a href="https://github.com/hetmann"><img src="https://avatars.githubusercontent.com/u/3584560?v=3" title="hetmann" width="80" height="80"></a> | 
+<a href="https://github.com/palingheorghe"><img src="https://avatars.githubusercontent.com/u/15977949?v=3" title="palingheorghe" width="80" height="80"></a>
+
+[//]: contributor-faces
+
 ## Licensing
 
 * Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
