@@ -199,7 +199,7 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 <a href="https://github.com/rarestoma" target="_blank">
   <img src="https://avatars.githubusercontent.com/u/27827318?v=3" title="rarestoma" width="80" height="80">
 </a>
-<a href="https://github.com/marqbbeniamin" target="_blank">
+<a href="https://github.com/marqbeniamin" target="_blank">
   <img src="https://avatars.githubusercontent.com/u/4600172?v=3" title="marqbeniamin" width="80" height="80">
 </a>
 <a href="https://github.com/EINazare" target="_blank">
