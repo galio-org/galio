@@ -184,8 +184,12 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 
 [//]: contributor-faces
 
-<a href="https://github.com/hetmann"><img src="https://avatars.githubusercontent.com/u/3584560?v=3" title="hetmann" width="80" height="80"></a> | 
-<a href="https://github.com/palingheorghe"><img src="https://avatars.githubusercontent.com/u/15977949?v=3" title="palingheorghe" width="80" height="80"></a>
+<a href="https://github.com/hetmann"><img src="https://avatars.githubusercontent.com/u/3584560?v=3" title="hetmann" width="80" height="80" target="_blank"></a> 
+<a href="https://github.com/palingheorghe"><img src="https://avatars.githubusercontent.com/u/15977949?v=3" title="palingheorghe" width="80" height="80" target="_blank"></a>
+<a href="https://github.com/paullaros"><img src="https://avatars.githubusercontent.com/u/1512219?v=3" title="paullaros" width="80" height="80" target="_blank"></a>
+<a href="https://github.com/rarestoma"><img src="https://avatars.githubusercontent.com/u/27827318?v=3" title="rarestoma" width="80" height="80" target="_blank"></a>
+<a href="https://github.com/marqbbeniamin"><img src="https://avatars.githubusercontent.com/u/4600172?v=3" title="marqbeniamin" width="80" height="80" target="_blank"></a>
+<a href="https://github.com/galio-profile"><img src="https://avatars.githubusercontent.com/u/40339237?v=3" title="galio-profile" width="80" height="80" target="_blank"></a>
 
 [//]: contributor-faces
 
