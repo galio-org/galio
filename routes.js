@@ -19,6 +19,8 @@ import Presentation from './src/screens/Presentation';
 import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
 import Grid from './src/screens/Grid';
+import Profile from './src/screens/Profile';
+
 
 import theme from './src/theme';
 import { Block, Icon, Text } from './src';
@@ -151,6 +153,13 @@ const screens = {
       drawerLabel: 'Grid Screen',
       drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
     },
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      drawerLabel: 'Social Profile',
+      drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
+    }
   },
 };
 
