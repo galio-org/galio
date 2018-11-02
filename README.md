@@ -1,11 +1,17 @@
 # [galio](https://www.galio.io) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Galio,%20a%20free%20and%20beautiful%20UI%20framework%20https%3A//galio.io/%20%23reactnative%20%23react%20%23design%20%23developers%20%23freebie%20via%20%40CreativeTim)
 
-[![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio)
+[![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls?q=is%3Apr+is%3Aclosed)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/galio-community)
+[![npm](https://img.shields.io/npm/dm/galio-framework.svg)](https://www.npmjs.com/package/galio-framework)
+
 
 <img src="assets/galio_thumbnail.jpg">
 
 Galio is a 100% free and open source project, licensed under MIT License. You'll be building Android and iOS apps in style. Galio will always remain free to use and it is powered by a massive world-wide community.
-It comes with a lot of carefully crafted, ready to be used components and a beautiful typography. Galio has a gorgeous base theme that adaps to each project. 
+It comes with a lot of carefully crafted, ready to be used components and a beautiful typography. Galio has a gorgeous base theme that adapts to each project. 
 Built with real app examples, component demos, guides, and how-to's to get you up and running with mobile apps faster than ever before.
 
 ## Table of Contents
