@@ -4,7 +4,7 @@
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls?q=is%3Apr+is%3Aclosed)
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/galio-community)
+[![Gitter](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/galio-community)
 [![npm](https://img.shields.io/npm/dm/galio-framework.svg)](https://www.npmjs.com/package/galio-framework)
 
 
