@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { Block, Icon, Text } from '.';
+import { GaBlock, GaIcon, GaText } from '.';
 import theme from './theme';
 
 const { width } = Dimensions.get('screen');
@@ -12,16 +12,16 @@ export default class Card extends Component {
     card: true,
     shadow: true,
     borderless: false,
-  }
+  };
 
   renderImage() {
     const { image, imageBlockStyle, imageStyle } = this.props;
     if (!image) return null;
 
     return (
-      <Block card style={[styles.imageBlock, imageBlockStyle]}>
+      <GaBlock card style={[styles.imageBlock, imageBlockStyle]}>
         <Image source={{ uri: image }} style={[styles.image, imageStyle]} />
-      </Block>
+      </GaBlock>
     );
   }
 
@@ -29,9 +29,7 @@ export default class Card extends Component {
     const { avatar } = this.props;
     if (!avatar) return null;
 
-    return (
-      <Image source={{ uri: avatar }} style={styles.avatar} />
-    );
+    return <Image source={{ uri: avatar }} style={styles.avatar} />;
   }
 
   renderLocation() {
@@ -43,17 +41,22 @@ export default class Card extends Component {
     }
 
     return (
-      <Block row right>
-        <Icon name="pin-3" family="Galio" color={locationColor || theme.COLORS.MUTED} size={theme.SIZES.FONT} />
-        <Text
+      <GaBlock row right>
+        <GaIcon
+          name="pin-3"
+          family="Galio"
+          color={locationColor || theme.COLORS.MUTED}
+          size={theme.SIZES.FONT}
+        />
+        <GaText
           muted
           size={theme.SIZES.FONT * 0.875}
           color={locationColor || theme.COLORS.MUTED}
           style={{ marginLeft: theme.SIZES.BASE * 0.25 }}
         >
           {location}
-        </Text>
-      </Block>
+        </GaText>
+      </GaBlock>
     );
   }
 
@@ -63,45 +66,40 @@ export default class Card extends Component {
     } = this.props;
 
     return (
-      <Block flex row style={[styles.footer, footerStyle]} space="between">
-        <Block flex={0.3}>
-          {this.renderAvatar()}
-        </Block>
-        <Block flex={1.7}>
-          <Block style={styles.title}>
-            <Text size={theme.SIZES.FONT * 0.875} color={titleColor}>{title}</Text>
-          </Block>
-          <Block row space="between">
-            <Block row right>
-              <Text p muted size={theme.SIZES.FONT * 0.875} color={captionColor}>{caption}</Text>
-            </Block>
+      <GaBlock flex row style={[styles.footer, footerStyle]} space="between">
+        <GaBlock flex={0.3}>{this.renderAvatar()}</GaBlock>
+        <GaBlock flex={1.7}>
+          <GaBlock style={styles.title}>
+            <GaText size={theme.SIZES.FONT * 0.875} color={titleColor}>
+              {title}
+            </GaText>
+          </GaBlock>
+          <GaBlock row space="between">
+            <GaBlock row right>
+              <GaText p muted size={theme.SIZES.FONT * 0.875} color={captionColor}>
+                {caption}
+              </GaText>
+            </GaBlock>
             {this.renderLocation()}
-          </Block>
-        </Block>
-      </Block>
+          </GaBlock>
+        </GaBlock>
+      </GaBlock>
     );
   }
 
   render() {
     const {
-      card,
-      shadow,
-      borderless,
-      style,
-      ...props
+      card, shadow, borderless, style, ...props
     } = this.props;
 
-    const styleCard = [
-      borderless && { borderWidth: 0 },
-      style,
-    ];
+    const styleCard = [borderless && { borderWidth: 0 }, style];
 
     return (
-      <Block card={card} shadow={shadow} style={styleCard} {...props}>
+      <GaBlock card={card} shadow={shadow} style={styleCard} {...props}>
         {this.renderImage()}
         {this.renderAuthor()}
         {props.children}
-      </Block>
+      </GaBlock>
     );
   }
 }

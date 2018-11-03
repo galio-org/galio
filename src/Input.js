@@ -1,14 +1,10 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
+  View, Text, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Icon } from '.';
+import { GaIcon } from '.';
 import theme from './theme';
 
 // TO-DO:
@@ -81,36 +77,36 @@ class Input extends React.Component {
 
     const inputStyles = [
       styles.inputView,
-      (borderless && icon) && styles.inputIcon,
+      borderless && icon && styles.inputIcon,
       styles.inputText,
       color && { color },
     ];
 
     const iconContent = icon ? (
-      <Icon
+      <GaIcon
         name={icon}
         family={family}
         size={theme.SIZES.BASE * 1.0625}
-        style={{ marginRight: (left && !right) ? theme.SIZES.BASE * 0.2 : 0 }}
+        style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor}
       />
     ) : null;
 
     const { isPassword } = this.state;
-    const viewPassElement = password && viewPass
-      && (
+    const viewPassElement = password
+      && viewPass && (
         <TouchableOpacity
           style={{ marginLeft: 2 }}
           onPress={() => this.setState({ isPassword: !isPassword })}
         >
-          <Icon
+          <GaIcon
             size={theme.SIZES.BASE * 1.0625}
             color={theme.COLORS.BLACK}
             name="eye-17"
             family="Galio"
           />
         </TouchableOpacity>
-      );
+    );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 

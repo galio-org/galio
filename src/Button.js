@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Icon } from '.';
+import { GaIcon } from '.';
 import theme from './theme';
 
 const { width } = Dimensions.get('window');
@@ -46,10 +46,7 @@ class Button extends React.Component {
       textStyle,
     } = this.props;
 
-    const textStyles = [
-      styles.customText,
-      textStyle,
-    ];
+    const textStyles = [styles.customText, textStyle];
 
     // workaround for textTransform not supported on Expo SDK 29.0.0 or 30.0.0
     // More info: https://docs.expo.io/versions/latest/sdk/index.html#sdk-version
@@ -63,7 +60,7 @@ class Button extends React.Component {
     if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
 
     if (onlyIcon) {
-      content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
+      content = <GaIcon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
     } else if (isString) {
       content = <Text style={textStyles}>{content}</Text>;
     }
@@ -71,7 +68,7 @@ class Button extends React.Component {
     if (loading) content = <ActivityIndicator size={loadingSize} color={theme.COLORS.WHITE} />;
 
     return content;
-  }
+  };
 
   render() {
     const {
@@ -116,12 +113,7 @@ class Button extends React.Component {
     ];
 
     return (
-      <TouchableOpacity
-        disabled={disabled}
-        activeOpacity={opacity}
-        style={buttonStyles}
-        {...rest}
-      >
+      <TouchableOpacity disabled={disabled} activeOpacity={opacity} style={buttonStyles} {...rest}>
         {this.renderContent()}
       </TouchableOpacity>
     );
@@ -175,23 +167,11 @@ const styles = StyleSheet.create({
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
   color: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'primary',
-      'theme',
-      'error',
-      'warning',
-      'success',
-      'transparent',
-    ]),
+    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent']),
     PropTypes.string,
   ]),
 
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'large', 'small',
-    ]),
-    PropTypes.number,
-  ]),
+  size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small']), PropTypes.number]),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
   radius: PropTypes.number,
@@ -199,9 +179,7 @@ Button.propTypes = {
   lowercase: PropTypes.bool,
   capitalize: PropTypes.bool,
   loading: PropTypes.bool,
-  loadingSize: PropTypes.oneOf([
-    'small', 'large',
-  ]),
+  loadingSize: PropTypes.oneOf(['small', 'large']),
   opacity: PropTypes.number,
   shadowless: PropTypes.bool,
   shadowColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),

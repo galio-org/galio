@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 // galio components
-import { Block, Text, Icon } from '.';
+import { GaBlock, GaText, GaIcon } from '.';
 import theme from './theme';
 
 const { height } = Dimensions.get('screen');
@@ -31,9 +31,7 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text style={[styles.titleTextStyle, titleStyle]}>
-            {title}
-          </Text>
+          <GaText style={[styles.titleTextStyle, titleStyle]}>{title}</GaText>
         </View>
       );
     }
@@ -41,7 +39,7 @@ class NavBar extends React.Component {
     if (!title) return null;
 
     return title;
-  }
+  };
 
   renderLeft = () => {
     const {
@@ -49,15 +47,13 @@ class NavBar extends React.Component {
     } = this.props;
 
     if (left) {
-      return (
-        <View style={[styles.left, leftStyle]}>{left}</View>
-      );
+      return <View style={[styles.left, leftStyle]}>{left}</View>;
     }
 
     return (
       <View style={[styles.left, leftStyle]}>
         <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
-          <Icon
+          <GaIcon
             family="Galio"
             color={leftIconColor}
             size={theme.SIZES.BASE * 1.0625}
@@ -66,33 +62,30 @@ class NavBar extends React.Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  };
 
   renderRight = () => {
     const { right, rightStyle } = this.props;
     const hasIcons = React.Children.count(right) > 1;
-    const rightStyles = [
-      styles.right,
-      rightStyle,
-    ];
+    const rightStyles = [styles.right, rightStyle];
 
-    return <Block right row={hasIcons} style={rightStyles}>{right}</Block>;
-  }
+    return (
+      <GaBlock right row={hasIcons} style={rightStyles}>
+        {right}
+      </GaBlock>
+    );
+  };
 
   render() {
     const { transparent, style } = this.props;
-    const navStyles = [
-      styles.navBar,
-      transparent && styles.transparent,
-      style,
-    ];
+    const navStyles = [styles.navBar, transparent && styles.transparent, style];
 
     return (
-      <Block style={navStyles}>
+      <GaBlock style={navStyles}>
         {this.renderLeft()}
         {this.renderTitle()}
         {this.renderRight()}
-      </Block>
+      </GaBlock>
     );
   }
 }
@@ -100,10 +93,7 @@ class NavBar extends React.Component {
 NavBar.propTypes = {
   back: PropTypes.bool,
   transparent: PropTypes.bool,
-  title: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.string,
-  ]),
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   titleStyle: PropTypes.any,
   left: PropTypes.node,
   leftStyle: PropTypes.any,
