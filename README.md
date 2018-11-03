@@ -1,11 +1,17 @@
 # [galio](https://www.galio.io) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Galio,%20a%20free%20and%20beautiful%20UI%20framework%20https%3A//galio.io/%20%23reactnative%20%23react%20%23design%20%23developers%20%23freebie%20via%20%40CreativeTim)
 
-[![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio)
+[![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls?q=is%3Apr+is%3Aclosed)
+[![Gitter](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/galio-community)
+[![npm](https://img.shields.io/npm/dm/galio-framework.svg)](https://www.npmjs.com/package/galio-framework)
+
 
 <img src="assets/galio_thumbnail.jpg">
 
-Galio is a 100% free and open source project, licensed under MIT. It will always remain free to use, powered by a massive world-wide community.
-Carefully crafted. Ready-made components, typography, and a gorgeous base theme that adaps to each project. You'll be building in style.
+Galio is a 100% free and open source project, licensed under MIT License. You'll be building Android and iOS apps in style. Galio will always remain free to use and it is powered by a massive world-wide community.
+It comes with a lot of carefully crafted, ready to be used components and a beautiful typography. Galio has a gorgeous base theme that adapts to each project. 
 Built with real app examples, component demos, guides, and how-to's to get you up and running with mobile apps faster than ever before.
 
 ## Table of Contents
@@ -179,6 +185,37 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 1. Make sure that you are using the latest version of Galio. Check for your fork's master branch status and see if it's up to date with the upstream/master (our repository)
 2. Provide us with reproductible steps for the issue.
 3. Some issues may be platform specific, so specifying what platform and if it's a simulator or a hardware device will help a lot.
+
+## Contributors
+
+[//]: contributor-faces
+
+<a href="https://github.com/hetmann" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/3584560?v=3" title="hetmann" width="80" height="80">
+</a> 
+<a href="https://github.com/palingheorghe" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/15977949?v=3" title="palingheorghe" width="80" height="80">
+</a>
+<a href="https://github.com/steefan" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/13517497?v=3" title="steefan" width="80" height="80">
+</a>
+<a href="https://github.com/paullaros" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/1512219?v=3" title="paullaros" width="80" height="80">
+</a>
+<a href="https://github.com/rarestoma" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/27827318?v=3" title="rarestoma" width="80" height="80">
+</a>
+<a href="https://github.com/marqbeniamin" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/4600172?v=3" title="marqbeniamin" width="80" height="80">
+</a>
+<a href="https://github.com/EINazare" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/26245512?v=3" title="EINazare" width="80" height="80">
+</a>
+<a href="https://github.com/galio-profile" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/40339237?v=3" title="galio-profile" width="80" height="80">
+</a>
+
+[//]: contributor-faces
 
 ## Licensing
 
