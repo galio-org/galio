@@ -12,7 +12,7 @@ export default class Card extends Component {
     card: true,
     shadow: true,
     borderless: false,
-  }
+  };
 
   renderImage() {
     const { image, imageBlockStyle, imageStyle } = this.props;
@@ -29,9 +29,7 @@ export default class Card extends Component {
     const { avatar } = this.props;
     if (!avatar) return null;
 
-    return (
-      <Image source={{ uri: avatar }} style={styles.avatar} />
-    );
+    return <Image source={{ uri: avatar }} style={styles.avatar} />;
   }
 
   renderLocation() {
@@ -64,16 +62,18 @@ export default class Card extends Component {
 
     return (
       <GaBlock flex row style={[styles.footer, footerStyle]} space="between">
-        <GaBlock flex={0.3}>
-          {this.renderAvatar()}
-        </GaBlock>
+        <GaBlock flex={0.3}>{this.renderAvatar()}</GaBlock>
         <GaBlock flex={1.7}>
           <GaBlock style={styles.title}>
-            <GaText size={theme.SIZES.FONT * 0.875} color={titleColor}>{title}</GaText>
+            <GaText size={theme.SIZES.FONT * 0.875} color={titleColor}>
+              {title}
+            </GaText>
           </GaBlock>
           <GaBlock row space="between">
             <GaBlock row right>
-              <GaText p muted size={theme.SIZES.FONT * 0.875} color={captionColor}>{caption}</GaText>
+              <GaText p muted size={theme.SIZES.FONT * 0.875} color={captionColor}>
+                {caption}
+              </GaText>
             </GaBlock>
             {this.renderLocation()}
           </GaBlock>
@@ -84,17 +84,10 @@ export default class Card extends Component {
 
   render() {
     const {
-      card,
-      shadow,
-      borderless,
-      style,
-      ...props
+      card, shadow, borderless, style, ...props
     } = this.props;
 
-    const styleCard = [
-      borderless && { borderWidth: 0 },
-      style,
-    ];
+    const styleCard = [borderless && { borderWidth: 0 }, style];
 
     return (
       <GaBlock card={card} shadow={shadow} style={styleCard} {...props}>

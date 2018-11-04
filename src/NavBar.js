@@ -31,9 +31,7 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <GaText style={[styles.titleTextStyle, titleStyle]}>
-            {title}
-          </GaText>
+          <GaText style={[styles.titleTextStyle, titleStyle]}>{title}</GaText>
         </View>
       );
     }
@@ -41,7 +39,7 @@ class NavBar extends React.Component {
     if (!title) return null;
 
     return title;
-  }
+  };
 
   renderLeft = () => {
     const {
@@ -49,9 +47,7 @@ class NavBar extends React.Component {
     } = this.props;
 
     if (left) {
-      return (
-        <View style={[styles.left, leftStyle]}>{left}</View>
-      );
+      return <View style={[styles.left, leftStyle]}>{left}</View>;
     }
 
     return (
@@ -66,26 +62,23 @@ class NavBar extends React.Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  };
 
   renderRight = () => {
     const { right, rightStyle } = this.props;
     const hasIcons = React.Children.count(right) > 1;
-    const rightStyles = [
-      styles.right,
-      rightStyle,
-    ];
+    const rightStyles = [styles.right, rightStyle];
 
-    return <GaBlock right row={hasIcons} style={rightStyles}>{right}</GaBlock>;
-  }
+    return (
+      <GaBlock right row={hasIcons} style={rightStyles}>
+        {right}
+      </GaBlock>
+    );
+  };
 
   render() {
     const { transparent, style } = this.props;
-    const navStyles = [
-      styles.navBar,
-      transparent && styles.transparent,
-      style,
-    ];
+    const navStyles = [styles.navBar, transparent && styles.transparent, style];
 
     return (
       <GaBlock style={navStyles}>
@@ -100,10 +93,7 @@ class NavBar extends React.Component {
 NavBar.propTypes = {
   back: PropTypes.bool,
   transparent: PropTypes.bool,
-  title: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.string,
-  ]),
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   titleStyle: PropTypes.any,
   left: PropTypes.node,
   leftStyle: PropTypes.any,
