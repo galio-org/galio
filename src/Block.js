@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
-import theme from './theme';
+import { withGalio } from './theme/';
 
-export default class Block extends Component {
-  static defaultProps = {
-    row: false,
-    flex: false,
-    center: false,
-    middle: false,
-    top: false,
-    bottom: false,
-    right: false,
-    left: false,
-    card: false,
-    shadow: false,
-    space: null,
-    fluid: false,
-    height: null,
-    width: null,
-    shadowColor: null,
-    safe: false,
-  }
-
+class Block extends Component {
   render() {
     const {
       row,
@@ -43,6 +24,7 @@ export default class Block extends Component {
       safe,
       children,
       style,
+      styles,
       ...props
     } = this.props;
 
@@ -82,6 +64,25 @@ export default class Block extends Component {
   }
 }
 
+Block.defaultProps = {
+  row: false,
+  flex: false,
+  center: false,
+  middle: false,
+  top: false,
+  bottom: false,
+  right: false,
+  left: false,
+  card: false,
+  shadow: false,
+  space: null,
+  fluid: false,
+  height: null,
+  width: null,
+  shadowColor: null,
+  safe: false,
+};
+
 Block.propTypes = {
   row: PropTypes.bool,
   flex: PropTypes.oneOfType([
@@ -104,7 +105,7 @@ Block.propTypes = {
   safe: PropTypes.bool,
 };
 
-const styles = StyleSheet.create({
+const styles = theme => StyleSheet.create({
   block: {
     flexDirection: 'column',
   },
@@ -134,14 +135,14 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   card: {
-    borderRadius: theme.SIZES.BASE * 0.4,
-    borderWidth: theme.SIZES.BASE * 0.05,
+    borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
+    borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
     borderColor: theme.COLORS.BLOCK,
   },
   shadow: {
     shadowColor: theme.COLORS.BLOCK,
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
+    shadowOpacity: theme.SIZES.BLOCK_SHADOW_RADIUS,
     shadowRadius: 8,
     elevation: 1,
   },
@@ -149,3 +150,5 @@ const styles = StyleSheet.create({
     width: 'auto',
   },
 });
+
+export default withGalio(Block, styles);

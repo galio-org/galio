@@ -6,27 +6,13 @@ import PropTypes from 'prop-types';
 
 // galio components
 import { Block, Text, Icon } from '.';
-import theme from './theme';
+import { withGalio } from './theme/';
 
 const { height } = Dimensions.get('screen');
 
 class NavBar extends React.Component {
-  static defaultProps = {
-    back: false,
-    transparent: false,
-    title: null,
-    titleStyle: null,
-    left: null,
-    leftStyle: null,
-    leftIconColor: theme.COLORS.ICON,
-    onLeftPress: () => {},
-    right: null,
-    rightStyle: null,
-    style: null,
-  };
-
   renderTitle = () => {
-    const { title, titleStyle } = this.props;
+    const { title, titleStyle, styles } = this.props;
 
     if (typeof title === 'string') {
       return (
@@ -45,7 +31,7 @@ class NavBar extends React.Component {
 
   renderLeft = () => {
     const {
-      back, left, leftStyle, leftIconColor, onLeftPress,
+      back, left, leftStyle, leftIconColor, onLeftPress, theme, styles,
     } = this.props;
 
     if (left) {
@@ -59,7 +45,7 @@ class NavBar extends React.Component {
         <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
           <Icon
             family="Galio"
-            color={leftIconColor}
+            color={leftIconColor || theme.COLORS.ICON}
             size={theme.SIZES.BASE * 1.0625}
             name={back ? 'minimal-left' : 'segmentation'}
           />
@@ -69,7 +55,7 @@ class NavBar extends React.Component {
   }
 
   renderRight = () => {
-    const { right, rightStyle } = this.props;
+    const { right, rightStyle, styles } = this.props;
     const hasIcons = React.Children.count(right) > 1;
     const rightStyles = [
       styles.right,
@@ -80,7 +66,7 @@ class NavBar extends React.Component {
   }
 
   render() {
-    const { transparent, style } = this.props;
+    const { transparent, style, styles } = this.props;
     const navStyles = [
       styles.navBar,
       transparent && styles.transparent,
@@ -97,6 +83,22 @@ class NavBar extends React.Component {
   }
 }
 
+NavBar.defaultProps = {
+  back: false,
+  transparent: false,
+  title: null,
+  titleStyle: null,
+  left: null,
+  leftStyle: null,
+  leftIconColor: null,
+  onLeftPress: () => { },
+  right: null,
+  rightStyle: null,
+  style: null,
+  styles: null,
+  theme: null,
+};
+
 NavBar.propTypes = {
   back: PropTypes.bool,
   transparent: PropTypes.bool,
@@ -112,9 +114,11 @@ NavBar.propTypes = {
   right: PropTypes.node,
   rightStyle: PropTypes.any,
   style: PropTypes.any,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
-const styles = StyleSheet.create({
+const styles = theme => StyleSheet.create({
   navBar: {
     width: 'auto',
     height: theme.SIZES.BASE * 4.125,
@@ -155,4 +159,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NavBar;
+export default withGalio(NavBar, styles);

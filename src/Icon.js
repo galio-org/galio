@@ -3,20 +3,13 @@ import { Font } from 'expo';
 import Icons, { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
-import theme from './theme';
+import { withGalio } from './theme/';
 import galioConfig from './fonts/galio';
 
 Icons.Galio = createIconSetFromIcoMoon(galioConfig, 'Galio');
 const GalioFont = require('./fonts/galio.ttf');
 
 class Icon extends React.Component {
-  static defaultProps = {
-    name: null,
-    family: null,
-    size: theme.SIZES.BASE,
-    color: theme.COLORS.BLACK,
-  };
-
   state = {
     fontLoaded: false,
   }
@@ -31,18 +24,32 @@ class Icon extends React.Component {
 
   render() {
     const {
-      name, family, size, color, ...rest
+      name, family, size, color, theme, ...rest
     } = this.props;
     const { fontLoaded } = this.state;
     const { [family]: IconInstance } = Icons;
 
     if (name && IconInstance && fontLoaded) {
-      return <IconInstance size={size} name={name} color={color} {...rest} />;
+      return (
+        <IconInstance
+          name={name}
+          size={size || theme.SIZES.BASE}
+          color={color || theme.COLORS.BLACK}
+          {...rest}
+        />
+      );
     }
 
     return null;
   }
 }
+
+Icon.defaultProps = {
+  name: null,
+  family: null,
+  size: null,
+  color: null,
+};
 
 Icon.propTypes = {
   name: PropTypes.string,
@@ -51,4 +58,4 @@ Icon.propTypes = {
   color: PropTypes.string,
 };
 
-export default Icon;
+export default withGalio(Icon);

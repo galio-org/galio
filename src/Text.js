@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import normalize from './helpers/normalize';
-import theme from './theme';
+import { withGalio } from './theme/';
 
 const Typography = (props) => {
   const {
@@ -22,6 +22,7 @@ const Typography = (props) => {
     italic,
     center,
     children,
+    theme,
     ...rest
   } = props;
   return (
@@ -81,4 +82,4 @@ Typography.propTypes = {
   italic: PropTypes.bool,
 };
 
-export default Typography;
+export default withGalio(Typography);
