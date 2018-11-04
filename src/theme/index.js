@@ -6,10 +6,12 @@ import GALIO_COLORS from './colors';
 import GALIO_SIZES from './sizes';
 
 // default theme with COLORS & SIZES
-export const GalioTheme = {
+const GalioTheme = {
   COLORS: GALIO_COLORS,
   SIZES: GALIO_SIZES,
 };
+
+export default GalioTheme;
 
 // creating a theme context
 const GalioContext = React.createContext();
@@ -52,7 +54,7 @@ export function withGalio(Component, styles) {
 */
 
 // eslint-disable-next-line react/no-multi-comp
-class GalioProvider extends React.Component {
+export class GalioProvider extends React.Component {
   static defaultProps = {
     children: null,
   }
@@ -70,5 +72,3 @@ class GalioProvider extends React.Component {
 GalioProvider.propTypes = {
   children: PropTypes.any,
 };
-
-export default GalioProvider;
