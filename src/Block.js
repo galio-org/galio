@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
-import { withGalio } from './theme/';
+import GalioTheme, { withGalio } from './theme';
 
 class Block extends Component {
   render() {
@@ -81,6 +81,8 @@ Block.defaultProps = {
   width: null,
   shadowColor: null,
   safe: false,
+  styles: {},
+  theme: GalioTheme,
 };
 
 Block.propTypes = {
@@ -103,6 +105,8 @@ Block.propTypes = {
   width: PropTypes.number,
   shadowColor: PropTypes.string,
   safe: PropTypes.bool,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
 const styles = theme => StyleSheet.create({

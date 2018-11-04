@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 // galio components
 import { Icon } from '.';
-import { withGalio } from './theme/';
+import GalioTheme, { withGalio } from './theme';
 
 const { width } = Dimensions.get('window');
 
@@ -137,6 +137,8 @@ Button.defaultProps = {
   iconFamily: false,
   iconSize: 14,
   iconColor: null,
+  styles: {},
+  theme: GalioTheme,
 };
 
 Button.propTypes = {
@@ -176,6 +178,8 @@ Button.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   iconFamily: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   iconSize: PropTypes.number,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
 const styles = theme => StyleSheet.create({

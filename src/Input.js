@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types';
 // galio components
 import { Icon } from '.';
-import { withGalio } from './theme/';
+import GalioTheme, { withGalio } from './theme';
 
 // TO-DO:
 // 1. State functionality for Redux/Context/basic state stuff
@@ -137,6 +137,8 @@ Input.defaultProps = {
   icon: null,
   family: null,
   color: null,
+  styles: {},
+  theme: GalioTheme,
 };
 
 Input.propTypes = {
@@ -158,6 +160,8 @@ Input.propTypes = {
   right: PropTypes.bool,
   topHelp: PropTypes.bool,
   bottomHelp: PropTypes.bool,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
 const styles = theme => StyleSheet.create({

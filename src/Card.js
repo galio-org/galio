@@ -3,7 +3,7 @@ import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Block, Icon, Text } from '.';
-import { withGalio } from './theme/';
+import GalioTheme, { withGalio } from './theme';
 
 class Card extends Component {
   renderImage() {
@@ -104,12 +104,16 @@ Card.defaultProps = {
   card: true,
   shadow: true,
   borderless: false,
+  styles: {},
+  theme: GalioTheme,
 };
 
 Card.propTypes = {
   card: PropTypes.bool,
   shadow: PropTypes.bool,
   borderless: PropTypes.bool,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
 const styles = theme => StyleSheet.create({

@@ -3,7 +3,7 @@ import { Font } from 'expo';
 import Icons, { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
-import { withGalio } from './theme/';
+import GalioTheme, { withGalio } from './theme';
 import galioConfig from './fonts/galio';
 
 Icons.Galio = createIconSetFromIcoMoon(galioConfig, 'Galio');
@@ -49,6 +49,8 @@ Icon.defaultProps = {
   family: null,
   size: null,
   color: null,
+  styles: {},
+  theme: GalioTheme,
 };
 
 Icon.propTypes = {
@@ -56,6 +58,8 @@ Icon.propTypes = {
   family: PropTypes.string,
   size: PropTypes.number,
   color: PropTypes.string,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
 export default withGalio(Icon);
