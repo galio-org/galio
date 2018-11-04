@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 // galio components
-import { Block, Text, Icon } from '.';
+import { GaBlock, GaText, GaIcon } from '.';
 import theme from './theme';
 
 const { height } = Dimensions.get('screen');
@@ -19,7 +19,7 @@ class NavBar extends React.Component {
     left: null,
     leftStyle: null,
     leftIconColor: theme.COLORS.ICON,
-    onLeftPress: () => {},
+    onLeftPress: () => { },
     right: null,
     rightStyle: null,
     style: null,
@@ -31,9 +31,9 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text style={[styles.titleTextStyle, titleStyle]}>
+          <GaText style={[styles.titleTextStyle, titleStyle]}>
             {title}
-          </Text>
+          </GaText>
         </View>
       );
     }
@@ -57,7 +57,7 @@ class NavBar extends React.Component {
     return (
       <View style={[styles.left, leftStyle]}>
         <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
-          <Icon
+          <GaIcon
             family="Galio"
             color={leftIconColor}
             size={theme.SIZES.BASE * 1.0625}
@@ -76,7 +76,7 @@ class NavBar extends React.Component {
       rightStyle,
     ];
 
-    return <Block right row={hasIcons} style={rightStyles}>{right}</Block>;
+    return <GaBlock right row={hasIcons} style={rightStyles}>{right}</GaBlock>;
   }
 
   render() {
@@ -88,11 +88,11 @@ class NavBar extends React.Component {
     ];
 
     return (
-      <Block style={navStyles}>
+      <GaBlock style={navStyles}>
         {this.renderLeft()}
         {this.renderTitle()}
         {this.renderRight()}
-      </Block>
+      </GaBlock>
     );
   }
 }

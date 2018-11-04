@@ -1,19 +1,8 @@
-import Block from './Block';
-import Button from './Button';
-import Card from './Card';
-import Icon from './Icon';
-import Input from './Input';
-import NavBar from './NavBar';
-import Text from './Text';
-import theme from './theme';
-
-export {
-  Block,
-  Button,
-  Card,
-  Icon,
-  Input,
-  NavBar,
-  Text,
-  theme,
-};
+export { Block as GaBlock } from './Block';
+export { Button as GaButton } from './Button';
+export { Card as GaCard } from './Card';
+export { Icon as GaIcon } from './Icon';
+export { Input as GaInput } from './Input';
+export { NavBar as GaNavBar } from './NavBar';
+export { Text as GaText } from './Text';
+export { theme } from './theme';

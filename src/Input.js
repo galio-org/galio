@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Icon } from '.';
+import { GaIcon } from '.';
 import theme from './theme';
 
 // TO-DO:
@@ -87,7 +87,7 @@ class Input extends React.Component {
     ];
 
     const iconContent = icon ? (
-      <Icon
+      <GaIcon
         name={icon}
         family={family}
         size={theme.SIZES.BASE * 1.0625}
@@ -103,7 +103,7 @@ class Input extends React.Component {
           style={{ marginLeft: 2 }}
           onPress={() => this.setState({ isPassword: !isPassword })}
         >
-          <Icon
+          <GaIcon
             size={theme.SIZES.BASE * 1.0625}
             color={theme.COLORS.BLACK}
             name="eye-17"

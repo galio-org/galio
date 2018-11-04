@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Icon } from '.';
+import { GaIcon } from '.';
 import theme from './theme';
 
 const { width } = Dimensions.get('window');
@@ -63,7 +63,7 @@ class Button extends React.Component {
     if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
 
     if (onlyIcon) {
-      content = <Icon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
+      content = <GaIcon name={icon} family={iconFamily} size={iconSize} color={iconColor} />;
     } else if (isString) {
       content = <Text style={textStyles}>{content}</Text>;
     }
