@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Image, StyleSheet, ScrollView, SafeAreaView, Platform,
+  Image,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  Platform,
+  TouchableWithoutFeedback,
 } from 'react-native';
-import {
-  createDrawerNavigator,
-  DrawerItems,
-} from 'react-navigation';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation';
 
 // screens
 import Article from './src/screens/Article';
@@ -21,6 +23,7 @@ import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
 import Registerv2 from './src/screens/Registerv2';
 import Grid from './src/screens/Grid';
+import Profile from './src/screens/Profile';
 
 import theme from './src/theme';
 import { Block, Icon, Text } from './src';
@@ -28,12 +31,17 @@ import { Block, Icon, Text } from './src';
 const GalioDrawer = props => (
   <SafeAreaView style={styles.drawer} forceInset={{ top: 'always', horizontal: 'never' }}>
     <Block space="between" row style={styles.header}>
-      <Block flex={0.3}><Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} /></Block>
+      <Block flex={0.3}>
+        <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} />
+      </Block>
       <Block flex style={styles.middle}>
         <Text size={theme.SIZES.FONT * 0.875}>Galio Framework</Text>
-        <Text muted size={theme.SIZES.FONT * 0.875}>React Native</Text>
+        <Text muted size={theme.SIZES.FONT * 0.875}>
+          React Native
+        </Text>
       </Block>
     </Block>
+
     <ScrollView>
       <DrawerItems {...props} />
     </ScrollView>
@@ -102,14 +110,18 @@ const screens = {
     screen: Article,
     navigationOptions: {
       drawerLabel: 'Article Screen',
-      drawerIcon: props => <MenuIcon name="tablet-reader-31" family="Galio" focused={props.focused} />,
+      drawerIcon: props => (
+        <MenuIcon name="tablet-reader-31" family="Galio" focused={props.focused} />
+      ),
     },
   },
   ArticleCover: {
     screen: ArticleCover,
     navigationOptions: {
       drawerLabel: 'Article Cover',
-      drawerIcon: props => <MenuIcon name="single-paragraph" family="Galio" focused={props.focused} />,
+      drawerIcon: props => (
+        <MenuIcon name="single-paragraph" family="Galio" focused={props.focused} />
+      ),
     },
   },
   Dashboard: {
@@ -166,6 +178,13 @@ const screens = {
     navigationOptions: {
       drawerLabel: 'Grid Screen',
       drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
+    },
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      drawerLabel: 'Profile',
+      drawerIcon: props => <MenuIcon name="users-wm" family="Galio" focused={props.focused} />,
     },
   },
 };
