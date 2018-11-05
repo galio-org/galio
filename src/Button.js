@@ -193,7 +193,7 @@ const styles = theme => StyleSheet.create({
   shadow: {
     shadowColor: theme.COLORS.BLOCK,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: theme.SIZES.OPACITY,
+    shadowOpacity: theme.SIZES.BUTTON_SHADOW_OPACITY,
     shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
   },
   customText: {
