@@ -83,7 +83,7 @@ class Button extends React.Component {
       ...rest
     } = this.props;
 
-    const colorStyle = styles[`${color}Color`];
+    const colorStyle = styles[color];
 
     const buttonStyles = [
       styles.defaultButton,
@@ -200,25 +200,25 @@ const styles = theme => StyleSheet.create({
     fontSize: theme.SIZES.FONT,
     color: theme.COLORS.WHITE,
   },
-  primaryColor: {
+  primary: {
     backgroundColor: theme.COLORS.PRIMARY,
   },
-  themeColor: {
+  theme: {
     backgroundColor: theme.COLORS.THEME,
   },
-  infoColor: {
+  info: {
     backgroundColor: theme.COLORS.INFO,
   },
-  errorColor: {
+  error: {
     backgroundColor: theme.COLORS.ERROR,
   },
-  warningColor: {
+  warning: {
     backgroundColor: theme.COLORS.WARNING,
   },
-  successColor: {
+  success: {
     backgroundColor: theme.COLORS.SUCCESS,
   },
-  transparentColor: {
+  transparent: {
     backgroundColor: theme.COLORS.TRANSPARENT,
   },
   androidShadow: {
