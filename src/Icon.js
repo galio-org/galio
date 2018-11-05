@@ -24,7 +24,7 @@ class Icon extends React.Component {
 
   render() {
     const {
-      name, family, size, color, theme, ...rest
+      name, family, size, color, styles, theme, ...rest
     } = this.props;
     const { fontLoaded } = this.state;
     const { [family]: IconInstance } = Icons;
