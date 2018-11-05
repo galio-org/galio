@@ -22,6 +22,7 @@ const Typography = (props) => {
     italic,
     center,
     children,
+    styles,
     theme,
     ...rest
   } = props;
