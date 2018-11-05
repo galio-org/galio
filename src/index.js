@@ -5,7 +5,7 @@ import Icon from './Icon';
 import Input from './Input';
 import NavBar from './NavBar';
 import Text from './Text';
-import theme from './theme';
+import theme, { withGalio, GalioProvider } from './theme';
 
 export {
   Block,
@@ -16,4 +16,6 @@ export {
   NavBar,
   Text,
   theme,
+  withGalio,
+  GalioProvider,
 };
