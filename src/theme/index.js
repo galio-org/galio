@@ -26,19 +26,15 @@ const GalioContext = React.createContext();
 
 export function withGalio(Component, styles) {
   // eslint-disable-next-line react/no-multi-comp
-  return class extends React.PureComponent {
+  return class extends React.Component {
     render() {
       const { props } = this;
-      const componentStyles = theme => (styles && theme ? { styles: styles(theme) } : null);
-      const componentTheme = theme => (!styles && theme ? { ...{ theme } } : null);
-
       return (
         <GalioContext.Consumer>
           {theme => (
             <Component
-              theme={(!styles && !theme) ? GalioTheme : null}
-              {...componentTheme(theme)}
-              {...componentStyles(theme)}
+              theme={theme || GalioTheme}
+              styles={styles && styles(theme || GalioTheme)}
               {...props}
             />
           )}
