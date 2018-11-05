@@ -19,11 +19,12 @@ const orderConfirmedImage = require('../../assets/order_confirmed.png');
 
 class OrderConfirmed extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <Block safe flex>
         <NavBar
           title="Confirmed Order"
-          onLeftPress={() => props.navigation.openDrawer()}
+          onLeftPress={() => navigation.openDrawer()}
           style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
         <Block flex center space="around" style={styles.container}>
