@@ -91,7 +91,7 @@ class Card extends Component {
     ];
 
     return (
-      <Block card={card} shadow={shadow} style={styleCard} {...props}>
+      <Block {...props} card={card} shadow={shadow} style={styleCard}>
         {this.renderImage()}
         {this.renderAuthor()}
         {props.children}
