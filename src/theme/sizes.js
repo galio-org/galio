@@ -13,7 +13,6 @@ const SIZES = {
   // Button styles
   BUTTON_WIDTH: 16 * 9,
   BUTTON_HEIGHT: 16 * 2.75,
-  BUTTON_SHADOW_OPACITY: 0.5,
   BUTTON_SHADOW_RADIUS: 10,
 
   // Block styles
