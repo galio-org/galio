@@ -13,15 +13,13 @@ const GalioTheme = {
 
 export default GalioTheme;
 
-// creating a theme context
+// creating the GalioTheme context
 const GalioContext = React.createContext();
 
 /*
 *   withGalio
 *   args: Component - React Component, styles to be added to Component
 *   theme: if no styles or theme add default theme={ SIZES, COLORS }
-*   componentStyles: if styles & theme are set then pass "styles" to Component props
-*   componentTheme: if no styles & theme then pass "{ theme }" to props
 */
 
 export function withGalio(Component, styles) {
@@ -34,8 +32,8 @@ export function withGalio(Component, styles) {
           {theme => (
             <Component
               {...props}
-              theme={{...GalioTheme, ...theme}}
-              styles={styles && styles({...GalioTheme, ...theme})}
+              theme={{ ...GalioTheme, ...theme }}
+              styles={styles && styles({ ...GalioTheme, ...theme })}
             />
           )}
         </GalioContext.Consumer>
