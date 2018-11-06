@@ -33,9 +33,9 @@ export function withGalio(Component, styles) {
         <GalioContext.Consumer>
           {theme => (
             <Component
-              theme={theme || GalioTheme}
-              styles={styles && styles(theme || GalioTheme)}
               {...props}
+              theme={{...GalioTheme, ...theme}}
+              styles={styles && styles({...GalioTheme, ...theme})}
             />
           )}
         </GalioContext.Consumer>
