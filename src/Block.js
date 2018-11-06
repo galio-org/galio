@@ -55,9 +55,9 @@ class Block extends Component {
         </SafeAreaView>
       );
     }
-
+    
     return (
-      <View style={styleBlock} {...props}>
+      <View {...props} style={styleBlock}>
         {children}
       </View>
     );
@@ -146,8 +146,8 @@ const styles = theme => StyleSheet.create({
   shadow: {
     shadowColor: theme.COLORS.BLOCK,
     shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: theme.SIZES.BLOCK_SHADOW_RADIUS,
-    shadowRadius: 8,
+    shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
+    shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
     elevation: 1,
   },
   fluid: {
