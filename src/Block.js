@@ -55,7 +55,7 @@ class Block extends Component {
         </SafeAreaView>
       );
     }
-    
+
     return (
       <View {...props} style={styleBlock}>
         {children}
