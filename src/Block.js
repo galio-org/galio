@@ -148,7 +148,7 @@ const styles = theme => StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
     shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
-    elevation: 1,
+    elevation: theme.SIZES.ANDROID_ELEVATION,
   },
   fluid: {
     width: 'auto',
