@@ -222,7 +222,7 @@ const styles = theme => StyleSheet.create({
     backgroundColor: theme.COLORS.TRANSPARENT,
   },
   androidShadow: {
-    elevation: theme.SIZES.ELEVATION,
+    elevation: theme.SIZES.ANDROID_ELEVATION,
   },
 });
 
