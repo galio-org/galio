@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
 import { Icon } from '.';
@@ -62,7 +56,7 @@ class Input extends React.Component {
 
     const inputStyles = [
       styles.inputView,
-      (borderless && icon) && styles.inputIcon,
+      borderless && icon && styles.inputIcon,
       styles.inputText,
       color && { color },
     ];
@@ -72,26 +66,24 @@ class Input extends React.Component {
         name={icon}
         family={family}
         size={theme.SIZES.BASE * 1.0625}
-        style={{ marginRight: (left && !right) ? theme.SIZES.BASE * 0.2 : 0 }}
+        style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
       />
     ) : null;
 
     const { isPassword } = this.state;
-    const viewPassElement = password && viewPass
-      && (
-        <TouchableOpacity
-          style={{ marginLeft: 2 }}
-          onPress={() => this.setState({ isPassword: !isPassword })}
-        >
-          <Icon
-            size={theme.SIZES.BASE * 1.0625}
-            color={theme.COLORS.BLACK}
-            name="eye-17"
-            family="Galio"
-          />
-        </TouchableOpacity>
-      );
+    const viewPassElement = password && viewPass && (
+      <TouchableOpacity
+        style={{ marginLeft: 2 }}
+        onPress={() => this.setState({ isPassword: !isPassword })}>
+        <Icon
+          size={theme.SIZES.BASE * 1.0625}
+          color={theme.COLORS.BLACK}
+          name="eye-17"
+          family="Galio"
+        />
+      </TouchableOpacity>
+    );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
@@ -164,49 +156,50 @@ Input.propTypes = {
   theme: PropTypes.any,
 };
 
-const styles = theme => StyleSheet.create({
-  inputStyle: {
-    backgroundColor: theme.COLORS.WHITE,
-    borderRadius: theme.SIZES.INPUT_BORDER_RADIUS,
-    borderWidth: theme.SIZES.INPUT_BORDER_WIDTH,
-    borderColor: theme.COLORS.INPUT,
-    height: theme.SIZES.INPUT_HEIGHT,
-    paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
-    width: '100%',
-  },
-  inputText: {
-    color: theme.COLORS.INPUT,
-    fontSize: theme.SIZES.INPUT_TEXT,
-    textDecorationColor: 'transparent',
-    textShadowColor: 'transparent',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputView: {
-    flex: 1,
-  },
-  inputIcon: {
-    marginHorizontal: theme.SIZES.BASE,
-  },
-  label: {
-    fontWeight: '500',
-    fontSize: theme.SIZES.INPUT_LABEL_TEXT,
-    marginBottom: theme.SIZES.INPUT_LABEL_BOTTOM,
-  },
-  helpText: {
-    fontSize: theme.SIZES.INPUT_HELP_TEXT,
-    fontStyle: 'italic',
-  },
-  rounded: {
-    borderRadius: theme.SIZES.INPUT_ROUNDED,
-  },
-  borderless: {
-    borderColor: 'transparent',
-    borderWidth: 0,
-  },
-});
+const styles = theme =>
+  StyleSheet.create({
+    inputStyle: {
+      backgroundColor: theme.COLORS.WHITE,
+      borderRadius: theme.SIZES.INPUT_BORDER_RADIUS,
+      borderWidth: theme.SIZES.INPUT_BORDER_WIDTH,
+      borderColor: theme.COLORS.INPUT,
+      height: theme.SIZES.INPUT_HEIGHT,
+      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
+      width: '100%',
+    },
+    inputText: {
+      color: theme.COLORS.INPUT,
+      fontSize: theme.SIZES.INPUT_TEXT,
+      textDecorationColor: 'transparent',
+      textShadowColor: 'transparent',
+    },
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputView: {
+      flex: 1,
+    },
+    inputIcon: {
+      marginHorizontal: theme.SIZES.BASE,
+    },
+    label: {
+      fontWeight: '500',
+      fontSize: theme.SIZES.INPUT_LABEL_TEXT,
+      marginBottom: theme.SIZES.INPUT_LABEL_BOTTOM,
+    },
+    helpText: {
+      fontSize: theme.SIZES.INPUT_HELP_TEXT,
+      fontStyle: 'italic',
+    },
+    rounded: {
+      borderRadius: theme.SIZES.INPUT_ROUNDED,
+    },
+    borderless: {
+      borderColor: 'transparent',
+      borderWidth: 0,
+    },
+  });
 
 export default withGalio(Input, styles);

@@ -7,15 +7,4 @@ import NavBar from './NavBar';
 import Text from './Text';
 import theme, { withGalio, GalioProvider } from './theme';
 
-export {
-  Block,
-  Button,
-  Card,
-  Icon,
-  Input,
-  NavBar,
-  Text,
-  theme,
-  withGalio,
-  GalioProvider,
-};
+export { Block, Button, Card, Icon, Input, NavBar, Text, theme, withGalio, GalioProvider };

@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text,
-} from 'react-native';
+import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
 import { Icon } from '.';
@@ -28,10 +26,7 @@ class Button extends React.Component {
       theme,
     } = this.props;
 
-    const textStyles = [
-      styles.customText,
-      textStyle,
-    ];
+    const textStyles = [styles.customText, textStyle];
 
     // workaround for textTransform not supported on Expo SDK 29.0.0 or 30.0.0
     // More info: https://docs.expo.io/versions/latest/sdk/index.html#sdk-version
@@ -60,7 +55,7 @@ class Button extends React.Component {
     if (loading) content = <ActivityIndicator size={loadingSize} color={theme.COLORS.WHITE} />;
 
     return content;
-  }
+  };
 
   render() {
     const {
@@ -107,12 +102,7 @@ class Button extends React.Component {
     ];
 
     return (
-      <TouchableOpacity
-        disabled={disabled}
-        activeOpacity={opacity}
-        style={buttonStyles}
-        {...rest}
-      >
+      <TouchableOpacity disabled={disabled} activeOpacity={opacity} style={buttonStyles} {...rest}>
         {this.renderContent()}
       </TouchableOpacity>
     );
@@ -144,23 +134,11 @@ Button.defaultProps = {
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
   color: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'primary',
-      'theme',
-      'error',
-      'warning',
-      'success',
-      'transparent',
-    ]),
+    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent']),
     PropTypes.string,
   ]),
 
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'large', 'small',
-    ]),
-    PropTypes.number,
-  ]),
+  size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small']), PropTypes.number]),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
   radius: PropTypes.number,
@@ -168,9 +146,7 @@ Button.propTypes = {
   lowercase: PropTypes.bool,
   capitalize: PropTypes.bool,
   loading: PropTypes.bool,
-  loadingSize: PropTypes.oneOf([
-    'small', 'large',
-  ]),
+  loadingSize: PropTypes.oneOf(['small', 'large']),
   opacity: PropTypes.number,
   shadowless: PropTypes.bool,
   shadowColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -182,48 +158,49 @@ Button.propTypes = {
   theme: PropTypes.any,
 };
 
-const styles = theme => StyleSheet.create({
-  defaultButton: {
-    borderRadius: 3,
-    width: theme.SIZES.BUTTON_WIDTH,
-    height: theme.SIZES.BUTTON_HEIGHT,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  shadow: {
-    shadowColor: theme.COLORS.BLOCK,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: theme.SIZES.OPACITY,
-    shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
-  },
-  customText: {
-    fontSize: theme.SIZES.FONT,
-    color: theme.COLORS.WHITE,
-  },
-  primary: {
-    backgroundColor: theme.COLORS.PRIMARY,
-  },
-  theme: {
-    backgroundColor: theme.COLORS.THEME,
-  },
-  info: {
-    backgroundColor: theme.COLORS.INFO,
-  },
-  error: {
-    backgroundColor: theme.COLORS.ERROR,
-  },
-  warning: {
-    backgroundColor: theme.COLORS.WARNING,
-  },
-  success: {
-    backgroundColor: theme.COLORS.SUCCESS,
-  },
-  transparent: {
-    backgroundColor: theme.COLORS.TRANSPARENT,
-  },
-  androidShadow: {
-    elevation: theme.SIZES.ANDROID_ELEVATION,
-  },
-});
+const styles = theme =>
+  StyleSheet.create({
+    defaultButton: {
+      borderRadius: 3,
+      width: theme.SIZES.BUTTON_WIDTH,
+      height: theme.SIZES.BUTTON_HEIGHT,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    shadow: {
+      shadowColor: theme.COLORS.BLOCK,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: theme.SIZES.OPACITY,
+      shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
+    },
+    customText: {
+      fontSize: theme.SIZES.FONT,
+      color: theme.COLORS.WHITE,
+    },
+    primary: {
+      backgroundColor: theme.COLORS.PRIMARY,
+    },
+    theme: {
+      backgroundColor: theme.COLORS.THEME,
+    },
+    info: {
+      backgroundColor: theme.COLORS.INFO,
+    },
+    error: {
+      backgroundColor: theme.COLORS.ERROR,
+    },
+    warning: {
+      backgroundColor: theme.COLORS.WARNING,
+    },
+    success: {
+      backgroundColor: theme.COLORS.SUCCESS,
+    },
+    transparent: {
+      backgroundColor: theme.COLORS.TRANSPARENT,
+    },
+    androidShadow: {
+      elevation: theme.SIZES.ANDROID_ELEVATION,
+    },
+  });
 
 export default withGalio(Button, styles);

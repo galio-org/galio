@@ -12,7 +12,7 @@ const GalioFont = require('./fonts/galio.ttf');
 class Icon extends React.Component {
   state = {
     fontLoaded: false,
-  }
+  };
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -23,9 +23,7 @@ class Icon extends React.Component {
   }
 
   render() {
-    const {
-      name, family, size, color, styles, theme, ...rest
-    } = this.props;
+    const { name, family, size, color, styles, theme, ...rest } = this.props;
     const { fontLoaded } = this.state;
     const { [family]: IconInstance } = Icons;
 

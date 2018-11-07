@@ -25,31 +25,26 @@
   ],
   "scripts": {
     "precommit": "yarn lint",
-    "lint": "eslint src/**.js",
-    "test": "jest"
+    "lint": "eslint src/**.js"
   },
   "dependencies": {
     "expo": "^31.0.4"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.0",
-    "eslint": "^5.6.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-flowtype": "^2.50.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.2",
+    "eslint": "^5.8.0",
+    "eslint-config-universe": "^1.0.7",
+    "prettier": "^1.15.1",
     "prop-types": "^15.6.2",
     "react": "16.5.0",
-    "react-devtools": "^3.4.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.1.tar.gz",
-    "react-native-vector-icons": "^6.0.2",
-    "whatwg-fetch": "^2.0.4"
+    "react-native-vector-icons": "^6.0.2"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
     "react-native-vector-icons": "*"
+  },
+  "eslintConfig": {
+    "extends": "universe/native"
   }
 }

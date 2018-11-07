@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  View, TouchableOpacity, StyleSheet, Dimensions,
-} from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 // galio components
@@ -17,9 +15,7 @@ class NavBar extends React.Component {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text style={[styles.titleTextStyle, titleStyle]}>
-            {title}
-          </Text>
+          <Text style={[styles.titleTextStyle, titleStyle]}>{title}</Text>
         </View>
       );
     }
@@ -27,17 +23,13 @@ class NavBar extends React.Component {
     if (!title) return null;
 
     return title;
-  }
+  };
 
   renderLeft = () => {
-    const {
-      back, left, leftStyle, leftIconColor, onLeftPress, theme, styles,
-    } = this.props;
+    const { back, left, leftStyle, leftIconColor, onLeftPress, theme, styles } = this.props;
 
     if (left) {
-      return (
-        <View style={[styles.left, leftStyle]}>{left}</View>
-      );
+      return <View style={[styles.left, leftStyle]}>{left}</View>;
     }
 
     return (
@@ -52,26 +44,23 @@ class NavBar extends React.Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  };
 
   renderRight = () => {
     const { right, rightStyle, styles } = this.props;
     const hasIcons = React.Children.count(right) > 1;
-    const rightStyles = [
-      styles.right,
-      rightStyle,
-    ];
+    const rightStyles = [styles.right, rightStyle];
 
-    return <Block right row={hasIcons} style={rightStyles}>{right}</Block>;
-  }
+    return (
+      <Block right row={hasIcons} style={rightStyles}>
+        {right}
+      </Block>
+    );
+  };
 
   render() {
     const { transparent, style, styles } = this.props;
-    const navStyles = [
-      styles.navBar,
-      transparent && styles.transparent,
-      style,
-    ];
+    const navStyles = [styles.navBar, transparent && styles.transparent, style];
 
     return (
       <Block style={navStyles}>
@@ -91,7 +80,7 @@ NavBar.defaultProps = {
   left: null,
   leftStyle: null,
   leftIconColor: null,
-  onLeftPress: () => { },
+  onLeftPress: () => {},
   right: null,
   rightStyle: null,
   style: null,
@@ -102,10 +91,7 @@ NavBar.defaultProps = {
 NavBar.propTypes = {
   back: PropTypes.bool,
   transparent: PropTypes.bool,
-  title: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.string,
-  ]),
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   titleStyle: PropTypes.any,
   left: PropTypes.node,
   leftStyle: PropTypes.any,
@@ -118,45 +104,46 @@ NavBar.propTypes = {
   theme: PropTypes.any,
 };
 
-const styles = theme => StyleSheet.create({
-  navBar: {
-    width: 'auto',
-    height: theme.SIZES.BASE * 4.125,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    backgroundColor: theme.COLORS.WHITE,
-    paddingVertical: theme.SIZES.BASE,
-  },
-  title: {
-    flex: 2,
-    height: height * 0.07,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titleTextStyle: {
-    fontWeight: '400',
-    fontSize: theme.SIZES.FONT * 0.875,
-    color: theme.COLORS.BLACK,
-  },
-  left: {
-    flex: 0.5,
-    height: height * 0.07,
-    justifyContent: 'center',
-    marginLeft: theme.SIZES.BASE,
-  },
-  right: {
-    flex: 0.5,
-    height: height * 0.07,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-    marginRight: theme.SIZES.BASE,
-  },
-  transparent: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    borderWidth: 0,
-  },
-});
+const styles = theme =>
+  StyleSheet.create({
+    navBar: {
+      width: 'auto',
+      height: theme.SIZES.BASE * 4.125,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+      backgroundColor: theme.COLORS.WHITE,
+      paddingVertical: theme.SIZES.BASE,
+    },
+    title: {
+      flex: 2,
+      height: height * 0.07,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    titleTextStyle: {
+      fontWeight: '400',
+      fontSize: theme.SIZES.FONT * 0.875,
+      color: theme.COLORS.BLACK,
+    },
+    left: {
+      flex: 0.5,
+      height: height * 0.07,
+      justifyContent: 'center',
+      marginLeft: theme.SIZES.BASE,
+    },
+    right: {
+      flex: 0.5,
+      height: height * 0.07,
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      marginRight: theme.SIZES.BASE,
+    },
+    transparent: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      borderWidth: 0,
+    },
+  });
 
 export default withGalio(NavBar, styles);
