@@ -51,12 +51,21 @@ export function withGalio(Component, styles) {
 export class GalioProvider extends React.Component {
   static defaultProps = {
     children: null,
+    theme: {},
   }
 
   render() {
-    const { children } = this.props;
+    const { theme, children } = this.props;
+    const { COLORS: CUSTOM_COLORS, SIZES: CUSTOM_SIZES, customTheme } = theme;
+
+    const providerTheme = {
+      COLORS: { ...GalioTheme.COLORS, ...CUSTOM_COLORS },
+      SIZES: { ...GalioTheme.SIZES, ...CUSTOM_SIZES },
+      ...customTheme
+    };
+
     return (
-      <GalioContext.Provider value={GalioTheme}>
+      <GalioContext.Provider value={providerTheme}>
         {children}
       </GalioContext.Provider>
     );
@@ -65,4 +74,5 @@ export class GalioProvider extends React.Component {
 
 GalioProvider.propTypes = {
   children: PropTypes.any,
+  theme: PropTypes.any,
 };
