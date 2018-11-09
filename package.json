@@ -1,7 +1,7 @@
 {
   "name": "galio-framework",
   "main": "src/index.js",
-  "version": "1.0.4",
+  "version": "0.4.0",
   "files": [
     "src/"
   ],
