@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
-import theme from './theme';
+import GalioTheme, { withGalio } from './theme';
 
-export default class Block extends Component {
-  static defaultProps = {
-    row: false,
-    flex: false,
-    center: false,
-    middle: false,
-    top: false,
-    bottom: false,
-    right: false,
-    left: false,
-    card: false,
-    shadow: false,
-    space: null,
-    fluid: false,
-    height: null,
-    width: null,
-    shadowColor: null,
-    safe: false,
-  }
-
+class Block extends Component {
   render() {
     const {
       row,
@@ -43,6 +24,7 @@ export default class Block extends Component {
       safe,
       children,
       style,
+      styles,
       ...props
     } = this.props;
 
@@ -75,19 +57,37 @@ export default class Block extends Component {
     }
 
     return (
-      <View style={styleBlock} {...props}>
+      <View {...props} style={styleBlock}>
         {children}
       </View>
     );
   }
 }
 
+Block.defaultProps = {
+  row: false,
+  flex: false,
+  center: false,
+  middle: false,
+  top: false,
+  bottom: false,
+  right: false,
+  left: false,
+  card: false,
+  shadow: false,
+  space: null,
+  fluid: false,
+  height: null,
+  width: null,
+  shadowColor: null,
+  safe: false,
+  styles: {},
+  theme: GalioTheme,
+};
+
 Block.propTypes = {
   row: PropTypes.bool,
-  flex: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-  ]),
+  flex: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   center: PropTypes.bool,
   middle: PropTypes.bool,
   top: PropTypes.bool,
@@ -102,50 +102,55 @@ Block.propTypes = {
   width: PropTypes.number,
   shadowColor: PropTypes.string,
   safe: PropTypes.bool,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
-const styles = StyleSheet.create({
-  block: {
-    flexDirection: 'column',
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  middle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  center: {
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  left: {
-    alignItems: 'flex-start',
-  },
-  right: {
-    alignItems: 'flex-end',
-  },
-  top: {
-    alignItems: 'flex-start',
-    alignSelf: 'flex-start',
-  },
-  bottom: {
-    alignItems: 'flex-end',
-    alignSelf: 'flex-end',
-  },
-  card: {
-    borderRadius: theme.SIZES.BASE * 0.4,
-    borderWidth: theme.SIZES.BASE * 0.05,
-    borderColor: theme.COLORS.BLOCK,
-  },
-  shadow: {
-    shadowColor: theme.COLORS.BLOCK,
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 1,
-  },
-  fluid: {
-    width: 'auto',
-  },
-});
+const styles = theme =>
+  StyleSheet.create({
+    block: {
+      flexDirection: 'column',
+    },
+    row: {
+      flexDirection: 'row',
+    },
+    middle: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    center: {
+      alignItems: 'center',
+      alignSelf: 'center',
+    },
+    left: {
+      alignItems: 'flex-start',
+    },
+    right: {
+      alignItems: 'flex-end',
+    },
+    top: {
+      alignItems: 'flex-start',
+      alignSelf: 'flex-start',
+    },
+    bottom: {
+      alignItems: 'flex-end',
+      alignSelf: 'flex-end',
+    },
+    card: {
+      borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
+      borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
+      borderColor: theme.COLORS.BLOCK,
+    },
+    shadow: {
+      shadowColor: theme.COLORS.BLOCK,
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
+      shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
+      elevation: theme.SIZES.ANDROID_ELEVATION,
+    },
+    fluid: {
+      width: 'auto',
+    },
+  });
+
+export default withGalio(Block, styles);
