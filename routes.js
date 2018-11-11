@@ -19,7 +19,7 @@ import Presentation from './src/screens/Presentation';
 import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
 import Grid from './src/screens/Grid';
-import Profile from './src/screens/Profile';
+import SocialProfile from './src/screens/SocialProfile';
 
 
 import theme from './src/theme';
@@ -154,11 +154,11 @@ const screens = {
       drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
     },
   },
-  Profile: {
-    screen: Profile,
+  SocialProfile: {
+    screen: SocialProfile,
     navigationOptions: {
       drawerLabel: 'Social Profile',
-      drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="share-bold" family="Galio" focused={props.focused} />,
     }
   },
 };
