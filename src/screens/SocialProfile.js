@@ -1,63 +1,73 @@
 import React from 'react';
-import { Dimensions, StyleSheet, ScrollView, Platform, Image, ActivityIndicator } from 'react-native';
+import PropTypes from 'prop-types';
+import {
+  Dimensions, StyleSheet, ScrollView, Platform, Image, ActivityIndicator, Alert,
+} from 'react-native';
 import { Font, LinearGradient } from 'expo';
 // galio components
-import { Button, Block, Icon, Text, NavBar, Card } from 'galio-framework';
+import {
+  Button, Block, Icon, Text, NavBar, Card,
+} from 'galio-framework';
 import theme from '../theme';
 
 const BASE_SIZE = theme.SIZES.BASE;
 const GRADIENT_GREY = ['#f3f3f3', '#ffffff'];
 const GRADIENT_CRIMSON = ['#f96332', '#fe2472'];
 const COLOR_WHITE = theme.COLORS.WHITE;
-const COLOR_GREY = theme.COLORS.MUTED; 
-const FONT_REGULAR = "SFUIText-Regular";
-const FONT_BOLD = "SFUIText-Bold";
+const COLOR_GREY = theme.COLORS.MUTED;
+const FONT_REGULAR = 'SFUIText-Regular';
+const FONT_BOLD = 'SFUIText-Bold';
 const { width } = Dimensions.get('screen');
 
 
-const image_one = require('../../assets/profile_screen/img1.png');
-const image_two = require('../../assets/profile_screen/img2.png');
-const image_three = require('../../assets/profile_screen/img3.png');
-const image_four = require('../../assets/profile_screen/img4.png');
-const image_five = require('../../assets/profile_screen/img5.png');
+const imageOne = require('../../assets/profile_screen/img1.png');
+const imageTwo = require('../../assets/profile_screen/img2.png');
+const imageThree = require('../../assets/profile_screen/img3.png');
+const imageFour = require('../../assets/profile_screen/img4.png');
+const imageFive = require('../../assets/profile_screen/img5.png');
+
+// F O N T S
+const SF_UI_REGULAR = require('../../assets/fonts/SF-UI-Text-Regular.otf');
+const SF_UI_BOLD = require('../../assets/fonts/SF-UI-Text-Bold.otf');
 
 const grids = [
   {
     id: 1,
-    image: image_one,
+    image: imageOne,
   },
   {
     id: 2,
-    image: image_two
+    image: imageTwo,
   },
   {
     id: 3,
-    image: image_three
+    image: imageThree,
   },
   {
     id: 4,
-    image: image_four
+    image: imageFour,
   },
   {
     id: 5,
-    image: image_five
+    image: imageFive,
   },
 ];
 
 
 class SocialProfile extends React.Component {
   state = {
-    fontsLoaded: false
-  }
-  async componentDidMount () {
-    await Font.loadAsync({
-      'SFUIText-Regular': require('../../assets/fonts/SF-UI-Text-Regular.otf'),
-      'SFUIText-Bold': require('../../assets/fonts/SF-UI-Text-Bold.otf'),
-    });
-    this.setState({fontsLoaded: true});
+    fontsLoaded: false,
   }
 
-  renderHeader = (navigation) => (
+  async componentDidMount() {
+    await Font.loadAsync({
+      'SFUIText-Regular': SF_UI_REGULAR,
+      'SFUIText-Bold': SF_UI_BOLD,
+    });
+    this.setState({ fontsLoaded: true });
+  }
+
+  renderHeader = navigation => (
     <NavBar
       back
       transparent
@@ -70,12 +80,12 @@ class SocialProfile extends React.Component {
           iconSize={BASE_SIZE}
           iconColor={COLOR_GREY}
           color="transparent"
-          onPress={() => alert('Like it!')}
+          onPress={() => Alert.alert('Like it!')}
         />
       )}
       titleStyle={styles.titleStyle}
       leftIconColor={COLOR_GREY}
-      onLeftPress={() => navigation.openDrawer()}
+      onLeftPress={() => navigation.goBack()}
       style={Platform.OS === 'android' ? { marginTop: BASE_SIZE } : null}
     />
   );
@@ -84,7 +94,7 @@ class SocialProfile extends React.Component {
     <Block style={styles.bioContainer}>
       <Block row space="between">
         <Block middle style={styles.bioAvatarWrap}>
-          <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.bioAvatar}/>
+          <Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.bioAvatar} />
         </Block>
         <Block middle>
           <Button round style={styles.bioButton}>
@@ -95,9 +105,9 @@ class SocialProfile extends React.Component {
             >
               <Icon
                 size={BASE_SIZE * 1.5}
-                name={'plus'}
+                name="plus"
                 color={COLOR_WHITE}
-                family={'Entypo'}
+                family="Entypo"
               />
               <Text color={COLOR_WHITE} style={styles.buttonTextStyle}>Follow</Text>
             </LinearGradient>
@@ -106,7 +116,9 @@ class SocialProfile extends React.Component {
       </Block>
       <Block style={styles.bioInnerContainer}>
         <Text h2 color="#444" style={styles.bioHeading}>Julie Andrew</Text>
-        <Text p muted style={styles.bioParagraph}>Hey there, I'm a UI designer from Paris.</Text>
+        <Text p muted style={styles.bioParagraph}>
+          Hey there, I&#39;m a UI designer from Paris.
+        </Text>
       </Block>
     </Block>
   );
@@ -134,22 +146,21 @@ class SocialProfile extends React.Component {
         <Text h6 color="#444" style={styles.leftHeading}>Photos</Text>
         <Text p muted style={styles.rightParagraph}>View more</Text>
       </Block>
-      <Block row space="between" style={{flexWrap: 'wrap'}}>
+      <Block row space="between" style={{ flexWrap: 'wrap' }}>
         {
-          grids.map((grid, index) => {
-            return (
-              <Block shadow middle style={styles.column} key={index}>
-                <Button color="transparent" style={styles.fullSize} onPress={() => alert(`You pressed number ${index + 1} image`)}>
-                  <Image source={grid.image} style={styles.fullSize} />
-                </Button>
-              </Block>
-            )
-          })  
+          grids.map((grid, index) => (
+            <Block shadow middle style={styles.column} key={`grid_${grid.id}`}>
+              <Button color="transparent" style={styles.fullSize} onPress={() => Alert.alert(`You pressed number ${index + 1} image`)}>
+                <Image source={grid.image} style={styles.fullSize} />
+              </Button>
+            </Block>
+          ))
         }
         <Block shadow middle style={styles.column}>
-          <Button 
-            style={styles.fullSize} 
-            onPress={() => alert("loading 95 more items...")}>
+          <Button
+            style={styles.fullSize}
+            onPress={() => Alert.alert('loading 95 more items...')}
+          >
             <LinearGradient
               colors={GRADIENT_CRIMSON}
               start={[0.1, 0.1]}
@@ -164,7 +175,7 @@ class SocialProfile extends React.Component {
   );
 
   renderArticles = () => (
-    <Block style={{marginTop: 21}}>
+    <Block style={{ marginTop: 21 }}>
       <Block row space="between" style={styles.headingWrapper}>
         <Text h6 style={styles.leftHeading}>Articles</Text>
         <Text p muted style={styles.rightParagraph}>View more</Text>
@@ -187,15 +198,15 @@ class SocialProfile extends React.Component {
   );
 
   render() {
-    const {fontsLoaded} = this.state;
+    const { fontsLoaded } = this.state;
     const { navigation } = this.props;
     // S H O W - L O A D E R - W H E N - F O N T - I S - L O A D I N G
-    if(!fontsLoaded) {
+    if (!fontsLoaded) {
       return (
         <Block safe flex middle>
-          <ActivityIndicator size="large" color="#fe2472"/>
+          <ActivityIndicator size="large" color="#fe2472" />
         </Block>
-      )
+      );
     }
     // E L S E - S H O W - T H E - S C R E E N
     return (
@@ -207,18 +218,18 @@ class SocialProfile extends React.Component {
           style={styles.backgroundGradient}
         />
         {/* H E A D E R */}
-        { this.renderHeader(navigation) }
+        {this.renderHeader(navigation)}
 
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <Block style={styles.container}>
             {/* R E N D E R - M A I N - C O N T E N T S */}
-            { this.renderBio() }
+            {this.renderBio()}
 
-            { this.renderLevel() }
-            
-            { this.renderPhotos() }
+            {this.renderLevel()}
 
-            {this.renderArticles() }
+            {this.renderPhotos()}
+
+            {this.renderArticles()}
           </Block>
         </ScrollView>
       </Block>
@@ -226,6 +237,9 @@ class SocialProfile extends React.Component {
   }
 }
 
+SocialProfile.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 const styles = StyleSheet.create({
   backgroundGradient: {
     position: 'absolute',
@@ -263,7 +277,7 @@ const styles = StyleSheet.create({
   },
   bioButton: {
     height: 32,
-    overflow:'hidden',
+    overflow: 'hidden',
     shadowColor: 'rgb(0,0,0)',
     shadowOffset: { width: 0, height: 13 },
     shadowOpacity: 0.1,
@@ -343,14 +357,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 3,
     flexDirection: 'row',
-    height: "100%",
+    height: '100%',
     justifyContent: 'center',
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    bottom:0,
-    width: "100%",
+    bottom: 0,
+    width: '100%',
   },
 });
 
