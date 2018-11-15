@@ -15,6 +15,7 @@ const GRADIENT_GREY = ['#f3f3f3', '#ffffff'];
 const GRADIENT_CRIMSON = ['#f96332', '#fe2472'];
 const COLOR_WHITE = theme.COLORS.WHITE;
 const COLOR_GREY = theme.COLORS.MUTED;
+const COLOR_DARK_GREY = '#444444';
 const FONT_REGULAR = 'SFUIText-Regular';
 const FONT_BOLD = 'SFUIText-Bold';
 const { width } = Dimensions.get('screen');
@@ -115,7 +116,7 @@ class SocialProfile extends React.Component {
         </Block>
       </Block>
       <Block style={styles.bioInnerContainer}>
-        <Text h2 color="#444" style={styles.bioHeading}>Julie Andrew</Text>
+        <Text h2 color={COLOR_DARK_GREY} style={styles.bioHeading}>Julie Andrew</Text>
         <Text p muted style={styles.bioParagraph}>
           Hey there, I&#39;m a UI designer from Paris.
         </Text>
@@ -126,15 +127,15 @@ class SocialProfile extends React.Component {
   renderLevel = () => (
     <Block row card space="around" style={styles.levelCard}>
       <Block center>
-        <Text h5 color="#444" style={styles.levelHeading}>100</Text>
+        <Text h5 color={COLOR_DARK_GREY} style={styles.levelHeading}>100</Text>
         <Text p muted style={styles.levelParagraph}>Photos</Text>
       </Block>
       <Block center>
-        <Text h5 color="#444" style={styles.levelHeading}>30</Text>
+        <Text h5 color={COLOR_DARK_GREY} style={styles.levelHeading}>30</Text>
         <Text p muted style={styles.levelParagraph}>Articles</Text>
       </Block>
       <Block center>
-        <Text h5 color="#444" style={styles.levelHeading}>4K</Text>
+        <Text h5 color={COLOR_DARK_GREY} style={styles.levelHeading}>4K</Text>
         <Text p muted style={styles.levelParagraph}>Followers</Text>
       </Block>
     </Block>
@@ -143,7 +144,7 @@ class SocialProfile extends React.Component {
   renderPhotos = () => (
     <Block>
       <Block row space="between" style={styles.headingWrapper}>
-        <Text h6 color="#444" style={styles.leftHeading}>Photos</Text>
+        <Text h6 color={COLOR_DARK_GREY} style={styles.leftHeading}>Photos</Text>
         <Text p muted style={styles.rightParagraph}>View more</Text>
       </Block>
       <Block row space="between" style={{ flexWrap: 'wrap' }}>
