@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, View, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import PropTypes from "prop-types";
 // galio dependency
-import { Icon } from "../galio";
-import GalioTheme, { withGalio } from "../galio/theme";
+import { Icon, Text } from ".";
+import GalioTheme, { withGalio } from "./theme";
 
 class Checkbox extends React.Component {
   constructor(props) {
