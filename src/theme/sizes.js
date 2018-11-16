@@ -57,6 +57,10 @@ const SIZES = {
   NAVBAR_RIGHT_FLEX: 0.5,
   NAVBAR_RIGHT_HEIGHT: height * 0.07,
   NAVBAR_RIGHT_MARGIN: 16,
+
+  // Checkbox styles
+  CHECKBOX_WIDTH: 20,
+  CHECKBOX_HEIGHT: 20
 };
 
 export default SIZES;
