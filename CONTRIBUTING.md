@@ -18,7 +18,7 @@ If you want to open a PR that fixes a bug or adds a feature, then we can't thank
 
 Please feel free to take on any issue that's currently open. Just send a comment in order to let us know you're working on it so we can assign that specific issue to you.
 
-In order to get started with Galio development, check out our Wiki (IN CONSTRUCTION ⚠️)
+In order to get started with Galio development, check out our [Wiki](https://github.com/galio-org/galio/wiki)!
 
 ## Branches explained
 
