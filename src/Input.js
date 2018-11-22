@@ -42,6 +42,7 @@ class Input extends React.Component {
       bottomHelp,
       theme,
       styles,
+      iconSize,
       ...props
     } = this.props;
 
@@ -65,7 +66,7 @@ class Input extends React.Component {
       <Icon
         name={icon}
         family={family}
-        size={theme.SIZES.BASE * 1.0625}
+        size={iconSize || theme.SIZES.BASE * 1.0625}
         style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
       />
@@ -77,8 +78,8 @@ class Input extends React.Component {
         style={{ marginLeft: 2 }}
         onPress={() => this.setState({ isPassword: !isPassword })}>
         <Icon
-          size={theme.SIZES.BASE * 1.0625}
-          color={theme.COLORS.BLACK}
+          size={iconSize || theme.SIZES.BASE * 1.0625}
+          color={iconColor || theme.COLORS.BLACK}
           name="eye-17"
           family="Galio"
         />
@@ -130,6 +131,7 @@ Input.defaultProps = {
   family: null,
   color: null,
   styles: {},
+  iconSize: null,
   theme: GalioTheme,
 };
 
@@ -153,6 +155,7 @@ Input.propTypes = {
   topHelp: PropTypes.bool,
   bottomHelp: PropTypes.bool,
   styles: PropTypes.any,
+  iconSize: PropTypes.number,
   theme: PropTypes.any,
 };
 
