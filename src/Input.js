@@ -43,6 +43,7 @@ class Input extends React.Component {
       theme,
       styles,
       iconSize,
+      iconContent,
       ...props
     } = this.props;
 
@@ -62,7 +63,7 @@ class Input extends React.Component {
       color && { color },
     ];
 
-    const iconContent = icon ? (
+    const iconInstance = icon ? (
       <Icon
         name={icon}
         family={family}
@@ -70,7 +71,7 @@ class Input extends React.Component {
         style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
       />
-    ) : null;
+    ) : iconContent;
 
     const { isPassword } = this.state;
     const viewPassElement = password && viewPass && (
@@ -93,7 +94,7 @@ class Input extends React.Component {
         {lebelContent}
         {topHelp && !bottomHelp && helpContent}
         <View style={inputViewStyles}>
-          {left && !right && iconContent}
+          {left && !right && iconInstance}
           <TextInput
             style={inputStyles}
             keyboardType={type}
@@ -102,7 +103,7 @@ class Input extends React.Component {
             underlineColorAndroid="transparent"
             {...props}
           />
-          {right && iconContent}
+          {right && iconInstance}
           {viewPassElement}
         </View>
         {bottomHelp && helpContent}
@@ -132,6 +133,7 @@ Input.defaultProps = {
   color: null,
   styles: {},
   iconSize: null,
+  iconContent: null,
   theme: GalioTheme,
 };
 
@@ -156,6 +158,7 @@ Input.propTypes = {
   bottomHelp: PropTypes.bool,
   styles: PropTypes.any,
   iconSize: PropTypes.number,
+  iconContent: PropTypes.any,
   theme: PropTypes.any,
 };
 
