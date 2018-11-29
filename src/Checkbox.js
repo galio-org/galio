@@ -44,9 +44,9 @@ class Checkbox extends React.Component {
       styles
     } = this.props;
 
-    const textStyle = [
+    const labelStyles = [
       styles.textStyles,
-      disabled && { color: "#707070", opacity: 0.7 },
+      disabled && styles.disabledLabel,
       labelStyle,
       flexDirection && this.spaceAround(flexDirection)
     ];
@@ -58,7 +58,7 @@ class Checkbox extends React.Component {
 
     if (image && !label)
       return <Image style={imageStyles} source={{ uri: image }} />;
-    if (!image && label) return <Text style={textStyle}>{label}</Text>;
+    if (!image && label) return <Text style={labelStyles}>{label}</Text>;
     if (!label && !image) return null;
   }
 
@@ -68,6 +68,8 @@ class Checkbox extends React.Component {
 
     if (this.state.checked)
       return <Icon name={iconName} family={iconFamily} color={iconColor} size={iconSize} />;
+    
+    return null;
   }
 
   // onPress function that changes the component's state and callbacks the onChange prop
@@ -89,8 +91,8 @@ class Checkbox extends React.Component {
     const checkBoxViewStyles = [
       styles.checkBoxView,
       styles.uncheckedBoxView,
-      state.checked && styles.checkedBoxView, //apply the ckecked styling
-      disabled && styles.disabledCheckBoxView,
+      state.checked && styles.checked, //apply the ckecked styling
+      disabled && styles.disabled,
       checkboxStyle
     ];
 
@@ -127,16 +129,19 @@ const styles = theme =>
       backgroundColor: theme.COLORS.TRANSPARENT,
       borderColor: theme.COLORS.GREY
     },
-    checkedBoxView: {
+    checked: {
       backgroundColor: theme.COLORS.THEME,
       borderColor: theme.COLORS.THEME
     },
-    disabledCheckBoxView: {
+    disabled: {
       borderColor: theme.COLORS.MUTED,
-      opacity: theme.SIZES.OPACITY
     },
     textStyles: {
       color: theme.COLORS.BLACK
+    },
+    disabledLabel: {
+      color: theme.COLORS.MUTED,
+      opacity: theme.SIZES.OPACITY
     },
     imgStyles: {
       width: 200,
@@ -176,7 +181,7 @@ Checkbox.propTypes = {
   image: PropTypes.string,
   imageStyle: PropTypes.any, //style the image
   initialValue: PropTypes.bool,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   labelStyle: PropTypes.any, //style the text
   onChange: PropTypes.func,
   styles: PropTypes.any, //style the whole View element,
