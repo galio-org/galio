@@ -58,9 +58,13 @@ const SIZES = {
   NAVBAR_RIGHT_HEIGHT: height * 0.07,
   NAVBAR_RIGHT_MARGIN: 16,
 
-  // Checkbox styles
+  // Checkbox
   CHECKBOX_WIDTH: 20,
-  CHECKBOX_HEIGHT: 20
+  CHECKBOX_HEIGHT: 20,
+
+  // Slider
+  TRACK_SIZE: 4,
+  THUMB_SIZE: 25
 };
 
 export default SIZES;
