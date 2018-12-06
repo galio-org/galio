@@ -14,7 +14,7 @@ class Slider extends PureComponent {
       measured: false, //hide the UI until we measure the View
     };
 
-    this.position = new Animated.Value(this.props.value); //recieve value from user
+    this.position = new Animated.Value(props.value); //recieve value from user
     this._panResponder = PanResponder.create({
       onMoveShouldSetPanResponderCapture: () => true,
       onPanResponderGrant: (e, gestureState) => {
@@ -22,7 +22,7 @@ class Slider extends PureComponent {
         this._fireChangeEvent('onSlidingStart');
       },
       onPanResponderMove: (e, gestureState) => {
-        if (this.props.disabled) {
+        if (props.disabled) {
           return;
         }
 
@@ -30,7 +30,7 @@ class Slider extends PureComponent {
         this._fireChangeEvent('onValueChange')
       },
       onPanResponderRelease: (e, gestureState) => {
-       if (this.props.disabled) {
+       if (props.disabled) {
          return;
        }
 
