@@ -1,11 +1,9 @@
-import Block from './Block';
-import Button from './Button';
-import Card from './Card';
-import Icon from './Icon';
-import Input from './Input';
-import NavBar from './NavBar';
-import Text from './Text';
-import Switch from './Switch';
-import theme, { withGalio, GalioProvider } from './theme';
-
-export { Block, Button, Card, Icon, Input, NavBar, Text, Switch, theme, withGalio, GalioProvider };
+export { Block } from './Block';
+export { Button } from './Button';
+export { Card } from './Card';
+export { Icon } from './Icon';
+export { Input } from './Input';
+export { NavBar } from './NavBar';
+export { Text } from './Text';
+export { Switch } from './Switch';
+export theme, { withGalio, GalioProvider } from './theme';
