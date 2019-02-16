@@ -15,7 +15,7 @@ class Switch extends Component {
   }
 
   render() {
-    const { color, disabled, trackColor, ios_backgroundColor, ...rest } = this.props;
+    const { initialValue, color, disabled, trackColor, ios_backgroundColor, ...rest } = this.props;
 
     trackColor.true = color === 'primary' ? GalioTheme.COLORS.PRIMARY : color;
 
@@ -23,6 +23,9 @@ class Switch extends Component {
       <Switcher
         disabled={disabled}
         trackColor={{ ...trackColor }}
+        initialValue={initialValueProvided => {
+          this.state.switchValue = initialValueProvided;
+        }}
         ios_backgroundColor={ios_backgroundColor}
         value={this.state.switchValue}
         onValueChange={() => {
