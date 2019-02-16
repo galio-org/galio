@@ -46,7 +46,10 @@ Switch.defaultProps = {
 
 Switch.propTypes = {
   ...Switcher.propTypes,
-  color: PropTypes.oneOfType([PropTypes.oneOf(['primary']), PropTypes.string]),
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'info']),
+    PropTypes.string,
+  ]),
   disabled: PropTypes.bool,
 };
 
