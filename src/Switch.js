@@ -17,12 +17,6 @@ class Switch extends Component {
     );
   }
 
-  onPress() {
-    this.setState({ switchValue: !this.state.switchValue }, () =>
-      this.props.onChange(this.state.switchValue)
-    );
-  }
-
   render() {
     const { initialValue, color, disabled, trackColor, ios_backgroundColor, ...rest } = this.props;
 
