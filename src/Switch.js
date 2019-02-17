@@ -4,14 +4,23 @@ import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
 class Switch extends Component {
-  state = {
-    switchValue: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      switchValue: props.initialValue,
+    };
+  }
 
   onPressSwitch() {
-    this.setState({
-      switchValue: !this.state.switchValue,
-    });
+    this.setState({ switchValue: !this.state.switchValue }, () =>
+      this.props.onChange(this.state.switchValue)
+    );
+  }
+
+  onPress() {
+    this.setState({ switchValue: !this.state.switchValue }, () =>
+      this.props.onChange(this.state.switchValue)
+    );
   }
 
   render() {
@@ -23,9 +32,6 @@ class Switch extends Component {
       <Switcher
         disabled={disabled}
         trackColor={{ ...trackColor }}
-        initialValue={initialValueProvided => {
-          this.state.switchValue = initialValueProvided;
-        }}
         ios_backgroundColor={ios_backgroundColor}
         value={this.state.switchValue}
         onValueChange={() => {
@@ -45,6 +51,7 @@ Switch.defaultProps = {
     true: GalioTheme.COLORS.PRIMARY,
   },
   disabled: false,
+  initialValue: false,
 };
 
 Switch.propTypes = {
@@ -54,6 +61,7 @@ Switch.propTypes = {
     PropTypes.string,
   ]),
   disabled: PropTypes.bool,
+  initialValue: PropTypes.bool,
 };
 
 export default withGalio(Switch);
