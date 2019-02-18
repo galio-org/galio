@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
 import { Icon } from '.';
-import theme from './theme';
+import GalioTheme, { withGalio } from './theme';
 
 // TO-DO:
 // 1. State functionality for Redux/Context/basic state stuff
@@ -17,27 +11,6 @@ import theme from './theme';
 // 3. Idk. What else should we do in order to make this even more reusable.
 
 class Input extends React.Component {
-  static defaultProps = {
-    type: 'default',
-    password: false,
-    placeholderTextColor: theme.COLORS.PLACEHOLDER,
-    label: null,
-    help: null,
-    rounded: false,
-    left: true,
-    right: false,
-    viewPass: false,
-    topHelp: true,
-    bottomHelp: false,
-    style: null,
-    borderless: false,
-    bgColor: null,
-    iconColor: null,
-    icon: null,
-    family: null,
-    color: null,
-  };
-
   state = {
     isPassword: false,
   };
@@ -67,6 +40,10 @@ class Input extends React.Component {
       iconColor,
       topHelp,
       bottomHelp,
+      theme,
+      styles,
+      iconSize,
+      iconContent,
       ...props
     } = this.props;
 
@@ -81,36 +58,34 @@ class Input extends React.Component {
 
     const inputStyles = [
       styles.inputView,
-      (borderless && icon) && styles.inputIcon,
+      borderless && icon && styles.inputIcon,
       styles.inputText,
       color && { color },
     ];
 
-    const iconContent = icon ? (
+    const iconInstance = icon ? (
       <Icon
         name={icon}
         family={family}
-        size={theme.SIZES.BASE * 1.0625}
-        style={{ marginRight: (left && !right) ? theme.SIZES.BASE * 0.2 : 0 }}
-        color={iconColor || placeholderTextColor}
+        size={iconSize || theme.SIZES.BASE * 1.0625}
+        style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
+        color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
       />
-    ) : null;
+    ) : iconContent;
 
     const { isPassword } = this.state;
-    const viewPassElement = password && viewPass
-      && (
-        <TouchableOpacity
-          style={{ marginLeft: 2 }}
-          onPress={() => this.setState({ isPassword: !isPassword })}
-        >
-          <Icon
-            size={theme.SIZES.BASE * 1.0625}
-            color={theme.COLORS.BLACK}
-            name="eye-17"
-            family="Galio"
-          />
-        </TouchableOpacity>
-      );
+    const viewPassElement = password && viewPass && (
+      <TouchableOpacity
+        style={{ marginLeft: 2 }}
+        onPress={() => this.setState({ isPassword: !isPassword })}>
+        <Icon
+          size={iconSize || theme.SIZES.BASE * 1.0625}
+          color={iconColor || theme.COLORS.BLACK}
+          name="eye-17"
+          family="Galio"
+        />
+      </TouchableOpacity>
+    );
     const lebelContent = label && <Text style={styles.label}>{label}</Text>;
     const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
 
@@ -119,7 +94,7 @@ class Input extends React.Component {
         {lebelContent}
         {topHelp && !bottomHelp && helpContent}
         <View style={inputViewStyles}>
-          {left && !right && iconContent}
+          {left && !right && iconInstance}
           <TextInput
             style={inputStyles}
             keyboardType={type}
@@ -128,7 +103,7 @@ class Input extends React.Component {
             underlineColorAndroid="transparent"
             {...props}
           />
-          {right && iconContent}
+          {right && iconInstance}
           {viewPassElement}
         </View>
         {bottomHelp && helpContent}
@@ -137,50 +112,30 @@ class Input extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  inputStyle: {
-    backgroundColor: theme.COLORS.WHITE,
-    borderRadius: theme.SIZES.BASE * 0.5,
-    borderWidth: theme.SIZES.BASE * 0.05,
-    borderColor: theme.COLORS.INPUT,
-    height: theme.SIZES.BASE * 2.75,
-    paddingHorizontal: theme.SIZES.BASE,
-    width: '100%',
-  },
-  inputText: {
-    color: theme.COLORS.INPUT,
-    fontSize: theme.SIZES.FONT * 0.875,
-    textDecorationColor: 'transparent',
-    textShadowColor: 'transparent',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputView: {
-    flex: 1,
-  },
-  inputIcon: {
-    marginHorizontal: theme.SIZES.BASE,
-  },
-  label: {
-    fontWeight: '500',
-    fontSize: theme.SIZES.BASE * 0.9,
-    marginBottom: theme.SIZES.BASE / 4,
-  },
-  helpText: {
-    fontSize: theme.SIZES.BASE * 0.8,
-    fontStyle: 'italic',
-  },
-  rounded: {
-    borderRadius: theme.SIZES.BASE * 1.7,
-  },
-  borderless: {
-    borderColor: 'transparent',
-    borderWidth: 0,
-  },
-});
+Input.defaultProps = {
+  type: 'default',
+  password: false,
+  placeholderTextColor: null,
+  label: null,
+  help: null,
+  rounded: false,
+  left: true,
+  right: false,
+  viewPass: false,
+  topHelp: true,
+  bottomHelp: false,
+  style: null,
+  borderless: false,
+  bgColor: null,
+  iconColor: null,
+  icon: null,
+  family: null,
+  color: null,
+  styles: {},
+  iconSize: null,
+  iconContent: null,
+  theme: GalioTheme,
+};
 
 Input.propTypes = {
   style: PropTypes.any,
@@ -201,6 +156,56 @@ Input.propTypes = {
   right: PropTypes.bool,
   topHelp: PropTypes.bool,
   bottomHelp: PropTypes.bool,
+  styles: PropTypes.any,
+  iconSize: PropTypes.number,
+  iconContent: PropTypes.any,
+  theme: PropTypes.any,
 };
 
-export default Input;
+const styles = theme =>
+  StyleSheet.create({
+    inputStyle: {
+      backgroundColor: theme.COLORS.WHITE,
+      borderRadius: theme.SIZES.INPUT_BORDER_RADIUS,
+      borderWidth: theme.SIZES.INPUT_BORDER_WIDTH,
+      borderColor: theme.COLORS.INPUT,
+      height: theme.SIZES.INPUT_HEIGHT,
+      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
+      width: '100%',
+    },
+    inputText: {
+      color: theme.COLORS.INPUT,
+      fontSize: theme.SIZES.INPUT_TEXT,
+      textDecorationColor: 'transparent',
+      textShadowColor: 'transparent',
+    },
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputView: {
+      flex: 1,
+    },
+    inputIcon: {
+      marginHorizontal: theme.SIZES.BASE,
+    },
+    label: {
+      fontWeight: '500',
+      fontSize: theme.SIZES.INPUT_LABEL_TEXT,
+      marginBottom: theme.SIZES.INPUT_LABEL_BOTTOM,
+    },
+    helpText: {
+      fontSize: theme.SIZES.INPUT_HELP_TEXT,
+      fontStyle: 'italic',
+    },
+    rounded: {
+      borderRadius: theme.SIZES.INPUT_ROUNDED,
+    },
+    borderless: {
+      borderColor: 'transparent',
+      borderWidth: 0,
+    },
+  });
+
+export default withGalio(Input, styles);

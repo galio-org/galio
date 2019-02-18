@@ -1,7 +1,7 @@
 {
   "name": "galio-framework",
   "main": "src/index.js",
-  "version": "1.0.3",
+  "version": "0.4.4",
   "files": [
     "src/"
   ],
@@ -25,35 +25,24 @@
   ],
   "scripts": {
     "precommit": "yarn lint",
-    "lint": "eslint src/**.js",
-    "test": "jest"
-  },
-  "dependencies": {
-    "expo": "^29.0.0"
+    "lint": "eslint src/**.js"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.0",
-    "d3-shape": "^1.2.2",
-    "eslint": "^5.6.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-flowtype": "^2.50.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.2",
+    "expo": "^32.0.0",
+    "eslint": "^5.8.0",
+    "eslint-config-universe": "^1.0.7",
+    "prettier": "^1.15.1",
     "prop-types": "^15.6.2",
-    "react": "16.3.1",
-    "react-devtools": "^3.3.2",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
-    "react-native-svg": "^7.0.3",
-    "react-native-svg-charts": "^5.2.0",
-    "react-native-vector-icons": "^6.0.2",
-    "react-navigation": "^2.13.0",
-    "whatwg-fetch": "^2.0.4"
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-vector-icons": "^6.0.2"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
     "react-native-vector-icons": "*"
+  },
+  "eslintConfig": {
+    "extends": "universe/native"
   }
 }
