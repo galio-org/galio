@@ -47,7 +47,7 @@ class Radio extends React.Component {
     }
   }
 
-  // O N P R E S S - H A N D L E R
+  // O N - P R E S S - H A N D L E R
   radioPressHandler() {
     this.setState({ checked: !this.state.checked }, () => this.props.onChange(this.state.checked));
   }
@@ -55,32 +55,43 @@ class Radio extends React.Component {
   render() {
     const { props, state } = this;
     const {
+      color,
       styles,
       disabled,
       flexDirection,
-      radioContainerStyle,
-      radioOutterPartStyle,
-      radioInnerPartStyle,
+      containerStyle,
+      radioOuterStyle,
+      radioInnerStyle,
+      theme,
     } = props;
 
-    const radioContainerStyles = [
-      styles.container,
-      flexDirection && { flexDirection },
-      radioContainerStyle,
+    const containerStyles = [styles.container, flexDirection && { flexDirection }, containerStyle];
+
+    const whichColor =
+      color && theme.COLORS[color.toUpperCase()] ? theme.COLORS[color.toUpperCase()] : color;
+
+    const radioButtonOuterStyles = [
+      styles.radioOuterStyles,
+      { borderColor: whichColor },
+      disabled && styles.disabledRadioOuter,
+      radioOuterStyle,
     ];
 
-    const radioOutterPartStyles = [styles.radioOutterStyles, radioOutterPartStyle];
-
-    const radioInnerPartStyles = [styles.radioInnerStyles, radioInnerPartStyle];
+    const radioButtonInnerStyles = [
+      styles.radioInnerStyles,
+      { backgroundColor: whichColor },
+      disabled && styles.disabledRadioInner,
+      radioInnerStyle,
+    ];
 
     return (
       <TouchableOpacity
         onPress={() => this.radioPressHandler()}
-        style={radioContainerStyles}
+        style={containerStyles}
         activeOpacity={0.8}
         disabled={disabled}>
-        <View style={radioOutterPartStyles}>
-          {state.checked ? <View style={radioInnerPartStyles} /> : null}
+        <View style={radioButtonOuterStyles}>
+          {state.checked ? <View style={radioButtonInnerStyles} /> : null}
         </View>
         {this.renderLabel()}
       </TouchableOpacity>
@@ -95,12 +106,11 @@ const styles = theme =>
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
-    radioOutterStyles: {
+    radioOuterStyles: {
       height: theme.SIZES.RADIO_HEIGHT,
       width: theme.SIZES.RADIO_WIDTH,
       borderRadius: theme.SIZES.RADIO_HEIGHT * 0.5,
       borderWidth: theme.SIZES.RADIO_THICKNESS,
-      borderColor: theme.COLORS.PRIMARY,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -108,10 +118,12 @@ const styles = theme =>
       height: theme.SIZES.RADIO_HEIGHT * 0.5,
       width: theme.SIZES.RADIO_WIDTH * 0.5,
       borderRadius: theme.SIZES.RADIO_HEIGHT * 0.25,
-      backgroundColor: theme.COLORS.PRIMARY,
     },
-    disabled: {
+    disabledRadioOuter: {
       borderColor: theme.COLORS.MUTED,
+    },
+    disabledRadioInner: {
+      backgroundColor: theme.COLORS.MUTED,
     },
     textStyles: {
       color: theme.COLORS.BLACK,
@@ -123,6 +135,7 @@ const styles = theme =>
   });
 
 Radio.defaultProps = {
+  color: 'primary',
   disabled: false,
   flexDirection: 'row',
   initialValue: false,
@@ -134,6 +147,10 @@ Radio.defaultProps = {
 };
 
 Radio.propTypes = {
+  color: PropTypes.string,
+  containerStyle: PropTypes.any,
+  radioOuterStyle: PropTypes.any,
+  radioInnerStyle: PropTypes.any,
   disabled: PropTypes.bool,
   flexDirection: PropTypes.oneOfType([
     PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
