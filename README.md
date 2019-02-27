@@ -9,7 +9,9 @@
 [![Backers on Open Collective](https://opencollective.com/galio/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/galio/sponsors/badge.svg)](#sponsors) 
 
-<img src="assets/galio_thumbnail.jpg">
+<p center>
+  <img src="assets/galio_thumbnail.jpg">
+</p>
 
 Galio is a 100% free and open source project, licensed under MIT License. You'll be building Android and iOS apps in style. Galio will always remain free to use and it is powered by a massive world-wide community.
 It comes with a lot of carefully crafted, ready to be used components and a beautiful typography. Galio has a gorgeous base theme that adapts to each project. 
@@ -18,33 +20,41 @@ Built with real app examples, component demos, guides, and how-to's to get you u
 ## Table of Contents
 * [Quick start](#quick-start)
 * [Components](#components)
-* [Examples](#examples)
 * [Documentation](#documentation)
 * [Resources](#resources)
 * [Reporting Issues](#reporting-issues)
 * [Licensing](#licensing)
-* [Useful Links](#useful-links)
+
+<p center>
+  <img src="https://raw.githubusercontent.com/galio-org/galio-org.github.io/master/img/readme3.jpg">
+</p>
 
 ## Quick Start
 
 #### 1. Project Setup
+
+Go ahead and install the app version of Galio in order to play around with our components and screens!
+
 ```bash
 git clone https://github.com/galio-org/galio.git
 cd galio
+git checkout examples
 npm install or yarn install
 ```
 
 #### 2. Project testing
-Terminal cli:
-`npm run ios` or `yarn run ios`
+Terminal cli: ```expo start```
 
-User our iOS or Android app to directly view Expo projects on your phone.
+After initializing your local server you are now able to test the app inside your simulator by running: `npm run ios` or `yarn run ios` (or try an Android simulator)
+
+Use our iOS or Android app directly on your physical device by running it inside Expo! 
 
 [Expo iOS app](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8)
 
 [Expo Android app](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en)
 
 #### 3. SDK library instructions
+Use our awesome components inside your own projects by running: 
 ```bash
 npm install galio-framework
 ```
@@ -52,7 +62,7 @@ or
 ```sh
 yarn add galio-framework
 ```
-Import UI components to new screens:
+Import our UI components to your screens:
 ```js
 import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework';
 ```
@@ -61,112 +71,18 @@ import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework'
 
 Under Galio's belt:
 
-:white_check_mark: NavBar
-
-:white_check_mark: Block
-
-:white_check_mark: Card
-
-:white_check_mark: Button
-
-:white_check_mark: Icon
-
-:white_check_mark: Input
-
-:white_check_mark: Text
-
-:construction: Will follow: :construction:
-
-TBA
-
-## Examples
-
-Here we will showcase some screens and some sample code of how we've used Galio in order to create them.
-
-<img src="http://oi65.tinypic.com/2i9m8oz.jpg" width="150" height="320">
-
-```js
-renderCard = (props, index) => {
-  const gradientColors = index % 2 ? GRADIENT_PINK : GRADIENT_BLUE;
-
-  return (
-    <Block row center card shadow space="between" style={styles.card} key={props.title}>
-      <Gradient
-        start={[0.45, 0.45]}
-        end={[0.90, 0.90]}
-        colors={gradientColors}
-        style={[styles.gradient, styles.left]}
-      >
-        <Icon
-          size={BASE_SIZE}
-          name={props.icon}
-          color={COLOR_WHITE}
-          family={props.iconFamily}
-        />
-      </Gradient>
-
-      <Block flex>
-        <Text h5>{props.title}</Text>
-        <Text muted>{props.subtitle}</Text>
-      </Block>
-      <Button style={styles.right}>
-        <Icon size={BASE_SIZE * 1.5} name="ios-arrow-forward" family="Ionicons" color={COLOR_GREY} />
-      </Button>
-    </Block>
-  );
-}
-```
-
-<img src="http://oi68.tinypic.com/25hhggj.jpg" width="150" height="320">
-
-```js
-<Block flex space="between" center style={styles.absolute}>
-  <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
-  <Block style={styles.articleSummary}>
-    <Block row style={{ marginBottom: theme.SIZES.BASE }}>
-      <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>25.2k</Text>
-      </Block>
-      <Block row middle>
-        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.8} />
-        <Text p color={theme.COLORS.WHITE} style={{ marginLeft: theme.SIZES.BASE * 0.25 }}>936</Text>
-      </Block>
-    </Block>
-    {/*...more code in the open source files...*/}
-  </Block>
-</Block>
-```
-<img src="http://oi66.tinypic.com/el5oqh.jpg" width="150" height="320">
-
-```js
-<Block>
-  <Input
-    rounded
-    type="email-address"
-    placeholder="Email"
-    autoCapitalize="none"
-    style={{ width: width * 0.9 }}
-    onChangeText={text => this.handleChange('email', text)}
-  />
-  <Input
-    rounded
-    password
-    viewPass
-    placeholder="Password"
-    style={{ width: width * 0.9 }}
-    onChangeText={text => this.handleChange('password', text)}
-  />
-  <Text
-    color={theme.COLORS.ERROR}
-    size={theme.SIZES.FONT * 0.75}
-    onPress={() => Alert.alert('Not implemented')}
-    style={{ alignSelf: 'flex-end', lineHeight: theme.SIZES.FONT * 2 }}
-  >
-    Forgot your password?
-  </Text>
-</Block>
-```
+* Block
+* Button
+* Card
+* Checkbox
+* Icon
+* Input
+* NavBar
+* Radio
+* Slider
+* Text
+* Switch
+* GalioTheme
 
 ## Documentation
 
@@ -219,13 +135,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 * Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
 
-## Useful Links
-
-Tutorials: coming soon...
-
-Freebies from Galio Team: coming soon...
-
-© 2018 [Galio](https://galio.io), made with love for apps.
+© 2019 [Galio](https://galio.io), made with 💚 for apps.
 
 
 
