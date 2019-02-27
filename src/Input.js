@@ -42,6 +42,8 @@ class Input extends React.Component {
       bottomHelp,
       theme,
       styles,
+      iconSize,
+      iconContent,
       ...props
     } = this.props;
 
@@ -61,15 +63,15 @@ class Input extends React.Component {
       color && { color },
     ];
 
-    const iconContent = icon ? (
+    const iconInstance = icon ? (
       <Icon
         name={icon}
         family={family}
-        size={theme.SIZES.BASE * 1.0625}
+        size={iconSize || theme.SIZES.BASE * 1.0625}
         style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
         color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
       />
-    ) : null;
+    ) : iconContent;
 
     const { isPassword } = this.state;
     const viewPassElement = password && viewPass && (
@@ -77,8 +79,8 @@ class Input extends React.Component {
         style={{ marginLeft: 2 }}
         onPress={() => this.setState({ isPassword: !isPassword })}>
         <Icon
-          size={theme.SIZES.BASE * 1.0625}
-          color={theme.COLORS.BLACK}
+          size={iconSize || theme.SIZES.BASE * 1.0625}
+          color={iconColor || theme.COLORS.BLACK}
           name="eye-17"
           family="Galio"
         />
@@ -92,7 +94,7 @@ class Input extends React.Component {
         {lebelContent}
         {topHelp && !bottomHelp && helpContent}
         <View style={inputViewStyles}>
-          {left && !right && iconContent}
+          {left && !right && iconInstance}
           <TextInput
             style={inputStyles}
             keyboardType={type}
@@ -101,7 +103,7 @@ class Input extends React.Component {
             underlineColorAndroid="transparent"
             {...props}
           />
-          {right && iconContent}
+          {right && iconInstance}
           {viewPassElement}
         </View>
         {bottomHelp && helpContent}
@@ -130,6 +132,8 @@ Input.defaultProps = {
   family: null,
   color: null,
   styles: {},
+  iconSize: null,
+  iconContent: null,
   theme: GalioTheme,
 };
 
@@ -153,6 +157,8 @@ Input.propTypes = {
   topHelp: PropTypes.bool,
   bottomHelp: PropTypes.bool,
   styles: PropTypes.any,
+  iconSize: PropTypes.number,
+  iconContent: PropTypes.any,
   theme: PropTypes.any,
 };
 
