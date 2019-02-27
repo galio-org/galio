@@ -6,7 +6,8 @@
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls?q=is%3Apr+is%3Aclosed)
 [![Gitter](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/galio-community)
 [![npm](https://img.shields.io/npm/dm/galio-framework.svg)](https://www.npmjs.com/package/galio-framework)
-
+[![Backers on Open Collective](https://opencollective.com/galio/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/galio/sponsors/badge.svg)](#sponsors) 
 
 <img src="assets/galio_thumbnail.jpg">
 
@@ -188,34 +189,31 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 
 ## Contributors
 
-[//]: contributor-faces
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/galio-org/galio/contributors"><img src="https://opencollective.com/galio/contributors.svg?width=890&button=false" /></a>
 
-<a href="https://github.com/hetmann" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/3584560?v=3" title="hetmann" width="80" height="80">
-</a> 
-<a href="https://github.com/palingheorghe" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/15977949?v=3" title="palingheorghe" width="80" height="80">
-</a>
-<a href="https://github.com/steefan" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/13517497?v=3" title="steefan" width="80" height="80">
-</a>
-<a href="https://github.com/paullaros" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/1512219?v=3" title="paullaros" width="80" height="80">
-</a>
-<a href="https://github.com/rarestoma" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/27827318?v=3" title="rarestoma" width="80" height="80">
-</a>
-<a href="https://github.com/marqbeniamin" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/4600172?v=3" title="marqbeniamin" width="80" height="80">
-</a>
-<a href="https://github.com/EINazare" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/26245512?v=3" title="EINazare" width="80" height="80">
-</a>
-<a href="https://github.com/galio-profile" target="_blank">
-  <img src="https://avatars.githubusercontent.com/u/40339237?v=3" title="galio-profile" width="80" height="80">
-</a>
 
-[//]: contributor-faces
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/galio#backer)]
+
+<a href="https://opencollective.com/galio#backers" target="_blank"><img src="https://opencollective.com/galio/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/galio#sponsor)]
+
+<a href="https://opencollective.com/galio/sponsor/0/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/1/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/2/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/3/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/4/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/5/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/6/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/7/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/8/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/galio/sponsor/9/website" target="_blank"><img src="https://opencollective.com/galio/sponsor/9/avatar.svg"></a>
 
 ## Licensing
 
@@ -228,3 +226,7 @@ Tutorials: coming soon...
 Freebies from Galio Team: coming soon...
 
 © 2018 [Galio](https://galio.io), made with love for apps.
+
+
+
+

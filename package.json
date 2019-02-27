@@ -25,7 +25,12 @@
   ],
   "scripts": {
     "precommit": "yarn lint",
-    "lint": "eslint src/**.js"
+    "lint": "eslint src/**.js",
+    "test": "jest",
+    "postinstall": "opencollective-postinstall"
+  },
+  "dependencies": {
+    "opencollective-postinstall": "^2.0.1"
   },
   "devDependencies": {
     "expo": "^32.0.0",
@@ -41,6 +46,10 @@
     "react": "*",
     "react-native": "*",
     "react-native-vector-icons": "*"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/galio"
   },
   "eslintConfig": {
     "extends": "universe/native"
