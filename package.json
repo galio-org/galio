@@ -1,7 +1,7 @@
 {
   "name": "galio-framework",
   "main": "src/index.js",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "files": [
     "src/"
   ],
@@ -27,10 +27,8 @@
     "precommit": "yarn lint",
     "lint": "eslint src/**.js"
   },
-  "dependencies": {
-    "expo": "^32.0.0"
-  },
   "devDependencies": {
+    "expo": "^32.0.0",
     "eslint": "^5.8.0",
     "eslint-config-universe": "^1.0.7",
     "prettier": "^1.15.1",
