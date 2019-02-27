@@ -64,7 +64,7 @@ const SIZES = {
 
   // Slider
   TRACK_SIZE: 4,
-  THUMB_SIZE: 25
+  THUMB_SIZE: 25,
   
   // Radio Button
   RADIO_WIDTH: 24,
