@@ -57,6 +57,11 @@ const SIZES = {
   NAVBAR_RIGHT_FLEX: 0.5,
   NAVBAR_RIGHT_HEIGHT: height * 0.07,
   NAVBAR_RIGHT_MARGIN: 16,
+
+  // R A D I O - B U T T O N - D E F A U L T S
+  RADIO_WIDTH: 24,
+  RADIO_HEIGHT: 24,
+  RADIO_THICKNESS: 2,
 };
 
 export default SIZES;
