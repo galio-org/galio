@@ -9,7 +9,7 @@
 [![Backers on Open Collective](https://opencollective.com/galio/backers/badge.svg)](#backers) 
 [![Sponsors on Open Collective](https://opencollective.com/galio/sponsors/badge.svg)](#sponsors) 
 
-<p center>
+<p align="center">
   <img src="assets/galio_thumbnail.jpg">
 </p>
 
@@ -25,7 +25,7 @@ Built with real app examples, component demos, guides, and how-to's to get you u
 * [Reporting Issues](#reporting-issues)
 * [Licensing](#licensing)
 
-<p center>
+<p align="center">
   <img src="https://raw.githubusercontent.com/galio-org/galio-org.github.io/master/img/readme3.jpg">
 </p>
 
@@ -135,7 +135,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 * Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
 
-© 2019 [Galio](https://galio.io), made with 💚 for apps.
+© 2019 [Galio](https://galio.io), made with 💚 for the community.
 
 
 
