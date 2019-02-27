@@ -19,8 +19,6 @@ class Checkbox extends React.Component {
   // adding the necessary margins depending on the flexDirection
   spaceAround(direction) {
     switch (direction) {
-      case "row":
-        return { marginLeft: 10 };
       case "row-reverse":
         return { marginRight: 10 };
       case "column":
