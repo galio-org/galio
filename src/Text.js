@@ -3,9 +3,9 @@ import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import normalize from './helpers/normalize';
-import theme from './theme';
+import GalioTheme, { withGalio } from './theme';
 
-const Typography = (props) => {
+const Typography = props => {
   const {
     style,
     h1,
@@ -22,6 +22,8 @@ const Typography = (props) => {
     italic,
     center,
     children,
+    styles,
+    theme,
     ...rest
   } = props;
   return (
@@ -42,8 +44,7 @@ const Typography = (props) => {
         center && { textAlign: 'center' },
         style && style,
       ]}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Text>
   );
@@ -63,6 +64,8 @@ Typography.defaultProps = {
   muted: false,
   bold: false,
   italic: false,
+  styles: {},
+  theme: GalioTheme,
 };
 
 Typography.propTypes = {
@@ -79,6 +82,8 @@ Typography.propTypes = {
   muted: PropTypes.bool,
   bold: PropTypes.bool,
   italic: PropTypes.bool,
+  styles: PropTypes.any,
+  theme: PropTypes.any,
 };
 
-export default Typography;
+export default withGalio(Typography);
