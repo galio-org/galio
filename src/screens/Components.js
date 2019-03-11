@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo';
 
 // galio components
 import {
-  Text, Block, Button, Card, NavBar, Input,
+  Text, Block, Button, Card, NavBar, Input, Slider,
 } from 'galio-framework';
 import theme from '../theme';
 
@@ -284,6 +284,36 @@ export default class Components extends React.Component {
                 >
                   <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} />
                 </Card>
+                <Block width={330}>
+                  <Block flex style={{ padding: theme.SIZES.BASE }}>
+                    <Text h5>Sliders</Text>
+                  </Block>
+                  <Block flex style={styles.slider1}>
+                    <Slider
+                      step={1}
+                      minimumValue={0}
+                      maximumValue={71}
+                    />
+                  </Block>
+                  <Block flex style={styles.slider2}>
+                    <Slider
+                      step={1}
+                      minimumValue={0}
+                      maximumValue={71}
+                      activeColor="#fe2272"
+                      thumbStyle={{ borderColor: '#fe2272' }}
+                    />
+                  </Block>
+                  <Block flex style={styles.slider3}>
+                    <Slider
+                      step={1}
+                      minimumValue={0}
+                      maximumValue={71}
+                      activeColor="#46df31"
+                      thumbStyle={{ borderColor: '#46df31' }}
+                    />
+                  </Block>
+                </Block>
               </Block>
             </Block>
           </Block>
@@ -364,5 +394,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderBottomRightRadius: theme.SIZES.BASE * 0.5,
     borderBottomLeftRadius: theme.SIZES.BASE * 0.5,
+  },
+  slider1: {
+    marginTop: 10,
+  },
+  slider2: {
+    marginTop: 10,
+  },
+  slider3: {
+    marginTop: 10,
+
   },
 });
