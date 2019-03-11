@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo';
 
 // galio components
 import {
-  Text, Block, Button, Card, NavBar, Input, Slider,
+  Switch, Text, Block, Button, Card, NavBar, Input, Slider, Radio,
 } from 'galio-framework';
 import theme from '../theme';
 
@@ -313,6 +313,27 @@ export default class Components extends React.Component {
                       thumbStyle={{ borderColor: '#46df31' }}
                     />
                   </Block>
+                  <Block flex style={{ padding: theme.SIZES.BASE }}>
+                    <Text h5>Radio</Text>
+                  </Block>
+                  <Block flex style={styles.radio1}>
+                    <Radio
+                      label="Galio"
+                    />
+                  </Block>
+                  <Block flex style={styles.radio2}>
+                    <Radio
+                      color="#fe2472"
+                      label="is"
+                    />
+                  </Block>
+                  <Block flex style={styles.radio3}>
+                    <Radio
+                      color="#45df32"
+                      label="awesome!"
+                    />
+                    
+                  </Block>
                 </Block>
               </Block>
             </Block>
@@ -403,6 +424,23 @@ const styles = StyleSheet.create({
   },
   slider3: {
     marginTop: 10,
-
+  },
+  switch1: {
+    marginTop: 10,
+  },
+  switch2: {
+    marginTop: 10,
+  },
+  switch3: {
+    marginTop: 10,
+  },
+  radio1: {
+    marginTop: 10,
+  },
+  radio2: {
+    marginTop: 10,
+  },
+  radio3: {
+    marginTop: 10,
   },
 });
