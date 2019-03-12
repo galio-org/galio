@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo';
 
 // galio components
 import {
-  Text, Block, Button, Card, NavBar, Input, Slider, Radio, Checkbox,
+  Text, Block, Button, Card, NavBar, Input, Slider, Radio, Checkbox, Switch,
 } from 'galio-framework';
 import theme from '../theme';
 
@@ -332,7 +332,7 @@ export default class Components extends React.Component {
                       color="#45df32"
                       label="awesome!"
                     />
-                    
+
                     {/* color on checkboxStyle prop is not working */}
                     <Block flex style={{ padding: theme.SIZES.BASE }}>
                       <Text h5>Checkbox</Text>
@@ -358,6 +358,27 @@ export default class Components extends React.Component {
 
                         }}
                       />
+
+                      {/* color & trackColor is not working.. */}
+
+                      {/* <Block flex style={styles.switch}>
+                        <Text h5>Switch</Text>
+                      </Block>
+                      <Block flex style={styles.switch}>
+                        <Switch
+                          color="black"
+                        />
+                      </Block>
+                      <Block flex style={styles.switch}>
+                        <Switch
+                          color="black"
+                        />
+                      </Block>
+                      <Block flex style={styles.switch}>
+                        <Switch
+
+                        />
+                      </Block> */}
                     </Block>
                   </Block>
                 </Block>
@@ -444,11 +465,18 @@ const styles = StyleSheet.create({
   },
   slider: {
     marginTop: 10,
+    marginBottom: 10,
   },
   radio: {
     marginTop: 10,
+    marginBottom: 10,
   },
   checkbox: {
     marginTop: 10,
+    marginBottom: 10,
+  },
+  switch: {
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
