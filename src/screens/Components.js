@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo';
 
 // galio components
 import {
-  Switch, Text, Block, Button, Card, NavBar, Input, Slider, Radio,
+  Text, Block, Button, Card, NavBar, Input, Slider, Radio, Checkbox,
 } from 'galio-framework';
 import theme from '../theme';
 
@@ -288,14 +288,14 @@ export default class Components extends React.Component {
                   <Block flex style={{ padding: theme.SIZES.BASE }}>
                     <Text h5>Sliders</Text>
                   </Block>
-                  <Block flex style={styles.slider1}>
+                  <Block flex style={styles.slider}>
                     <Slider
                       step={1}
                       minimumValue={0}
                       maximumValue={71}
                     />
                   </Block>
-                  <Block flex style={styles.slider2}>
+                  <Block flex style={styles.slider}>
                     <Slider
                       step={1}
                       minimumValue={0}
@@ -304,7 +304,7 @@ export default class Components extends React.Component {
                       thumbStyle={{ borderColor: '#fe2272' }}
                     />
                   </Block>
-                  <Block flex style={styles.slider3}>
+                  <Block flex style={styles.slider}>
                     <Slider
                       step={1}
                       minimumValue={0}
@@ -316,23 +316,49 @@ export default class Components extends React.Component {
                   <Block flex style={{ padding: theme.SIZES.BASE }}>
                     <Text h5>Radio</Text>
                   </Block>
-                  <Block flex style={styles.radio1}>
+                  <Block flex style={styles.radio}>
                     <Radio
                       label="Galio"
                     />
                   </Block>
-                  <Block flex style={styles.radio2}>
+                  <Block flex style={styles.radio}>
                     <Radio
                       color="#fe2472"
                       label="is"
                     />
                   </Block>
-                  <Block flex style={styles.radio3}>
+                  <Block flex style={styles.radio}>
                     <Radio
                       color="#45df32"
                       label="awesome!"
                     />
                     
+                    {/* color on checkboxStyle prop is not working */}
+                    <Block flex style={{ padding: theme.SIZES.BASE }}>
+                      <Text h5>Checkbox</Text>
+                    </Block>
+                    <Block flex style={styles.checkbox}>
+                      <Checkbox
+                        label="Galio"
+                      />
+                    </Block>
+                    <Block flex style={styles.checkbox}>
+                      <Checkbox
+                        label="is"
+                        checkboxStyle={{
+                          borderColor: '#fe2472',
+                        }}
+                      />
+                    </Block>
+                    <Block flex style={styles.checkbox}>
+                      <Checkbox
+                        label="awesome!"
+                        checkboxStyle={{
+                          borderColor: '#45df32',
+
+                        }}
+                      />
+                    </Block>
                   </Block>
                 </Block>
               </Block>
@@ -416,31 +442,13 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: theme.SIZES.BASE * 0.5,
     borderBottomLeftRadius: theme.SIZES.BASE * 0.5,
   },
-  slider1: {
+  slider: {
     marginTop: 10,
   },
-  slider2: {
+  radio: {
     marginTop: 10,
   },
-  slider3: {
-    marginTop: 10,
-  },
-  switch1: {
-    marginTop: 10,
-  },
-  switch2: {
-    marginTop: 10,
-  },
-  switch3: {
-    marginTop: 10,
-  },
-  radio1: {
-    marginTop: 10,
-  },
-  radio2: {
-    marginTop: 10,
-  },
-  radio3: {
+  checkbox: {
     marginTop: 10,
   },
 });
