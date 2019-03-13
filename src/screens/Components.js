@@ -288,85 +288,84 @@ export default class Components extends React.Component {
                   <Block flex style={{ padding: theme.SIZES.BASE }}>
                     <Text h5>Sliders</Text>
                   </Block>
-                  <Block flex style={styles.slider}>
-                    <Slider
-                      step={1}
-                      minimumValue={0}
-                      maximumValue={71}
-                    />
-                  </Block>
-                  <Block flex style={styles.slider}>
-                    <Slider
-                      step={1}
-                      minimumValue={0}
-                      maximumValue={71}
-                      activeColor="#fe2272"
-                      thumbStyle={{ borderColor: '#fe2272' }}
-                    />
-                  </Block>
-                  <Block flex style={styles.slider}>
-                    <Slider
-                      step={1}
-                      minimumValue={0}
-                      maximumValue={71}
-                      activeColor="#46df31"
-                      thumbStyle={{ borderColor: '#46df31' }}
-                    />
-                  </Block>
+                  <Slider
+                    style={styles.slider}
+                    step={1}
+                    minimumValue={0}
+                    maximumValue={71}
+                  />
+                  <Slider
+                    style={styles.slider}
+                    step={1}
+                    thumbStyle={{ borderColor: '#fe2272' }}
+                    activeColor="#fe2272"
+                    minimumValue={0}
+                    maximumValue={71}
+                  />
+                  <Slider
+                    style={styles.slider}
+                    step={1}
+                    thumbStyle={{ borderColor: '#46df31' }}
+                    activeColor="#46df31"
+                    minimumValue={0}
+                    maximumValue={71}
+                  />
                   <Block flex style={{ padding: theme.SIZES.BASE }}>
                     <Text h5>Radio</Text>
                   </Block>
-                  <Block flex style={styles.radio}>
-                    <Radio
+
+                  <Radio
+                    style={styles.radio1}
+                    label="Galio"
+                  />
+                  <Radio
+                    style={styles.radio2}
+                    color="#fe2472"
+                    label="is"
+                  />
+                  <Radio
+                    style={styles.radio3}
+                    color="#45df32"
+                    label="awesome!"
+                  />
+
+                  {/* color on checkboxStyle prop is not working */}
+                  <Block flex style={{ padding: theme.SIZES.BASE }}>
+                    <Text h5>Checkbox</Text>
+                  </Block>
+                  <Block flex style={styles.checkbox}>
+                    <Checkbox
                       label="Galio"
                     />
                   </Block>
-                  <Block flex style={styles.radio}>
-                    <Radio
-                      color="#fe2472"
+                  <Block flex style={styles.checkbox}>
+                    <Checkbox
                       label="is"
+                      checkboxStyle={{
+                        borderColor: '#fe2472',
+                      }}
                     />
                   </Block>
-                  <Block flex style={styles.radio}>
-                    <Radio
-                      color="#45df32"
+                  <Block flex style={styles.checkbox}>
+                    <Checkbox
                       label="awesome!"
+                      checkboxStyle={{
+                        borderColor: '#45df32',
+                      }}
                     />
 
-                    {/* color on checkboxStyle prop is not working */}
-                    <Block flex style={{ padding: theme.SIZES.BASE }}>
-                      <Text h5>Checkbox</Text>
-                    </Block>
-                    <Block flex style={styles.checkbox}>
-                      <Checkbox
-                        label="Galio"
-                      />
-                    </Block>
-                    <Block flex style={styles.checkbox}>
-                      <Checkbox
-                        label="is"
-                        checkboxStyle={{
-                          borderColor: '#fe2472',
-                        }}
-                      />
-                    </Block>
-                    <Block flex style={styles.checkbox}>
-                      <Checkbox
-                        label="awesome!"
-                        checkboxStyle={{
-                          borderColor: '#45df32',
+                    {/* color & trackColor is not working.. */}
 
-                        }}
-                      />
-
-                      {/* color & trackColor is not working.. */}
-
-                      {/* <Block flex style={styles.switch}>
+                    {/* <Block flex style={styles.switch}>
                         <Text h5>Switch</Text>
                       </Block>
                       <Block flex style={styles.switch}>
                         <Switch
                           color="black"
+                          trackColor={{
+                            false: 'grey',
+                            true: 'red',
+                          }}
                         />
                       </Block>
                       <Block flex style={styles.switch}>
@@ -375,16 +374,14 @@ export default class Components extends React.Component {
                         />
                       </Block>
                       <Block flex style={styles.switch}>
-                        <Switch
-
-                        />
+                        <Switch />
                       </Block> */}
-                    </Block>
                   </Block>
                 </Block>
               </Block>
             </Block>
           </Block>
+
         </ScrollView>
       </Block>
     );
