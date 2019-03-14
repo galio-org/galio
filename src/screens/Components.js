@@ -284,18 +284,18 @@ export default class Components extends React.Component {
                 >
                   <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} />
                 </Card>
-                <Block width={330}>
+                <Block flex style={{ width: '100%' }}>
                   <Block flex style={{ padding: theme.SIZES.BASE }}>
                     <Text h5>Sliders</Text>
                   </Block>
                   <Slider
-                    style={styles.slider}
+                    trackStyle={styles.slider}
                     step={1}
                     minimumValue={0}
                     maximumValue={71}
                   />
                   <Slider
-                    style={styles.slider}
+                    trackStyle={styles.slider}
                     step={1}
                     thumbStyle={{ borderColor: '#fe2272' }}
                     activeColor="#fe2272"
@@ -303,85 +303,84 @@ export default class Components extends React.Component {
                     maximumValue={71}
                   />
                   <Slider
-                    style={styles.slider}
+                    trackStyle={styles.slider}
                     step={1}
                     thumbStyle={{ borderColor: '#46df31' }}
                     activeColor="#46df31"
                     minimumValue={0}
                     maximumValue={71}
                   />
-                  <Block flex style={{ padding: theme.SIZES.BASE }}>
-                    <Text h5>Radio</Text>
-                  </Block>
+                  <Block />
+                  <Block flex>
+                    <Block flex style={{ padding: theme.SIZES.BASE }}>
+                      <Text h5>Radio</Text>
+                    </Block>
 
-                  <Radio
-                    style={styles.radio1}
-                    label="Galio"
-                  />
-                  <Radio
-                    style={styles.radio2}
-                    color="#fe2472"
-                    label="is"
-                  />
-                  <Radio
-                    style={styles.radio3}
-                    color="#45df32"
-                    label="awesome!"
-                  />
-
-                  {/* color on checkboxStyle prop is not working */}
-                  <Block flex style={{ padding: theme.SIZES.BASE }}>
-                    <Text h5>Checkbox</Text>
-                  </Block>
-                  <Block flex style={styles.checkbox}>
-                    <Checkbox
+                    <Radio
+                      containerStyle={styles.radio}
                       label="Galio"
                     />
+                    <Radio
+                      containerStyle={styles.radio}
+                      color="#fe2472"
+                      label="is"
+                    />
+                    <Radio
+                      containerStyle={styles.radio}
+                      color="#45df32"
+                      label="awesome!"
+                    />
                   </Block>
-                  <Block flex style={styles.checkbox}>
+                  {/* color on checkboxStyle prop is not working */}
+                  <Block flex>
+                    <Block flex style={{ padding: theme.SIZES.BASE }}>
+                      <Text h5>Checkbox</Text>
+                    </Block>
                     <Checkbox
+                      style={styles.checkbox}
+                      label="Galio"
+                    />
+                    <Checkbox
+                      style={styles.checkbox}
                       label="is"
                       checkboxStyle={{
                         borderColor: '#fe2472',
                       }}
                     />
-                  </Block>
-                  <Block flex style={styles.checkbox}>
                     <Checkbox
+                      style={styles.checkbox}
                       label="awesome!"
                       checkboxStyle={{
                         borderColor: '#45df32',
                       }}
                     />
-
-                    {/* color & trackColor is not working.. */}
-
-                    {/* <Block flex style={styles.switch}>
-                        <Text h5>Switch</Text>
-                      </Block>
-                      <Block flex style={styles.switch}>
-                        <Switch
-                          color="black"
-                          trackColor={{
-                            false: 'grey',
-                            true: 'red',
-                          }}
-                        />
-                      </Block>
-                      <Block flex style={styles.switch}>
-                        <Switch
-                          color="black"
-                        />
-                      </Block>
-                      <Block flex style={styles.switch}>
-                        <Switch />
-                      </Block> */}
+                  </Block>
+                  {/* color & trackColor is not working.. */}
+                  <Block felx>
+                    <Block flex style={styles.switch}>
+                      <Text h5>Switch</Text>
+                    </Block>
+                    <Switch
+                      style={styles.switch}
+                      color="black"
+                      trackColor={{
+                        false: 'grey',
+                        true: 'red',
+                      }}
+                    />
+                    <Switch
+                      style={styles.switch}
+                      color="black"
+                    />
+                    <Switch
+                      style={styles.switch}
+                      color="black"
+                    />
                   </Block>
                 </Block>
               </Block>
             </Block>
           </Block>
-
         </ScrollView>
       </Block>
     );
