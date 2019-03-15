@@ -21,6 +21,8 @@ import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
 import Registerv2 from './src/screens/Registerv2';
 import Grid from './src/screens/Grid';
+import SocialProfile from './src/screens/SocialProfile';
+
 
 import theme from './src/theme';
 import { Block, Icon, Text } from './src';
@@ -167,6 +169,13 @@ const screens = {
       drawerLabel: 'Grid Screen',
       drawerIcon: props => <MenuIcon name="grid-48" family="Galio" focused={props.focused} />,
     },
+  },
+  SocialProfile: {
+    screen: SocialProfile,
+    navigationOptions: {
+      drawerLabel: 'Social Profile',
+      drawerIcon: props => <MenuIcon name="share-bold" family="Galio" focused={props.focused} />,
+    }
   },
 };
 
