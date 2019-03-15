@@ -339,12 +339,18 @@ export default class Components extends React.Component {
                     <Checkbox
                       style={styles.checkbox}
                       label="Galio"
+                      checkboxStyle={{
+                        width: 25,
+                        height: 25,
+                      }}
                     />
                     <Checkbox
                       style={styles.checkbox}
                       label="is"
                       checkboxStyle={{
                         borderColor: '#fe2472',
+                        width: 25,
+                        height: 25,
                       }}
                     />
                     <Checkbox
@@ -352,11 +358,13 @@ export default class Components extends React.Component {
                       label="awesome!"
                       checkboxStyle={{
                         borderColor: '#45df32',
+                        width: 25,
+                        height: 25,
                       }}
                     />
                   </Block>
                   {/* color & trackColor is not working.. */}
-                  <Block felx>
+                  <Block felx style={{ padding: theme.SIZES.BASE }}>
                     <Block flex style={styles.switch}>
                       <Text h5>Switch</Text>
                     </Block>
