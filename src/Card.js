@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Block, Icon, Text } from '.';
 import GalioTheme, { withGalio } from './theme';
+import {Video} from 'expo';
+
+const { width } = Dimensions.get('screen');
+
 
 class Card extends Component {
   renderImage() {
-    const { image, imageBlockStyle, imageStyle, styles } = this.props;
+    const { image, imageBlockStyle, imageStyle, styles, type } = this.props;
     if (!image) return null;
 
-    return (
-      <Block card style={[styles.imageBlock, imageBlockStyle]}>
-        <Image source={{ uri: image }} style={[styles.image, imageStyle]} />
-      </Block>
-    );
+    if(type == 'video'){
+      return (
+        <Block card style={[styles.imageBlock, imageBlockStyle]}>
+          <Video
+            source={{ uri: image }}
+            rate={1.0}
+            volume={1.0}
+            isMuted={false}
+            resizeMode="cover"
+            shouldPlay={false}
+            isLooping
+            style={{ width: width-10, height: width-10 }}
+          />
+        </Block>
+      )
+    }else{
+      return (
+        <Block card style={[styles.imageBlock, imageBlockStyle]}>
+          <Image source={{ uri: image }} style={[styles.image, imageStyle]} />
+        </Block>
+      );
+    }
+    
   }
 
   renderAvatar() {
