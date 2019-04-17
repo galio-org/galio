@@ -137,7 +137,6 @@ Button.propTypes = {
     PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent']),
     PropTypes.string,
   ]),
-
   size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small']), PropTypes.number]),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,

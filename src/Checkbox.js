@@ -79,17 +79,28 @@ class Checkbox extends React.Component {
 
   render() {
     const { props, state } = this;
-    const { style, styles, disabled, flexDirection, checkboxStyle } = props;
+    const { style, styles, disabled, flexDirection, checkboxStyle, checkedStyle, color, theme } = props;
+
+    const colorStyle = theme.COLORS[color.toUpperCase()]; //this sets the correct color for the theme file
 
     const checkBoxContainerStyle = [
       styles.container,
       flexDirection && { flexDirection },
       style
     ];
+
+    const checkedInnerStyles = [
+      styles.checked,
+      color && { backgroundColor: colorStyle },
+      color && !colorStyle && { backgroundColor: color }
+    ];
+
     const checkBoxViewStyles = [
       styles.checkBoxView,
       styles.uncheckedBoxView,
-      state.checked && styles.checked, //apply the ckecked styling
+      color && { borderColor: colorStyle},
+      color && !colorStyle && { borderColor: color },
+      state.checked && (checkedStyle || checkedInnerStyles), //apply the ckecked styling
       disabled && styles.disabled,
       checkboxStyle
     ];
@@ -144,11 +155,12 @@ const styles = theme =>
     imgStyles: {
       width: 200,
       height: 200
-    }
+    },
   });
 
 Checkbox.defaultProps = {
   checkboxStyle: null,
+  checkedStyle: null,
   disabled: false,
   flexDirection: "row",
   iconColor: '#fff',
@@ -167,6 +179,7 @@ Checkbox.defaultProps = {
 
 Checkbox.propTypes = {
   checkboxStyle: PropTypes.any,
+  checkedStyle: PropTypes.any,
   disabled: PropTypes.bool,
   flexDirection: PropTypes.oneOfType([
     PropTypes.oneOf(["row", "row-reverse", "column", "column-reverse"]),
