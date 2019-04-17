@@ -79,7 +79,7 @@ class Checkbox extends React.Component {
 
   render() {
     const { props, state } = this;
-    const { style, styles, disabled, flexDirection, checkboxStyle, checkedStyle, color, theme } = props;
+    const { style, styles, disabled, flexDirection, checkboxStyle, color, theme } = props;
 
     const colorStyle = theme.COLORS[color.toUpperCase()]; //this sets the correct color for the theme file
 
@@ -91,8 +91,8 @@ class Checkbox extends React.Component {
 
     const checkedInnerStyles = [
       styles.checked,
-      color && { backgroundColor: colorStyle },
-      color && !colorStyle && { backgroundColor: color }
+      color && { backgroundColor: colorStyle, borderColor: colorStyle },
+      color && !colorStyle && { backgroundColor: color, borderColor: color }
     ];
 
     const checkBoxViewStyles = [
@@ -100,7 +100,7 @@ class Checkbox extends React.Component {
       styles.uncheckedBoxView,
       color && { borderColor: colorStyle},
       color && !colorStyle && { borderColor: color },
-      state.checked && (checkedStyle || checkedInnerStyles), //apply the ckecked styling
+      state.checked && checkedInnerStyles, //apply the ckecked styling
       disabled && styles.disabled,
       checkboxStyle
     ];
@@ -160,7 +160,7 @@ const styles = theme =>
 
 Checkbox.defaultProps = {
   checkboxStyle: null,
-  checkedStyle: null,
+  color: 'theme',
   disabled: false,
   flexDirection: "row",
   iconColor: '#fff',
@@ -179,7 +179,10 @@ Checkbox.defaultProps = {
 
 Checkbox.propTypes = {
   checkboxStyle: PropTypes.any,
-  checkedStyle: PropTypes.any,
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent', 'info']),
+    PropTypes.string,
+  ]),
   disabled: PropTypes.bool,
   flexDirection: PropTypes.oneOfType([
     PropTypes.oneOf(["row", "row-reverse", "column", "column-reverse"]),

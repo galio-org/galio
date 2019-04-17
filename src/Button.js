@@ -134,7 +134,7 @@ Button.defaultProps = {
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
   color: PropTypes.oneOfType([
-    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent']),
+    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent', 'info']),
     PropTypes.string,
   ]),
   size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small']), PropTypes.number]),
