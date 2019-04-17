@@ -146,8 +146,11 @@ class Slider extends PureComponent {
       backgroundColor: activeColor || theme.COLORS.PRIMARY,
       ...visibleStyle
     }
+
+    const containerStyles = [styles.container, style];
+
     return (
-      <View style={styles.container} onLayout={this._measureContainer}>
+      <View style={containerStyles} onLayout={this._measureContainer}>
         <View
           renderToHardwareTextureAndroid
           style={[styles.track, trackStyle]}
@@ -186,6 +189,7 @@ Slider.defaultProps = {
   value: 0,
   disabled: false,
   step: 0,
+  style: null,
   theme: GalioTheme,
   onSlidingComplete: () => {},
   onSlidingStart: () => {},
@@ -199,7 +203,6 @@ Slider.propTypes = {
   maximumValue: PropTypes.number,
   trackStyle: PropTypes.any,
   thumbStyle: PropTypes.any,
-  disabled: PropTypes.bool,
   step: PropTypes.number,
   styles: PropTypes.any,
   onSlidingComplete: PropTypes.func,
