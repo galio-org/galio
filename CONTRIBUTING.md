@@ -26,7 +26,7 @@ Galio is an open-source project, so pull requests are always welcome (_always_ â
 
 When in doubt, keep your pull requests small. To give a PR the best chance of getting accepted, don't bundle more than one feature or bug fix per pull request. It's always best to create two smaller PRs than one big one.
 
-As with issues, use the following formula for the title:
+As with issues, use the following formula for the title of your **PR**s:
  - **Screens/[_Screen name_]** 
  - **Components/[_Component name_]**
  - **Feature/[_Feature name_]**
