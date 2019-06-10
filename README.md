@@ -24,6 +24,8 @@
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/galio-org/galio-org.github.io/master/img/readme3.jpg">
+  <img src="https://i.imgur.com/8kcSRNl.png">
+  <img src="https://i.imgur.com/KLM1Zbw.png">
 </p>
 
 ## Quick Start
