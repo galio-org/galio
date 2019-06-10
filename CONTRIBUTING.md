@@ -40,7 +40,7 @@ As you can see we have multiple branches:
  - **design**: Here we have design resources for everybody to download and use
  - **Alpha-1**: This is the `dev` branch of Galio
 
-## Financial contributions
+## Financial contributions 
 
 We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/galio).
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
