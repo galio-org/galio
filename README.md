@@ -1,4 +1,4 @@
-# [Galio](https://www.galio.io) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Galio,%20a%20free%20and%20beautiful%20UI%20framework%20https%3A//galio.io/%20%23reactnative%20%23react%20%23design%20%23developers%20%23freebie%20via%20%40galioframework)
+# [Galio](https://www.galio.io) ![GitHub package.json version](https://img.shields.io/github/package-json/v/galio-org/galio.svg) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Galio,%20a%20free%20and%20beautiful%20UI%20framework%20https%3A//galio.io/%20%23reactnative%20%23react%20%23design%20%23developers%20%23freebie%20via%20%40galioframework)
 
 [![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/issues?q=is%3Aissue+is%3Aclosed)
@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="assets/galio-logo.png">
-  <p>Galio is one of the coolest UI libraries you could ever use, licensed under MIT. Carefully crafted by developers for developers. Ready-made components, typography, and a gorgeous base theme that is easily adaptable to each project.</p>
+  <p align="center">Galio is one of the coolest UI libraries you could ever use, licensed under MIT. Carefully crafted by developers for developers. Ready-made components, typography, and a gorgeous base theme that is easily adaptable to each project.</p>
 </p>
 
 ## Table of Contents
