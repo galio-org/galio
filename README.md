@@ -44,7 +44,10 @@ npm install or yarn install
 #### 2. Project testing
 Terminal cli: ```expo start```
 
-After initializing your local server you are now able to test the app inside your simulator by running: `npm run ios` or `yarn run ios` (or try an Android simulator)
+After initializing your local server you are now able to test the app inside your simulator by running: 
+```npm run ios``` or 
+```yarn run ios```
+(or try an Android simulator)
 
 Use our iOS or Android app directly on your physical device by running it inside Expo! 
 
@@ -89,8 +92,9 @@ The documentation for Galio is hosted at our [our website](https://galio.io/docs
 
 ## Resources
 
-* Website: <https://galio.io?ref=galio-repo>
-* Expo: <https://expo.io>
+* Website: [galio.io](https://galio.io?ref=galio-repo)
+* Expo: [expo.io](https://expo.io?ref=galio-repo)
+* Built with Galio: [Galio Apps](https://galio.io/built-with-galio)
 * Issues: [GitHub Issues Page](https://github.com/galio-org/galio/issues)
 
 
