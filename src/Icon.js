@@ -4,9 +4,9 @@ import Icons, { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
 import GalioTheme, { withGalio } from './theme';
-import galioConfig from './fonts/galio';
+import galioConfig from './fonts/galio.json';
 
-Icons.Galio = createIconSetFromIcoMoon(galioConfig, 'Galio');
+const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
 const GalioFont = require('./fonts/galio.ttf');
 
 class Icon extends React.Component {
@@ -25,17 +25,29 @@ class Icon extends React.Component {
   render() {
     const { name, family, size, color, styles, theme, ...rest } = this.props;
     const { fontLoaded } = this.state;
-    const { [family]: IconInstance } = Icons;
-
-    if (name && IconInstance && fontLoaded) {
-      return (
-        <IconInstance
-          name={name}
-          size={size || theme.SIZES.BASE}
-          color={color || theme.COLORS.BLACK}
-          {...rest}
-        />
-      );
+    if (family == 'Galio') {
+      if (name && fontLoaded) {
+        return (
+          <Galio
+            name={name}
+            size={size || theme.SIZES.BASE}
+            color={color || theme.COLORS.BLACK}
+            {...rest}
+          />
+        );
+      }
+    } else {
+      const { [family]: IconInstance } = Icons;
+      if (name && IconInstance && fontLoaded) {
+        return (
+          <IconInstance
+            name={name}
+            size={size || theme.SIZES.BASE}
+            color={color || theme.COLORS.BLACK}
+            {...rest}
+          />
+        );
+      }
     }
 
     return null;
