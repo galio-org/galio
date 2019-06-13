@@ -1,5 +1,5 @@
 import React from 'react';
-import { Font } from 'expo';
+// import { Font } from 'expo';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
@@ -8,13 +8,12 @@ import galioConfig from './fonts/galio.json';
 import getIconType from './helpers/getIconType';
 
 const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
-const GalioFont = require('./fonts/galio.ttf');
+// const GalioFont = require('./fonts/galio.ttf');
 
 class Icon extends React.Component {
-  state = {
+  /*state = {
     fontLoaded: false,
   };
-
   async componentDidMount() {
     await Font.loadAsync({
       Galio: GalioFont,
@@ -22,12 +21,12 @@ class Icon extends React.Component {
 
     this.setState({ fontLoaded: true });
   }
-
+*/
   render() {
     const { name, family, size, color, styles, theme, ...rest } = this.props;
-    const { fontLoaded } = this.state;
+    // const { fontLoaded } = this.state;
     if (family == 'Galio') {
-      if (name && fontLoaded) {
+      if (name) {
         return (
           <Galio
             name={name}
@@ -39,7 +38,7 @@ class Icon extends React.Component {
       }
     } else {
       const IconInstance = getIconType(family);
-      if (name && IconInstance && fontLoaded) {
+      if (name && IconInstance) {
         return (
           <IconInstance
             name={name}
