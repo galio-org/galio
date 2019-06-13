@@ -14,14 +14,8 @@ import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 
-const customIcons = {};
-
-export const registerCustomIconType = (id, customIcon) => {
-  customIcons[id] = customIcon;
-};
-
 export default type => {
-  switch (type) {
+  switch (type.toLowerCase()) {
     case 'zocial':
       return ZocialIcon;
     case 'octicon':
@@ -47,9 +41,6 @@ export default type => {
     case 'antdesign':
       return AntIcon;
     default:
-      if (Object.prototype.hasOwnProperty.call(customIcons, type)) {
-        return customIcons[type];
-      }
       return MaterialIcon;
   }
 };

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import GalioTheme, { withGalio } from './theme';
 import galioConfig from './fonts/galio.json';
-import getIconType from '../helpers/getIconType';
+import getIconType from './helpers/getIconType';
 
 const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
 const GalioFont = require('./fonts/galio.ttf');
@@ -65,8 +65,8 @@ Icon.defaultProps = {
 };
 
 Icon.propTypes = {
-  name: PropTypes.string,
-  family: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  family: PropTypes.string.isRequired,
   size: PropTypes.number,
   color: PropTypes.string,
   styles: PropTypes.any,
