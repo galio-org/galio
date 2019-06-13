@@ -26,7 +26,7 @@ class NavBar extends React.Component {
   };
 
   renderLeft = () => {
-    const { back, left, leftStyle, leftIconColor, onLeftPress, theme, styles } = this.props;
+    const { back, left, leftStyle, leftIconColor, onLeftPress, theme, styles, leftHitSlop } = this.props;
 
     if (left) {
       return <View style={[styles.left, leftStyle]}>{left}</View>;
@@ -34,7 +34,7 @@ class NavBar extends React.Component {
 
     return (
       <View style={[styles.left, leftStyle]}>
-        <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
+        <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
           <Icon
             family="Galio"
             color={leftIconColor || theme.COLORS.ICON}
