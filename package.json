@@ -33,13 +33,12 @@
     "opencollective-postinstall": "^2.0.1"
   },
   "devDependencies": {
-    "expo": "^33.0.0",
     "eslint": "^5.8.0",
     "eslint-config-universe": "^1.0.7",
     "prettier": "^1.15.1",
     "prop-types": "^15.6.2",
     "react": "16.8.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native": "^0.59",
     "react-native-vector-icons": "^6.5.0"
   },
   "peerDependencies": {
