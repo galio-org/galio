@@ -30,8 +30,7 @@
     "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
-    "opencollective-postinstall": "^2.0.1",
-    "react-native-vector-icons": "^6.5.0"
+    "opencollective-postinstall": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
@@ -39,12 +38,12 @@
     "prettier": "^1.15.1",
     "prop-types": "^15.6.2",
     "react": "16.8.3",
-    "react-native": "^0.59"
+    "react-native": "^0.59",
+    "react-native-vector-icons": "^6.5.0"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
-    "react-native-vector-icons": "*"
+    "react-native": "*"
   },
   "collective": {
     "type": "opencollective",
