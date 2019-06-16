@@ -1,27 +1,18 @@
 import React from 'react';
-// import { Font } from 'expo';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
 import GalioTheme, { withGalio } from './theme';
-import galioConfig from './fonts/galio.json';
 import getIconType from './helpers/getIconType';
+import galioConfig from './fonts/galio.json';
 
 const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
-// const GalioFont = require('./fonts/galio.ttf');
+
+// Galio Fonts have to be linked with 'react-native link' if you're using react-native-cli
+// Galio Fonts have to loaded with Fonts.loadAsync if you're
+// using Expo (you can export GalioFont from index in order to import it)
 
 class Icon extends React.Component {
-  /*state = {
-    fontLoaded: false,
-  };
-  async componentDidMount() {
-    await Font.loadAsync({
-      Galio: GalioFont,
-    });
-
-    this.setState({ fontLoaded: true });
-  }
-*/
   render() {
     const { name, family, size, color, styles, theme, ...rest } = this.props;
     // const { fontLoaded } = this.state;
@@ -55,7 +46,7 @@ class Icon extends React.Component {
 }
 
 Icon.defaultProps = {
-  name: null,
+  name: null.isRequired,
   family: null,
   size: null,
   color: null,
