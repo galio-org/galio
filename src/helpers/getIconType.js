@@ -28,7 +28,7 @@ export default type => {
       return Ionicon;
     case 'foundation':
       return FoundationIcon;
-    case 'evilicon':
+    case 'evilicons':
       return EvilIcon;
     case 'entypo':
       return EntypoIcon;
