@@ -147,7 +147,7 @@ class Slider extends PureComponent {
       ...visibleStyle
     }
 
-    const containerStyles = [styles.container, style];
+    const containerStyles = [styles.container, styles];
 
     return (
       <View style={containerStyles} onLayout={this._measureContainer}>
