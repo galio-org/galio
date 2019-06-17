@@ -35,8 +35,8 @@ class Card extends Component {
     return (
       <Block row right>
         <Icon
-          name="pin-3"
-          family="Galio"
+          name="map-pin"
+          family="feather"
           color={locationColor || theme.COLORS.MUTED}
           size={theme.SIZES.FONT}
         />
