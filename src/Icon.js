@@ -45,7 +45,7 @@ class Icon extends React.Component {
 }
 
 Icon.defaultProps = {
-  name: null.isRequired,
+  name: null,
   family: null,
   size: null,
   color: null,
