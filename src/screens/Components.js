@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Dimensions, StyleSheet, ScrollView, Alert, Platform,
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // galio components
 import {
@@ -22,8 +22,8 @@ export default class Components extends React.Component {
           right={(
             <Button
               onlyIcon
-              icon="heart-2"
-              iconFamily="Galio"
+              icon="heart"
+              iconFamily="font-awesome"
               iconSize={theme.SIZES.BASE}
               iconColor={theme.COLORS.ICON}
               color="transparent"
@@ -114,7 +114,7 @@ export default class Components extends React.Component {
                   style={{ borderColor: theme.COLORS.SUCCESS }}
                 />
                 <Input rounded password viewPass placeholder="password" />
-                <Input rounded icon="heart-2" family="Galio" placeholder="icon right" right />
+                <Input rounded icon="trophy" family="font-awesome" placeholder="icon right" right />
                 <Input
                   rounded
                   borderless
@@ -142,9 +142,9 @@ export default class Components extends React.Component {
                   right={(
                     <Button
                       onlyIcon
-                      icon="settings-gear-65"
+                      icon="gear"
                       color="transparent"
-                      iconFamily="Galio"
+                      iconFamily="font-awesome"
                       iconColor={theme.COLORS.MUTED}
                       iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Settings')}
@@ -163,8 +163,8 @@ export default class Components extends React.Component {
                     <Button
                       key="right-heart"
                       onlyIcon
-                      icon="heart-2"
-                      iconFamily="Galio"
+                      icon="heart"
+                      iconFamily="font-awesome"
                       color="transparent"
                       iconColor={theme.COLORS.BLACK}
                       iconSize={theme.SIZES.BASE * 1.0625}
@@ -174,9 +174,9 @@ export default class Components extends React.Component {
                     <Button
                       key="right-search"
                       onlyIcon
-                      icon="zoom-split"
+                      icon="search"
                       color="transparent"
-                      iconFamily="Galio"
+                      iconFamily="font-awesome"
                       iconColor={theme.COLORS.BLACK}
                       iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}
@@ -194,8 +194,8 @@ export default class Components extends React.Component {
                     <Button
                       key="right-location"
                       onlyIcon
-                      icon="pin-3"
-                      iconFamily="Galio"
+                      icon="map-pin"
+                      iconFamily="font-awesome"
                       color="transparent"
                       iconColor={theme.COLORS.MUTED}
                       iconSize={theme.SIZES.BASE * 1.0625}
@@ -205,9 +205,9 @@ export default class Components extends React.Component {
                     <Button
                       key="right-search"
                       onlyIcon
-                      icon="zoom-split"
+                      icon="search"
                       color="transparent"
-                      iconFamily="Galio"
+                      iconFamily="font-awesome"
                       iconColor={theme.COLORS.MUTED}
                       iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}
@@ -226,8 +226,8 @@ export default class Components extends React.Component {
                     <Button
                       onlyIcon
                       color="transparent"
-                      icon="zoom-split"
-                      iconFamily="Galio"
+                      icon="shopping-cart"
+                      iconFamily="font-awesome"
                       iconColor={theme.COLORS.WHITE}
                       iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}

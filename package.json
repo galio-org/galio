@@ -35,9 +35,11 @@
     "lint": "eslint src/**.js"
   },
   "dependencies": {
-    "expo": "^29.0.0",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
+    "expo": "^33.0.0",
+    "expo-constants": "^5.0.1",
+    "expo-linear-gradient": "^5.0.1",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-vector-icons": "^6.0.2"
   },
   "devDependencies": {
@@ -49,11 +51,10 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "galio-framework": "^0.5.0",
+    "galio-framework": "^0.5.3",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "react-devtools": "^3.3.2",
-    "react-native-svg": "^7.0.3",
     "react-native-svg-charts": "^5.2.0",
     "react-navigation": "^2.13.0",
     "whatwg-fetch": "^2.0.4"

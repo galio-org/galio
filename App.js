@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-
 import GalioApp from './routes';
 
 export default class App extends React.Component {

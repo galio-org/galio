@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
           style={styles.settings}
           onPress={() => this.props.navigation.openDrawer()}
         >
-          <Icon size={BASE_SIZE} name="heart-2" family="Galio" color={theme.COLORS.MUTED} />
+          <Icon size={BASE_SIZE} name="heart" family="font-awesome" color={theme.COLORS.MUTED} />
         </Button>
       )}
       style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}

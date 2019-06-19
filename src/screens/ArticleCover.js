@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { Constants, LinearGradient } from 'expo';
 
+
 // galio components
 import {
   Block, Icon, Text, NavBar,
@@ -25,7 +26,7 @@ const ArticleCover = props => (
       <Block style={styles.articleSummary}>
         <Block row style={{ marginBottom: theme.SIZES.BASE }}>
           <Block row middle style={{ marginRight: theme.SIZES.BASE }}>
-            <Icon name="eye" family="Galio" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
+            <Icon name="eye" family="font-awesome" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
             <Text
               p
               color={theme.COLORS.WHITE}
@@ -36,7 +37,7 @@ const ArticleCover = props => (
             </Text>
           </Block>
           <Block row middle>
-            <Icon name="heart-2" family="Galio" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
+            <Icon name="heart" family="font-awesome" color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 0.875} />
             <Text
               p
               color={theme.COLORS.WHITE}

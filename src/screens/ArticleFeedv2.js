@@ -6,7 +6,7 @@ import {
 // Galio components
 import {
   Block, Card, Text, NavBar,
-} from '..';
+} from 'galio-framework';
 import theme from '../theme';
 
 export default class ArticleHalf extends React.Component {

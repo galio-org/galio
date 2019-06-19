@@ -23,11 +23,11 @@ const Author = props => (
     </Block>
     <Block flex={0.5} row middle space="around">
       <Block row middle>
-        <Icon name="eye" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
+        <Icon name="eye" family="material-community" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
         <Text size={theme.SIZES.FONT * 0.7} p muted style={{ marginLeft: theme.SIZES.FONT * 0.25 }}>25.6k</Text>
       </Block>
       <Block row middle>
-        <Icon name="heart-outline" family="MaterialCommunityIcons" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
+        <Icon name="heart-outline" family="material-community" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.8} />
         <Text size={theme.SIZES.FONT * 0.7} p muted style={{ marginLeft: theme.SIZES.FONT * 0.25 }}>936</Text>
       </Block>
     </Block>
@@ -62,7 +62,7 @@ const News = props => (
           style={styles.button}
           onPress={() => props.navigation.openDrawer()}
         >
-          <Icon size={theme.SIZES.BASE * 1.0625} name="preferences-circle-rotate" family="Galio" color={theme.COLORS.MUTED} />
+          <Icon size={theme.SIZES.BASE * 1.0625} name="fire" family="font-awesome" color={theme.COLORS.MUTED} />
         </Button>,
         <Button
           key="right-search"
@@ -70,7 +70,7 @@ const News = props => (
           style={styles.button}
           onPress={() => props.navigation.openDrawer()}
         >
-          <Icon size={theme.SIZES.BASE * 1.0625} name="zoom-split" family="Galio" color={theme.COLORS.MUTED} />
+          <Icon size={theme.SIZES.BASE * 1.0625} name="leaf" family="font-awesome" color={theme.COLORS.MUTED} />
         </Button>,
       ]}
     />
@@ -123,7 +123,7 @@ const News = props => (
       location={(
         <Block row right>
           <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-            <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+            <Icon name="eye" family="font-awesome" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
             <Text
               p
               color={theme.COLORS.MUTED}
@@ -134,7 +134,7 @@ const News = props => (
             </Text>
           </Block>
           <Block row middle>
-            <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+            <Icon name="heart" family="font-awesome" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
             <Text
               p
               color={theme.COLORS.MUTED}

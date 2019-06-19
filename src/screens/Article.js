@@ -54,7 +54,7 @@ const Article = props => (
             location={(
               <Block row right>
                 <Block row middle style={{ marginHorizontal: theme.SIZES.BASE }}>
-                  <Icon name="eye" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+                  <Icon name="eye" family="font-awesome" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
                   <Text
                     p
                     color={theme.COLORS.MUTED}
@@ -65,7 +65,7 @@ const Article = props => (
                   </Text>
                 </Block>
                 <Block row middle>
-                  <Icon name="heart-2" family="Galio" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
+                  <Icon name="heart" family="font-awesome" color={theme.COLORS.MUTED} size={theme.SIZES.FONT * 0.875} />
                   <Text
                     p
                     color={theme.COLORS.MUTED}
