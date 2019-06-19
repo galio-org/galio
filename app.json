@@ -1,11 +1,14 @@
 {
   "expo": {
     "name": "galio-native-kit",
-    "description": "Build amazing apps in one codebase.",
+    "description": "Build amazing apps in one codebase. //wip from sdk30 to sdk33",
     "slug": "galio-native-kit",
     "privacy": "public",
     "sdkVersion": "33.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,6 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/galio-org/galio"
   }
 }
