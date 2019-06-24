@@ -9,9 +9,10 @@ import Radio from './Radio';
 import Slider from './Slider';
 import Switch from './Switch';
 import Text from './Text';
+import Toast from './Toast';
 import theme, { withGalio, GalioProvider } from './theme';
 
-export { 
+export {
   Block,
   Button,
   Card,
@@ -23,8 +24,8 @@ export {
   Slider,
   Text,
   Switch,
+  Toast,
   theme,
   withGalio,
-  GalioProvider
+  GalioProvider,
 };
-
