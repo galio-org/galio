@@ -26,8 +26,8 @@ class Toast extends Component {
   };
 
   static defaultProps = {
-    position: 'bottom',
-    positionOffset: 100,
+    position: 'top',
+    positionOffset: 120,
     fadeInDuration: 300,
     fadeOutDuration: 300,
     color: 'primary',
@@ -65,7 +65,8 @@ class Toast extends Component {
         toValue: 0,
         duration: fadeOutDuration,
       }).start();
-      setTimeout(() => {
+
+      this.visibilityTimeout = setTimeout(() => {
         this.setVisibility(false);
       }, fadeOutDuration);
     }
