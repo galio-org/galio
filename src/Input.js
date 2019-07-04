@@ -22,6 +22,7 @@ class Input extends React.Component {
 
   render() {
     const {
+      onRef,
       style,
       type,
       password,
@@ -96,6 +97,7 @@ class Input extends React.Component {
         <View style={inputViewStyles}>
           {left && !right && iconInstance}
           <TextInput
+            ref={onRef}
             style={inputStyles}
             keyboardType={type}
             secureTextEntry={isPassword}
@@ -135,6 +137,7 @@ Input.defaultProps = {
   iconSize: null,
   iconContent: null,
   theme: GalioTheme,
+  onRef: null,
 };
 
 Input.propTypes = {
@@ -160,6 +163,7 @@ Input.propTypes = {
   iconSize: PropTypes.number,
   iconContent: PropTypes.any,
   theme: PropTypes.any,
+  onRef: PropTypes.func,
 };
 
 const styles = theme =>
