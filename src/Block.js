@@ -1,67 +1,65 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
-class Block extends Component {
-  render() {
-    const {
-      row,
-      flex,
-      center,
-      middle,
-      top,
-      bottom,
-      right,
-      left,
-      shadow,
-      space,
-      fluid,
-      height,
-      shadowColor,
-      card,
-      width,
-      safe,
-      children,
-      style,
-      styles,
-      ...props
-    } = this.props;
+function Block(props) {
+  const {
+    row,
+    flex,
+    center,
+    middle,
+    top,
+    bottom,
+    right,
+    left,
+    shadow,
+    space,
+    fluid,
+    height,
+    shadowColor,
+    card,
+    width,
+    safe,
+    children,
+    style,
+    styles,
+    ...props
+  } = props;
 
-    const styleBlock = [
-      styles.block,
-      row && styles.row,
-      flex && { flex: flex === true ? 1 : flex },
-      center && styles.center,
-      middle && styles.middle,
-      top && styles.top,
-      bottom && styles.bottom,
-      right && styles.right,
-      left && styles.left,
-      space && { justifyContent: `space-${space}` },
-      shadow && styles.shadow,
-      fluid && styles.fluid,
-      card && styles.card,
-      height && { height },
-      width && { width },
-      shadowColor && { shadowColor },
-      style,
-    ];
+  const styleBlock = [
+    styles.block,
+    row && styles.row,
+    flex && { flex: flex === true ? 1 : flex },
+    center && styles.center,
+    middle && styles.middle,
+    top && styles.top,
+    bottom && styles.bottom,
+    right && styles.right,
+    left && styles.left,
+    space && { justifyContent: `space-${space}` },
+    shadow && styles.shadow,
+    fluid && styles.fluid,
+    card && styles.card,
+    height && { height },
+    width && { width },
+    shadowColor && { shadowColor },
+    style,
+  ];
 
-    if (safe) {
-      return (
-        <SafeAreaView style={styleBlock} {...props}>
-          {children}
-        </SafeAreaView>
-      );
-    }
-
+  if (safe) {
     return (
-      <View {...props} style={styleBlock}>
+      <SafeAreaView style={styleBlock} {...props}>
         {children}
-      </View>
+      </SafeAreaView>
     );
   }
+
+  return (
+    <View {...props} style={styleBlock}>
+      {children}
+    </View>
+  );
 }
 
 Block.defaultProps = {
