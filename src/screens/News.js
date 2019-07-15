@@ -9,7 +9,7 @@ import { Constants } from 'expo';
 // Galio components
 import {
   Button, Block, Card, Text, Icon, NavBar,
-} from 'galio-framework';
+} from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const Author = props => (

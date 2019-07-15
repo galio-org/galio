@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-  Dimensions, StyleSheet, Platform,
-} from 'react-native';
+import { Dimensions, StyleSheet, Platform } from 'react-native';
 // galio components
-import {
-  Button, Icon, Block, Text, NavBar,
-} from 'galio-framework';
+import { Button, Icon, Block, Text, NavBar } from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');
@@ -13,7 +9,8 @@ const BASE_SIZE = theme.SIZES.BASE;
 const COLOR_WHITE = theme.COLORS.WHITE;
 
 const chunk = (arr, size) => {
-  const list = new Array(Math.ceil(arr.length / size)).fill()
+  const list = new Array(Math.ceil(arr.length / size))
+    .fill()
     .map(() => arr.splice(0, size));
   return list;
 };
@@ -90,30 +87,38 @@ class Grid extends React.Component {
           fix
           title="Grid"
           onLeftPress={() => navigation.openDrawer()}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          style={
+            Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null
+          }
         />
         <Block style={styles.grid}>
-          {
-            chunk(grids, 3).map((row, rowId) => (
-              <Block row space="evenly" key={`row-${rowId}`}>
-                {
-                  row.map(grid => (
-                    <Block shadow middle style={styles.block} key={`grid-${grid.title}}`}>
-                      <Button color="transparent" style={styles.button} onPress={() => navigation.openDrawer()}>
-                        <Block flex middle>
-                          <Icon name={grid.icon} family={grid.family} size={BASE_SIZE * 1.875} />
-                          <Text size={BASE_SIZE * 0.875}>
-                            {grid.title}
-                            {' '}
-                          </Text>
-                        </Block>
-                      </Button>
+          {chunk(grids, 3).map((row, rowId) => (
+            <Block row space="evenly" key={`row-${rowId}`}>
+              {row.map(grid => (
+                <Block
+                  shadow
+                  middle
+                  style={styles.block}
+                  key={`grid-${grid.title}}`}
+                >
+                  <Button
+                    color="transparent"
+                    style={styles.button}
+                    onPress={() => navigation.openDrawer()}
+                  >
+                    <Block flex middle>
+                      <Icon
+                        name={grid.icon}
+                        family={grid.family}
+                        size={BASE_SIZE * 1.875}
+                      />
+                      <Text size={BASE_SIZE * 0.875}>{grid.title} </Text>
                     </Block>
-                  ))
-                }
-              </Block>
-            ))
-          }
+                  </Button>
+                </Block>
+              ))}
+            </Block>
+          ))}
         </Block>
       </Block>
     );

@@ -1,13 +1,16 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
 import {
-  Dimensions, StyleSheet, ScrollView, Alert, Platform,
+  Dimensions,
+  StyleSheet,
+  ScrollView,
+  Alert,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// galio components
-import {
-  Text, Block, Button, Card, NavBar, Input,
-} from 'galio-framework';
+// eslint-disable-next-line object-curly-newline
+import { Block, Button, Card, NavBar, Text, Input } from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');
@@ -19,7 +22,7 @@ export default class Components extends React.Component {
       <Block safe flex>
         <NavBar
           title="Galio components"
-          right={(
+          right={
             <Button
               onlyIcon
               icon="heart"
@@ -29,9 +32,11 @@ export default class Components extends React.Component {
               color="transparent"
               onPress={() => Alert.alert('Like it!')}
             />
-          )}
+          }
           onLeftPress={() => navigation.openDrawer()}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          style={
+            Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null
+          }
         />
 
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
@@ -65,12 +70,24 @@ export default class Components extends React.Component {
                 <Text h5>Typography</Text>
               </Block>
               <Block style={{ padding: theme.SIZES.BASE }}>
-                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h1>Heading 1</Text>
-                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h2>Heading 2</Text>
-                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h3>Heading 3</Text>
-                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h4>Heading 4</Text>
-                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h5>Heading 5</Text>
-                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p>Paragraph</Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h1>
+                  Heading 1
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h2>
+                  Heading 2
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h3>
+                  Heading 3
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h4>
+                  Heading 4
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h5>
+                  Heading 5
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p>
+                  Paragraph
+                </Text>
                 <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p muted>
                   This is a muted paragraph.
                 </Text>
@@ -82,7 +99,7 @@ export default class Components extends React.Component {
                 <Text h5>Inputs</Text>
               </Block>
               <Block style={{ padding: theme.SIZES.BASE }}>
-                <Input rounded placeholder="placeholder" />
+                <Input rounded placeholder="placeholder"/>
                 <Input
                   rounded
                   placeholder="theme"
@@ -113,8 +130,14 @@ export default class Components extends React.Component {
                   placeholderTextColor={theme.COLORS.SUCCESS}
                   style={{ borderColor: theme.COLORS.SUCCESS }}
                 />
-                <Input rounded password viewPass placeholder="password" />
-                <Input rounded icon="trophy" family="font-awesome" placeholder="icon right" right />
+                <Input rounded password viewPass placeholder="password"/>
+                <Input
+                  rounded
+                  icon="trophy"
+                  family="font-awesome"
+                  placeholder="icon right"
+                  right
+                />
                 <Input
                   rounded
                   borderless
@@ -138,8 +161,11 @@ export default class Components extends React.Component {
                   leftIconColor={theme.COLORS.MUTED}
                   rightStyle={{ alignSelf: 'flex-end' }}
                   onLeftPress={() => Alert.alert('Back')}
-                  style={{ width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
-                  right={(
+                  style={{
+                    width,
+                    marginHorizontal: -(theme.SIZES.BASE - 2),
+                  }}
+                  right={
                     <Button
                       onlyIcon
                       icon="gear"
@@ -149,7 +175,7 @@ export default class Components extends React.Component {
                       iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Settings')}
                     />
-                  )}
+                  }
                 />
 
                 <NavBar
@@ -158,7 +184,10 @@ export default class Components extends React.Component {
                   onLeftPress={() => Alert.alert('Menu')}
                   rightStyle={{ flexDirection: 'row' }}
                   leftStyle={{ flex: 0.4 }}
-                  style={{ width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
+                  style={{
+                    width,
+                    marginHorizontal: -(theme.SIZES.BASE - 2),
+                  }}
                   right={[
                     <Button
                       key="right-heart"
@@ -189,7 +218,10 @@ export default class Components extends React.Component {
                   leftStyle={{ flex: 0.4 }}
                   onLeftPress={() => Alert.alert('Back')}
                   titleStyle={{ alignSelf: 'flex-start' }}
-                  style={{ width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
+                  style={{
+                    width,
+                    marginHorizontal: -(theme.SIZES.BASE - 2),
+                  }}
                   right={[
                     <Button
                       key="right-location"
@@ -217,12 +249,16 @@ export default class Components extends React.Component {
 
                 <NavBar
                   title="Discover"
-                  style={{ backgroundColor: theme.COLORS.THEME, width, marginHorizontal: -(theme.SIZES.BASE - 2) }}
+                  style={{
+                    backgroundColor: theme.COLORS.THEME,
+                    width,
+                    marginHorizontal: -(theme.SIZES.BASE - 2),
+                  }}
                   titleStyle={{ color: theme.COLORS.WHITE }}
                   rightStyle={{ alignSelf: 'flex-end' }}
                   leftIconColor={theme.COLORS.WHITE}
                   onLeftPress={() => Alert.alert('Menu')}
-                  right={(
+                  right={
                     <Button
                       onlyIcon
                       color="transparent"
@@ -232,7 +268,7 @@ export default class Components extends React.Component {
                       iconSize={theme.SIZES.BASE * 1.0625}
                       onPress={() => Alert.alert('Search')}
                     />
-                  )}
+                  }
                 />
               </Block>
             </Block>
@@ -282,7 +318,10 @@ export default class Components extends React.Component {
                   imageStyle={{ height: theme.SIZES.BASE * 13.75 }}
                   image="https://images.unsplash.com/photo-1506321806993-0e39f809ae59?&w=1200&h=1200&fit=crop&crop=entropy&q=300"
                 >
-                  <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.cardGradient} />
+                  <LinearGradient
+                    colors={['transparent', 'rgba(0,0,0, 0.8)']}
+                    style={styles.cardGradient}
+                  />
                 </Card>
               </Block>
             </Block>

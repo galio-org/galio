@@ -21,7 +21,7 @@ export default class Block extends Component {
     width: null,
     shadowColor: null,
     safe: false,
-  }
+  };
 
   render() {
     const {
@@ -84,10 +84,7 @@ export default class Block extends Component {
 
 Block.propTypes = {
   row: PropTypes.bool,
-  flex: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-  ]),
+  flex: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   center: PropTypes.bool,
   middle: PropTypes.bool,
   top: PropTypes.bool,

@@ -23,12 +23,15 @@ import Registerv2 from './src/screens/Registerv2';
 import Grid from './src/screens/Grid';
 
 import theme from './src/theme';
-import { Block, Icon, Text } from 'galio-framework';
+import { Block, Icon, Text } from './src/shubhamkakkar/src';
 
 const GalioDrawer = props => (
-  <SafeAreaView style={styles.drawer} forceInset={{ top: 'always', horizontal: 'never' }}>
+  <SafeAreaView style={styles.drawer} forceInset={{
+    top: 'always',
+    horizontal: 'never',
+  }}>
     <Block space="between" row style={styles.header}>
-      <Block flex={0.3}><Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar} /></Block>
+      <Block flex={0.3}><Image source={{ uri: 'http://i.pravatar.cc/100' }} style={styles.avatar}/></Block>
       <Block flex style={styles.middle}>
         <Text size={theme.SIZES.FONT * 0.875}>Galio Framework</Text>
         <Text muted size={theme.SIZES.FONT * 0.875}>React Native</Text>
@@ -88,90 +91,86 @@ const screens = {
     screen: Components,
     navigationOptions: {
       drawerLabel: 'Components',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   Cards: {
     screen: Cards,
     navigationOptions: {
       drawerLabel: 'Cards',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   Article: {
     screen: Article,
     navigationOptions: {
       drawerLabel: 'Article Screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   ArticleCover: {
     screen: ArticleCover,
     navigationOptions: {
       drawerLabel: 'Article Cover',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
-  /*
   Dashboard: {
     screen: Dashboard,
     navigationOptions: {
       drawerLabel: 'Dashboard screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
-  */
   News: {
     screen: News,
     navigationOptions: {
       drawerLabel: 'News Screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   OrderConfirmed: {
     screen: OrderConfirmed,
     navigationOptions: {
       drawerLabel: 'Order Confirmed',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
-  /*
   Presentation: {
     screen: Presentation,
     navigationOptions: {
       drawerLabel: 'Presentation Screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   Login: {
     screen: Login,
     navigationOptions: {
       drawerLabel: 'Login Screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   Register: {
     screen: Register,
     navigationOptions: {
       drawerLabel: 'Register Screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   Registerv2: {
     screen: Registerv2,
     navigationOptions: {
       drawerLabel: 'Register Screen v2',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
   Grid: {
     screen: Grid,
     navigationOptions: {
       drawerLabel: 'Grid Screen',
-      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused}/>,
     },
   },
-  */
 };
 
 const options = {

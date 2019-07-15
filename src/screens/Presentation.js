@@ -7,7 +7,7 @@ import { Constants, LinearGradient } from 'expo';
 // galio components
 import {
   Text, Button, Block, NavBar,
-} from 'galio-framework';
+} from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');

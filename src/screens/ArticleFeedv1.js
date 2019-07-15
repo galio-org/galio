@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 
 // Galio components
-import { Card, NavBar } from 'galio-framework';
+import { Card, NavBar } from '../shubhamkakkar/src';
 
 export default class ArticleFull extends React.Component {
   render() {

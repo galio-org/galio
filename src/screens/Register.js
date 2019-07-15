@@ -9,7 +9,7 @@ import {
 // galio component
 import {
   Block, Button, Input, Text, NavBar,
-} from 'galio-framework';
+} from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const { height, width } = Dimensions.get('window');

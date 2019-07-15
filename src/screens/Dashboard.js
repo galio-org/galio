@@ -10,7 +10,7 @@ import * as shape from 'd3-shape';
 // galio components
 import {
   Button, Block, Icon, Text, NavBar,
-} from 'galio-framework';
+} from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const BASE_SIZE = theme.SIZES.BASE;

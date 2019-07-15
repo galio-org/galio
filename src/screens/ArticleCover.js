@@ -10,7 +10,7 @@ import { Constants, LinearGradient } from 'expo';
 // galio components
 import {
   Block, Icon, Text, NavBar,
-} from 'galio-framework';
+} from '../shubhamkakkar/src';
 
 import theme from '../theme';
 
