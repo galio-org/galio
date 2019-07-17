@@ -41,7 +41,7 @@ class NavBar extends React.Component {
     if (!title) return null;
 
     return title;
-  }
+  };
 
   renderLeft = () => {
     const {

@@ -21,7 +21,7 @@ function Switch({
     return null;
   }
 
-  trackColor.true = color === 'primary' ? GalioTheme.COLORS.PRIMARY : color;
+  // trackColor.true = color === 'primary' ? GalioTheme.COLORS.PRIMARY : color;
 
   return (
     <Switcher

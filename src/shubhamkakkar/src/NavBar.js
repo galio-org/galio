@@ -34,36 +34,48 @@ function NavBar(props) {
       onLeftPress,
       theme,
       styles,
+      name,
+      hideLeft,
     } = props;
 
-    if (left) {
+    if (!hideLeft) {
+      if (name || back) {
+        return (
+          <View style={[styles.left, leftStyle]}>
+            <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
+              <Icon
+                family="evilicons"
+                color={leftIconColor || theme.COLORS.ICON}
+                size={theme.SIZES.BASE * 1.0625}
+                name={name || (back ? 'chevron-left' : 'navicon')}
+              />
+            </TouchableOpacity>
+          </View>
+        );
+      }
       return <View style={[styles.left, leftStyle]}>{left}</View>;
     }
-
-    return (
-      <View style={[styles.left, leftStyle]}>
-        <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
-          <Icon
-            family="evilicons"
-            color={leftIconColor || theme.COLORS.ICON}
-            size={theme.SIZES.BASE * 1.0625}
-            name={back ? 'chevron-left' : 'navicon'}
-          />
-        </TouchableOpacity>
-      </View>
-    );
+    return <View style={[styles.left]} />;
   }
 
   function renderRight() {
-    const { right, rightStyle, styles } = props;
+    const {
+      right, rightStyle, styles, hideRight,
+    } = props;
     const hasIcons = React.Children.count(right) > 1;
     const rightStyles = [styles.right, rightStyle];
-
-    return (
-      <Block right row={hasIcons} style={rightStyles}>
-        {right}
-      </Block>
-    );
+    if (!hideRight) {
+      return (
+        <Block
+          right
+          row={hasIcons}
+          style={rightStyles}
+        >
+          {right}
+        </Block>
+      );
+    }
+    return <View style={styles.right} />;
   }
 
   const { transparent, style, styles } = props;
@@ -86,7 +98,8 @@ NavBar.defaultProps = {
   left: null,
   leftStyle: null,
   leftIconColor: null,
-  onLeftPress: () => {},
+  onLeftPress: () => {
+  },
   right: null,
   rightStyle: null,
   style: null,
@@ -108,6 +121,9 @@ NavBar.propTypes = {
   style: PropTypes.any,
   styles: PropTypes.any,
   theme: PropTypes.any,
+  name: PropTypes.string,
+  hideLeft: PropTypes.bool,
+  hideRight: PropTypes.bool,
 };
 
 const styles = theme =>
@@ -141,7 +157,7 @@ const styles = theme =>
     right: {
       flex: 0.5,
       height: height * 0.07,
-      alignItems: 'flex-end',
+      alignItems: 'center',
       justifyContent: 'center',
       marginRight: theme.SIZES.BASE,
     },
