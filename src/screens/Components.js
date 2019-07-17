@@ -45,7 +45,6 @@ export default class Components extends React.Component {
 
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <Block style={styles.container}>
-            {/*
             <Switch
               initialValue={false}
               // trackColor={{
@@ -55,114 +54,113 @@ export default class Components extends React.Component {
               thumbColor="black"
               onChange={() => null}
             />
-            */}
             {/* Buttons examples using Button component */}
-            {/* <Block flex style={{ marginBottom: theme.SIZES.BASE }}> */}
-            {/*  <Block flex style={{ padding: theme.SIZES.BASE }}> */}
-            {/*    <Text h5>Buttons</Text> */}
-            {/*  </Block> */}
-            {/*  <Block flex center style={{ padding: theme.SIZES.BASE }}> */}
-            {/*    <Button style={styles.button} round> */}
-            {/*      Primary */}
-            {/*    </Button> */}
-            {/*    <Button color="info" style={styles.button} round> */}
-            {/*      Info */}
-            {/*    </Button> */}
-            {/*    <Button style={styles.button} color="success" round> */}
-            {/*      Success */}
-            {/*    </Button> */}
-            {/*    <Button color="warning" style={styles.button} round> */}
-            {/*      Warning */}
-            {/*    </Button> */}
-            {/*    <Button color="error" style={styles.button} round> */}
-            {/*      Error */}
-            {/*    </Button> */}
-            {/*  </Block> */}
-            {/* </Block> */}
+             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
+               <Block flex style={{ padding: theme.SIZES.BASE }}>
+                 <Text h5>Buttons</Text>
+               </Block>
+               <Block flex center style={{ padding: theme.SIZES.BASE }}>
+                 <Button style={styles.button} round>
+                   Primary
+                 </Button>
+                 <Button color="info" style={styles.button} round>
+                   Info
+                 </Button>
+                 <Button style={styles.button} color="success" round>
+                   Success
+                 </Button>
+                 <Button color="warning" style={styles.button} round>
+                   Warning
+                 </Button>
+                 <Button color="error" style={styles.button} round>
+                   Error
+                 </Button>
+               </Block>
+             </Block>
             {/* Typography examples using Text component */}
-            {/*<Block flex style={{ marginBottom: theme.SIZES.BASE }}>*/}
-            {/*  <Block flex style={{ padding: theme.SIZES.BASE }}>*/}
-            {/*    <Text h5>Typography</Text>*/}
-            {/*  </Block>*/}
-            {/*  <Block style={{ padding: theme.SIZES.BASE }}>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h1>*/}
-            {/*      Heading 1*/}
-            {/*    </Text>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h2>*/}
-            {/*      Heading 2*/}
-            {/*    </Text>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h3>*/}
-            {/*      Heading 3*/}
-            {/*    </Text>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h4>*/}
-            {/*      Heading 4*/}
-            {/*    </Text>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h5>*/}
-            {/*      Heading 5*/}
-            {/*    </Text>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p>*/}
-            {/*      Paragraph*/}
-            {/*    </Text>*/}
-            {/*    <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p muted>*/}
-            {/*      This is a muted paragraph.*/}
-            {/*    </Text>*/}
-            {/*  </Block>*/}
-            {/*</Block>*/}
+            <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
+              <Block flex style={{ padding: theme.SIZES.BASE }}>
+                <Text h5>Typography</Text>
+              </Block>
+              <Block style={{ padding: theme.SIZES.BASE }}>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h1>
+                  Heading 1
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h2>
+                  Heading 2
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h3>
+                  Heading 3
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h4>
+                  Heading 4
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h5>
+                  Heading 5
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p>
+                  Paragraph
+                </Text>
+                <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} p muted>
+                  This is a muted paragraph.
+                </Text>
+              </Block>
+            </Block>
             {/* Inputs examples using Input component */}
-            {/*<Block flex>*/}
-            {/*  <Block flex style={{ padding: theme.SIZES.BASE }}>*/}
-            {/*    <Text h5>Inputs</Text>*/}
-            {/*  </Block>*/}
-            {/*  <Block style={{ padding: theme.SIZES.BASE }}>*/}
-            {/*    <Input rounded placeholder="placeholder" />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      placeholder="theme"*/}
-            {/*      placeholderTextColor={theme.COLORS.THEME}*/}
-            {/*      style={{ borderColor: theme.COLORS.THEME }}*/}
-            {/*    />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      placeholder="info"*/}
-            {/*      placeholderTextColor={theme.COLORS.INFO}*/}
-            {/*      style={{ borderColor: theme.COLORS.INFO }}*/}
-            {/*    />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      placeholder="warning"*/}
-            {/*      placeholderTextColor={theme.COLORS.WARNING}*/}
-            {/*      style={{ borderColor: theme.COLORS.WARNING }}*/}
-            {/*    />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      placeholder="error"*/}
-            {/*      placeholderTextColor={theme.COLORS.ERROR}*/}
-            {/*      style={{ borderColor: theme.COLORS.ERROR }}*/}
-            {/*    />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      placeholder="success"*/}
-            {/*      placeholderTextColor={theme.COLORS.SUCCESS}*/}
-            {/*      style={{ borderColor: theme.COLORS.SUCCESS }}*/}
-            {/*    />*/}
-            {/*    <Input rounded password viewPass placeholder="password" />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      icon="trophy"*/}
-            {/*      family="font-awesome"*/}
-            {/*      placeholder="icon right"*/}
-            {/*      right*/}
-            {/*    />*/}
-            {/*    <Input*/}
-            {/*      rounded*/}
-            {/*      borderless*/}
-            {/*      placeholder="borderless"*/}
-            {/*      placeholderTextColor={theme.COLORS.WHITE}*/}
-            {/*      color={theme.COLORS.WHITE}*/}
-            {/*      bgColor={theme.COLORS.THEME}*/}
-            {/*    />*/}
-            {/*  </Block>*/}
-            {/* </Block>*/}
+            <Block flex>
+              <Block flex style={{ padding: theme.SIZES.BASE }}>
+                <Text h5>Inputs</Text>
+              </Block>
+              <Block style={{ padding: theme.SIZES.BASE }}>
+                <Input rounded placeholder="placeholder" />
+                <Input
+                  rounded
+                  placeholder="theme"
+                  placeholderTextColor={theme.COLORS.THEME}
+                  style={{ borderColor: theme.COLORS.THEME }}
+                />
+                <Input
+                  rounded
+                  placeholder="info"
+                  placeholderTextColor={theme.COLORS.INFO}
+                  style={{ borderColor: theme.COLORS.INFO }}
+                />
+                <Input
+                  rounded
+                  placeholder="warning"
+                  placeholderTextColor={theme.COLORS.WARNING}
+                  style={{ borderColor: theme.COLORS.WARNING }}
+                />
+                <Input
+                  rounded
+                  placeholder="error"
+                  placeholderTextColor={theme.COLORS.ERROR}
+                  style={{ borderColor: theme.COLORS.ERROR }}
+                />
+                <Input
+                  rounded
+                  placeholder="success"
+                  placeholderTextColor={theme.COLORS.SUCCESS}
+                  style={{ borderColor: theme.COLORS.SUCCESS }}
+                />
+                <Input rounded password viewPass placeholder="password" />
+                <Input
+                  rounded
+                  icon="trophy"
+                  family="font-awesome"
+                  placeholder="icon right"
+                  right
+                />
+                <Input
+                  rounded
+                  borderless
+                  placeholder="borderless"
+                  placeholderTextColor={theme.COLORS.WHITE}
+                  color={theme.COLORS.WHITE}
+                  bgColor={theme.COLORS.THEME}
+                />
+              </Block>
+             </Block>
             {/* NavBars examples using NavBar component */}
             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
