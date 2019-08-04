@@ -10,6 +10,7 @@ import Radio from './Radio';
 import Slider from './Slider';
 import Switch from './Switch';
 import Text from './Text';
+import Segment from "./Segment"
 import theme, { withGalio, GalioProvider } from './theme';
 
 import galioConfig from './fonts/galio.json';
@@ -33,4 +34,5 @@ export {
   GalioProvider,
   galioConfig,
   GalioFont,
+  Segment
 };
