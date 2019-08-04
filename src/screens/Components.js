@@ -10,7 +10,16 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 
 // eslint-disable-next-line object-curly-newline
-import { Block, Button, Card, Text, NavBar, Input, Switch } from '../shubhamkakkar/src';
+import {
+  Block,
+  Button,
+  Card,
+  Text,
+  NavBar,
+  Input,
+  Switch,
+  Segment,
+} from '../shubhamkakkar/src';
 import theme from '../theme';
 
 const { width } = Dimensions.get('screen');
@@ -20,7 +29,6 @@ export default class Components extends React.Component {
     const { navigation } = this.props;
     return (
       <Block safe flex>
-
         <NavBar
           title="Galio components"
           back
@@ -54,29 +62,44 @@ export default class Components extends React.Component {
               thumbColor="black"
               onChange={() => null}
             />
+            <Segment tiles={['tile A', 'tile B', 'tile C', 'title D']}>
+              <Block flex>
+                <Text>tile A</Text>
+              </Block>
+              <Block flex>
+                <Text>tile B</Text>
+              </Block>
+              <Block flex>
+                <Text>tile C</Text>
+              </Block>
+              <Block flex>
+                <Text>tile D</Text>
+              </Block>
+            </Segment>
+
             {/* Buttons examples using Button component */}
-             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
-               <Block flex style={{ padding: theme.SIZES.BASE }}>
-                 <Text h5>Buttons</Text>
-               </Block>
-               <Block flex center style={{ padding: theme.SIZES.BASE }}>
-                 <Button style={styles.button} round>
-                   Primary
-                 </Button>
-                 <Button color="info" style={styles.button} round>
-                   Info
-                 </Button>
-                 <Button style={styles.button} color="success" round>
-                   Success
-                 </Button>
-                 <Button color="warning" style={styles.button} round>
-                   Warning
-                 </Button>
-                 <Button color="error" style={styles.button} round>
-                   Error
-                 </Button>
-               </Block>
-             </Block>
+            <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
+              <Block flex style={{ padding: theme.SIZES.BASE }}>
+                <Text h5>Buttons</Text>
+              </Block>
+              <Block flex center style={{ padding: theme.SIZES.BASE }}>
+                <Button style={styles.button} round>
+                  Primary
+                </Button>
+                <Button color="info" style={styles.button} round>
+                  Info
+                </Button>
+                <Button style={styles.button} color="success" round>
+                  Success
+                </Button>
+                <Button color="warning" style={styles.button} round>
+                  Warning
+                </Button>
+                <Button color="error" style={styles.button} round>
+                  Error
+                </Button>
+              </Block>
+            </Block>
             {/* Typography examples using Text component */}
             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
@@ -160,7 +183,7 @@ export default class Components extends React.Component {
                   bgColor={theme.COLORS.THEME}
                 />
               </Block>
-             </Block>
+            </Block>
             {/* NavBars examples using NavBar component */}
             <Block flex style={{ marginBottom: theme.SIZES.BASE }}>
               <Block flex style={{ padding: theme.SIZES.BASE }}>
@@ -350,6 +373,7 @@ const styles = StyleSheet.create({
     padding: 14,
     justifyContent: 'flex-start',
     backgroundColor: theme.COLORS.WHITE,
+    flex: 1,
   },
   button: {
     marginBottom: 20,

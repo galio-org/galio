@@ -5,13 +5,6 @@ import Icon from './Icon';
 import Input from './Input';
 import NavBar from './NavBar';
 import Text from './Text';
-
 export {
-  Block,
-  Button,
-  Card,
-  Icon,
-  Input,
-  NavBar,
-  Text,
+  Block, Button, Card, Icon, Input, NavBar, Text,
 };
