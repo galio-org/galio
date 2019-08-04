@@ -64,7 +64,7 @@ export default class Components extends React.Component {
             />
             <Segment tiles={['tile A', 'tile B', 'tile C', 'title D']}>
               <Block flex>
-                <Text>tile A</Text>
+                <Text>tile of A</Text>
               </Block>
               <Block flex>
                 <Text>tile B</Text>
