@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true
     },
-    "githubUrl": "https://github.com/galio-org/galio"
+    "githubUrl": "https://github.com/galio-org/galio",
+    "packagerOpts": {
+      "assetExts": ["ttf"]
+    }
   }
 }
