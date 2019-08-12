@@ -11,10 +11,10 @@ import Switch from './Switch';
 import Text from './Text';
 import theme, { withGalio, GalioProvider } from './theme';
 
-import galioConfig from './fonts/galio.json';
+import galioConfig from './config/galio.json';
 const GalioFont = require('./fonts/galio.ttf');
 
-export { 
+export {
   Block,
   Button,
   Card,
