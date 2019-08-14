@@ -23,6 +23,7 @@ export {
   Radio,
   Slider,
   Text,
+  Toast,
   Switch,
   Toast,
   theme,

@@ -11,7 +11,7 @@ class Toast extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     isShow: PropTypes.bool.isRequired,
-    position: PropTypes.oneOf(['top', 'center', 'bottom']),
+    positionIndicator: PropTypes.oneOf(['top', 'center', 'bottom']),
     positionOffset: PropTypes.number,
     fadeInDuration: PropTypes.number,
     fadeOutDuration: PropTypes.number,
@@ -22,11 +22,12 @@ class Toast extends Component {
     round: PropTypes.bool,
     style: ViewPropTypes.style,
     textStyle: ViewPropTypes.style,
+    styles: PropTypes.any,
     theme: PropTypes.any,
   };
 
   static defaultProps = {
-    position: 'top',
+    positionIndicator: 'top',
     positionOffset: 120,
     fadeInDuration: 300,
     fadeOutDuration: 300,
@@ -34,6 +35,7 @@ class Toast extends Component {
     round: false,
     style: null,
     textStyle: null,
+    styles: {},
     theme: GalioTheme,
   };
 
@@ -85,13 +87,13 @@ class Toast extends Component {
   setVisibility = isShow => this.setState({ isShow });
 
   getTopPosition = () => {
-    const { position, positionOffset } = this.props;
+    const { positionIndicator, positionOffset } = this.props;
 
-    if (position === 'top') {
+    if (positionIndicator === 'top') {
       return positionOffset;
     }
 
-    if (position === 'bottom') {
+    if (positionIndicator === 'bottom') {
       return height - positionOffset;
     }
 
@@ -110,7 +112,7 @@ class Toast extends Component {
   };
 
   render() {
-    const { theme, color, round, style, ...rest } = this.props;
+    const { theme, color, round, style, styles, ...rest } = this.props;
     const { isShow, fadeAnim } = this.state;
     const colorStyle = styles[`${color}Color`];
     const toastStyles = [
