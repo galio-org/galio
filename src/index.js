@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Block from './Block';
 import Button from './Button';
 import Card from './Card';
@@ -9,9 +10,11 @@ import Radio from './Radio';
 import Slider from './Slider';
 import Switch from './Switch';
 import Text from './Text';
+
 import theme, { withGalio, GalioProvider } from './theme';
 
-import galioConfig from './config/galio.json';
+import galioConfig from './fonts/galio.json';
+
 const GalioFont = require('./fonts/galio.ttf');
 
 export {
@@ -30,6 +33,5 @@ export {
   withGalio,
   GalioProvider,
   galioConfig,
-  GalioFont
+  GalioFont,
 };
-

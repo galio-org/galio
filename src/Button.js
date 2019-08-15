@@ -2,13 +2,13 @@ import React from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Icon } from '.';
+import { Icon } from 'galio-framework';
 import GalioTheme, { withGalio } from './theme';
 
 const { width } = Dimensions.get('window');
 
-class Button extends React.Component {
-  renderContent = () => {
+function Button(props) {
+  function renderContent() {
     const {
       loading,
       loadingSize,
@@ -24,7 +24,7 @@ class Button extends React.Component {
       textStyle,
       styles,
       theme,
-    } = this.props;
+    } = props;
 
     const textStyles = [styles.customText, textStyle];
 
@@ -37,7 +37,9 @@ class Button extends React.Component {
 
     if (uppercase && isString) content = children.toUpperCase();
     if (lowercase && isString) content = children.toLowerCase();
-    if (capitalize && isString) content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
+    if (capitalize && isString) {
+      content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
+    }
 
     if (onlyIcon) {
       content = (
@@ -52,61 +54,58 @@ class Button extends React.Component {
       content = <Text style={textStyles}>{content}</Text>;
     }
 
-    if (loading) content = <ActivityIndicator size={loadingSize} color={theme.COLORS.WHITE} />;
+    if (loading) {
+      content = <ActivityIndicator size={loadingSize} color={theme.COLORS.WHITE} />;
+    }
 
     return content;
-  };
-
-  render() {
-    const {
-      style,
-      color,
-      size,
-      children,
-      disabled,
-      round,
-      border,
-      radius,
-      textStyle,
-      onlyIcon,
-      iconSize,
-      opacity,
-      shadowless,
-      shadowColor,
-      styles,
-      theme,
-      ...rest
-    } = this.props;
-
-    const colorStyle = styles[color];
-
-    const buttonStyles = [
-      styles.defaultButton,
-      color && colorStyle,
-      color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
-      color === 'transparent' || styles.androidShadow,
-      color === 'transparent' && !shadowless && { borderWidth: 1, borderColor: theme.COLORS.WHITE },
-      size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
-      round && { borderRadius: theme.SIZES.BASE * 2 },
-      onlyIcon && {
-        width: iconSize * 1.25,
-        height: iconSize * 2,
-        borderWidth: 0,
-        borderRadius: iconSize,
-      },
-      radius && { borderRadius: radius },
-      !shadowless && styles.shadow,
-      { shadowColor: shadowColor || theme.COLORS[color.toUpperCase()] },
-      { zIndex: 2 },
-      style,
-    ];
-
-    return (
-      <TouchableOpacity disabled={disabled} activeOpacity={opacity} style={buttonStyles} {...rest}>
-        {this.renderContent()}
-      </TouchableOpacity>
-    );
   }
+
+  const {
+    style,
+    color,
+    size,
+    disabled,
+    round,
+    radius,
+    onlyIcon,
+    iconSize,
+    opacity,
+    shadowless,
+    shadowColor,
+    styles,
+    theme,
+    ...rest
+  } = props;
+
+  const colorStyle = styles[color];
+
+  const buttonStyles = [
+    styles.defaultButton,
+    color && colorStyle,
+    color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
+    color === 'transparent' || styles.androidShadow,
+    color === 'transparent' && !shadowless && { borderWidth: 1, borderColor: theme.COLORS.WHITE },
+    size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
+    round && { borderRadius: theme.SIZES.BASE * 2 },
+    onlyIcon && {
+      width: iconSize * 1.25,
+      height: iconSize * 2,
+      borderWidth: 0,
+      borderRadius: iconSize,
+    },
+    radius && { borderRadius: radius },
+    !shadowless && styles.shadow,
+    { shadowColor: shadowColor || theme.COLORS[color.toUpperCase()] },
+    { zIndex: 2 },
+    style,
+  ];
+
+  return (
+    <TouchableOpacity disabled={disabled} activeOpacity={opacity} style={buttonStyles} {...rest}>
+      {renderContent()}
+    </TouchableOpacity>
+  );
 }
 
 Button.defaultProps = {

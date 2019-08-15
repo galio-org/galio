@@ -1,8 +1,7 @@
-import React, { PureComponent } from "react";
-import { View, Animated, StyleSheet, PanResponder } from "react-native";
-import PropTypes from "prop-types";
+import React, { PureComponent } from 'react';
+import { View, Animated, StyleSheet, PanResponder } from 'react-native';
+import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
-
 
 class Slider extends PureComponent {
   constructor(props) {
@@ -27,30 +26,30 @@ class Slider extends PureComponent {
         }
 
         this._setCurrentValue(this._getValue(gestureState));
-        this._fireChangeEvent('onValueChange')
+        this._fireChangeEvent('onValueChange');
       },
       onPanResponderRelease: (e, gestureState) => {
-       if (props.disabled) {
-         return;
-       }
+        if (props.disabled) {
+          return;
+        }
 
-       this._setCurrentValue(this._getValue(gestureState));
-       this._fireChangeEvent('onSlidingComplete');
-      }
+        this._setCurrentValue(this._getValue(gestureState));
+        this._fireChangeEvent('onSlidingComplete');
+      },
     });
   }
 
-  _getRatio = (value) =>
-  (value - this.props.minimumValue) /
-  (this.props.maximumValue - this.props.minimumValue);
+  _getRatio = value =>
+    (value - this.props.minimumValue) / (this.props.maximumValue - this.props.minimumValue);
 
-  _getThumbLeft = (value) => this._getRatio(value) * (this.state.containerSize.width - this.state.thumbSize.width)
+  _getThumbLeft = value =>
+    this._getRatio(value) * (this.state.containerSize.width - this.state.thumbSize.width);
 
   _getCurrentVal = () => this.position.__getValue();
 
-  _setCurrentValue = (value) => this.position.setValue(value);
+  _setCurrentValue = value => this.position.setValue(value);
 
-  _getValue = (gestureState) => {
+  _getValue = gestureState => {
     const length = this.state.containerSize.width - this.state.thumbSize.width;
     const thumbLeft = this._previousLeft + gestureState.dx;
 
@@ -63,34 +62,31 @@ class Slider extends PureComponent {
           this.props.maximumValue,
           this.props.minimumValue +
             Math.round(
-              ratio *
-                (this.props.maximumValue - this.props.minimumValue) /
-                this.props.step,
+              (ratio * (this.props.maximumValue - this.props.minimumValue)) / this.props.step
             ) *
-              this.props.step,
-        ),
+              this.props.step
+        )
       );
     }
     return Math.max(
       this.props.minimumValue,
       Math.min(
         this.props.maximumValue,
-        ratio * (this.props.maximumValue - this.props.minimumValue) +
-          this.props.minimumValue,
-      ),
+        ratio * (this.props.maximumValue - this.props.minimumValue) + this.props.minimumValue
+      )
     );
-  }
+  };
   // container size
   _measureContainer = x => {
-    this._handleMeasure("containerSize", x);
+    this._handleMeasure('containerSize', x);
   };
   // track size
   _measureTrack = x => {
-    this._handleMeasure("trackSize", x);
+    this._handleMeasure('trackSize', x);
   };
   // thumb size
   _measureThumb = x => {
-    this._handleMeasure("thumbSize", x);
+    this._handleMeasure('thumbSize', x);
   };
   // calculate all of them
   _handleMeasure = (name, x) => {
@@ -99,11 +95,7 @@ class Slider extends PureComponent {
 
     const storeName = `_${name}`;
     const currentSize = this[storeName];
-    if (
-      currentSize &&
-      width === currentSize.width &&
-      height === currentSize.height
-    ) {
+    if (currentSize && width === currentSize.width && height === currentSize.height) {
       return;
     }
     this[storeName] = size; // initialize a new var with the current sizes
@@ -112,7 +104,7 @@ class Slider extends PureComponent {
         containerSize: this._containerSize,
         trackSize: this._trackSize,
         thumbSize: this._thumbSize,
-        measured: true
+        measured: true,
       });
     }
   };
@@ -124,17 +116,26 @@ class Slider extends PureComponent {
   };
 
   render() {
-    const { minimumValue, maximumValue, trackStyle, thumbStyle, activeColor, disabled, theme, styles } = this.props;
+    const {
+      minimumValue,
+      maximumValue,
+      trackStyle,
+      thumbStyle,
+      activeColor,
+      disabled,
+      theme,
+      styles,
+    } = this.props;
     const { containerSize, thumbSize, measured } = this.state;
 
     const thumbLeft = this.position.interpolate({
       inputRange: [minimumValue, maximumValue],
-      outputRange: [0, containerSize.width - thumbSize.width]
+      outputRange: [0, containerSize.width - thumbSize.width],
     });
 
     const minimumTrackWidth = this.position.interpolate({
       inputRange: [minimumValue, maximumValue],
-      outputRange: [0, containerSize.width - thumbSize.width]
+      outputRange: [0, containerSize.width - thumbSize.width],
     });
 
     const visibleStyle = {};
@@ -144,8 +145,8 @@ class Slider extends PureComponent {
       position: 'absolute',
       width: Animated.add(minimumTrackWidth, thumbSize.width / 2),
       backgroundColor: activeColor || theme.COLORS.PRIMARY,
-      ...visibleStyle
-    }
+      ...visibleStyle,
+    };
 
     const containerStyles = [styles.container, styles];
 
@@ -156,22 +157,18 @@ class Slider extends PureComponent {
           style={[styles.track, trackStyle]}
           onLayout={this._measureTrack}
         />
-        <Animated.View 
-          renderToHardwareTextureAndroid
-          style={[styles.track, minimumTrackStyle]}
-        />
+        <Animated.View renderToHardwareTextureAndroid style={[styles.track, minimumTrackStyle]} />
         <Animated.View
           renderToHardwareTextureAndroid
-          style={
-            [
-              styles.thumb,
-              thumbStyle,
-              disabled && styles.disabled,
-              {
-                transform: [{ translateX: thumbLeft }, { translateY: 0 }],
-                ...visibleStyle,
-              }
-            ]}
+          style={[
+            styles.thumb,
+            thumbStyle,
+            disabled && styles.disabled,
+            {
+              transform: [{ translateX: thumbLeft }, { translateY: 0 }],
+              ...visibleStyle,
+            },
+          ]}
           {...this._panResponder.panHandlers}
           onLayout={this._measureThumb}
         />
@@ -187,13 +184,12 @@ Slider.defaultProps = {
   trackStyle: {},
   thumbStyle: {},
   value: 0,
-  disabled: false,
   step: 0,
   style: null,
   theme: GalioTheme,
   onSlidingComplete: () => {},
   onSlidingStart: () => {},
-  onValueChange: () => {}
+  onValueChange: () => {},
 };
 
 Slider.propTypes = {
@@ -207,32 +203,33 @@ Slider.propTypes = {
   styles: PropTypes.any,
   onSlidingComplete: PropTypes.func,
   onSlidingStart: PropTypes.func,
-  onValueChange: PropTypes.func
+  onValueChange: PropTypes.func,
 };
 
-const styles = theme => StyleSheet.create({
-  container: {
-    height: 40,
-    justifyContent: "center"
-  },
-  track: {
-    height: theme.SIZES.TRACK_SIZE,
-    width: "100%",
-    borderRadius: theme.SIZES.TRACK_SIZE / 2,
-    position: "absolute",
-    backgroundColor: theme.COLORS.GREY
-  },
-  thumb: {
-    width: theme.SIZES.THUMB_SIZE,
-    height: theme.SIZES.THUMB_SIZE,
-    borderRadius: theme.SIZES.THUMB_SIZE / 2,
-    borderWidth: 2,
-    borderColor: theme.COLORS.PRIMARY,
-    backgroundColor: theme.COLORS.WHITE
-  },
-  disabled: {
-    backgroundColor: theme.COLORS.MUTED
-  }
-});
+const styles = theme =>
+  StyleSheet.create({
+    container: {
+      height: 40,
+      justifyContent: 'center',
+    },
+    track: {
+      height: theme.SIZES.TRACK_SIZE,
+      width: '100%',
+      borderRadius: theme.SIZES.TRACK_SIZE / 2,
+      position: 'absolute',
+      backgroundColor: theme.COLORS.GREY,
+    },
+    thumb: {
+      width: theme.SIZES.THUMB_SIZE,
+      height: theme.SIZES.THUMB_SIZE,
+      borderRadius: theme.SIZES.THUMB_SIZE / 2,
+      borderWidth: 2,
+      borderColor: theme.COLORS.PRIMARY,
+      backgroundColor: theme.COLORS.WHITE,
+    },
+    disabled: {
+      backgroundColor: theme.COLORS.MUTED,
+    },
+  });
 
 export default withGalio(Slider, styles);
