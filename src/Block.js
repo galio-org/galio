@@ -56,7 +56,7 @@ function Block(props) {
   }
 
   return (
-    <View {...rest} style={styleBlock}>
+    <View  style={styleBlock} {...rest}>
       {children}
     </View>
   );

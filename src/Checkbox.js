@@ -3,7 +3,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 // galio dependency
-import { Icon, Text } from 'galio-framework';
+import { Icon, Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
 function Checkbox(props) {

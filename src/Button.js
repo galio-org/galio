@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import { Icon } from 'galio-framework';
+import { Icon } from './';
 import GalioTheme, { withGalio } from './theme';
 
 const { width } = Dimensions.get('window');

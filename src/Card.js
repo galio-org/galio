@@ -3,7 +3,7 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { Block, Icon, Text } from 'galio-framework';
+import { Block, Icon, Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
 function Card(props) {
