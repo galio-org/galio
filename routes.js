@@ -11,7 +11,9 @@ import {
 // screens
 import SignUp from "./src/screens/SignUp"
 import Dashboard from "./src/screens/dashboard/Dashboard"
-import Activity from './src/screens/activity/Activity'
+import Activity from "./src/screens/activity/Activity"
+import Contacts from "./src/screens/Contacts"
+import Shipping from "./src/screens/Eccomerce"
 
 import theme from './src/theme';
 import { Block, Icon, Text } from 'galio-framework';
@@ -95,7 +97,22 @@ const screens = {
       drawerLabel: 'Activity',
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
-  }
+  },
+  Contacts:{
+    screen: Contacts,
+    navigationOptions: {
+      drawerLabel: 'Contacts',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Shipping:{
+    screen: Shipping,
+    navigationOptions: {
+      drawerLabel: 'Shipping',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+
 };
 
 const options = {

@@ -1,9 +1,12 @@
 import React from 'react';
-import { StyleSheet, Platform, View, ScrollView } from 'react-native';
+import { StyleSheet, Platform, View, ScrollView, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-svg-charts';
 import { Defs, LinearGradient, Stop } from 'react-native-svg';
 import { LinearGradient as Gradient } from 'expo';
 import * as shape from 'd3-shape';
+
+import Carousel,{ Pagination } from 'react-native-snap-carousel';
+
 import theme from '../../theme';
 
 // galio components
@@ -12,8 +15,22 @@ import { Text, Button, Block, NavBar, Icon } from 'galio-framework';
 import Transactions from './Transactions';
 
 const BASE_SIZE = theme.SIZES.BASE;
-const GRADIENT_BLUE = ['#6B84CA', '#8F44CE'];
+const GRADIENT_BLUE = '#D442F8';
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
+
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
+function wp (percentage) {
+    const value = (percentage * viewportWidth) / 100;
+    return Math.round(value);
+}
+
+const slideHeight = viewportHeight * 0.36;
+const slideWidth = wp(85);
+const itemHorizontalMargin = wp(2);
+
+export const sliderWidth = viewportWidth;
+export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
 const LineGradient = ({ index }) => (
   <Defs key={index}>
@@ -70,11 +87,25 @@ const Labels = ({ data }) =>
 export default class Dashbord extends React.Component {
   constructor() {
     super();
-  }
+    this.state = {
+      slider1ActiveSlide: 0,
+      entries: [
+        { title: 'hello' },
+      { title: 'world' },
+      { title: 'hello' },
 
-  render() {
+    ],
+    }
+  }
+  _renderItem ({item, index}) {
     const data = [50, 80, 60, 95, 120];
     const labels = ['04/11', '05/11', '06/11', '07/11', '08/11'];
+    return (
+      <BalanceCard data={data} labels={labels}/>
+  );}
+
+  render() {
+
 
     return (
       <Block safe flex>
@@ -95,9 +126,42 @@ export default class Dashbord extends React.Component {
         />
         <ScrollView style={{ flex: 1 }}>
           <Block style={styles.container}>
-            <BalanceCard data={data} labels={labels} />
-            <Transactions />
-            <Block flex row space="between">
+            {/* <BalanceCard data={data} labels={labels} />
+            <Transactions /> */}
+            <Carousel
+              ref={c => this._slider1Ref = c}
+             data={this.state.entries}
+             renderItem={this._renderItem}
+             sliderWidth={slideWidth}
+             sliderHeight={slideHeight}
+             itemWidth={itemWidth}
+             containerCustomStyle={styles.slider}
+             contentContainerCustomStyle={styles.sliderContentContainer}
+
+             onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
+            />
+             <Pagination
+                  dotsLength={this.state.entries.length}
+                  carouselRef={this._slider1Ref}
+                  activeDotIndex={this.state.slider1ActiveSlide}
+                  dotStyle={{
+                  width: 12,
+                  height: 12,
+                  borderRadius: 6,
+                  marginHorizontal: 3,
+                  backgroundColor: '#D442F8'
+              }}
+              inactiveDotStyle={{
+                  borderColor:'#D442F8',
+                  borderWidth:2,
+                  backgroundColor:"#fff"
+              }}
+              inactiveDotOpacity={0.4}
+              inactiveDotScale={0.6}
+
+
+                />
+            {/* <Block flex row space="between">
               <Block flex={1} style={{ padding: 10 }}>
                 <View style={styles.card}>
                   <Text muted h6>
@@ -141,7 +205,7 @@ export default class Dashbord extends React.Component {
                   ></LineChart>
                 </Gradient>
               </Block>
-            </Block>
+            </Block> */}
           </Block>
         </ScrollView>
       </Block>
@@ -151,14 +215,14 @@ export default class Dashbord extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 14,
+    padding:14,
     justifyContent: 'flex-start',
     backgroundColor: theme.COLORS.WHITE,
   },
   card: {
-    padding: 14,
-    borderRadius: 3,
-    backgroundColor: theme.COLORS.WHITE,
+    borderColor:theme.COLORS.GREY,
+    borderWidth: 1,
+    borderRadius: 4,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -178,4 +242,41 @@ const styles = StyleSheet.create({
   pendingCashCard: {
     marginTop: 5,
   },
+  paginationContainer: {
+    paddingVertical: 8
+},
+paginationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 8
+},
+card: {
+  padding: 14,
+  marginLeft: 5,
+  backgroundColor: '#fff',
+  borderTopLeftRadius: 3,
+  borderTopRightRadius: 3,
+  borderColor:theme.COLORS.GREY,
+  shadowOffset: {
+    width: 0,
+    height: 5,
+  },
+  shadowRadius: 5,
+  shadowOpacity: 0.24,
+  borderRadius: 5,
+},
+avatar: {
+  width: 40,
+  height: 40,
+  borderRadius: 20,
+},
+slider: {
+
+  overflow: 'visible' // for custom animations
+},
+sliderContentContainer: {
+
+  paddingHorizontal: itemHorizontalMargin,
+},
 });

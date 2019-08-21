@@ -4,20 +4,21 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
+  Dimensions
 } from 'react-native';
 
 // galio component
 import { Block, Button, Input, Text } from 'galio-framework';
 import theme from '../theme';
 
-handleChange = () => {
-  console.log('handle change');
-};
+const { width } = Dimensions.get('screen');
+const avatarPhoto =
+  'https://images.unsplash.com/photo-1520271348391-049dd132bb7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80';
 
-class SignUp extends React.Component {
+export default class SignUp extends React.Component {
   render() {
     return (
-      <Block safe flex style={styles.container}>
+      <Block safe flex>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={3}>
             <Block style={styles.container}>
@@ -36,6 +37,9 @@ class SignUp extends React.Component {
 }
 
 const LoginForm = () => {
+  handleChange = () => {
+    console.log('handle change');
+  };
   return (
     <Block style={styles.loginFormContainer}>
       <Input
@@ -73,16 +77,15 @@ const Footer = () => {
 
 const Header = ({ title, subtitle }) => {
   return (
-    <Block left style={[styles.headerContainer]}>
+    <Block left style={styles.headerContainer}>
       <Image
         source={{
-          uri:
-            'https://images.unsplash.com/photo-1520271348391-049dd132bb7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80',
+          uri: avatarPhoto,
         }}
-        style={[styles.avatar]}
+        style={styles.avatar}
       />
       <Text style={{ marginVertical: theme.SIZES.FONT / 4 }} h3>
-        {title},
+        {title}
       </Text>
       <Text style={styles.subHeader} h6>
         {subtitle}
@@ -97,9 +100,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.WHITE,
   },
   avatar: {
-    width: 140,
-    height: 140,
-    borderRadius: 140 / 2,
+    width: width - theme.SIZES.BASE * 12,
+    height: width - theme.SIZES.BASE * 12,
+    borderRadius: (width - theme.SIZES.BASE * 12)/2,
     marginBottom: 10,
     marginLeft: 10,
   },
@@ -110,19 +113,16 @@ const styles = StyleSheet.create({
     color: theme.COLORS.GREY,
   },
   loginFormContainer: {
-    marginTop: 40,
+    marginTop: 40
   },
-
   highlight: {
     color: theme.COLORS.GREY,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   loginBtn: {
-    marginTop: 30,
+    marginTop: 30
   },
   footerContainer: {
-    marginTop: 40,
+    marginTop: 40
   },
 });
-
-export default SignUp;
