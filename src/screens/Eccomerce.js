@@ -5,10 +5,78 @@ import theme from '../theme';
 
 // galio components
 import { Text, Block, NavBar, Button } from 'galio-framework';
-const BASE_SIZE = theme.SIZES.BASE;
-const GRADIENT_BLUE = ['#6B84CA', '#8F44CE'];
+
+
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
 
+// Shipping Cards
+const standardTitle = 'Standard Shipping';
+const standardPrice = '4.95';
+const standardDescription = 'The average delivery time for standard shipping packages is 7 days.';
+
+const premiumTitle = 'Premium Shipping';
+const premiumPrice = '8.95';
+const premiumDescription = 'The average delivery time for standard shipping packages is 2 days.';
+
+
+const ShippingCard = ({ title, price, description }) => (
+  <View style={[styles.card, styles.shippingSection]}>
+    <Block flex row space="between">
+      <Block flex={0.7}>
+        <Text size={theme.SIZES.FONT * 1.2}>{title}</Text>
+      </Block>
+      <Block flex={0.3}>
+        <Text
+          size={theme.SIZES.FONT * 1.2}
+          color={theme.COLORS.BLACK}
+          style={{ textAlign: 'right' }}
+        >
+          ${price}
+        </Text>
+      </Block>
+    </Block>
+    <Block flex={1} style={styles.description}>
+      <Text size={theme.SIZES.FONT * 0.9} color={theme.COLORS.GREY}>
+        {description}
+      </Text>
+    </Block>
+  </View>
+);
+
+class FreeShipping extends React.Component {
+  render() {
+    return (
+      <Gradient
+        start={[0.45, 0.45]}
+        end={[0.8, 0.8]}
+        colors={GRADIENT_PINK}
+        style={[styles.card, styles.shippingSection, styles.freeSection]}
+      >
+        <Block flex row space="between">
+          <Block flex={0.7}>
+            <Text color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 1.2}>
+              Free Shipping
+            </Text>
+          </Block>
+          <Block flex={0.3}>
+            <Text
+              size={theme.SIZES.FONT * 1.2}
+              color={theme.COLORS.WHITE}
+              style={{ textAlign: 'right' }}
+            >
+              $ 0.00
+            </Text>
+          </Block>
+        </Block>
+        <Block flex={1} style={styles.description}>
+          <Text size={theme.SIZES.FONT * 0.9} color={theme.COLORS.WHITE}>
+            The average delivery time for standard shipping packages is 14 days.
+          </Text>
+        </Block>
+      </Gradient>
+    );
+  }
+}
 export default class Ecommerce extends React.Component {
   constructor(props) {
     super(props);
@@ -33,68 +101,65 @@ export default class Ecommerce extends React.Component {
           }
         />
         <Block safe flex style={styles.container}>
-            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-            <Text style={styles.title} center h3 color={theme.COLORS.BLACK}>
-            Choose your shipping method
-             </Text>
-             <View style={styles.card}>
-
-             <Block style={{position: 'absolute',
-  bottom: 5}}>
-                <Gradient
-                  start={[0.45, 0.45]}
-                  end={[0.8, 0.8]}
-                  colors={GRADIENT_PINK}
-                  style={[styles.card, styles.pendingCashCard]}
-                >
-                  <Text left color={theme.COLORS.WHITE} h6>
-                    Free Shiping
-                  </Text>
-                  <Text right color={theme.COLORS.WHITE} h6>
-                    $ 0.00
-                  </Text>
-                  <Text color={theme.COLORS.WHITE} h6>
-                  The average delivery time for free shipping packages is 14 days.
-                  </Text>
-
-                </Gradient>
-              </Block>
+          <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+            <View style={styles.container}>
+              <Text h4>Choose your shipping method</Text>
+              <View
+                style={[
+                  styles.card,
+                  styles.cardShadow,
+                  styles.shippingContainer,
+                ]}
+              >
+                <FreeShipping />
+                <ShippingCard title={standardTitle} price={standardPrice} description={standardDescription}/>
+                <ShippingCard title={premiumTitle} price={premiumPrice} description={premiumDescription}/>
               </View>
-            </ScrollView>
-      </Block>
-
-
+              <Button style={styles.footerBtn} round>
+                Next
+              </Button>
+            </View>
+          </ScrollView>
+        </Block>
       </Block>
     );
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
-    padding: 14,
+    paddingVertical: 2,
+    paddingHorizontal: 8,
     justifyContent: 'flex-start',
     backgroundColor: theme.COLORS.WHITE,
   },
-
   title: {
     textAlign: 'center',
   },
-
   card: {
-    marginLeft: 5,
-    marginTop:20,
     padding: 14,
-    backgroundColor: '#fff',
-    borderRadius: 3,
+    backgroundColor: theme.COLORS.WHITE,
+    borderRadius: 5,
+  },
+  cardShadow: {
     shadowOffset: {
-      width: 0,
+      width: 1,
       height: 5,
     },
     shadowRadius: 5,
     shadowOpacity: 0.24,
-    borderRadius: 5,
+  },
+  shippingContainer: {
+    marginTop: 20,
+  },
+  shippingSection: {
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: '#d6d7da',
+    marginTop: 20,
+  },
+  freeSection: {
+    marginTop: -30,
   },
   avatar: {
     width: 40,
@@ -108,5 +173,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  description: {
+    marginVertical: 15,
+  },
+  footerBtn: {
+    marginTop: 20,
+  },
 });
-

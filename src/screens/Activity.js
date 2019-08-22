@@ -1,63 +1,43 @@
 import React from 'react';
 import { StyleSheet, Platform, View, ScrollView } from 'react-native';
-
-import { LinearGradient as Gradient } from 'expo';
-import theme from '../../theme';
-
 import Timeline from 'react-native-timeline-feed';
+import { LinearGradient as Gradient } from 'expo';
+
+import theme from '../theme';
 
 // galio components
 import { Button, Block, NavBar } from 'galio-framework';
 
-
-const transparent = 'rgb(255, 255, 255)';
 const LINE_COLOR = '#efefef';
-const TEXT_COLOR = '#333';
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
-
+const data = [
+  {
+    id: '0',
+    title: 'July 17, 2019',
+    description: 'Get a 2% discount on your next order! Receive it',
+  },
+  {
+    id: '1',
+    title: 'May 24, 2019',
+    description: 'We fixed latest issue with profile & activity screens',
+  },
+  {
+    id: '2',
+    title: 'February 17, 2019',
+    description: 'Lucy’s Closet is now open  until 8pm. Find you',
+  },
+  {
+    id: '3',
+    title: 'February 17, 2019',
+    description: 'All your favourite books at your reach, Bookstore',
+  },
+  {
+    id: '4',
+    title: 'January 10, 2019',
+    description: 'Be the first to know about discounts and offers',
+  },
+];
 export default class Activity extends React.Component {
-  data = [
-    {
-      time: '09:00',
-      title: 'July 17, 2019',
-      description:
-        'The Beginner Archery and Beginner Crossbow course does not require you to bring any equipment, since everything you need will be provided for the course. ',
-    },
-    {
-      time: '10:45',
-      title: 'May 24, 2019',
-      description:
-        'Badminton is a racquet sport played using racquets to hit a shuttlecock across a net.',
-    },
-    { time: '12:00', title: 'April 02, 2019' },
-    {
-      time: '14:00',
-      title: 'February 17, 2019',
-      description:
-        'Team sport played between two teams of eleven players with a spherical ball. ',
-    },
-    {
-      time: '16:30',
-      title: 'January 10, 2019',
-      description: 'Look out for the Best Gym & Fitness Centers around me :)',
-    },
-    {
-      time: '16:30',
-      title: 'January 10, 2019',
-      description: 'Look out for the Best Gym & Fitness Centers around me :)',
-    },
-    {
-      time: '16:30',
-      title: 'January 10, 2019',
-      description: 'Look out for the Best Gym & Fitness Centers around me :)',
-    },
-    {
-      time: '16:30',
-      title: 'January 10, 2019',
-      description: 'Look out for the Best Gym & Fitness Centers around me :)',
-    },
-  ];
-
   render() {
     return (
       <Block safe flex>
@@ -79,7 +59,7 @@ export default class Activity extends React.Component {
         <ScrollView style={{ flex: 1 }}>
           <Block style={styles.container}>
             <Timeline
-              data={this.data}
+              data={data}
               endWithCircle
               renderItem={this.renderItem}
             />
@@ -91,9 +71,9 @@ export default class Activity extends React.Component {
 
   renderItem = ({ item, index }) => {
     return (
-      <Timeline.Row >
+      <Timeline.Row keyExtractor={(item, index) => item.id}>
         <Timeline.VerticalSeparator>
-          <Timeline.Circle color={transparent}>
+          <Timeline.Circle color={theme.COLORS.NEUTRAL}>
             <Gradient
               start={[0.45, 0.45]}
               end={[0.8, 0.8]}
@@ -103,7 +83,10 @@ export default class Activity extends React.Component {
           </Timeline.Circle>
           <Timeline.Line color={LINE_COLOR} />
         </Timeline.VerticalSeparator>
-        <Timeline.Event style={styles.event} keyExtractor={(item, index) => index.toString()}>
+        <Timeline.Event
+          style={styles.event}
+
+        >
           <View style={[styles.card, styles.titleAndTimeContainer]}>
             <Timeline.Title textStyle={styles.title}>
               {item.title}
@@ -121,12 +104,12 @@ export default class Activity extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 14,
+    paddingHorizontal: 14,
     justifyContent: 'flex-start',
     backgroundColor: theme.COLORS.WHITE,
   },
   time: {
-    color: TEXT_COLOR,
+    color: theme.COLORS.BLACK,
   },
   event: {
     paddingBottom: 20,
@@ -136,7 +119,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   description: {
-    color: TEXT_COLOR,
+    color: theme.COLORS.BLACK,
   },
   card: {
     marginLeft: 5,
@@ -149,7 +132,6 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 5,
     shadowOpacity: 0.24,
-    borderRadius: 5,
   },
   circleGradient: {
     width: 16,
@@ -159,5 +141,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-

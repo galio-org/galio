@@ -1,52 +1,205 @@
 import React from 'react';
 import { StyleSheet, Platform, View, Image } from 'react-native';
+import AlphabetListView from 'react-native-alphabetlistview';
 
 import theme from '../theme';
 
-import AlphabetListView from 'react-native-alphabetlistview';
 // galio components
 import { Text, Block, NavBar, Button } from 'galio-framework';
 
-export default class Contacts extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+const data = {
+  A: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Antony Dorothy',
+      phoneNumber: '+ 1 9983 2849 2312',
+    },
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Anna Johnathen',
+      phoneNumber: '+ 1 7234 8852 1200',
+    },
+  ],
+  B: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Barbara',
+      phoneNumber: '+ 1-135-659-3483',
+    },
+  ],
+  C: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Carolyn',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  D: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Daniel',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  E: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Eveline',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  F: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Fabian',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  G: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'George',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  H: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Horatiu',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  I: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Inez',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  J: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Justin',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  K: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Kyle',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  L: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Laura',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  M: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Manuela',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  N: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Nathen',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  O: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Oprah',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  P: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Prince',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  Q: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Quincy',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  R: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Richard',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  S: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Sore',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  T: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Trey',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  U: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Uni',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  V: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Vine',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  W: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Wolfgang',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  X: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Xavier',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  Y: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Yates',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+  Z: [
+    {
+      avatar: 'http://i.pravatar.cc/100',
+      name: 'Zayn',
+      phoneNumber: '+ 1-684-120-4488',
+    },
+  ],
+};
 
-    this.state = {
-      data: {
-        A: [
-            {
-                avatar: 'http://i.pravatar.cc/100',
-                name:'Antony Dorothy',
-                phoneNumber:'+ 1 9983 2849 2312'
-            }
-        ],
-        B: ['some'],
-        C: ['some'],
-        D: ['some'],
-        E: ['some'],
-        F: ['some'],
-        G: ['some'],
-        H: ['some'],
-        I: ['some'],
-        J: ['some'],
-        K: ['some'],
-        L: ['some'],
-        M: ['some'],
-        N: ['some'],
-        O: ['some'],
-        P: ['some'],
-        Q: ['some'],
-        R: ['some'],
-        S: ['some'],
-        T: ['some'],
-        U: ['some'],
-        V: ['some'],
-        W: ['some'],
-        X: ['some'],
-        Y: ['some'],
-        Z: ['some'],
-      },
-    };
+export default class Contacts extends React.Component {
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -69,12 +222,14 @@ export default class Contacts extends React.Component {
         />
 
         <AlphabetListView
-          data={this.state.data}
+          data={data}
           cell={Cell}
           cellHeight={30}
           sectionListItem={SectionItem}
           sectionHeader={SectionHeader}
           sectionHeaderHeight={30}
+          renderRow={this._renderItem}
+          enableEmptySections={true}
         />
       </Block>
     );
@@ -83,19 +238,14 @@ export default class Contacts extends React.Component {
 
 class SectionHeader extends React.Component {
   render() {
-    // inline styles used for brevity, use a stylesheet when possible
     var textStyle = {
       textAlign: 'left',
-      color: '#000',
+      color: theme.COLORS.BLACK,
       fontSize: 22,
-
-    };
-
-    var viewStyle = {
-      //   backgroundColor: '#fff',
+      padding: 10,
     };
     return (
-      <View style={viewStyle}>
+      <View>
         <Text style={textStyle}>{this.props.title}</Text>
       </View>
     );
@@ -104,15 +254,17 @@ class SectionHeader extends React.Component {
 
 class SectionItem extends React.Component {
   render() {
-    return <Text  size={theme.SIZES.FONT * 0.675}  muted style={{padding:5,  }}>{this.props.title}</Text>;
+    return (
+      <Text size={theme.SIZES.FONT * 0.675} muted style={{ padding: 5 }}>
+        {this.props.title}
+      </Text>
+    );
   }
 }
 
 class Cell extends React.Component {
-  renderAvatar() {
-    const { avatar } = this.props;
+  renderAvatar(avatar) {
     if (!avatar) return null;
-
     return <Image source={{ uri: avatar }} style={styles.avatar} />;
   }
   render() {
@@ -121,20 +273,16 @@ class Cell extends React.Component {
         <View style={styles.card}>
           <Block flex row space="between">
             <Block flex={0.3}>
-              <Image
-                source={{ uri: this.props.avatar }}
-                style={[styles.avatar]}
-              />
+              {this.renderAvatar(this.props.item.avatar)}
             </Block>
-
             <Block flex={1}>
-            <Text size={theme.SIZES.FONT * 0.875} color={theme.COLORS.BLACK}>
-            Anthony Dorothy
-            </Text>
-            <Text size={theme.SIZES.FONT * 0.675} muted>
-            + 1 9983 2849 2312
-            </Text>
-          </Block>
+              <Text size={theme.SIZES.FONT * 0.875} color={theme.COLORS.BLACK}>
+                {this.props.item.name}
+              </Text>
+              <Text size={theme.SIZES.FONT * 0.675} muted>
+                {this.props.item.phoneNumber}
+              </Text>
+            </Block>
           </Block>
         </View>
       </View>
@@ -144,23 +292,20 @@ class Cell extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 14,
+    paddingHorizontal: 14,
     justifyContent: 'flex-start',
     backgroundColor: theme.COLORS.WHITE,
-  },
-  event: {
-    paddingBottom: 20,
   },
   title: {
     color: theme.COLORS.GREY,
     fontWeight: '400',
   },
   card: {
+    marginVertical: 10,
     marginLeft: 5,
     padding: 14,
-    height: 400,
-    padding: 14,
-    backgroundColor: '#fff',
+    width: '95%',
+    backgroundColor: theme.COLORS.WHITE,
     borderRadius: 3,
     shadowOffset: {
       width: 0,
@@ -168,19 +313,10 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 5,
     shadowOpacity: 0.24,
-    borderRadius: 5,
   },
   avatar: {
     width: 40,
     height: 40,
     borderRadius: 20,
   },
-  circleGradient: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
-

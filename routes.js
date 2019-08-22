@@ -9,11 +9,11 @@ import {
 } from 'react-navigation';
 
 // screens
-import SignUp from "./src/screens/SignUp"
-import Dashboard from "./src/screens/dashboard/Dashboard"
-import Activity from "./src/screens/activity/Activity"
-import Contacts from "./src/screens/Contacts"
-import Shipping from "./src/screens/Eccomerce"
+import SignUp from "./src/screens/SignUp";
+import Dashboard from "./src/screens/dashboard/Dashboard";
+import Activity from "./src/screens/Activity";
+import Contacts from "./src/screens/Contacts";
+import Shipping from "./src/screens/Eccomerce";
 
 import theme from './src/theme';
 import { Block, Icon, Text } from 'galio-framework';
