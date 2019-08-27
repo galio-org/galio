@@ -9,36 +9,35 @@ import GalioTheme, { withGalio } from './theme';
 // 2. Maybe options for changind the View text for the viewPass button
 // 3. Idk. What else should we do in order to make this even more reusable.
 
-function Input(props) {
+function Input({
+  style,
+  type,
+  placeholderTextColor,
+  label,
+  color,
+  help,
+  bgColor,
+  borderless,
+  viewPass,
+  rounded,
+  icon,
+  family,
+  left,
+  right,
+  iconColor,
+  topHelp,
+  bottomHelp,
+  theme,
+  styles,
+  iconSize,
+  iconContent,
+  password,
+  ...rest
+}) {
   const [isPassword, setIsPassword] = React.useState(false);
-  const { password } = props;
   React.useEffect(() => {
     setIsPassword(password);
   }, []);
-  const {
-    style,
-    type,
-    placeholderTextColor,
-    label,
-    color,
-    help,
-    bgColor,
-    borderless,
-    viewPass,
-    rounded,
-    icon,
-    family,
-    left,
-    right,
-    iconColor,
-    topHelp,
-    bottomHelp,
-    theme,
-    styles,
-    iconSize,
-    iconContent,
-    ...rest
-  } = props;
 
   const inputViewStyles = [
     styles.inputStyle,
@@ -65,8 +64,8 @@ function Input(props) {
       color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
     />
   ) : (
-    iconContent
-  );
+      iconContent
+    );
 
   const viewPassElement = password && viewPass && (
     <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => setIsPassword(password)}>
