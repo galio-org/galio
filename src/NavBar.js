@@ -8,10 +8,25 @@ import GalioTheme, { withGalio } from './theme';
 
 const { height } = Dimensions.get('screen');
 
-function NavBar(props) {
+function NavBar({
+  back,
+  hideLeft,
+  hideRight,
+  left,
+  leftStyle,
+  leftIconColor,
+  name,
+  onLeftPress,
+  right,
+  rightStyle,
+  style,
+  styles,
+  transparent,
+  theme,
+  title,
+  titleStyle,
+}) {
   function renderTitle() {
-    const { title, titleStyle, styles } = props;
-
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
@@ -26,18 +41,6 @@ function NavBar(props) {
   }
 
   function renderLeft() {
-    const {
-      back,
-      left,
-      leftStyle,
-      leftIconColor,
-      onLeftPress,
-      theme,
-      styles,
-      name,
-      hideLeft,
-    } = props;
-
     if (!hideLeft) {
       if (name || back) {
         return (
@@ -59,7 +62,6 @@ function NavBar(props) {
   }
 
   function renderRight() {
-    const { right, rightStyle, styles, hideRight } = props;
     const hasIcons = React.Children.count(right) > 1;
     const rightStyles = [styles.right, rightStyle];
     if (!hideRight) {
@@ -72,7 +74,6 @@ function NavBar(props) {
     return <View style={styles.right} />;
   }
 
-  const { transparent, style, styles } = props;
   const navStyles = [styles.navBar, transparent && styles.transparent, style];
 
   return (
@@ -92,7 +93,7 @@ NavBar.defaultProps = {
   left: null,
   leftStyle: null,
   leftIconColor: null,
-  onLeftPress: () => {},
+  onLeftPress: () => { },
   right: null,
   rightStyle: null,
   style: null,
