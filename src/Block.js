@@ -3,8 +3,7 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
-function Block(props) {
-  const {
+function Block({
     row,
     flex,
     center,
@@ -25,7 +24,7 @@ function Block(props) {
     style,
     styles,
     ...rest
-  } = props;
+}) {
 
   const styleBlock = [
     styles.block,
