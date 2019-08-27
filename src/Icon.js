@@ -12,8 +12,15 @@ const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf'
 // Galio Fonts have to loaded with Fonts.loadAsync if you're
 // using Expo (you can export GalioFont from index in order to import it)
 
-function Icon(props) {
-  const { name, family, size, color, styles, theme, ...rest } = props;
+function Icon({
+  name,
+  family,
+  size,
+  color,
+  styles,
+  theme,
+  ...rest
+}) {
   if (family === 'Galio') {
     if (name) {
       return (
