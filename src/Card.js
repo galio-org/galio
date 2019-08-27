@@ -6,11 +6,28 @@ import PropTypes from 'prop-types';
 import { Block, Icon, Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
-function Card(props) {
+function Card({
+  avatar,
+  borderless, 
+  caption, 
+  captionColor,
+  card, 
+  children,
+  footerStyle,
+  image,
+  imageBlockStyle,
+  imageStyle,
+  location, 
+  locationColor, 
+  shadow, 
+  styles,
+  title, 
+  titleColor,
+  theme,
+  ...rest 
+}) {
   function renderImage() {
-    const { image, imageBlockStyle, imageStyle, styles } = props;
     if (!image) return null;
-
     return (
       <Block card style={[styles.imageBlock, imageBlockStyle]}>
         <Image source={{ uri: image }} style={[styles.image, imageStyle]} />
@@ -19,16 +36,12 @@ function Card(props) {
   }
 
   function renderAvatar() {
-    const { avatar, styles } = props;
     if (!avatar) return null;
-
     return <Image source={{ uri: avatar }} style={styles.avatar} />;
   }
 
   function renderLocation() {
-    const { location, locationColor, theme } = props;
     if (!location) return null;
-
     if (typeof location !== 'string') {
       return location;
     }
@@ -53,8 +66,6 @@ function Card(props) {
   }
 
   function renderAuthor() {
-    const { title, titleColor, caption, captionColor, footerStyle, theme, styles } = props;
-
     return (
       <Block flex row style={[styles.footer, footerStyle]} space="between">
         <Block flex={0.3}>{renderAvatar()}</Block>
@@ -77,7 +88,6 @@ function Card(props) {
     );
   }
 
-  const { card, shadow, borderless, style, children, ...rest } = props;
 
   const styleCard = [borderless && { borderWidth: 0 }, style];
 
