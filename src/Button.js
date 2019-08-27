@@ -7,25 +7,33 @@ import GalioTheme, { withGalio } from './theme';
 
 const { width } = Dimensions.get('window');
 
-function Button(props) {
+function Button({
+    color,
+    children,
+    capitalize,
+    disabled,
+    iconSize,
+    icon,
+    iconFamily,
+    iconColor,
+    loading,
+    loadingSize,
+    lowercase,
+    onlyIcon,
+    opacity,
+    round,
+    radius,
+    style,
+    size,
+    shadowless,
+    shadowColor,
+    styles,
+    theme,
+    textStyle,
+    uppercase,
+    ...rest
+}) {
   function renderContent() {
-    const {
-      loading,
-      loadingSize,
-      children,
-      onlyIcon,
-      icon,
-      iconFamily,
-      iconSize,
-      iconColor,
-      uppercase,
-      lowercase,
-      capitalize,
-      textStyle,
-      styles,
-      theme,
-    } = props;
-
     const textStyles = [styles.customText, textStyle];
 
     // workaround for textTransform not supported on Expo SDK 29.0.0 or 30.0.0
@@ -60,23 +68,6 @@ function Button(props) {
 
     return content;
   }
-
-  const {
-    style,
-    color,
-    size,
-    disabled,
-    round,
-    radius,
-    onlyIcon,
-    iconSize,
-    opacity,
-    shadowless,
-    shadowColor,
-    styles,
-    theme,
-    ...rest
-  } = props;
 
   const colorStyle = styles[color];
 
