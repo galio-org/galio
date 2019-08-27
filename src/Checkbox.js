@@ -6,10 +6,27 @@ import PropTypes from 'prop-types';
 import { Icon, Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
-function Checkbox(props) {
-  const [checked, setchecked] = React.useState(props.initialValue);
+function Checkbox({
+  checkboxStyle, 
+  color,
+  disabled,
+  flexDirection,
+  image,
+  imageStyle,
+  iconColor,
+  iconFamily,
+  iconName,
+  iconSize,
+  initialValue,
+  label,
+  labelStyle,
+  onChange,
+  style,
+  styles,  
+}) {
+  const [checked, setchecked] = React.useState(initialValue);
   React.useEffect(() => {
-    props.onChange(checked);
+    onChange(checked);
   }, [checked]);
   // adding the necessary margins depending on the flexDirection
   function spaceAround(direction) {
@@ -27,8 +44,6 @@ function Checkbox(props) {
 
   // rendering the image/text for the checkbox
   function renderLabel() {
-    const { label, disabled, flexDirection, image, labelStyle, imageStyle, styles } = props;
-
     const labelStyles = [
       styles.textStyles,
       disabled && styles.disabledLabel,
@@ -47,7 +62,6 @@ function Checkbox(props) {
 
   // adding the check icon
   function renderChecked() {
-    const { iconName, iconFamily, iconColor, iconSize } = props;
 
     if (checked) {
       return <Icon name={iconName} family={iconFamily} color={iconColor} size={iconSize} />;
@@ -61,8 +75,6 @@ function Checkbox(props) {
     setchecked(!checked);
     return null;
   }
-
-  const { style, styles, disabled, flexDirection, checkboxStyle, color, theme } = props;
 
   const colorStyle = theme.COLORS[color.toUpperCase()]; // this sets the correct color for the theme file
 
