@@ -8,16 +8,23 @@ import GalioTheme, { withGalio } from './theme';
 
 // work in progress
 
-function Accordion(props) {
-    return (
-        <Block style={styles.container} />
-    );
+function Accordion({ theme }) {
+  return <Block style={styles.container} />;
 }
 
-const styles = theme => StyleSheet.create({
+Accordion.propTypes = {
+    theme: PropTypes.any
+};
+
+Accordion.defaultProps = {
+  theme: GalioTheme,
+};
+
+const styles = theme =>
+  StyleSheet.create({
     container: {
-        width: 200
-    }
-});
+      width: 200,
+    },
+  });
 
 export default withGalio(Accordion, styles);
