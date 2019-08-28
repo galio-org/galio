@@ -11,7 +11,10 @@ import Switch from './Switch';
 import Text from './Text';
 import theme, { withGalio, GalioProvider } from './theme';
 
-export { 
+import galioConfig from './config/galio.json';
+const GalioFont = require('./fonts/galio.ttf');
+
+export {
   Block,
   Button,
   Card,
@@ -25,6 +28,8 @@ export {
   Switch,
   theme,
   withGalio,
-  GalioProvider
+  GalioProvider,
+  galioConfig,
+  GalioFont
 };
 
