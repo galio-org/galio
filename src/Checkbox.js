@@ -24,7 +24,7 @@ function Checkbox({
   style,
   styles,  
 }) {
-  const [checked, setchecked] = React.useState(initialValue);
+  const [checked, setChecked] = React.useState(initialValue);
   React.useEffect(() => {
     onChange(checked);
   }, [checked]);
@@ -72,7 +72,7 @@ function Checkbox({
 
   // onPress function that changes the component's state and callbacks the onChange prop
   function _onPress() {
-    setchecked(!checked);
+    setChecked(!checked);
     return null;
   }
 
