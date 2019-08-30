@@ -33,6 +33,24 @@ function AccordionHeader({
   );
 }
 
+function AccordionAnimation({ children, style }) {
+  const [fade, setFade] = useState(new Animated.Value(0.3));
+
+  useEffect(() => {
+    Animated.timing(fade, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
+  });
+  
+  return (
+    <Animated.View style={{ ...style, opacity: fade }}>
+      {children}
+    </Animated.View>
+  );
+}
+
 function AccordionItem({
   expanded,
   expandedIcon,
@@ -65,10 +83,12 @@ function AccordionItem({
         </Block>
       </TouchableWithoutFeedback>
       {expanded ? 
+      (<AccordionAnimation>
         <AccordionContent 
           content={item.content}
           contentStyle={contentStyle}
-        /> : null
+        /> 
+      </AccordionAnimation>) : null
       }
     </Block>
   );
