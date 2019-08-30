@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Animated, TouchableWithoutFeedback, FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -23,10 +23,7 @@ function AccordionHeader({
   title
 }) {
   return (
-    <Block style={[
-      styles.defaultHeaderStyles,
-      headerStyle
-    ]}>
+    <Block row space="between" middle style={[{ padding: 6, borderBottomWidth: 1, borderBottomColor: 'red' }, headerStyle]}>
       <Text>{title}</Text>
       {expanded ? (expandedIcon || <Icon name="keyboard-arrow-up" family="material" size={12} />) : (icon || <Icon name="keyboard-arrow-down" family="material" size={12} />)}
     </Block>
@@ -39,7 +36,7 @@ function AccordionAnimation({ children, style }) {
   useEffect(() => {
     Animated.timing(fade, {
       toValue: 1,
-      duration: 500,
+      duration: 400,
       useNativeDriver: true
     }).start();
   });
@@ -107,7 +104,8 @@ function Accordion({
   onAccordionClose,
   style
 }) {
-  const [selected, setSelected] = useState(opened)
+  const [selected, setSelected] = useState(opened);
+
   return (
     <FlatList 
       data={dataArray}
@@ -115,7 +113,7 @@ function Accordion({
       style={[
         {
           borderColor: '#282C34',
-          borderWidth: 2
+          borderWidth: 1,
         },
         style
       ]}
@@ -124,7 +122,7 @@ function Accordion({
           <AccordionItem 
             key={String(index)}
             expanded={selected === index}
-            expandedIcon={expandedIcon} //icon pt expand
+            expandedIcon={expandedIcon}
             icon={icon}
             headerStyle={headerStyle}
             contentStyle={contentStyle}
@@ -132,7 +130,7 @@ function Accordion({
             onAccordionClose={onAccordionClose}
             item={item}
             index={index}
-            setSelected={s => setSelected(s)}
+            setSelected={s => setSelected(selected === s ? undefined : s)}
           />
         )
       }
@@ -159,16 +157,9 @@ Accordion.defaultProps = {
   opened: 0
 };
 
-const styles = theme =>
-  StyleSheet.create({
+const styles = theme => StyleSheet.create({
     container: {
-      width: 200,
-    },
-    defaultHeaderStyles: {
-      flexDirection: 'row',
-      padding: theme.SIZES.BASE,
-      justifyContent: 'space-between',
-      alignItems: 'center'
+
     }
   });
 
