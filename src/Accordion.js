@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Animated, TouchableWithoutFeedback, FlatList, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from "react";
+import {
+  Animated,
+  TouchableWithoutFeedback,
+  FlatList,
+  StyleSheet,
+  Dimensions
+} from "react-native";
+import PropTypes from "prop-types";
 
-import Block from './Block';
-import Icon from './Icon';
-import Text from './Text';
-import GalioTheme, { withGalio } from './theme';
+import Block from "./Block";
+import Icon from "./Icon";
+import Text from "./Text";
+import GalioTheme from "./theme";
 
-// work in progress (animation for extension and Galio syling)
+const { width } = Dimensions.get("screen");
+
+// 
 function AccordionContent({ content, contentStyle }) {
-  return <Text style={[
-    { padding: 8 },
-    contentStyle
-  ]}>{content}</Text>;
+  return <Text style={[styles.content, contentStyle]}>{content}</Text>;
 }
 
 function AccordionHeader({
@@ -20,12 +25,40 @@ function AccordionHeader({
   expandedIcon,
   headerStyle,
   icon,
-  title
+  title,
+  chapterIcon
 }) {
   return (
-    <Block row space="between" middle style={[{ padding: 6, borderBottomWidth: 1, borderBottomColor: 'red' }, headerStyle]}>
-      <Text>{title}</Text>
-      {expanded ? (expandedIcon || <Icon name="keyboard-arrow-up" family="material" size={12} />) : (icon || <Icon name="keyboard-arrow-down" family="material" size={12} />)}
+    <Block row middle style={[{ padding: 6 }, headerStyle]}>
+      {chapterIcon ? (
+        <Icon
+          name={chapterIcon.name}
+          family={chapterIcon.family}
+          size={chapterIcon.size || 14}
+          color={chapterIcon.color || GalioTheme.COLORS.PRIMARY}
+          style={chapterIcon.style || { marginRight: 5 }}
+        />
+      ) : null}
+      <Block row space="between" middle flex>
+        <Text size={16}>{title}</Text>
+        {expanded
+          ? expandedIcon || (
+              <Icon
+                name="keyboard-arrow-up"
+                family="material"
+                size={16}
+                color={GalioTheme.COLORS.MUTED}
+              />
+            )
+          : icon || (
+              <Icon
+                name="keyboard-arrow-down"
+                family="material"
+                size={16}
+                color={GalioTheme.COLORS.MUTED}
+              />
+            )}
+      </Block>
     </Block>
   );
 }
@@ -40,7 +73,7 @@ function AccordionAnimation({ children, style }) {
       useNativeDriver: true
     }).start();
   });
-  
+
   return (
     <Animated.View style={{ ...style, opacity: fade }}>
       {children}
@@ -58,7 +91,7 @@ function AccordionItem({
   item,
   onAccordionClose,
   onAccordionOpen,
-  setSelected,
+  setSelected
 }) {
   return (
     <Block>
@@ -70,29 +103,29 @@ function AccordionItem({
         }}
       >
         <Block>
-          <AccordionHeader 
+          <AccordionHeader
             expanded={expanded}
             expandedIcon={expandedIcon}
             headerStyle={headerStyle}
             icon={icon}
             title={item.title}
+            chapterIcon={item.icon}
           />
         </Block>
       </TouchableWithoutFeedback>
-      {expanded ? 
-      (<AccordionAnimation>
-        <AccordionContent 
-          content={item.content}
-          contentStyle={contentStyle}
-        /> 
-      </AccordionAnimation>) : null
-      }
+      {expanded ? (
+        <AccordionAnimation>
+          <AccordionContent
+            content={item.content}
+            contentStyle={contentStyle}
+          />
+        </AccordionAnimation>
+      ) : null}
     </Block>
   );
 }
 
-
-function Accordion({ 
+function Accordion({
   theme,
   dataArray,
   icon,
@@ -102,24 +135,20 @@ function Accordion({
   opened,
   onAccordionOpen,
   onAccordionClose,
+  listStyle,
   style
 }) {
   const [selected, setSelected] = useState(opened);
 
   return (
-    <FlatList 
-      data={dataArray}
-      extraData={selected}
-      style={[
-        {
-          borderColor: '#282C34',
-          borderWidth: 1,
-        },
-        style
-      ]}
-      keyExtractor={(item, index) => String(index)}
-      renderItem={({ item, index }) => (
-          <AccordionItem 
+    <Block style={[styles.container, style]}>
+      <FlatList
+        data={dataArray}
+        extraData={selected}
+        style={listStyle}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={({ item, index }) => (
+          <AccordionItem
             key={String(index)}
             expanded={selected === index}
             expandedIcon={expandedIcon}
@@ -132,24 +161,24 @@ function Accordion({
             index={index}
             setSelected={s => setSelected(selected === s ? undefined : s)}
           />
-        )
-      }
-    />
+        )}
+      />
+    </Block>
   );
-  
 }
 
 Accordion.propTypes = {
-    theme: PropTypes.any,
-    dataArray: PropTypes.array,
-    opened: PropTypes.number,
-    style: PropTypes.any,
-    icon: PropTypes.any,
-    expandedIcon: PropTypes.any,
-    headerStyle: PropTypes.any,
-    contentStyle: PropTypes.any,
-    onAccordionClose: PropTypes.func,
-    onAccordionOpen: PropTypes.func
+  theme: PropTypes.any,
+  dataArray: PropTypes.array,
+  opened: PropTypes.number,
+  listStyle: PropTypes.any,
+  style: PropTypes.any,
+  icon: PropTypes.any,
+  expandedIcon: PropTypes.any,
+  headerStyle: PropTypes.any,
+  contentStyle: PropTypes.any,
+  onAccordionClose: PropTypes.func,
+  onAccordionOpen: PropTypes.func,
 };
 
 Accordion.defaultProps = {
@@ -157,10 +186,24 @@ Accordion.defaultProps = {
   opened: 0
 };
 
-const styles = theme => StyleSheet.create({
-    container: {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: width * 0.8,
+    borderRadius: 16,
+    padding: 8,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    backgroundColor: 'white'
+  },
+  header: {
+    padding: 6
+  },
+  content: {
+    padding: 10
+  }
+});
 
-    }
-  });
-
-export default withGalio(Accordion, styles);
+export default Accordion;
