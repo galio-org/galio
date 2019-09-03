@@ -11,8 +11,8 @@ import Block from './Block';
 
 const { height, width } = Dimensions.get('screen');
 
-function DeckSwipe(props) {
+function DeckSwiper(props) {
   return <Block />
 }
 
-export default DeckSwipe;
+export default DeckSwiper;
