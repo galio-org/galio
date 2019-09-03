@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Dimensions,
@@ -12,7 +12,8 @@ import Block from './Block';
 const { height, width } = Dimensions.get('screen');
 
 function DeckSwiper(props) {
-  return <Block />
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  return <Block />;
 }
 
 export default DeckSwiper;
