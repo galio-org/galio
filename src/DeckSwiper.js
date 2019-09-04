@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Dimensions,
   Animated,
-  PanResponder
+  PanResponder,
+  Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Block from './Block';
 
-const { SCREEN_WIDTH } = Dimensions.get('screen');
+const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 
 function DeckSwiper({
   children,
@@ -83,7 +84,6 @@ function DeckSwiper({
       }else if(i == currentIndex){
         return (
           <Animated.View
-            {...panResponder.panHandlers}
             key={i}
             style={[
               rotateAndTranslate,
@@ -91,6 +91,7 @@ function DeckSwiper({
                 ...StyleSheet.absoluteFillObject
               }
             ]}
+            {...panResponder.panHandlers}
           >
             {item}
           </Animated.View>
@@ -112,8 +113,7 @@ function DeckSwiper({
     }).reverse();
   }
   return (
-    <Block flex>
-      { console.log() }
+    <Block flex style={{ width: SCREEN_WIDTH * 0.7 }}>
       {renderComponents(components)}
     </Block>
   );
