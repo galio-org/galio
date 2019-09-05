@@ -4,7 +4,6 @@ import {
   Dimensions,
   Animated,
   PanResponder,
-  Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -127,7 +126,12 @@ function DeckSwiper({
 }
 
 DeckSwiper.propTypes = {
-  components: PropTypes.array.isRequired
+  components: PropTypes.array.isRequired,
+  onSwipeRight: PropTypes.func, 
+  onSwipeLeft: PropTypes.func,
+  focusedElementStyle: PropTypes.any,
+  nextElementStyle: PropTypes.any,
+  style: PropTypes.any
 }
 
 export default DeckSwiper;
