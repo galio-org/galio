@@ -13,6 +13,8 @@ import Block from './Block';
 const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 
 function DeckSwiper({
+  focusedElementStyle,
+  nextElementStyle,
   components,
   style
 }) {
@@ -89,7 +91,8 @@ function DeckSwiper({
               rotateAndTranslate,
               {
                 ...StyleSheet.absoluteFillObject
-              }
+              },
+              focusedElementStyle
             ]}
             {...panResponder.panHandlers}
           >
@@ -104,7 +107,7 @@ function DeckSwiper({
               opacity: nextCardOpacity,
               transform: [{ scale: nextCardScale }],
               ...StyleSheet.absoluteFillObject
-            }]}
+            }, nextElementStyle]}
           >
             {item}
           </Animated.View>
@@ -113,7 +116,7 @@ function DeckSwiper({
     }).reverse();
   }
   return (
-    <Block center style={[{ width: SCREEN_WIDTH * 0.7 }, style]}>
+    <Block flex center style={[{ width: SCREEN_WIDTH * 0.7 }, style]}>
         {renderComponents(components)}
     </Block>
   );
