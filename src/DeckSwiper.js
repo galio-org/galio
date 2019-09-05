@@ -13,6 +13,8 @@ import Block from './Block';
 const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 
 function DeckSwiper({
+  onSwipeRight,
+  onSwipeLeft,
   focusedElementStyle,
   nextElementStyle,
   components,
@@ -60,12 +62,14 @@ function DeckSwiper({
         }).start(() => {
           setCurrentIndex(currentIndex + 1);
         });
+       if(onSwipeRight) onSwipeRight();
       }else if(gestureState.dx < -110) {
         Animated.spring(position, {
           toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
         }).start(() => {
           setCurrentIndex(currentIndex + 1);
         });
+        if(onSwipeLeft) onSwipeLeft();
       }else{
         Animated.spring(position, {
           toValue: { x: 0, y: 0 },
