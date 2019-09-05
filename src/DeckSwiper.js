@@ -13,8 +13,8 @@ import Block from './Block';
 const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 
 function DeckSwiper({
-  children,
-  components
+  components,
+  style
 }) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const position = new Animated.ValueXY();
@@ -52,13 +52,13 @@ function DeckSwiper({
       position.setValue({ x: gestureState.dx, y: gestureState.dy });
     },
     onPanResponderRelease: (evt, gestureState) => {
-      if(gestureState.dx > 120) {
+      if(gestureState.dx > 110) {
         Animated.spring(position, {
           toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy }
         }).start(() => {
           setCurrentIndex(currentIndex + 1);
         });
-      }else if(gestureState.dx < -120) {
+      }else if(gestureState.dx < -110) {
         Animated.spring(position, {
           toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
         }).start(() => {
@@ -113,8 +113,8 @@ function DeckSwiper({
     }).reverse();
   }
   return (
-    <Block flex style={{ width: SCREEN_WIDTH * 0.7 }}>
-      {renderComponents(components)}
+    <Block center style={[{ width: SCREEN_WIDTH * 0.7 }, style]}>
+        {renderComponents(components)}
     </Block>
   );
 }
