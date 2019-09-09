@@ -1,7 +1,7 @@
 {
   "name": "galio-framework",
   "main": "src/index.js",
-  "version": "0.5.0",
+  "version": "0.5.4",
   "files": [
     "src/"
   ],
@@ -33,19 +33,18 @@
     "opencollective-postinstall": "^2.0.1"
   },
   "devDependencies": {
-    "expo": "^32.0.0",
     "eslint": "^5.8.0",
     "eslint-config-universe": "^1.0.7",
     "prettier": "^1.15.1",
     "prop-types": "^15.6.2",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-native-vector-icons": "^6.0.2"
+    "react": "16.8.3",
+    "react-native": "^0.59",
+    "react-native-vector-icons": "^6.5.0"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-vector-icons": "*"
+    "react-native-vector-icons": ">6.0.0"
   },
   "collective": {
     "type": "opencollective",

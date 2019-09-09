@@ -12,6 +12,9 @@ import Text from './Text';
 import Toast from './Toast';
 import theme, { withGalio, GalioProvider } from './theme';
 
+import galioConfig from './config/galio.json';
+const GalioFont = require('./fonts/galio.ttf');
+
 export {
   Block,
   Button,
@@ -29,4 +32,6 @@ export {
   theme,
   withGalio,
   GalioProvider,
+  galioConfig,
+  GalioFont
 };

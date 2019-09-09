@@ -1,4 +1,4 @@
-# [galio](https://www.galio.io) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Galio,%20a%20free%20and%20beautiful%20UI%20framework%20https%3A//galio.io/%20%23reactnative%20%23react%20%23design%20%23developers%20%23freebie%20via%20%40galioframework)
+# [Galio](https://www.galio.io) ![GitHub package.json version](https://img.shields.io/github/package-json/v/galio-org/galio.svg) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/home?status=Galio,%20a%20free%20and%20beautiful%20UI%20framework%20https%3A//galio.io/%20%23reactnative%20%23react%20%23design%20%23developers%20%23freebie%20via%20%40galioframework)
 
 [![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/issues?q=is%3Aissue+is%3Aclosed)
@@ -10,12 +10,9 @@
 [![Sponsors on Open Collective](https://opencollective.com/galio/sponsors/badge.svg)](#sponsors) 
 
 <p align="center">
-  <img src="assets/galio_thumbnail.jpg">
+  <img src="assets/galio-logo.png">
+  <p align="center">Galio is one of the coolest UI libraries you could ever use, licensed under MIT. Carefully crafted by developers for developers. Ready-made components, typography, and a gorgeous base theme that is easily adaptable to each project.</p>
 </p>
-
-Galio is a 100% free and open source project, licensed under MIT License. You'll be building Android and iOS apps in style. Galio will always remain free to use and it is powered by a massive world-wide community.
-It comes with a lot of carefully crafted, ready to be used components and a beautiful typography. Galio has a gorgeous base theme that adapts to each project. 
-Built with real app examples, component demos, guides, and how-to's to get you up and running with mobile apps faster than ever before.
 
 ## Table of Contents
 * [Quick start](#quick-start)
@@ -27,6 +24,8 @@ Built with real app examples, component demos, guides, and how-to's to get you u
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/galio-org/galio-org.github.io/master/img/readme3.jpg">
+  <img src="https://i.imgur.com/8kcSRNl.png">
+  <img src="https://i.imgur.com/KLM1Zbw.png">
 </p>
 
 ## Quick Start
@@ -45,7 +44,10 @@ npm install or yarn install
 #### 2. Project testing
 Terminal cli: ```expo start```
 
-After initializing your local server you are now able to test the app inside your simulator by running: `npm run ios` or `yarn run ios` (or try an Android simulator)
+After initializing your local server you are now able to test the app inside your simulator by running: 
+```npm run ios``` or 
+```yarn run ios```
+(or try an Android simulator)
 
 Use our iOS or Android app directly on your physical device by running it inside Expo! 
 
@@ -86,12 +88,13 @@ Under Galio's belt:
 
 ## Documentation
 
-The documentation for Galio is hosted at our [our website](https://galio.io/docs)
+The documentation for Galio is hosted at our [our website](https://galio.io/docs?ref=galio-repo)
 
 ## Resources
 
-* Website: <https://galio.io>
-* Expo: <https://expo.io>
+* Website: [galio.io](https://galio.io?ref=galio-repo)
+* Expo: [expo.io](https://expo.io?ref=galio-repo)
+* Built with Galio: [Galio Apps](https://galio.io/built-with-galio)
 * Issues: [GitHub Issues Page](https://github.com/galio-org/galio/issues)
 
 
@@ -135,7 +138,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 * Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
 
-© 2019 [Galio](https://galio.io), made with 💚 for the community.
+© 2019 [Galio](https://galio.io?ref=galio-repo), made with 💚 for the community.
 
 
 
