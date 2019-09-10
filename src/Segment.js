@@ -10,6 +10,7 @@ import {
   Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import GalioTheme, { withGalio } from './theme';
 
 const {
   Provider: TilesDimensionPropProvider,
@@ -170,8 +171,8 @@ Segment.prototypes = {
 
 Segment.defaultProps = {
   segmentType: 'default',
-  activeTabHighlighterPanelColor: '#7CB3FC',
+  activeTabHighlighterPanelColor: GalioTheme.COLORS.PRIMARY,
   onPress: () => {}
 };
 
-export default Segment;
+export default withGalio(Segment);
