@@ -22,8 +22,6 @@ function Tiles({
   onPress,
   children,
   segmentType,
-  inactiveTabTextStyle,
-  activeTabTextStyle,
   startAnimation,
 }) {
   const [activeTile, setActiveTile] = React.useState(0);
@@ -85,18 +83,7 @@ function Tiles({
                         : '#CFCFCF',
                     minWidth: deviceWidth / 5,
                   }}>
-                  <Text
-                    style={[
-                      activeTile === key
-                        ? activeTabTextStyle
-                        : inactiveTabTextStyle,
-                      {
-                        color:
-                          activeTile === key
-                            ? inactiveTabTextStyle.color
-                            : activeTabTextStyle.color,
-                      },
-                    ]}>
+                  <Text>
                     {res}
                   </Text>
                 </View>
@@ -134,8 +121,6 @@ class Segment extends React.PureComponent {
     const {
       segmentType,
       tiles,
-      inactiveTabTextStyle,
-      activeTabTextStyle,
       activeTabHighlighterPanelColor,
     } = this.props;
 
@@ -146,8 +131,6 @@ class Segment extends React.PureComponent {
             {...{
               tiles,
               segmentType,
-              inactiveTabTextStyle,
-              activeTabTextStyle,
             }}
             startAnimation={this.startAnimation}>
             {segmentType !== 'vertical' && (
@@ -175,19 +158,15 @@ class Segment extends React.PureComponent {
 }
 
 Segment.prototypes = {
-  segmentType: PropTypes.oneOfType(['default', 'horizontal', 'vertical']),
-  tiles: PropTypes.any,
-  inactiveTabTextStyle: PropTypes.any,
-  activeTabTextStyle: PropTypes.any,
-  activeTabHighlighterPanelColor: PropTypes.string,
-  children: PropTypes.any,
-};
-
-Segment.defaultProps = {
-  segmentType: 'default',
-  inactiveTabTextStyle: '#fff',
-  activeTabTextStyle: 'blue',
-  activeTabHighlighterPanelColor: '#7CB3FC',
-};
-
+    segmentType: PropTypes.oneOfType(['default', 'horizontal', 'vertical']),
+    tiles: PropTypes.any,
+    activeTabHighlighterPanelColor: PropTypes.string,
+    children: PropTypes.any,
+  };
+  
+  Segment.defaultProps = {
+    segmentType: 'default',
+    activeTabHighlighterPanelColor: '#7CB3FC',
+  };
+  
 export default Segment;
