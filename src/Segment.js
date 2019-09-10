@@ -10,7 +10,6 @@ import {
   Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import GalioTheme, { withGalio } from './theme';
 
 const {
   Provider: TilesDimensionPropProvider,
@@ -20,7 +19,7 @@ const {
 const { width: deviceWidth } = Dimensions.get('window');
 function Tiles({
   tiles,
-  onPress,
+  onPressCustom,
   children,
   segmentType,
   startAnimation,
@@ -65,6 +64,7 @@ function Tiles({
                 }) => setLayout(width)}
                 onPress={e => {
                   setActiveTile(key);
+                  onPressCustom(key)
                 }}
                 {...{
                   key
@@ -123,6 +123,7 @@ class Segment extends React.PureComponent {
       segmentType,
       tiles,
       activeTabHighlighterPanelColor,
+      onPress: onPressCustom
     } = this.props;
 
     return (
@@ -132,6 +133,7 @@ class Segment extends React.PureComponent {
             {...{
               tiles,
               segmentType,
+              onPressCustom
             }}
             startAnimation={this.startAnimation}>
             {segmentType !== 'vertical' && (
@@ -159,15 +161,17 @@ class Segment extends React.PureComponent {
 }
 
 Segment.prototypes = {
-    segmentType: PropTypes.oneOfType(['default', 'horizontal', 'vertical']),
-    tiles: PropTypes.any,
-    activeTabHighlighterPanelColor: PropTypes.string,
-    children: PropTypes.any,
-  };
-  
-  Segment.defaultProps = {
-    segmentType: 'default',
-    activeTabHighlighterPanelColor: GalioTheme.COLORS.PRIMARY,
-  };
-  
-export default withGalio(Segment);
+  segmentType: PropTypes.oneOfType(['default', 'horizontal', 'vertical']),
+  tiles: PropTypes.any,
+  activeTabHighlighterPanelColor: PropTypes.string,
+  children: PropTypes.any,
+  onPress: PropTypes.any,
+};
+
+Segment.defaultProps = {
+  segmentType: 'default',
+  activeTabHighlighterPanelColor: '#7CB3FC',
+  onPress: () => {}
+};
+
+export default Segment;
