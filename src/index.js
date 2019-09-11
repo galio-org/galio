@@ -3,6 +3,7 @@ import Block from './Block';
 import Button from './Button';
 import Card from './Card';
 import Checkbox from './Checkbox';
+import DeckSwiper from './DeckSwiper';
 import Icon from './Icon';
 import Input from './Input';
 import NavBar from './NavBar';
@@ -21,6 +22,7 @@ export {
   Button,
   Card,
   Checkbox,
+  DeckSwiper,
   Icon,
   Input,
   NavBar,
