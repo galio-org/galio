@@ -5,27 +5,26 @@ import PropTypes from 'prop-types';
 import normalize from './helpers/normalize';
 import GalioTheme, { withGalio } from './theme';
 
-const Typography = props => {
-  const {
-    style,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    p,
-    muted,
-    neutral,
-    size,
-    color,
-    bold,
-    italic,
-    center,
-    children,
-    styles,
-    theme,
-    ...rest
-  } = props;
+function Typography({
+  style,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  muted,
+  neutral,
+  size,
+  color,
+  bold,
+  italic,
+  center,
+  children,
+  styles,
+  theme,
+  ...rest
+}) {
   return (
     <Text
       style={[
@@ -48,7 +47,7 @@ const Typography = props => {
       {children}
     </Text>
   );
-};
+}
 
 Typography.defaultProps = {
   children: null,

@@ -1,3 +1,6 @@
+
+/* eslint-disable import/no-cycle */
+
 import Accordion from './Accordion';
 import Block from './Block';
 import Button from './Button';
@@ -12,9 +15,11 @@ import Slider from './Slider';
 import Switch from './Switch';
 import Text from './Text';
 import Toast from './Toast';
+
 import theme, { withGalio, GalioProvider } from './theme';
 
 import galioConfig from './config/galio.json';
+
 const GalioFont = require('./fonts/galio.ttf');
 
 export {
@@ -32,10 +37,9 @@ export {
   Text,
   Toast,
   Switch,
-  Toast,
   theme,
   withGalio,
   GalioProvider,
   galioConfig,
-  GalioFont
+  GalioFont,
 };

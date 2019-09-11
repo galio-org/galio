@@ -12,36 +12,41 @@ const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf'
 // Galio Fonts have to loaded with Fonts.loadAsync if you're
 // using Expo (you can export GalioFont from index in order to import it)
 
-class Icon extends React.Component {
-  render() {
-    const { name, family, size, color, styles, theme, ...rest } = this.props;
-    if (family == 'Galio') {
-      if (name) {
-        return (
-          <Galio
-            name={name}
-            size={size || theme.SIZES.BASE}
-            color={color || theme.COLORS.BLACK}
-            {...rest}
-          />
-        );
-      }
-    } else {
-      const IconInstance = getIconType(family);
-      if (name && IconInstance) {
-        return (
-          <IconInstance
-            name={name}
-            size={size || theme.SIZES.BASE}
-            color={color || theme.COLORS.BLACK}
-            {...rest}
-          />
-        );
-      }
+function Icon({
+  name,
+  family,
+  size,
+  color,
+  styles,
+  theme,
+  ...rest
+}) {
+  if (family === 'Galio') {
+    if (name) {
+      return (
+        <Galio
+          name={name}
+          size={size || theme.SIZES.BASE}
+          color={color || theme.COLORS.BLACK}
+          {...rest}
+        />
+      );
     }
-
-    return null;
+  } else {
+    const IconInstance = getIconType(family);
+    if (name && IconInstance) {
+      return (
+        <IconInstance
+          name={name}
+          size={size || theme.SIZES.BASE}
+          color={color || theme.COLORS.BLACK}
+          {...rest}
+        />
+      );
+    }
   }
+
+  return null;
 }
 
 Icon.defaultProps = {
