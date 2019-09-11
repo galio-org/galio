@@ -56,6 +56,7 @@ Switch.propTypes = {
   ]),
   disabled: PropTypes.bool,
   initialValue: PropTypes.bool,
+  onChange: PropTypes.func.isRequired
 };
 
 export default withGalio(Switch);
