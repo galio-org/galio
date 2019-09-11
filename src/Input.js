@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 import GalioTheme, { withGalio } from './theme';
 
-// TODO:
-// 1. State functionality for Redux/Context/basic state stuff
-// 2. Maybe options for changind the View text for the viewPass button
-// 3. Idk. What else should we do in order to make this even more reusable.
-
 function Input({
   style,
   type,
@@ -48,13 +43,14 @@ function Input({
     style,
   ];
 
+
   const inputStyles = [
     styles.inputView,
     borderless && icon && styles.inputIcon,
     styles.inputText,
     color && { color },
   ];
-
+  
   const iconInstance = icon ? (
     <Icon
       name={icon}
@@ -129,6 +125,7 @@ Input.defaultProps = {
   iconSize: null,
   iconContent: null,
   theme: GalioTheme,
+  onRef: null,
 };
 
 Input.propTypes = {
@@ -154,6 +151,7 @@ Input.propTypes = {
   iconSize: PropTypes.number,
   iconContent: PropTypes.any,
   theme: PropTypes.any,
+  onRef: PropTypes.func,
 };
 
 const styles = theme =>

@@ -15,6 +15,7 @@ function NavBar({
   left,
   leftStyle,
   leftIconColor,
+  leftHitSlop,
   name,
   onLeftPress,
   right,
@@ -45,7 +46,7 @@ function NavBar({
       if (name || back) {
         return (
           <View style={[styles.left, leftStyle]}>
-            <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
+            <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
               <Icon
                 family="evilicons"
                 color={leftIconColor || theme.COLORS.ICON}
@@ -93,7 +94,8 @@ NavBar.defaultProps = {
   left: null,
   leftStyle: null,
   leftIconColor: null,
-  onLeftPress: () => { },
+  onLeftPress: () => {},
+  leftHitSlop: null,
   right: null,
   rightStyle: null,
   style: null,
@@ -110,6 +112,7 @@ NavBar.propTypes = {
   leftStyle: PropTypes.any,
   leftIconColor: PropTypes.string,
   onLeftPress: PropTypes.func,
+  leftHitSlop: PropTypes.any,
   right: PropTypes.node,
   rightStyle: PropTypes.any,
   style: PropTypes.any,
