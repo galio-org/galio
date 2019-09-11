@@ -26,7 +26,16 @@ class NavBar extends React.Component {
   };
 
   renderLeft = () => {
-    const { back, left, leftStyle, leftIconColor, onLeftPress, theme, styles } = this.props;
+    const {
+      back,
+      left,
+      leftStyle,
+      leftIconColor,
+      onLeftPress,
+      theme,
+      styles,
+      leftHitSlop,
+    } = this.props;
 
     if (left) {
       return <View style={[styles.left, leftStyle]}>{left}</View>;
@@ -34,7 +43,7 @@ class NavBar extends React.Component {
 
     return (
       <View style={[styles.left, leftStyle]}>
-        <TouchableOpacity onPress={() => onLeftPress && onLeftPress()}>
+        <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
           <Icon
             family="evilicons"
             color={leftIconColor || theme.COLORS.ICON}
@@ -81,6 +90,7 @@ NavBar.defaultProps = {
   leftStyle: null,
   leftIconColor: null,
   onLeftPress: () => {},
+  leftHitSlop: null,
   right: null,
   rightStyle: null,
   style: null,
@@ -97,6 +107,7 @@ NavBar.propTypes = {
   leftStyle: PropTypes.any,
   leftIconColor: PropTypes.string,
   onLeftPress: PropTypes.func,
+  leftHitSlop: PropTypes.any,
   right: PropTypes.node,
   rightStyle: PropTypes.any,
   style: PropTypes.any,
