@@ -1,3 +1,4 @@
+import Accordion from './Accordion';
 import Block from './Block';
 import Button from './Button';
 import Card from './Card';
@@ -15,6 +16,7 @@ import galioConfig from './config/galio.json';
 const GalioFont = require('./fonts/galio.ttf');
 
 export {
+  Accordion,
   Block,
   Button,
   Card,
