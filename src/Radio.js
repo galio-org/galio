@@ -2,21 +2,28 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // G A L I O - D E P E N D E N C Y
-import { Text } from '.';
+import { Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
-class Radio extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: props.initialValue,
-    };
+function Radio({
+  color,
+  containerStyle,
+  disabled,
+  flexDirection,
+  initialValue,
+  label,
+  labelStyle,
+  onChange,
+  radioOuterStyle,
+  radioInnerStyle,
+  styles,
+  theme,
 
-    this.spaceAround = this.spaceAround.bind(this);
-  }
-
+}) {
+  const [checked, setChecked] = React.useState(initialValue);
+  React.useEffect(() => onChange(checked), [checked]);
   // A D D I N G - R E Q U I R E D - S P A C E (S) - B A S E D - O N - F L E X - D I R E C T I O N
-  spaceAround(direction) {
+  function spaceAround(direction) {
     switch (direction) {
       case 'row-reverse':
         return { marginRight: 10 };
@@ -30,73 +37,58 @@ class Radio extends React.Component {
   }
 
   // R E N D E R - L A B E L
-  renderLabel() {
-    const { label, disabled, flexDirection, labelStyle, styles } = this.props;
+  function renderLabel() {
 
     const labelStyles = [
       styles.textStyles,
       disabled && styles.disabledLabel,
       labelStyle,
-      flexDirection && this.spaceAround(flexDirection),
+      flexDirection && spaceAround(flexDirection),
     ];
 
     if (label) {
       return <Text style={labelStyles}>{label}</Text>;
-    } else {
-      return null;
     }
+    return null;
   }
 
   // O N - P R E S S - H A N D L E R
-  radioPressHandler() {
-    this.setState({ checked: !this.state.checked }, () => this.props.onChange(this.state.checked));
+  function radioPressHandler() {
+    setChecked(!checked);
   }
 
-  render() {
-    const { props, state } = this;
-    const {
-      color,
-      styles,
-      disabled,
-      flexDirection,
-      containerStyle,
-      radioOuterStyle,
-      radioInnerStyle,
-      theme,
-    } = props;
 
-    const containerStyles = [styles.container, flexDirection && { flexDirection }, containerStyle];
+  const containerStyles = [styles.container, flexDirection && { flexDirection }, containerStyle];
 
-    const whichColor =
-      color && theme.COLORS[color.toUpperCase()] ? theme.COLORS[color.toUpperCase()] : color;
+  const whichColor =
+    color && theme.COLORS[color.toUpperCase()] ? theme.COLORS[color.toUpperCase()] : color;
 
-    const radioButtonOuterStyles = [
-      styles.radioOuterStyles,
-      { borderColor: whichColor },
-      disabled && styles.disabledRadioOuter,
-      radioOuterStyle,
-    ];
+  const radioButtonOuterStyles = [
+    styles.radioOuterStyles,
+    { borderColor: whichColor },
+    disabled && styles.disabledRadioOuter,
+    radioOuterStyle,
+  ];
 
-    const radioButtonInnerStyles = [
-      styles.radioInnerStyles,
-      { backgroundColor: whichColor },
-      disabled && styles.disabledRadioInner,
-      radioInnerStyle,
-    ];
+  const radioButtonInnerStyles = [
+    styles.radioInnerStyles,
+    { backgroundColor: whichColor },
+    disabled && styles.disabledRadioInner,
+    radioInnerStyle,
+  ];
 
-    return (
-      <TouchableOpacity
-        onPress={() => this.radioPressHandler()}
-        style={containerStyles}
-        activeOpacity={0.8}
-        disabled={disabled}>
-        <View style={radioButtonOuterStyles}>
-          {state.checked ? <View style={radioButtonInnerStyles} /> : null}
-        </View>
-        {this.renderLabel()}
-      </TouchableOpacity>
-    );
-  }
+  return (
+    <TouchableOpacity
+      onPress={() => radioPressHandler()}
+      style={containerStyles}
+      activeOpacity={0.8}
+      disabled={disabled}>
+      <View style={radioButtonOuterStyles}>
+        {checked ? <View style={radioButtonInnerStyles} /> : null}
+      </View>
+      {renderLabel()}
+    </TouchableOpacity>
+  );
 }
 
 const styles = theme =>
@@ -141,7 +133,7 @@ Radio.defaultProps = {
   initialValue: false,
   label: null,
   labelStyle: null,
-  onChange: () => {},
+  onChange: () => { },
   styles: {},
   theme: GalioTheme,
 };

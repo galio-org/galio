@@ -1,15 +1,33 @@
-import React, { Component } from 'react';
+/* eslint-disable object-curly-newline */
+import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { Block, Icon, Text } from '.';
+import { Block, Icon, Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
-class Card extends Component {
-  renderImage() {
-    const { image, imageBlockStyle, imageStyle, styles } = this.props;
+function Card({
+  avatar,
+  borderless, 
+  caption, 
+  captionColor,
+  card, 
+  children,
+  footerStyle,
+  image,
+  imageBlockStyle,
+  imageStyle,
+  location, 
+  locationColor, 
+  shadow, 
+  styles,
+  title, 
+  titleColor,
+  theme,
+  ...rest 
+}) {
+  function renderImage() {
     if (!image) return null;
-
     return (
       <Block card style={[styles.imageBlock, imageBlockStyle]}>
         <Image source={{ uri: image }} style={[styles.image, imageStyle]} />
@@ -17,17 +35,13 @@ class Card extends Component {
     );
   }
 
-  renderAvatar() {
-    const { avatar, styles } = this.props;
+  function renderAvatar() {
     if (!avatar) return null;
-
     return <Image source={{ uri: avatar }} style={styles.avatar} />;
   }
 
-  renderLocation() {
-    const { location, locationColor, theme } = this.props;
+  function renderLocation() {
     if (!location) return null;
-
     if (typeof location !== 'string') {
       return location;
     }
@@ -51,12 +65,10 @@ class Card extends Component {
     );
   }
 
-  renderAuthor() {
-    const { title, titleColor, caption, captionColor, footerStyle, theme, styles } = this.props;
-
+  function renderAuthor() {
     return (
       <Block flex row style={[styles.footer, footerStyle]} space="between">
-        <Block flex={0.3}>{this.renderAvatar()}</Block>
+        <Block flex={0.3}>{renderAvatar()}</Block>
         <Block flex={1.7}>
           <Block style={styles.title}>
             <Text size={theme.SIZES.FONT * 0.875} color={titleColor}>
@@ -69,26 +81,23 @@ class Card extends Component {
                 {caption}
               </Text>
             </Block>
-            {this.renderLocation()}
+            {renderLocation()}
           </Block>
         </Block>
       </Block>
     );
   }
 
-  render() {
-    const { card, shadow, borderless, style, ...props } = this.props;
 
-    const styleCard = [borderless && { borderWidth: 0 }, style];
+  const styleCard = [borderless && { borderWidth: 0 }, style];
 
-    return (
-      <Block {...props} card={card} shadow={shadow} style={styleCard}>
-        {this.renderImage()}
-        {this.renderAuthor()}
-        {props.children}
-      </Block>
-    );
-  }
+  return (
+    <Block {...props} card={card} shadow={shadow} style={styleCard}>
+      {renderImage()}
+      {renderAuthor()}
+      {children}
+    </Block>
+  );
 }
 
 Card.defaultProps = {
@@ -97,6 +106,12 @@ Card.defaultProps = {
   borderless: false,
   styles: {},
   theme: GalioTheme,
+  title: '',
+  titleColor: '',
+  caption: '',
+  captionColor: '',
+  footerStyle: {},
+  avatar: '',
 };
 
 Card.propTypes = {
@@ -105,6 +120,12 @@ Card.propTypes = {
   borderless: PropTypes.bool,
   styles: PropTypes.any,
   theme: PropTypes.any,
+  title: PropTypes.string,
+  titleColor: PropTypes.string,
+  caption: PropTypes.string,
+  captionColor: PropTypes.string,
+  avatar: PropTypes.string,
+  footerStyle: PropTypes.object,
 };
 
 const styles = theme =>

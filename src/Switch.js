@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch as Switcher } from 'react-native';
 import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
-class Switch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      switchValue: props.initialValue,
-    };
+function Switch({
+  initialValue,
+  onChange,
+  color,
+  disabled,
+  trackColor,
+  ios_backgroundColor,
+  ...rest
+}) {
+  const [switchValue, setSwitchValue] = React.useState(initialValue);
+  React.useEffect(() => {
+    onChange(switchValue);
+  }, [switchValue]);
+  function onPressSwitch() {
+    setSwitchValue(!switchValue);
+    return null;
   }
 
-  onPressSwitch() {
-    this.setState({ switchValue: !this.state.switchValue }, () =>
-      this.props.onChange(this.state.switchValue)
-    );
-  }
+  // trackColor.true = color === 'primary' ? GalioTheme.COLORS.PRIMARY : color;
 
-  render() {
-    const { initialValue, color, disabled, trackColor, ios_backgroundColor, ...rest } = this.props;
-
-    trackColor.true = color === 'primary' ? GalioTheme.COLORS.PRIMARY : color;
-
-    return (
-      <Switcher
-        disabled={disabled}
-        trackColor={{ ...trackColor }}
-        ios_backgroundColor={ios_backgroundColor}
-        value={this.state.switchValue}
-        onValueChange={() => {
-          this.onPressSwitch();
-        }}
-        {...rest}
-      />
-    );
-  }
+  return (
+    <Switcher
+      disabled={disabled}
+      trackColor={{ ...trackColor }}
+      ios_backgroundColor={ios_backgroundColor}
+      value={switchValue}
+      onValueChange={() => {
+        onPressSwitch();
+      }}
+      {...rest}
+    />
+  );
 }
 
 Switch.defaultProps = {
@@ -56,6 +56,7 @@ Switch.propTypes = {
   ]),
   disabled: PropTypes.bool,
   initialValue: PropTypes.bool,
+  onChange: PropTypes.func.isRequired
 };
 
 export default withGalio(Switch);
