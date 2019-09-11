@@ -11,6 +11,7 @@ import Radio from './Radio';
 import Slider from './Slider';
 import Switch from './Switch';
 import Text from './Text';
+import Toast from './Toast';
 import theme, { withGalio, GalioProvider } from './theme';
 
 import galioConfig from './config/galio.json';
@@ -29,11 +30,12 @@ export {
   Radio,
   Slider,
   Text,
+  Toast,
   Switch,
+  Toast,
   theme,
   withGalio,
   GalioProvider,
   galioConfig,
   GalioFont
 };
-
