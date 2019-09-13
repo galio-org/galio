@@ -15,6 +15,19 @@ import Activity from "./src/screens/Activity";
 import Contacts from "./src/screens/Contacts";
 import Shipping from "./src/screens/Eccomerce";
 
+import Article from './src/screens/Article';
+import ArticleCover from './src/screens/ArticleCover';
+import Cards from './src/screens/Cards';
+import Components from './src/screens/Components';
+import Login from './src/screens/Login';
+import News from './src/screens/News';
+import OrderConfirmed from './src/screens/OrderConfirmed';
+import Presentation from './src/screens/Presentation';
+import Dashboardv2 from './src/screens/Dashboard';
+import Register from './src/screens/Register';
+import Registerv2 from './src/screens/Registerv2';
+import Grid from './src/screens/Grid';
+
 import theme from './src/theme';
 import { Block, Icon, Text } from 'galio-framework';
 
@@ -112,6 +125,94 @@ const screens = {
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
+  Home: {
+    screen: Components,
+    navigationOptions: {
+      drawerLabel: 'Components',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Cards: {
+    screen: Cards,
+    navigationOptions: {
+      drawerLabel: 'Cards',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Article: {
+    screen: Article,
+    navigationOptions: {
+      drawerLabel: 'Article Screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  ArticleCover: {
+    screen: ArticleCover,
+    navigationOptions: {
+      drawerLabel: 'Article Cover',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  /*
+  Dashboardv2: {
+    screen: Dashboardv2,
+    navigationOptions: {
+      drawerLabel: 'Dashboardv2 screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  */
+  News: {
+    screen: News,
+    navigationOptions: {
+      drawerLabel: 'News Screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  OrderConfirmed: {
+    screen: OrderConfirmed,
+    navigationOptions: {
+      drawerLabel: 'Order Confirmed',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  /*
+  Presentation: {
+    screen: Presentation,
+    navigationOptions: {
+      drawerLabel: 'Presentation Screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      drawerLabel: 'Login Screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: {
+      drawerLabel: 'Register Screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Registerv2: {
+    screen: Registerv2,
+    navigationOptions: {
+      drawerLabel: 'Register Screen v2',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Grid: {
+    screen: Grid,
+    navigationOptions: {
+      drawerLabel: 'Grid Screen',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  */
 
 };
 

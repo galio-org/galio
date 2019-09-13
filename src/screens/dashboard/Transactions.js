@@ -8,7 +8,7 @@ import theme from '../../theme';
 
 const Header = () => {
   return (
-    <Block flex row style={{ padding: 10 }} space="between">
+    <Block flex row style={{ padding: 15 }} space="between">
       <Block flex={1.5}>
         <Text size={theme.SIZES.FONT * 0.875} color={theme.COLORS.BLACK}>
           Transactions
@@ -22,13 +22,6 @@ const Header = () => {
     </Block>
   );
 };
-const data = [
-    {
-        transactionsTitle: "Accesories",
-        orderId: 886402,
-        cashTransaction: "155.786"
-    }
-]
 export default class Transactions extends React.Component {
   constructor() {
     super();

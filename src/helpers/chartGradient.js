@@ -1,11 +1,7 @@
 import React from 'react';
 import { Defs, LinearGradient, Stop } from 'react-native-svg';
 
-export default class ChartGradient extends React.Component {
-  constructor() {
-    super();
-  }
-  render() {
+const ChartGradient = () => {
     return (
       <Defs>
         <LinearGradient
@@ -28,5 +24,6 @@ export default class ChartGradient extends React.Component {
         </LinearGradient>
       </Defs>
     );
-  }
 }
+
+export default ChartGradient;

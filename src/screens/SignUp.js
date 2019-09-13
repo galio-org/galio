@@ -2,7 +2,6 @@ import React from 'react';
 import {
   StyleSheet,
   KeyboardAvoidingView,
-  ScrollView,
   Image,
   Dimensions
 } from 'react-native';
@@ -19,7 +18,6 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <Block safe flex>
-        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={3}>
             <Block style={styles.container}>
               <Header
@@ -30,7 +28,7 @@ export default class SignUp extends React.Component {
               <Footer />
             </Block>
           </KeyboardAvoidingView>
-        </ScrollView>
+
       </Block>
     );
   }
@@ -41,7 +39,7 @@ const LoginForm = () => {
     console.log('handle change');
   };
   return (
-    <Block style={styles.loginFormContainer}>
+    <Block style={styles.marginTop}>
       <Input
         rounded
         placeholder="Email"
@@ -64,7 +62,7 @@ const LoginForm = () => {
 
 const Footer = () => {
   return (
-    <Block center style={styles.footerContainer}>
+    <Block center style={styles.marginTop}>
       <Text h6 color={theme.COLORS.GREY}>
         Don’t have an account? <Text style={styles.highlight}>Singup</Text>
       </Text>
@@ -112,7 +110,7 @@ const styles = StyleSheet.create({
   subHeader: {
     color: theme.COLORS.GREY,
   },
-  loginFormContainer: {
+  marginTop :{
     marginTop: 40
   },
   highlight: {
@@ -122,7 +120,5 @@ const styles = StyleSheet.create({
   loginBtn: {
     marginTop: 30
   },
-  footerContainer: {
-    marginTop: 40
-  },
+
 });

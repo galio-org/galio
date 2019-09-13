@@ -52,7 +52,7 @@ class FreeShipping extends React.Component {
         colors={GRADIENT_PINK}
         style={[styles.card, styles.shippingSection, styles.freeSection]}
       >
-        <Block flex row space="between">
+        <Block style={{padding:15}}  flex row space="between">
           <Block flex={0.7}>
             <Text color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 1.2}>
               Free Shipping
@@ -174,7 +174,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   description: {
-    marginVertical: 15,
+   marginHorizontal : 8,
+   paddingVertical: 20
   },
   footerBtn: {
     marginTop: 20,
