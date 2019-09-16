@@ -22,7 +22,8 @@ function Checkbox({
   labelStyle,
   onChange,
   style,
-  styles,  
+  styles,
+  theme,
 }) {
   const [checked, setChecked] = React.useState(initialValue);
   React.useEffect(() => {

@@ -44,7 +44,7 @@ function NavBar({
 
   function renderLeft() {
     if (!hideLeft) {
-      if (name || back) {
+      if (leftIconName || back) {
         return (
           <View style={[styles.left, leftStyle]}>
             <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
