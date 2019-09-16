@@ -255,7 +255,7 @@ class SectionHeader extends React.Component {
 class SectionItem extends React.Component {
   render() {
     return (
-      <Text size={theme.SIZES.FONT * 0.675} muted style={{ padding: 5 }}>
+      <Text size={theme.SIZES.FONT * 0.675} muted style={{ padding: 10 }}>
         {this.props.title}
       </Text>
     );

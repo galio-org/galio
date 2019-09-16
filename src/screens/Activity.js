@@ -71,21 +71,20 @@ export default class Activity extends React.Component {
 
   renderItem = ({ item, index }) => {
     return (
-      <Timeline.Row keyExtractor={(item, index) => item.id}>
-        <Timeline.VerticalSeparator>
+      <Timeline.Row key="origin">
+        <Timeline.VerticalSeparator  style={{marginTop:40}}>
           <Timeline.Circle color={theme.COLORS.NEUTRAL}>
             <Gradient
               start={[0.45, 0.45]}
               end={[0.8, 0.8]}
               colors={GRADIENT_PINK}
-              style={[styles.circleGradient]}
+              style={[styles.circleGradient, styles.dotStyle]}
             />
           </Timeline.Circle>
           <Timeline.Line color={LINE_COLOR} />
         </Timeline.VerticalSeparator>
         <Timeline.Event
           style={styles.event}
-
         >
           <View style={[styles.card, styles.titleAndTimeContainer]}>
             <Timeline.Title textStyle={styles.title}>
@@ -140,4 +139,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  dotStyle:{
+    marginHorizontal : 20
+  },
+  lineStyle:{
+    marginTop:40
+  }
 });

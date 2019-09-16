@@ -10,7 +10,6 @@ import {
 
 // screens
 import SignUp from "./src/screens/SignUp";
-import Dashboard from "./src/screens/dashboard/Dashboard";
 import Activity from "./src/screens/Activity";
 import Contacts from "./src/screens/Contacts";
 import Shipping from "./src/screens/Eccomerce";
@@ -23,7 +22,7 @@ import Login from './src/screens/Login';
 import News from './src/screens/News';
 import OrderConfirmed from './src/screens/OrderConfirmed';
 import Presentation from './src/screens/Presentation';
-import Dashboardv2 from './src/screens/Dashboard';
+import DashboardV2 from './src/screens/DashboardV2';
 import Register from './src/screens/Register';
 import Registerv2 from './src/screens/Registerv2';
 import Grid from './src/screens/Grid';
@@ -97,10 +96,10 @@ const screens = {
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
-  Dashboard: {
-    screen: Dashboard,
+  DashboardV2: {
+    screen: DashboardV2,
     navigationOptions: {
-      drawerLabel: 'Dashboard',
+      drawerLabel: 'DashboardV2',
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
