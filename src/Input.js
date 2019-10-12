@@ -50,7 +50,7 @@ function Input({
     styles.inputText,
     color && { color },
   ];
-  
+
   const iconInstance = icon ? (
     <Icon
       name={icon}
@@ -64,7 +64,7 @@ function Input({
     );
 
   const viewPassElement = password && viewPass && (
-    <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => setIsPassword(password)}>
+    <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => setIsPassword(!isPassword)}>
       <Icon
         size={iconSize || theme.SIZES.BASE * 1.0625}
         color={iconColor || theme.COLORS.BLACK}
