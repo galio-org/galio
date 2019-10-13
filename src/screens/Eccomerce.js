@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Platform, View, ScrollView } from 'react-native';
 import { LinearGradient as Gradient } from 'expo';
-import theme from '../theme';
-
-// galio components
 import { Text, Block, NavBar, Button } from 'galio-framework';
+import theme from '../theme';
 
 
 const GRADIENT_PINK = ['#D442F8', '#B645F5', '#9B40F8'];
@@ -23,7 +21,7 @@ const ShippingCard = ({ title, price, description }) => (
   <View style={[styles.card, styles.shippingSection]}>
     <Block flex row space="between">
       <Block flex={0.7}>
-        <Text size={theme.SIZES.FONT * 1.2}>{title}</Text>
+        <Text size={theme.SIZES.FONT * 1.2} >{title}</Text>
       </Block>
       <Block flex={0.3}>
         <Text
@@ -36,7 +34,7 @@ const ShippingCard = ({ title, price, description }) => (
       </Block>
     </Block>
     <Block flex={1} style={styles.description}>
-      <Text size={theme.SIZES.FONT * 0.9} color={theme.COLORS.GREY}>
+      <Text size={theme.SIZES.FONT * 0.9} color={"#778087"}>
         {description}
       </Text>
     </Block>
@@ -52,7 +50,7 @@ class FreeShipping extends React.Component {
         colors={GRADIENT_PINK}
         style={[styles.card, styles.shippingSection, styles.freeSection]}
       >
-        <Block style={{padding:15}}  flex row space="between">
+        <Block flex row space="between">
           <Block flex={0.7}>
             <Text color={theme.COLORS.WHITE} size={theme.SIZES.FONT * 1.2}>
               Free Shipping
@@ -77,54 +75,50 @@ class FreeShipping extends React.Component {
     );
   }
 }
-export default class Ecommerce extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Ecommerce = () => {
 
-  render() {
-    return (
-      <Block safe flex>
-        <NavBar
-          title="Ecommerce"
-          onLeftPress={() => this.props.navigation.openDrawer()}
-          leftIconColor={theme.COLORS.MUTED}
-          right={
-            <Button
-              color="transparent"
-              style={styles.settings}
-              onPress={() => this.props.navigation.openDrawer()}
-            ></Button>
-          }
-          style={
-            Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null
-          }
-        />
-        <Block safe flex style={styles.container}>
-          <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-            <View style={styles.container}>
-              <Text h4>Choose your shipping method</Text>
-              <View
-                style={[
-                  styles.card,
-                  styles.cardShadow,
-                  styles.shippingContainer,
-                ]}
-              >
-                <FreeShipping />
-                <ShippingCard title={standardTitle} price={standardPrice} description={standardDescription}/>
-                <ShippingCard title={premiumTitle} price={premiumPrice} description={premiumDescription}/>
-              </View>
-              <Button style={styles.footerBtn} round>
-                Next
-              </Button>
+  return (
+    <Block safe flex>
+      <NavBar
+        title="Ecommerce"
+        onLeftPress={() => this.props.navigation.openDrawer()}
+        leftIconColor={theme.COLORS.MUTED}
+        right={
+          <Button
+            color="transparent"
+            style={styles.settings}
+            onPress={() => this.props.navigation.openDrawer()}
+          ></Button>
+        }
+        style={
+          Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null
+        }
+      />
+      <Block safe flex style={styles.container}>
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <Text size={30}>Choose your shipping method</Text>
+            <View
+              style={[
+                styles.card,
+                styles.cardShadow,
+                styles.shippingContainer,
+              ]}
+            >
+              <FreeShipping />
+              <ShippingCard title={standardTitle} price={standardPrice} description={standardDescription} />
+              <ShippingCard title={premiumTitle} price={premiumPrice} description={premiumDescription} />
             </View>
-          </ScrollView>
-        </Block>
+            <Button style={styles.footerBtn} round>
+              Next
+              </Button>
+          </View>
+        </ScrollView>
       </Block>
-    );
-  }
+    </Block>
+  );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -137,26 +131,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   card: {
-    padding: 14,
+    padding: 18,
     backgroundColor: theme.COLORS.WHITE,
     borderRadius: 5,
   },
   cardShadow: {
-    shadowOffset: {
-      width: 1,
-      height: 5,
-    },
-    shadowRadius: 5,
-    shadowOpacity: 0.24,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    elevation: 5,
+    shadowColor: '#000',
   },
   shippingContainer: {
-    marginTop: 20,
+    marginTop: 40,
   },
   shippingSection: {
     borderWidth: 1,
     borderRadius: 4,
     borderColor: '#d6d7da',
     marginTop: 20,
+
   },
   freeSection: {
     marginTop: -30,
@@ -174,10 +168,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   description: {
-   marginHorizontal : 8,
-   paddingVertical: 20
+    // marginHorizontal: 8,
+    paddingVertical: 20,
   },
   footerBtn: {
     marginTop: 20,
   },
 });
+
+export default Ecommerce;
