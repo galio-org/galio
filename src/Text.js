@@ -21,6 +21,7 @@ function Typography({
   italic,
   center,
   children,
+  style,
   styles,
   theme,
   ...rest

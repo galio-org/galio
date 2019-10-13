@@ -18,7 +18,6 @@ function Radio({
   radioInnerStyle,
   styles,
   theme,
-
 }) {
   const [checked, setChecked] = React.useState(initialValue);
   React.useEffect(() => onChange(checked), [checked]);
