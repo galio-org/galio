@@ -19,12 +19,13 @@ function Card({
   imageStyle,
   location, 
   locationColor, 
-  shadow, 
+  shadow,
+  style, 
   styles,
   title, 
   titleColor,
   theme,
-  ...rest 
+  ...props 
 }) {
   function renderImage() {
     if (!image) return null;
