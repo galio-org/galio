@@ -38,7 +38,7 @@ As you can see we have multiple branches:
  - **master**: This branch stores the latest stable version of Galio.
  - **examples**: Our Expo app where we showcase our components and screen examples
  - **design**: Here we have design resources for everybody to download and use
- - **Alpha-1**: This is the `dev` branch of Galio
+ - **dev**: This is the `dev` branch of Galio, this is where everything is happening before releasing on master
 
 ## Financial contributions 
 
