@@ -4,7 +4,7 @@ import {
   Image, StyleSheet, ScrollView, Platform,
 } from 'react-native';
 
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
 
 // Galio components
 import {

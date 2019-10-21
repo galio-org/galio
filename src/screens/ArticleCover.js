@@ -4,8 +4,8 @@ import {
   StyleSheet,
   StatusBar,
 } from 'react-native';
-import { Constants, LinearGradient } from 'expo';
-
+import { LinearGradient } from 'expo';
+import Constants from 'expo-constants';
 
 // galio components
 import {

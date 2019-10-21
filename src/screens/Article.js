@@ -7,7 +7,9 @@ import {
   Dimensions,
 } from 'react-native';
 
-import { Constants } from 'expo';
+import Constants from 'expo-constants';
+
+const { statusBarHeight } = Constants;
 
 // galio components
 import {
@@ -79,7 +81,6 @@ const Article = props => (
             )}
           />
         </Block>
-
         <ScrollView>
           <Text style={styles.text}>
             You should totally like check this out, ok? Why would you use another UI
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     width,
   },
   navbar: {
-    top: Constants.statusBarHeight,
+    top: statusBarHeight,
     left: 0,
     right: 0,
     zIndex: 9999,

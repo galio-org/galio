@@ -4,7 +4,7 @@
     "description": "Build amazing apps in one codebase. //wip from sdk30 to sdk33",
     "slug": "galio-native-kit",
     "privacy": "public",
-    "sdkVersion": "33.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android"

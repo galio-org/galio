@@ -2,8 +2,8 @@ import React from 'react';
 import {
   Dimensions, StyleSheet, StatusBar, Image,
 } from 'react-native';
-import { Constants, LinearGradient } from 'expo';
-
+import { LinearGradient } from 'expo';
+import Constants from 'expo-constants';
 // galio components
 import {
   Text, Button, Block, NavBar,
