@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  ScrollView, StyleSheet, Dimensions, Platform,
+  ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity
 } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // Galio components
 import {
-  Card, Block, NavBar,
+  Card, Block, NavBar, Icon
 } from 'galio-framework';
 import theme from '../theme';
 
@@ -72,7 +72,16 @@ export default class Cards extends React.Component {
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
         <NavBar
           title="Cards"
-          onLeftPress={() => navigation.openDrawer()}
+          left={(
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={theme.SIZES.BASE}
+                color={theme.COLORS.ICON}
+              />
+            </TouchableOpacity>
+          )}
           style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
         <ScrollView contentContainerStyle={styles.cards}>

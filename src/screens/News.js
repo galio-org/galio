@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Image, StyleSheet, ScrollView, Platform,
+  Image, StyleSheet, ScrollView, Platform, TouchableOpacity
 } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -53,7 +53,16 @@ const News = props => (
       title="News"
       titleStyle={{ alignSelf: 'flex-start' }}
       leftIconColor={theme.COLORS.MUTED}
-      onLeftPress={() => props.navigation.openDrawer()}
+      left={(
+        <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+          <Icon 
+            name="menu"
+            family="feather"
+            size={theme.SIZES.BASE}
+            color={theme.COLORS.ICON}
+          />
+        </TouchableOpacity>
+      )}
       style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
       right={[
         <Button

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -25,7 +26,16 @@ const Article = props => (
   <Block>
     <StatusBar barStyle="light-content" />
     <Block style={styles.navbar}>
-      <NavBar transparent leftIconColor={theme.COLORS.WHITE} onLeftPress={() => props.navigation.openDrawer()} />
+      <NavBar transparent left={(
+            <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={theme.SIZES.BASE}
+                color={theme.COLORS.WHITE}
+              />
+            </TouchableOpacity>
+          )} />
     </Block>
 
     <Image

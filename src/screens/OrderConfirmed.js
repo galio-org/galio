@@ -4,17 +4,16 @@ import {
   StyleSheet,
   Platform,
   Image,
-  Link
+  TouchableOpacity
 } from 'react-native';
-
-import theme from '../theme';
 
 // galio components
 import {
-  Text, Button, Block, NavBar,
+  Text, Button, Block, NavBar, Icon
 } from 'galio-framework';
+import theme from '../theme';
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 const orderConfirmedImage = require('../../assets/order_confirmed.png');
 
 class OrderConfirmed extends React.Component {
@@ -24,7 +23,16 @@ class OrderConfirmed extends React.Component {
       <Block safe flex>
         <NavBar
           title="Confirmed Order"
-          onLeftPress={() => navigation.openDrawer()}
+          left={(
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={theme.SIZES.BASE}
+                color={theme.COLORS.ICON}
+              />
+            </TouchableOpacity>
+          )}
           style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
         <Block flex center space="around" style={styles.container}>
@@ -56,7 +64,7 @@ class OrderConfirmed extends React.Component {
               Track your order
             </Text>
           </Block>
-          <Button size="large" color="info" round onPress={() => {}}>
+          <Button size="large" color="info" round onPress={() => navigation.openDrawer()}>
             Continue Shopping
           </Button>
         </Block>

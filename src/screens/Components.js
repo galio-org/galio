@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Dimensions, StyleSheet, ScrollView, Alert, Platform,
+  Dimensions, StyleSheet, ScrollView, Alert, Platform, TouchableOpacity, Linking
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 // galio components
 import {
-  Text, Block, Button, Card, NavBar, Input,
+  Text, Block, Button, Card, NavBar, Input, Icon
 } from 'galio-framework';
 import theme from '../theme';
 
@@ -18,7 +18,7 @@ export default class Components extends React.Component {
     return (
       <Block safe flex>
         <NavBar
-          title="Galio components"
+          title="Galio Components"
           right={(
             <Button
               onlyIcon
@@ -27,10 +27,19 @@ export default class Components extends React.Component {
               iconSize={theme.SIZES.BASE}
               iconColor={theme.COLORS.ICON}
               color="transparent"
-              onPress={() => Alert.alert('Like it!')}
+              onPress={() => Linking.openURL('https://galio.io')}
             />
           )}
-          onLeftPress={() => navigation.openDrawer()}
+          left={(
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={theme.SIZES.BASE}
+                color={theme.COLORS.ICON}
+              />
+            </TouchableOpacity>
+          )}
           style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
         />
 
