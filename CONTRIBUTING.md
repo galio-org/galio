@@ -27,16 +27,13 @@ Galio is an open-source project, so pull requests are always welcome (_always_ â
 When in doubt, keep your pull requests small. To give a PR the best chance of getting accepted, don't bundle more than one feature or bug fix per pull request. It's always best to create two smaller PRs than one big one.
 
 As with issues, use the following formula for the title of your **PR**s:
- - **Screens/[_Screen name_]** 
  - **Components/[_Component name_]**
  - **Feature/[_Feature name_]**
-
 
 ## Branches explained
 
 As you can see we have multiple branches:
  - **master**: This branch stores the latest stable version of Galio.
- - **examples**: Our Expo app where we showcase our components and screen examples
  - **design**: Here we have design resources for everybody to download and use
  - **dev**: This is the `dev` branch of Galio, this is where everything is happening before releasing on master
 
@@ -44,6 +41,10 @@ As you can see we have multiple branches:
 
 We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/galio).
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
+
+## galio-starter-kit contribution
+
+You want to take part in this cool community and help the world by creating some cool screens using Galio? Then go ahead and hope on our [galio-starter-kit repo](https://github.com/galio-org/galio-starter-kit). 
 
 ## Hacktoberfest 2018
 
