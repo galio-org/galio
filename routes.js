@@ -16,6 +16,7 @@ import Components from './src/screens/Components';
 import Login from './src/screens/Login';
 import News from './src/screens/News';
 import OrderConfirmed from './src/screens/OrderConfirmed';
+import Settings from './src/screens/Settings';
 import Presentation from './src/screens/Presentation';
 import Dashboard from './src/screens/Dashboard';
 import Register from './src/screens/Register';
@@ -132,6 +133,13 @@ const screens = {
     screen: OrderConfirmed,
     navigationOptions: {
       drawerLabel: 'Order Confirmed',
+      drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
+    },
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      drawerLabel: 'Settings Screen',
       drawerIcon: props => <MenuIcon name="flag" family="font-awesome" focused={props.focused} />,
     },
   },
