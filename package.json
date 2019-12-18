@@ -1,37 +1,39 @@
 {
-  "name": "galio-framework",
-  "main": "src/index.js",
-  "version": "0.6.3",
-  "files": [
-    "src/"
-  ],
-  "repository": {
+  "_from": "git+https://github.com/willnaoosmit/galio.git",
+  "_id": "galio-framework@0.6.3",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/galio-framework",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "https://github.com/galio-org/galio.git"
+    "raw": "https://github.com/willnaoosmit/galio.git",
+    "rawSpec": "https://github.com/willnaoosmit/galio.git",
+    "saveSpec": "git+https://github.com/willnaoosmit/galio.git",
+    "fetchSpec": "https://github.com/willnaoosmit/galio.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/willnaoosmit/galio.git#76ae11c90aecf80eeaa9a593ba3db16ed8134fe8",
+  "_spec": "https://github.com/willnaoosmit/galio.git",
+  "_where": "/home/vmax-william/Área de trabalho/VmaxVoip",
   "author": "",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/galio-org/galio/issues"
   },
-  "homepage": "https://galio.io/",
-  "keywords": [
-    "android",
-    "ios",
-    "react native",
-    "component library",
-    "ui kit",
-    "bootstrap"
-  ],
-  "scripts": {
-    "precommit": "yarn lint",
-    "lint": "eslint src/**.js",
-    "test": "jest",
-    "postinstall": "opencollective-postinstall"
+  "bundleDependencies": false,
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/galio"
   },
   "dependencies": {
     "opencollective-postinstall": "^2.0.1"
   },
+  "deprecated": false,
+  "description": "[![GitHub issues](https://img.shields.io/github/issues/galio-org/galio.svg?style=popout)](https://github.com/galio-org/galio/issues) [![GitHub closed issues](https://img.shields.io/github/issues-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/issues?q=is%3Aissue+is%3Aclosed) [![GitHub pull requests](https://img.shields.io/github/issues-pr/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls) [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/galio-org/galio.svg)](https://github.com/galio-org/galio/pulls?q=is%3Apr+is%3Aclosed) [![Gitter](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/galio-community) [![npm](https://img.shields.io/npm/dm/galio-framework.svg)](https://www.npmjs.com/package/galio-framework) [![Backers on Open Collective](https://opencollective.com/galio/backers/badge.svg)](#backers)  [![Sponsors on Open Collective](https://opencollective.com/galio/sponsors/badge.svg)](#sponsors)",
   "devDependencies": {
     "eslint": "^5.8.0",
     "eslint-config-universe": "^1.0.7",
@@ -41,16 +43,38 @@
     "react-native": "^0.59",
     "react-native-vector-icons": "^6.5.0"
   },
+  "eslintConfig": {
+    "extends": "universe/native"
+  },
+  "files": [
+    "src/"
+  ],
+  "homepage": "https://galio.io/",
+  "keywords": [
+    "android",
+    "ios",
+    "react native",
+    "component library",
+    "ui kit",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "galio-framework",
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
     "react-native-vector-icons": ">6.0.0"
   },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/galio"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galio-org/galio.git"
   },
-  "eslintConfig": {
-    "extends": "universe/native"
-  }
+  "scripts": {
+    "lint": "eslint src/**.js",
+    "postinstall": "opencollective-postinstall",
+    "precommit": "yarn lint",
+    "test": "jest"
+  },
+  "version": "0.6.3"
 }

@@ -17,6 +17,7 @@ function Input({
   rounded,
   icon,
   family,
+  onIconPress,
   left,
   right,
   iconColor,
@@ -55,6 +56,7 @@ function Input({
     <Icon
       name={icon}
       family={family}
+      onIconPress={onIconPress}
       size={iconSize || theme.SIZES.BASE * 1.0625}
       style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
       color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
@@ -120,6 +122,7 @@ Input.defaultProps = {
   iconColor: null,
   icon: null,
   family: null,
+  onIconPress: null,
   color: null,
   styles: {},
   iconSize: null,
@@ -141,6 +144,7 @@ Input.propTypes = {
   iconColor: PropTypes.string,
   icon: PropTypes.string,
   family: PropTypes.string,
+  onIconPress: PropTypes.func,
   color: PropTypes.string,
   help: PropTypes.string,
   left: PropTypes.bool,
@@ -151,7 +155,7 @@ Input.propTypes = {
   iconSize: PropTypes.number,
   iconContent: PropTypes.any,
   theme: PropTypes.any,
-  onRef: PropTypes.func,
+  onRef: PropTypes.func
 };
 
 const styles = theme =>

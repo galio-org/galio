@@ -1,6 +1,7 @@
 import React from 'react';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
+import { TouchableHighlight } from 'react-native'
 
 import GalioTheme, { withGalio } from './theme';
 import getIconType from './helpers/getIconType';
@@ -37,13 +38,14 @@ function Icon({
     const IconInstance = getIconType(family);
     if (name && IconInstance) {
       return (
-        <IconInstance
-          name={name}
-          onPress={onIconPress}
-          size={size || theme.SIZES.BASE}
-          color={color || theme.COLORS.BLACK}
-          {...rest}
-        />
+        <TouchableHighlight onPress={onIconPress}>
+          <IconInstance
+            name={name}
+            size={size || theme.SIZES.BASE}
+            color={color || theme.COLORS.BLACK}
+            {...rest}
+          />
+        </TouchableHighlight>
       );
     }
   }
@@ -57,8 +59,8 @@ Icon.defaultProps = {
   size: null,
   color: null,
   styles: {},
-  onIconPress: {}
-  theme: GalioTheme,
+  onIconPress: null,
+  theme: GalioTheme
 };
 
 Icon.propTypes = {
