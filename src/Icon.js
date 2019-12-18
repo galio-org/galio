@@ -19,6 +19,7 @@ function Icon({
   color,
   styles,
   theme,
+  onIconPress,
   ...rest
 }) {
   if (family === 'Galio') {
@@ -38,6 +39,7 @@ function Icon({
       return (
         <IconInstance
           name={name}
+          onPress={onIconPress}
           size={size || theme.SIZES.BASE}
           color={color || theme.COLORS.BLACK}
           {...rest}
@@ -55,6 +57,7 @@ Icon.defaultProps = {
   size: null,
   color: null,
   styles: {},
+  onIconPress: {}
   theme: GalioTheme,
 };
 
@@ -62,6 +65,7 @@ Icon.propTypes = {
   name: PropTypes.string.isRequired,
   family: PropTypes.string.isRequired,
   size: PropTypes.number,
+  onIconPress: PropTypes.func,
   color: PropTypes.string,
   styles: PropTypes.any,
   theme: PropTypes.any,
