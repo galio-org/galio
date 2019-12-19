@@ -70,7 +70,7 @@ declare module 'galio-framework' {
     radius?: number;
     shadowColor?: boolean | string;
     shadowless?: boolean;
-    size?: 'small' | 'large';
+    size?: 'small' | 'large' | number;
     uppercase?: boolean;
   }
   export class Button extends React.Component<ButtonProps> {}
