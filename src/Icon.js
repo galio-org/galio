@@ -36,7 +36,7 @@ function Icon({
     }
   } else {
     const IconInstance = getIconType(family);
-    if (name && IconInstance) {
+    if (name && IconInstance && onIconPress) {
       return (
         <TouchableHighlight onPress={onIconPress}>
           <IconInstance
@@ -46,6 +46,15 @@ function Icon({
             {...rest}
           />
         </TouchableHighlight>
+      );
+    } else if (name && IconInstance && !onIconPress) {
+      return (
+          <IconInstance
+            name={name}
+            size={size || theme.SIZES.BASE}
+            color={color || theme.COLORS.BLACK}
+            {...rest}
+          />
       );
     }
   }
