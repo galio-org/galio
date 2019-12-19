@@ -10,21 +10,20 @@ import {
 declare module 'galio-framework' {
   type IconFamilyType =
     | 'Galio'
-    | 'antdesign'
-    | 'FontAwesome'
+    | 'AntDesign'
     | 'Entypo'
     | 'EvilIcons'
     | 'Feather'
+    | 'FontAwesome'
     | 'FontAwesome5'
-    | 'FontAwesome5Brands'
     | 'Fontisto'
     | 'Foundation'
     | 'Ionicons'
-    | 'MaterialCommunityIcons'
     | 'MaterialIcons'
-    | 'SimpleLineIcons'
+    | 'MaterialCommunityIcons'
     | 'Octicons'
-    | 'Zocial';
+    | 'Zocial'
+    | 'SimpleLineIcons';
 
   type BaseColorType = string;
 
@@ -119,7 +118,7 @@ declare module 'galio-framework' {
   }
   export class DeckSwiper extends React.Component<DeckSwiperProps> {}
 
-  export interface Icon extends BaseProps {
+  export interface IconProps extends BaseProps {
     name?: string;
     family?: IconFamilyType;
     size?: number;
