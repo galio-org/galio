@@ -58,7 +58,7 @@ declare module 'galio-framework' {
     capitalize?: boolean;
     color?: ButtonColorType;
     disabled?: boolean;
-    icon?: boolean;
+    icon?: string;
     iconColor?: boolean | string;
     iconFamily?: boolean | string;
     iconSize?: number;
