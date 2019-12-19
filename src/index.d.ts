@@ -5,6 +5,7 @@ import {
   ViewStyle,
   TextStyle,
   SwitchProps as RNSwitchProps,
+  TextInputProps,
 } from 'react-native';
 
 declare module 'galio-framework' {
@@ -126,10 +127,18 @@ declare module 'galio-framework' {
   }
   export class Icon extends React.Component<IconProps> {}
 
-  export interface InputProps extends BaseProps {
-    type?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
+  export interface InputProps
+    extends Omit<
+        TextInputProps,
+        | 'style'
+        | 'keyboardType'
+        | 'secureTextEntry'
+        | 'placeholderTextColor'
+        | 'underlineColorAndroid'
+      >,
+      BaseProps {
+    type?: TextInputProps['keyboardType'];
     password?: boolean;
-    placeholderTextColor?: string;
     label?: string;
     bgColor?: string;
     rounded?: boolean;
@@ -144,9 +153,7 @@ declare module 'galio-framework' {
     right?: boolean;
     topHelp?: boolean;
     bottomHelp?: boolean;
-    placeholder?: string;
     iconSize?: number;
-    onChangeText?: (text: string) => void;
   }
   export class Input extends React.Component<InputProps> {}
 
