@@ -19,6 +19,8 @@ function Icon({
   color,
   styles,
   theme,
+  medium,
+  large,
   ...rest
 }) {
   if (family === 'Galio') {
@@ -26,8 +28,8 @@ function Icon({
       return (
         <Galio
           name={name}
-          size={size || theme.SIZES.BASE}
-          color={color || theme.COLORS.BLACK}
+          size={size || (medium ? theme.SIZES.ICON_MEDIUM : (large ? theme.SIZES.ICON_LARGE : theme.SIZES.ICON))}
+          color={color || theme.COLORS.THEME.BLACK}
           {...rest}
         />
       );
@@ -38,8 +40,8 @@ function Icon({
       return (
         <IconInstance
           name={name}
-          size={size || theme.SIZES.BASE}
-          color={color || theme.COLORS.BLACK}
+          size={size || (medium ? theme.SIZES.ICON_MEDIUM : (large ? theme.SIZES.ICON_LARGE : theme.SIZES.ICON))}
+          color={color || theme.COLORS.THEME.BLACK}
           {...rest}
         />
       );
