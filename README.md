@@ -12,6 +12,8 @@
 <p align="center">
   <img src="assets/galio-logo.png">
   <p align="center">Galio is one of the coolest UI libraries you could ever use, licensed under MIT. Carefully crafted by developers for developers. Ready-made components, typography, and a gorgeous base theme that is easily adaptable to each project.</p>
+  <p align="right" style="font-size: 2">Try our showcase app, built with the help of our cool community!
+  <a href="https://github.com/galio-org/galio-starter-kit">galio-starter-kit</a></p>
 </p>
 
 ## Table of Contents
@@ -30,32 +32,7 @@
 
 ## Quick Start
 
-#### 1. Project Setup
-
-Go ahead and install the app version of Galio in order to play around with our components and screens!
-
-```bash
-git clone https://github.com/galio-org/galio.git
-cd galio
-git checkout examples
-npm install or yarn install
-```
-
-#### 2. Project testing
-Terminal cli: ```expo start```
-
-After initializing your local server you are now able to test the app inside your simulator by running: 
-```npm run ios``` or 
-```yarn run ios```
-(or try an Android simulator)
-
-Use our iOS or Android app directly on your physical device by running it inside Expo! 
-
-[Expo iOS app](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8)
-
-[Expo Android app](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en)
-
-#### 3. SDK library instructions
+#### 1. Library instructions
 Use our awesome components inside your own projects by running: 
 ```bash
 npm install galio-framework
@@ -69,20 +46,27 @@ Import our UI components to your screens:
 import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework';
 ```
 
+### 2. galio-starter-kit
+[galio-starter-kit](https://github.com/galio-org/galio-starter-kit) is an app developed by the community with the main purpose of showcasing what Galio can do. Built with Expo and Galio, the screens are created and maintained by the community. Join and help us build this cool library together! 
+
+
+
 ## Components
 
 Under Galio's belt:
-
+* Accordion
 * Block
 * Button
 * Card
 * Checkbox
+* Deck Swiper
 * Icon
 * Input
 * NavBar
 * Radio
-* Slider
 * Text
+* Toast notification
+* Slider
 * Switch
 * GalioTheme
 
@@ -95,6 +79,7 @@ The documentation for Galio is hosted at our [our website](https://galio.io/docs
 * Website: [galio.io](https://galio.io?ref=galio-repo)
 * Expo: [expo.io](https://expo.io?ref=galio-repo)
 * Built with Galio: [Galio Apps](https://galio.io/built-with-galio)
+* galio-starter-kit: [Github repo](https://github.com/galio-org/galio-starter-kit)
 * Issues: [GitHub Issues Page](https://github.com/galio-org/galio/issues)
 
 
@@ -107,7 +92,6 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 3. Some issues may be platform specific, so specifying what platform and if it's a simulator or a hardware device will help a lot.
 
 ## Contributors
-
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
 <a href="https://github.com/galio-org/galio/contributors"><img src="https://opencollective.com/galio/contributors.svg?width=890&button=false" /></a>
 
@@ -139,7 +123,3 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 * Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
 
 © 2019 [Galio](https://galio.io?ref=galio-repo), made with 💚 for the community.
-
-
-
-
