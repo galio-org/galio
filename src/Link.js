@@ -1,37 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
-import { Text } from './src';
-
+import { Text } from './';
 import GalioTheme, { withGalio } from './theme';
 
 function Link({
-    props,
-    color,
+    children,
     onPress,
+    theme,
+    style,
+    styles,
     ...rest
   }) {
     return (
-    <Text 
-        color={color} 
+    <Text
+        color={theme.COLORS.PRIMARY}
         onPress={() => onPress()}
         {...rest}>
-        {children}>
-        Google
+        {children}
     </Text>
-
     );
   }
-  
+
   Link.defaultProps = {
     children: null,
     style: true,
-    size: 0,
-    color: theme.COLORS.PRIMARY,
     styles: {},
     theme: GalioTheme,
   };
-  
+
   Link.propTypes = {
     children: PropTypes.any,
     style: PropTypes.any,
@@ -41,12 +38,10 @@ function Link({
     theme: PropTypes.any,
   };
 
-const styles = StyleSheet.create({
-    primary: {
-        color: theme.COLORS.PRIMARY,
-      }
+  const styles = theme => StyleSheet.create({
+    linkDefault: {
+      fontSize: 16,
+      color: theme.COLORS.PRIMARY
+  }
 })
-
-  
-  export default withGalio(Link, styles);
-  
+export default withGalio(Link, styles);
