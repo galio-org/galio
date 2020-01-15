@@ -27,6 +27,7 @@ function Input({
   iconSize,
   iconContent,
   password,
+  onRef,
   ...rest
 }) {
   const [isPassword, setIsPassword] = React.useState(false);
@@ -87,6 +88,7 @@ function Input({
       <View style={inputViewStyles}>
         {left && !right && iconInstance}
         <TextInput
+          ref={onRef}
           style={inputStyles}
           keyboardType={type}
           secureTextEntry={isPassword}
