@@ -28,6 +28,7 @@ function Input({
   iconContent,
   password,
   onRef,
+  error,
   ...rest
 }) {
   const [isPassword, setIsPassword] = React.useState(false);
@@ -41,6 +42,7 @@ function Input({
     bgColor && { backgroundColor: bgColor },
     rounded && styles.rounded,
     borderless && styles.borderless,
+    error && { borderColor: theme.COLORS.DANGER},
     style,
   ];
 
@@ -58,7 +60,7 @@ function Input({
       family={family}
       size={iconSize || theme.SIZES.BASE * 1.0625}
       style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
-      color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
+      color={(error && theme.COLORS.DANGER) || iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
     />
   ) : (
       iconContent
@@ -190,8 +192,11 @@ const styles = theme =>
       marginBottom: theme.SIZES.INPUT_LABEL_BOTTOM,
     },
     helpText: {
+      color: theme.COLORS.SECONDARY,
       fontSize: theme.SIZES.INPUT_HELP_TEXT,
-      fontStyle: 'italic',
+      marginVertical: 8,
+      paddingHorizontal: 16,
+      fontSize: 14
     },
     rounded: {
       borderRadius: theme.SIZES.INPUT_ROUNDED,
