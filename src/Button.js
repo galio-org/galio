@@ -124,7 +124,18 @@ Button.defaultProps = {
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
   color: PropTypes.oneOfType([
-    PropTypes.oneOf(['primary', 'theme', 'error', 'warning', 'success', 'transparent', 'info']),
+    PropTypes.oneOf([
+      'theme', 
+      'primary', 'dark_primary', 'light_primary', 'bright_primary', 
+      'info', 'dark_info', 'light_info', 'bright_info', 
+      'danger', 'dark_danger', 'light_danger', 'bright_danger', 
+      'warning', 'dark_warning', 'light_warning', 'bright_warning', 
+      'success', 'dark_success', 'light_success', 'bright_success', 
+      'black', 'dark_black', 'light_black', 'bright_black', 
+      'grey', 'dark_grey', 'light_grey', 'bright_grey', 
+      'secondary', 'dark_secondary', 'light_secondary', 'bright_secondary', 
+      'transparent', 'white', 
+    ]),
     PropTypes.string,
   ]),
   size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small']), PropTypes.number]),
@@ -150,7 +161,7 @@ Button.propTypes = {
 const styles = theme =>
   StyleSheet.create({
     defaultButton: {
-      borderRadius: 3,
+      borderRadius: 4,
       width: theme.SIZES.BUTTON_WIDTH,
       height: theme.SIZES.BUTTON_HEIGHT,
       alignItems: 'center',
@@ -166,23 +177,107 @@ const styles = theme =>
       fontSize: theme.SIZES.FONT,
       color: theme.COLORS.WHITE,
     },
+    theme: {
+      backgroundColor: theme.COLORS.THEME,
+    },
     primary: {
       backgroundColor: theme.COLORS.PRIMARY,
     },
-    theme: {
-      backgroundColor: theme.COLORS.THEME,
+    dark_primary: {
+      backgroundColor: theme.COLORS.DARK_PRIMARY,
+    },
+    light_primary: {
+      backgroundColor: theme.COLORS.LIGHT_PRIMARY,
+    },
+    bright_primary: {
+      backgroundColor: theme.COLORS.BRIGHT_PRIMARY,
     },
     info: {
       backgroundColor: theme.COLORS.INFO,
     },
-    error: {
-      backgroundColor: theme.COLORS.ERROR,
+    dark_info: {
+      backgroundColor: theme.COLORS.DARK_INFO,
+    },
+    light_info: {
+      backgroundColor: theme.COLORS.LIGHT_INFO,
+    },
+    bright_info: {
+      backgroundColor: theme.COLORS.BRIGHT_INFO,
+    },
+    danger: {
+      backgroundColor: theme.COLORS.DANGER,
+    },
+    dark_danger: {
+      backgroundColor: theme.COLORS.DARK_DANGER,
+    },
+    light_danger: {
+      backgroundColor: theme.COLORS.LIGHT_DANGER,
+    },
+    bright_danger: {
+      backgroundColor: theme.COLORS.BRIGHT_DANGER,
     },
     warning: {
       backgroundColor: theme.COLORS.WARNING,
     },
+    dark_warning: {
+      backgroundColor: theme.COLORS.DARK_WARNING,
+    },
+    light_warning: {
+      backgroundColor: theme.COLORS.LIGHT_WARNING,
+    },
+    bright_warning: {
+      backgroundColor: theme.COLORS.BRIGHT_WARNING,
+    },
     success: {
       backgroundColor: theme.COLORS.SUCCESS,
+    },
+    dark_success: {
+      backgroundColor: theme.COLORS.DARK_SUCCESS,
+    },
+    light_success: {
+      backgroundColor: theme.COLORS.LIGHT_SUCCESS,
+    },
+    bright_success: {
+      backgroundColor: theme.COLORS.BRIGHT_SUCCESS,
+    },
+    white: {
+      backgroundColor: theme.COLORS.WHITE,
+    },
+    black: {
+      backgroundColor: theme.COLORS.BLACK,
+    },
+    dark_black: {
+      backgroundColor: theme.COLORS.DARK_BLACK,
+    },
+    light_black: {
+      backgroundColor: theme.COLORS.LIGHT_BLACK,
+    },
+    bright_black: {
+      backgroundColor: theme.COLORS.BRIGHT_BLACK,
+    },
+    secondary: {
+      backgroundColor: theme.COLORS.SECONDARY,
+    },
+    dark_secondary: {
+      backgroundColor: theme.COLORS.DARK_SECONDARY,
+    },
+    light_secondary: {
+      backgroundColor: theme.COLORS.LIGHT_SECONDARY,
+    },
+    bright_secondary: {
+      backgroundColor: theme.COLORS.BRIGHT_SECONDARY,
+    },
+    grey: {
+      backgroundColor: theme.COLORS.GREY,
+    },
+    dark_grey: {
+      backgroundColor: theme.COLORS.DARK_GREY,
+    },
+    light_grey: {
+      backgroundColor: theme.COLORS.LIGHT_GREY,
+    },
+    bright_grey: {
+      backgroundColor: theme.COLORS.BRIGHT_GREY,
     },
     transparent: {
       backgroundColor: theme.COLORS.TRANSPARENT,
