@@ -183,62 +183,17 @@ const styles = theme =>
     primary: {
       backgroundColor: theme.COLORS.PRIMARY,
     },
-    dark_primary: {
-      backgroundColor: theme.COLORS.DARK_PRIMARY,
-    },
-    light_primary: {
-      backgroundColor: theme.COLORS.LIGHT_PRIMARY,
-    },
-    bright_primary: {
-      backgroundColor: theme.COLORS.BRIGHT_PRIMARY,
-    },
     info: {
       backgroundColor: theme.COLORS.INFO,
-    },
-    dark_info: {
-      backgroundColor: theme.COLORS.DARK_INFO,
-    },
-    light_info: {
-      backgroundColor: theme.COLORS.LIGHT_INFO,
-    },
-    bright_info: {
-      backgroundColor: theme.COLORS.BRIGHT_INFO,
     },
     danger: {
       backgroundColor: theme.COLORS.DANGER,
     },
-    dark_danger: {
-      backgroundColor: theme.COLORS.DARK_DANGER,
-    },
-    light_danger: {
-      backgroundColor: theme.COLORS.LIGHT_DANGER,
-    },
-    bright_danger: {
-      backgroundColor: theme.COLORS.BRIGHT_DANGER,
-    },
     warning: {
       backgroundColor: theme.COLORS.WARNING,
     },
-    dark_warning: {
-      backgroundColor: theme.COLORS.DARK_WARNING,
-    },
-    light_warning: {
-      backgroundColor: theme.COLORS.LIGHT_WARNING,
-    },
-    bright_warning: {
-      backgroundColor: theme.COLORS.BRIGHT_WARNING,
-    },
     success: {
       backgroundColor: theme.COLORS.SUCCESS,
-    },
-    dark_success: {
-      backgroundColor: theme.COLORS.DARK_SUCCESS,
-    },
-    light_success: {
-      backgroundColor: theme.COLORS.LIGHT_SUCCESS,
-    },
-    bright_success: {
-      backgroundColor: theme.COLORS.BRIGHT_SUCCESS,
     },
     white: {
       backgroundColor: theme.COLORS.WHITE,
@@ -246,38 +201,11 @@ const styles = theme =>
     black: {
       backgroundColor: theme.COLORS.BLACK,
     },
-    dark_black: {
-      backgroundColor: theme.COLORS.DARK_BLACK,
-    },
-    light_black: {
-      backgroundColor: theme.COLORS.LIGHT_BLACK,
-    },
-    bright_black: {
-      backgroundColor: theme.COLORS.BRIGHT_BLACK,
-    },
     secondary: {
       backgroundColor: theme.COLORS.SECONDARY,
     },
-    dark_secondary: {
-      backgroundColor: theme.COLORS.DARK_SECONDARY,
-    },
-    light_secondary: {
-      backgroundColor: theme.COLORS.LIGHT_SECONDARY,
-    },
-    bright_secondary: {
-      backgroundColor: theme.COLORS.BRIGHT_SECONDARY,
-    },
     grey: {
       backgroundColor: theme.COLORS.GREY,
-    },
-    dark_grey: {
-      backgroundColor: theme.COLORS.DARK_GREY,
-    },
-    light_grey: {
-      backgroundColor: theme.COLORS.LIGHT_GREY,
-    },
-    bright_grey: {
-      backgroundColor: theme.COLORS.BRIGHT_GREY,
     },
     transparent: {
       backgroundColor: theme.COLORS.TRANSPARENT,
