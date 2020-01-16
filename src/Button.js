@@ -22,7 +22,6 @@ function Button({
     onlyIcon,
     opacity,
     round,
-    radius,
     style,
     size,
     shadowless,
@@ -49,13 +48,28 @@ function Button({
       content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
     }
 
+    if (icon && !onlyIcon) {
+      content = (
+        <>
+        <Icon
+          name={icon}
+          family={iconFamily}
+          size={iconSize}
+          color={iconColor || theme.COLORS.WHITE}
+          style={{color: 'black'}} //other motherfucking styles doesn't work
+        />
+        <Text>{content}</Text>
+        </>
+      );
+    }
+
     if (onlyIcon) {
       content = (
         <Icon
           name={icon}
           family={iconFamily}
           size={iconSize}
-          color={iconColor || theme.COLORS.BLACK}
+          color={iconColor || theme.COLORS.WHITE}
         />
       );
     } else if (isString) {
@@ -77,15 +91,14 @@ function Button({
     color && !colorStyle && { backgroundColor: color }, // color set & no styles for that color
     color === 'transparent' || styles.androidShadow,
     color === 'transparent' && !shadowless && { borderWidth: 1, borderColor: theme.COLORS.WHITE },
-    size === 'large' ? { width: width * 0.9 } : { width: width * 0.5 },
+    size === 'large' ? { width: width * 0.9 } : ( size === "small" ? { width: width * 0.3 } : { width: width * 0.42 }),
     round && { borderRadius: theme.SIZES.BASE * 2 },
     onlyIcon && {
-      width: iconSize * 1.25,
+      width: iconSize * 2,
       height: iconSize * 2,
       borderWidth: 0,
       borderRadius: iconSize,
     },
-    radius && { borderRadius: radius },
     !shadowless && styles.shadow,
     { shadowColor: shadowColor || theme.COLORS[color.toUpperCase()] },
     { zIndex: 2 },
@@ -101,9 +114,8 @@ function Button({
 
 Button.defaultProps = {
   color: 'primary',
-  size: 'large',
+  size: 'default',
   disabled: false,
-  radius: 0,
   uppercase: false,
   lowercase: false,
   capitalize: false,
@@ -115,7 +127,7 @@ Button.defaultProps = {
   opacity: 0.8,
   icon: false,
   iconFamily: false,
-  iconSize: 14,
+  iconSize: 16,
   iconColor: null,
   styles: {},
   theme: GalioTheme,
@@ -125,28 +137,18 @@ Button.propTypes = {
   ...TouchableOpacity.propTypes,
   color: PropTypes.oneOfType([
     PropTypes.oneOf([
-      'theme', 
-      'primary', 'dark_primary', 'light_primary', 'bright_primary', 
-      'info', 'dark_info', 'light_info', 'bright_info', 
-      'danger', 'dark_danger', 'light_danger', 'bright_danger', 
-      'warning', 'dark_warning', 'light_warning', 'bright_warning', 
-      'success', 'dark_success', 'light_success', 'bright_success', 
-      'black', 'dark_black', 'light_black', 'bright_black', 
-      'grey', 'dark_grey', 'light_grey', 'bright_grey', 
-      'secondary', 'dark_secondary', 'light_secondary', 'bright_secondary', 
-      'transparent', 'white', 
+      'theme', 'primary', 'info', 'danger', 'warning', 'success', 'black', 'grey', 'secondary', 'transparent', 'white', 
     ]),
     PropTypes.string,
   ]),
-  size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small']), PropTypes.number]),
+  size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'default', 'small']), PropTypes.number]),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
-  radius: PropTypes.number,
   uppercase: PropTypes.bool,
   lowercase: PropTypes.bool,
   capitalize: PropTypes.bool,
   loading: PropTypes.bool,
-  loadingSize: PropTypes.oneOf(['small', 'large']),
+  loadingSize: PropTypes.oneOf(['small', 'default', 'large']),
   opacity: PropTypes.number,
   shadowless: PropTypes.bool,
   shadowColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -169,7 +171,7 @@ const styles = theme =>
     },
     shadow: {
       shadowColor: theme.COLORS.BLOCK,
-      shadowOffset: { width: 0, height: 4 },
+      shadowOffset: { width: 0, height: 2 },
       shadowOpacity: theme.SIZES.OPACITY,
       shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
     },
