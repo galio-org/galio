@@ -15,6 +15,8 @@ import Slider from './Slider';
 import Switch from './Switch';
 import Text from './Text';
 import Toast from './Toast';
+import Link from './Link';
+
 
 import theme, { withGalio, GalioProvider } from './theme';
 
@@ -35,6 +37,7 @@ export {
   Radio,
   Slider,
   Text,
+  Link,
   Toast,
   Switch,
   theme,
