@@ -59,7 +59,7 @@ function Input({
       name={icon}
       family={family}
       size={iconSize || theme.SIZES.BASE * 1.0625}
-      style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
+      style={{ marginRight: left && !right ? 4 : 0 }}
       color={(error && theme.COLORS.DANGER) || iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
     />
   ) : (
@@ -189,7 +189,8 @@ const styles = theme =>
     label: {
       fontWeight: '500',
       fontSize: theme.SIZES.INPUT_LABEL_TEXT,
-      marginBottom: theme.SIZES.INPUT_LABEL_BOTTOM,
+      marginVertical: theme.SIZES.INPUT_VERTICAL_LABEL,
+      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL
     },
     helpText: {
       color: theme.COLORS.SECONDARY,
