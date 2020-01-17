@@ -138,7 +138,7 @@ Button.defaultProps = {
   onlyIcon: false,
   loading: false,
   loadingSize: 'small',
-  opacity: 1,
+  opacity: .8,
   icon: false,
   iconRight: false,
   iconFamily: false,
@@ -184,6 +184,7 @@ const styles = theme =>
       height: theme.SIZES.BUTTON_HEIGHT,
       alignItems: 'center',
       justifyContent: 'center',
+      margin: 8
     },
     shadow: {
       shadowColor: theme.COLORS.BLOCK,
