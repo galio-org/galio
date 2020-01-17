@@ -14,6 +14,7 @@ function Button({
     disabled,
     iconSize,
     icon,
+    iconRight,
     iconFamily,
     iconColor,
     loading,
@@ -48,20 +49,32 @@ function Button({
       content = `${children.charAt(0).toUpperCase()}${children.slice(1)}`;
     }
 
-    if (icon && !onlyIcon) {
+    if (icon && !onlyIcon && !iconRight) {
       content = (
         <>
-        <Icon
-          name={icon}
-          family={iconFamily}
-          size={iconSize}
-          color={iconColor || theme.COLORS.WHITE}
-          style={{color: 'black'}} //other motherfucking styles doesn't work
-        />
-        <Text>{content}</Text>
+          <Icon
+            name={icon}
+            family={iconFamily}
+            size={iconSize}
+            color={iconColor || theme.COLORS.WHITE}
+          />{' '}
+          <Text>{content}</Text>
         </>
       );
-    }
+    } ;
+    if (iconRight && !onlyIcon) {
+      content = (
+        <>
+          <Text>{content}</Text>{' '}
+          <Icon
+            name={icon}
+            family={iconFamily}
+            size={iconSize}
+            color={iconColor || theme.COLORS.WHITE}
+          />
+        </>
+      );
+    };
 
     if (onlyIcon) {
       content = (
@@ -93,11 +106,12 @@ function Button({
     color === 'transparent' && !shadowless && { borderWidth: 1, borderColor: theme.COLORS.WHITE },
     size === 'large' ? { width: width * 0.9 } : ( size === "small" ? { width: width * 0.3 } : { width: width * 0.42 }),
     round && { borderRadius: theme.SIZES.BASE * 2 },
+
     onlyIcon && {
-      width: iconSize * 2,
-      height: iconSize * 2,
+      width: iconSize * 2.75,
+      height: iconSize * 2.75,
       borderWidth: 0,
-      borderRadius: iconSize,
+      borderRadius: iconSize * 2,
     },
     !shadowless && styles.shadow,
     { shadowColor: shadowColor || theme.COLORS[color.toUpperCase()] },
@@ -124,8 +138,9 @@ Button.defaultProps = {
   onlyIcon: false,
   loading: false,
   loadingSize: 'small',
-  opacity: 0.8,
+  opacity: 1,
   icon: false,
+  iconRight: false,
   iconFamily: false,
   iconSize: 16,
   iconColor: null,
@@ -154,6 +169,7 @@ Button.propTypes = {
   shadowColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   onlyIcon: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  iconRight: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   iconFamily: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   iconSize: PropTypes.number,
   styles: PropTypes.any,
