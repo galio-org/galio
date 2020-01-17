@@ -7,8 +7,8 @@ export const BASE = 16;
 const SIZES = {
   BASE: BASE,
   FONT: BASE,
-  OPACITY: 0.8,
-  BORDER_RADIUS: 6,
+  OPACITY: 0.6,
+  BORDER_RADIUS: 4,
   BORDER_WIDTH: 0.8,
 
   // Typography
@@ -29,7 +29,7 @@ const SIZES = {
   // Button styles
   BUTTON_WIDTH: BASE * 9,
   BUTTON_HEIGHT: BASE * 2.75,
-  BUTTON_SHADOW_RADIUS: 10,
+  BUTTON_SHADOW_RADIUS: 3,
 
   // Block styles
   BLOCK_SHADOW_OPACITY: 0.15,
