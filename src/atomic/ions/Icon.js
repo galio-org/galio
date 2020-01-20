@@ -2,9 +2,9 @@ import React from 'react';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
-import GalioTheme, { withGalio } from './theme';
-import getIconType from './helpers/getIconType';
-import galioConfig from './config/galio.json';
+import GalioTheme, { withGalio } from '../../theme';
+import getIconType from '../../helpers/getIconType';
+import galioConfig from '../../config/galio.json';
 
 const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
 

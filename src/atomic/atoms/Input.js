@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
-import GalioTheme, { withGalio } from './theme';
+import Icon from '../ions/Icon';
+import GalioTheme, { withGalio } from '../../theme';
 
 function Input({
   style,
