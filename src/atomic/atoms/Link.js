@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from './';
-import GalioTheme, { withGalio } from './theme';
+import Text from '../ions/Icon';
+import GalioTheme, { withGalio } from '../../theme';
 
 function Link({
     children,

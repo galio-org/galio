@@ -2,8 +2,8 @@ import React from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
-import normalize from './helpers/normalize';
-import GalioTheme, { withGalio } from './theme';
+import normalize from '../../helpers/normalize';
+import GalioTheme, { withGalio } from '../../theme';
 
 function Typography({
   style,
