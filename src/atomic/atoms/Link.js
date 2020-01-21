@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Text from '../ions/Icon';
+import Text from '../ions/Text';
 import GalioTheme, { withGalio } from '../../theme';
 
 function Link({
