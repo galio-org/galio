@@ -38,7 +38,7 @@ function Icon({
     const IconInstance = getIconType(family);
     if (name && IconInstance && onIconPress) {
       return (
-        <TouchableHighlight underlayColor="#ffffff00" onPress={onIconPress}>
+        <TouchableHighlight underlayColor="transparent" onPress={onIconPress}>
           <IconInstance
             name={name}
             size={size || theme.SIZES.BASE}
