@@ -11,6 +11,7 @@ function Card({
   borderless, 
   caption, 
   captionColor,
+  captionStyle,
   card, 
   children,
   footerStyle,
@@ -24,6 +25,7 @@ function Card({
   styles,
   title, 
   titleColor,
+  titleStyle,
   theme,
   ...props 
 }) {
@@ -72,13 +74,13 @@ function Card({
         <Block flex={0.3}>{renderAvatar()}</Block>
         <Block flex={1.7}>
           <Block style={styles.title}>
-            <Text size={theme.SIZES.FONT * 0.875} color={titleColor}>
+            <Text size={theme.SIZES.FONT * 0.875} style={titleStyle} color={titleColor}>
               {title}
             </Text>
           </Block>
           <Block row space="between">
             <Block row right>
-              <Text p muted size={theme.SIZES.FONT * 0.875} color={captionColor}>
+              <Text p muted size={theme.SIZES.FONT * 0.875} style={captionStyle} color={captionColor}>
                 {caption}
               </Text>
             </Block>
