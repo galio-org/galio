@@ -27,6 +27,7 @@ function Input({
   iconSize,
   iconContent,
   password,
+  onIconPress,
   ...rest
 }) {
   const [isPassword, setIsPassword] = React.useState(false);
@@ -43,7 +44,6 @@ function Input({
     style,
   ];
 
-
   const inputStyles = [
     styles.inputView,
     borderless && icon && styles.inputIcon,
@@ -52,16 +52,18 @@ function Input({
   ];
 
   const iconInstance = icon ? (
-    <Icon
-      name={icon}
-      family={family}
-      size={iconSize || theme.SIZES.BASE * 1.0625}
-      style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
-      color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
-    />
+    <TouchableOpacity disabled={!onIconPress} onPress={() => onIconPress()}>
+      <Icon
+        name={icon}
+        family={family}
+        size={iconSize || theme.SIZES.BASE * 1.0625}
+        style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
+        color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
+      />
+    </TouchableOpacity>
   ) : (
-      iconContent
-    );
+    iconContent
+  );
 
   const viewPassElement = password && viewPass && (
     <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => setIsPassword(!isPassword)}>
@@ -152,6 +154,7 @@ Input.propTypes = {
   iconContent: PropTypes.any,
   theme: PropTypes.any,
   onRef: PropTypes.func,
+  onIconPress: PropTypes.func,
 };
 
 const styles = theme =>
