@@ -91,6 +91,7 @@ function Input({
         <TextInput
           style={inputStyles}
           keyboardType={type}
+          autoCapitalize = 'none'
           secureTextEntry={isPassword}
           placeholderTextColor={placeholderTextColor}
           underlineColorAndroid="transparent"
