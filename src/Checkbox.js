@@ -26,9 +26,7 @@ function Checkbox({
   theme,
 }) {
   const [checked, setChecked] = React.useState(initialValue);
-  React.useEffect(() => {
-    onChange(checked);
-  }, [checked]);
+
   // adding the necessary margins depending on the flexDirection
   function spaceAround(direction) {
     switch (direction) {
@@ -73,8 +71,9 @@ function Checkbox({
 
   // onPress function that changes the component's state and callbacks the onChange prop
   function _onPress() {
-    setChecked(!checked);
-    return null;
+    const current = !checked;
+    onChange(current);
+    setChecked(current);
   }
 
   const colorStyle = theme.COLORS[color.toUpperCase()]; // this sets the correct color for the theme file
