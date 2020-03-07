@@ -17,21 +17,22 @@ export default GalioTheme;
 const GalioContext = React.createContext();
 
 /*
-*   withGalio
-*   args: Component - React Component, styles to be added to Component
-*   theme: if no styles or theme add default theme={ SIZES, COLORS }
-*/
+ *   withGalio
+ *   args: Component - React Component, styles to be added to Component
+ *   theme: if no styles or theme add default theme={ SIZES, COLORS }
+ */
 
 export function withGalio(Component, styles) {
   // eslint-disable-next-line react/no-multi-comp
-  return class extends React.Component {
+  class EnhancedComponent extends React.Component {
     render() {
-      const { props } = this;
+      const { forwardedRef, ...rest } = this.props;
       return (
         <GalioContext.Consumer>
           {theme => (
             <Component
-              {...props}
+              ref={forwardedRef}
+              {...rest}
               theme={{ ...GalioTheme, ...theme }}
               styles={styles && styles({ ...GalioTheme, ...theme })}
             />
@@ -39,20 +40,24 @@ export function withGalio(Component, styles) {
         </GalioContext.Consumer>
       );
     }
-  };
+  }
+
+  return React.forwardRef((props, ref) => {
+    return <EnhancedComponent forwardedRef={ref} {...props} />;
+  });
 }
 
 /*
-*   GalioProvider using React.Component
-*   GalioContext.Provider value has the default value from { COLORS, SIZES }
-*/
+ *   GalioProvider using React.Component
+ *   GalioContext.Provider value has the default value from { COLORS, SIZES }
+ */
 
 // eslint-disable-next-line react/no-multi-comp
 export class GalioProvider extends React.Component {
   static defaultProps = {
     children: null,
     theme: {},
-  }
+  };
 
   render() {
     const { theme, children } = this.props;
@@ -61,14 +66,10 @@ export class GalioProvider extends React.Component {
     const providerTheme = {
       COLORS: { ...GalioTheme.COLORS, ...CUSTOM_COLORS },
       SIZES: { ...GalioTheme.SIZES, ...CUSTOM_SIZES },
-      ...customTheme
+      ...customTheme,
     };
 
-    return (
-      <GalioContext.Provider value={providerTheme}>
-        {children}
-      </GalioContext.Provider>
-    );
+    return <GalioContext.Provider value={providerTheme}>{children}</GalioContext.Provider>;
   }
 }
 
