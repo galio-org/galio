@@ -18,6 +18,7 @@ function NavBar({
   leftHitSlop,
   leftIconName,
   leftIconFamily,
+  leftIconSize,
   onLeftPress,
   right,
   rightStyle,
@@ -51,7 +52,7 @@ function NavBar({
               <Icon
                 family={leftIconFamily || "evilicons"}
                 color={leftIconColor || theme.COLORS.ICON}
-                size={theme.SIZES.BASE * 1.0625}
+                size={leftIconSize || (theme.SIZES.BASE * 1.0625)}
                 name={leftIconName || (back ? 'chevron-left' : 'navicon')}
               />
             </TouchableOpacity>
@@ -123,6 +124,7 @@ NavBar.propTypes = {
   leftIconFamily: PropTypes.string,
   hideLeft: PropTypes.bool,
   hideRight: PropTypes.bool,
+  leftIconSize: PropTypes.any,
 };
 
 const styles = theme =>
