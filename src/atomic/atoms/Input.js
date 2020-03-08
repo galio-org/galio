@@ -6,6 +6,7 @@ import GalioTheme, { withGalio } from '../../theme';
 
 function Input({
   style,
+  textInputStyle,
   type,
   placeholderTextColor,
   label,
@@ -52,6 +53,7 @@ function Input({
     borderless && icon && styles.inputIcon,
     styles.inputText,
     color && { color },
+    textInputStyle || {}
   ];
 
   const iconInstance = icon ? (
@@ -119,6 +121,7 @@ Input.defaultProps = {
   topHelp: true,
   bottomHelp: false,
   style: null,
+  textInputStyle: null,
   borderless: false,
   bgColor: null,
   iconColor: null,
@@ -134,6 +137,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   style: PropTypes.any,
+  textInputStyle: PropTypes.any,
   type: PropTypes.string,
   password: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
