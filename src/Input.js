@@ -9,8 +9,10 @@ function Input({
   type,
   placeholderTextColor,
   label,
+  labelStyles,
   color,
   help,
+  helpStyles,
   bgColor,
   borderless,
   viewPass,
@@ -43,7 +45,6 @@ function Input({
     style,
   ];
 
-
   const inputStyles = [
     styles.inputView,
     borderless && icon && styles.inputIcon,
@@ -60,8 +61,8 @@ function Input({
       color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
     />
   ) : (
-      iconContent
-    );
+    iconContent
+  );
 
   const viewPassElement = password && viewPass && (
     <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => setIsPassword(!isPassword)}>
@@ -73,8 +74,8 @@ function Input({
       />
     </TouchableOpacity>
   );
-  const lebelContent = label && <Text style={styles.label}>{label}</Text>;
-  const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
+  const labelContent = label && <Text style={[styles.label, labelStyles || {}]}>{label}</Text>;
+  const helpContent = help && <Text style={[styles.helpText, helpStyles || {}]}>{help}</Text>;
 
   return (
     <View
@@ -82,7 +83,7 @@ function Input({
         marginVertical: theme.SIZES.BASE / 2,
         alignContent: 'center',
       }}>
-      {lebelContent}
+      {labelContent}
       {topHelp && !bottomHelp && helpContent}
       <View style={inputViewStyles}>
         {left && !right && iconInstance}
