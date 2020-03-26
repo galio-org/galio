@@ -1,31 +1,31 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
 function Block({
-    row,
-    flex,
-    center,
-    middle,
-    top,
-    bottom,
-    right,
-    left,
-    shadow,
-    space,
-    fluid,
-    height,
-    shadowColor,
-    card,
-    width,
-    safe,
-    children,
-    style,
-    styles,
-    ...rest
+  row,
+  flex,
+  center,
+  middle,
+  top,
+  bottom,
+  right,
+  left,
+  shadow,
+  space,
+  fluid,
+  height,
+  shadowColor,
+  card,
+  width,
+  safe,
+  children,
+  style,
+  styles,
+  animated,
+  ...rest
 }) {
-
   const styleBlock = [
     styles.block,
     row && styles.row,
@@ -54,8 +54,16 @@ function Block({
     );
   }
 
+  if (animated) {
+    return (
+      <Animated.View style={styleBlock} {...rest}>
+        {children}
+      </Animated.View>
+    );
+  }
+
   return (
-    <View  style={styleBlock} {...rest}>
+    <View style={styleBlock} {...rest}>
       {children}
     </View>
   );
@@ -78,6 +86,7 @@ Block.defaultProps = {
   width: null,
   shadowColor: null,
   safe: false,
+  animated: false,
   styles: {},
   theme: GalioTheme,
 };
@@ -99,6 +108,7 @@ Block.propTypes = {
   width: PropTypes.number,
   shadowColor: PropTypes.string,
   safe: PropTypes.bool,
+  animated: PropTypes.bool,
   styles: PropTypes.any,
   theme: PropTypes.any,
 };
