@@ -1,4 +1,3 @@
-
 /* eslint-disable import/no-cycle */
 
 import Accordion from './Accordion';
@@ -7,6 +6,7 @@ import Button from './Button';
 import Card from './Card';
 import Checkbox from './Checkbox';
 import DeckSwiper from './DeckSwiper';
+import Divider from './Divider';
 import Icon from './Icon';
 import Input from './Input';
 import NavBar from './NavBar';
@@ -29,6 +29,7 @@ export {
   Card,
   Checkbox,
   DeckSwiper,
+  Divider,
   Icon,
   Input,
   NavBar,
