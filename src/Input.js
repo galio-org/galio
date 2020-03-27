@@ -18,6 +18,7 @@ function Input({
   icon,
   family,
   onIconPress,
+  onRef,
   left,
   right,
   iconColor,
@@ -94,6 +95,7 @@ function Input({
           secureTextEntry={isPassword}
           placeholderTextColor={placeholderTextColor}
           underlineColorAndroid="transparent"
+          ref={onRef}
           {...rest}
         />
         {right && iconInstance}
