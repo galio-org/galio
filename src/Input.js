@@ -84,7 +84,6 @@ function Input({
         marginVertical: theme.SIZES.BASE / 2,
         alignContent: 'center',
       }}>
-      {lebelContent}
       {topHelp && !bottomHelp && helpContent}
       <View style={inputViewStyles}>
         {left && !right && iconInstance}
