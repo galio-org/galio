@@ -47,6 +47,7 @@ function NavBar({
       if (leftIconName || back) {
         return (
           <View style={[styles.left, leftStyle]}>
+            {/* have to check how back and leftIcon interfere, also the onLeftPress function */}
             <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
               <Icon
                 family={leftIconFamily || "evilicons"}
