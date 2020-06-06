@@ -16,6 +16,7 @@ function NavBar({
   leftStyle,
   leftIconColor,
   leftHitSlop,
+  leftIconSize,
   leftIconName,
   leftIconFamily,
   onLeftPress,
@@ -44,15 +45,14 @@ function NavBar({
 
   function renderLeft() {
     if (!hideLeft) {
-      if (leftIconName || back) {
+      if (leftIconName || back && !left) {
         return (
           <View style={[styles.left, leftStyle]}>
-            {/* have to check how back and leftIcon interfere, also the onLeftPress function */}
             <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
               <Icon
                 family={leftIconFamily || "evilicons"}
                 color={leftIconColor || theme.COLORS.ICON}
-                size={theme.SIZES.BASE * 1.0625}
+                size={leftIconSize || theme.SIZES.BASE * 1.0625}
                 name={leftIconName || (back ? 'chevron-left' : 'navicon')}
               />
             </TouchableOpacity>
