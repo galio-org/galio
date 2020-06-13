@@ -3,7 +3,9 @@ import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 // galio components
-import { Block, Text, Icon } from './';
+import Block from './Block';
+import Text from './Text';
+import Icon from './Icon';
 import GalioTheme, { withGalio } from './theme';
 
 const { height } = Dimensions.get('screen');
