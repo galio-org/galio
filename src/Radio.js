@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // G A L I O - D E P E N D E N C Y
-import { Text } from './';
+import Text from './Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Radio({
