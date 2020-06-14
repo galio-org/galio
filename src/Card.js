@@ -2,8 +2,10 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-
-import { Block, Icon, Text } from './';
+// galio components
+import Block from './Block';
+import Text from './Text';
+import Icon from './Icon';
 import GalioTheme, { withGalio } from './theme';
 
 function Card({
