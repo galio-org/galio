@@ -13,9 +13,6 @@ function Switch({
   ...rest
 }) {
   const [switchValue, setSwitchValue] = React.useState(initialValue);
-  React.useEffect(() => {
-    onChange(switchValue);
-  }, [switchValue]);
   function onPressSwitch() {
     setSwitchValue(!switchValue);
     return null;
@@ -27,11 +24,12 @@ function Switch({
     <Switcher
       disabled={disabled}
       trackColor={{ ...trackColor }}
-      ios_backgroundColor={ios_backgroundColor}
+      ios_backgroundColor={trackColor.false || ios_backgroundColor}
       value={switchValue}
       onValueChange={() => {
         onPressSwitch();
       }}
+      onChange={() => onChange()}
       {...rest}
     />
   );
