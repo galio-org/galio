@@ -16,6 +16,23 @@ export default GalioTheme;
 // creating the GalioTheme context
 const GalioContext = React.createContext();
 
+/**
+ * useGalioTheme 
+ * Galio custom hook which returns the theme object
+ */
+
+export function useGalioTheme() {
+  const theme = React.useContext(GalioContext);
+
+  if (theme === undefined) {
+    throw new Error(
+      'useGalioTheme must be used within a component wrapped with GalioProvider'
+    );
+  }
+
+  return theme;
+}
+
 /*
  *   withGalio
  *   args: Component - React Component, styles to be added to Component
