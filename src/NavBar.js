@@ -3,7 +3,9 @@ import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 // galio components
-import { Block, Text, Icon } from './';
+import Block from './Block';
+import Text from './Text';
+import Icon from './Icon';
 import GalioTheme, { withGalio } from './theme';
 
 const { height } = Dimensions.get('screen');
@@ -16,6 +18,7 @@ function NavBar({
   leftStyle,
   leftIconColor,
   leftHitSlop,
+  leftIconSize,
   leftIconName,
   leftIconFamily,
   onLeftPress,
@@ -44,14 +47,14 @@ function NavBar({
 
   function renderLeft() {
     if (!hideLeft) {
-      if (leftIconName || back) {
+      if (leftIconName || back && !left) {
         return (
           <View style={[styles.left, leftStyle]}>
             <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
               <Icon
                 family={leftIconFamily || "evilicons"}
                 color={leftIconColor || theme.COLORS.ICON}
-                size={theme.SIZES.BASE * 1.0625}
+                size={leftIconSize || theme.SIZES.BASE * 1.0625}
                 name={leftIconName || (back ? 'chevron-left' : 'navicon')}
               />
             </TouchableOpacity>

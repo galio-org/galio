@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
-import GalioTheme, { withGalio } from './theme';
+import Icon from '../ions/Icon';
+import GalioTheme, { withGalio } from '../../theme';
 
 function Input({
   style,
+  textInputStyle,
   type,
   placeholderTextColor,
   label,
+  labelStyles,
   color,
   help,
+  helpStyles,
   bgColor,
   borderless,
   viewPass,
@@ -27,6 +30,8 @@ function Input({
   iconSize,
   iconContent,
   password,
+  onRef,
+  error,
   ...rest
 }) {
   const [isPassword, setIsPassword] = React.useState(false);
@@ -40,15 +45,16 @@ function Input({
     bgColor && { backgroundColor: bgColor },
     rounded && styles.rounded,
     borderless && styles.borderless,
+    error && { borderColor: theme.COLORS.DANGER},
     style,
   ];
-
 
   const inputStyles = [
     styles.inputView,
     borderless && icon && styles.inputIcon,
     styles.inputText,
     color && { color },
+    textInputStyle || {}
   ];
 
   const iconInstance = icon ? (
@@ -56,12 +62,12 @@ function Input({
       name={icon}
       family={family}
       size={iconSize || theme.SIZES.BASE * 1.0625}
-      style={{ marginRight: left && !right ? theme.SIZES.BASE * 0.2 : 0 }}
-      color={iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
+      style={{ marginRight: left && !right ? 4 : 0 }}
+      color={(error && theme.COLORS.DANGER) || iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
     />
   ) : (
-      iconContent
-    );
+    iconContent
+  );
 
   const viewPassElement = password && viewPass && (
     <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => setIsPassword(!isPassword)}>
@@ -73,8 +79,8 @@ function Input({
       />
     </TouchableOpacity>
   );
-  const lebelContent = label && <Text style={styles.label}>{label}</Text>;
-  const helpContent = help && <Text style={styles.helpText}>{help}</Text>;
+  const labelContent = label && <Text style={[styles.label, labelStyles || {}]}>{label}</Text>;
+  const helpContent = help && <Text style={[styles.helpText, helpStyles || {}]}>{help}</Text>;
 
   return (
     <View
@@ -82,11 +88,12 @@ function Input({
         marginVertical: theme.SIZES.BASE / 2,
         alignContent: 'center',
       }}>
-      {lebelContent}
+      {labelContent}
       {topHelp && !bottomHelp && helpContent}
       <View style={inputViewStyles}>
         {left && !right && iconInstance}
         <TextInput
+          ref={onRef}
           style={inputStyles}
           keyboardType={type}
           secureTextEntry={isPassword}
@@ -115,6 +122,7 @@ Input.defaultProps = {
   topHelp: true,
   bottomHelp: false,
   style: null,
+  textInputStyle: null,
   borderless: false,
   bgColor: null,
   iconColor: null,
@@ -130,6 +138,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   style: PropTypes.any,
+  textInputStyle: PropTypes.any,
   type: PropTypes.string,
   password: PropTypes.bool,
   placeholderTextColor: PropTypes.string,
@@ -185,11 +194,15 @@ const styles = theme =>
     label: {
       fontWeight: '500',
       fontSize: theme.SIZES.INPUT_LABEL_TEXT,
-      marginBottom: theme.SIZES.INPUT_LABEL_BOTTOM,
+      marginVertical: theme.SIZES.INPUT_VERTICAL_LABEL,
+      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL
     },
     helpText: {
+      color: theme.COLORS.SECONDARY,
       fontSize: theme.SIZES.INPUT_HELP_TEXT,
-      fontStyle: 'italic',
+      marginVertical: 8,
+      paddingHorizontal: 16,
+      fontSize: 14
     },
     rounded: {
       borderRadius: theme.SIZES.INPUT_ROUNDED,

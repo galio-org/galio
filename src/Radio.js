@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // G A L I O - D E P E N D E N C Y
-import { Text } from './';
+import Text from './Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Radio({
@@ -20,7 +20,7 @@ function Radio({
   theme,
 }) {
   const [checked, setChecked] = React.useState(initialValue);
-  React.useEffect(() => onChange(checked), [checked]);
+  
   // A D D I N G - R E Q U I R E D - S P A C E (S) - B A S E D - O N - F L E X - D I R E C T I O N
   function spaceAround(direction) {
     switch (direction) {
@@ -53,7 +53,9 @@ function Radio({
 
   // O N - P R E S S - H A N D L E R
   function radioPressHandler() {
-    setChecked(!checked);
+    const current = !checked;
+    onChange(current);
+    setChecked(current);
   }
 
 

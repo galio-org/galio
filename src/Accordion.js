@@ -9,8 +9,8 @@ import {
 import PropTypes from "prop-types";
 
 import Block from "./Block";
-import Icon from "./Icon";
-import Text from "./Text";
+import Icon from "./atomic/ions/Icon";
+import Text from "./atomic/ions/Text";
 import GalioTheme from "./theme";
 
 const { width } = Dimensions.get("screen");
