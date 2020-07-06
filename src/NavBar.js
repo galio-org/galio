@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 // galio components
 import Block from './Block';
-import Text from './Text';
-import Icon from './Icon';
+import Text from './atomic/ions/Text';
+import Icon from './atomic/ions/Icon';
 import GalioTheme, { withGalio } from './theme';
 
 const { height } = Dimensions.get('screen');
@@ -47,12 +47,12 @@ function NavBar({
 
   function renderLeft() {
     if (!hideLeft) {
-      if (leftIconName || back && !left) {
+      if (leftIconName || (back && !left)) {
         return (
           <View style={[styles.left, leftStyle]}>
             <TouchableOpacity onPress={() => onLeftPress && onLeftPress()} hitSlop={leftHitSlop}>
               <Icon
-                family={leftIconFamily || "evilicons"}
+                family={leftIconFamily || 'evilicons'}
                 color={leftIconColor || theme.COLORS.ICON}
                 size={leftIconSize || theme.SIZES.BASE * 1.0625}
                 name={leftIconName || (back ? 'chevron-left' : 'navicon')}

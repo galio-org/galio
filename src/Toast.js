@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Animated, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
-import Text from './Text';
+import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
 const { height } = Dimensions.get('screen');
