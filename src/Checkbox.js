@@ -3,12 +3,12 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 // galio dependency
-import Icon from './Icon';
-import Text from './Text';
+import Icon from './atomic/ions/Icon';
+import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Checkbox({
-  checkboxStyle, 
+  checkboxStyle,
   color,
   disabled,
   flexDirection,
@@ -62,7 +62,6 @@ function Checkbox({
 
   // adding the check icon
   function renderChecked() {
-
     if (checked) {
       return <Icon name={iconName} family={iconFamily} color={iconColor} size={iconSize} />;
     }

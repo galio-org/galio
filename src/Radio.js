@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // G A L I O - D E P E N D E N C Y
-import Text from './Text';
+import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Radio({
@@ -20,7 +20,7 @@ function Radio({
   theme,
 }) {
   const [checked, setChecked] = React.useState(initialValue);
-  
+
   // A D D I N G - R E Q U I R E D - S P A C E (S) - B A S E D - O N - F L E X - D I R E C T I O N
   function spaceAround(direction) {
     switch (direction) {
@@ -37,7 +37,6 @@ function Radio({
 
   // R E N D E R - L A B E L
   function renderLabel() {
-
     const labelStyles = [
       styles.textStyles,
       disabled && styles.disabledLabel,
@@ -57,7 +56,6 @@ function Radio({
     onChange(current);
     setChecked(current);
   }
-
 
   const containerStyles = [styles.container, flexDirection && { flexDirection }, containerStyle];
 
@@ -134,7 +132,7 @@ Radio.defaultProps = {
   initialValue: false,
   label: null,
   labelStyle: null,
-  onChange: () => { },
+  onChange: () => {},
   styles: {},
   theme: GalioTheme,
 };
