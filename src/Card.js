@@ -4,8 +4,8 @@ import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // galio components
 import Block from './Block';
-import Text from './Text';
-import Icon from './Icon';
+import Text from './atomic/ions/Text';
+import Icon from './atomic/ions/Icon';
 import GalioTheme, { withGalio } from './theme';
 
 function Card({
