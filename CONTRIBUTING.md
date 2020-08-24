@@ -12,7 +12,7 @@ Please don't hesitate to join us on [gitter](https://gitter.im/galio-community)!
 
 If you notice any bugs in the app, see some code that can be improved, or have features you would like to be added, please create a [bug report](https://github.com/galio-org/galio/issues/new?template=bug-report---.md) or a [feature request](https://github.com/galio-org/galio/issues/new?template=feature-request---.md)!
 
-If you want to open a PR that fixes a bug or adds a feature, then we can't thank you enough! 
+If you want to open a PR that fixes a bug or adds a feature, then we can't thank you enough!
 
 ## Working on issues
 
@@ -37,14 +37,14 @@ As you can see we have multiple branches:
  - **design**: Here we have design resources for everybody to download and use
  - **dev**: This is the `dev` branch of Galio, this is where everything is happening before releasing on master
 
-## Financial contributions 
+## Financial contributions
 
 We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/galio).
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
 
 ## galio-starter-kit contribution
 
-You want to take part in this cool community and help the world by creating some cool screens using Galio? Then go ahead and hope on our [galio-starter-kit repo](https://github.com/galio-org/galio-starter-kit). 
+You want to take part in this cool community and help the world by creating some cool screens using Galio? Then go ahead and hop on our [galio-starter-kit repo](https://github.com/galio-org/galio-starter-kit). 
 
 ## Hacktoberfest 2018
 
