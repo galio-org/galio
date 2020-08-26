@@ -80,7 +80,7 @@ declare module 'galio-framework' {
     shadow?: boolean;
     borderless?: boolean;
     image?: string;
-    imageBlockStyle?: strubg;
+    imageBlockStyle?: ViewStyle;
     imageStyle?: ImageStyle;
     avatar?: string;
     location?: string;
@@ -146,6 +146,7 @@ declare module 'galio-framework' {
     viewPass?: boolean;
     icon?: string;
     iconColor?: string;
+    iconContent?: any;
     family?: IconFamilyType;
     color?: string;
     help?: string;
