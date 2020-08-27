@@ -447,9 +447,6 @@ declare module 'galio-framework' {
     }
   }
 
-  // Default Theme
-  export const theme: GalioThemeProps;
-
   // useGalioTheme
   export function useGalioTheme(): GalioThemeProps;
 
@@ -458,5 +455,9 @@ declare module 'galio-framework' {
     Component: T,
     styles: any
   ): ComponentType<any>;
+
+  // Default Theme
+  const GalioTheme: GalioThemeProps;
+  export default GalioTheme;
 
 }
