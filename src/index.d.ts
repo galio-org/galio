@@ -457,7 +457,6 @@ declare module 'galio-framework' {
   ): ComponentType<any>;
 
   // Default Theme
-  const GalioTheme: GalioThemeProps;
-  export default GalioTheme;
+  export const theme = GalioThemeProps;
 
 }
