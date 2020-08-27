@@ -13,12 +13,8 @@ declare module 'galio-framework' {
 
   // Button
   export interface ButtonProps extends TouchableOpacityProps, BaseProps {
-    color?:
-      | ['theme', 'primary', 'info', 'danger', 'warning', 'success', 'black', 'grey', 'secondary', 'transparent', 'white']
-      | string;
-    size?:
-      | ['large' | 'default' | 'small']
-      | number;
+    color?: 'theme' | 'primary' | 'info' | 'danger' | 'warning' | 'success' | 'black' | 'grey' | 'secondary' | 'transparent' | 'white' | string;
+    size?: 'large' | 'default' | 'small' | number;
     iconColor?: string;
     disabled?: boolean;
     uppercase?: boolean;
@@ -190,13 +186,9 @@ declare module 'galio-framework' {
   // Checkbox
   export interface CheckboxProps extends BaseProps {
     checkboxStyle?: any;
-    color?:
-      | ['primary' | 'theme' | 'error' | 'warning' | 'success' | 'transparent' | 'info']
-      | string;
+    color?: 'primary' | 'theme' | 'error' | 'warning' | 'success' | 'transparent' | 'info' | string;
     disabled?: boolean;
-    flexDirection?:
-      | ['row' | 'row-reverse' | 'column' | 'column-reverse']
-      | string;
+    flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string;
     iconColor?: string;
     iconName?: string;
     iconSize?: number;
@@ -253,9 +245,7 @@ declare module 'galio-framework' {
     radioOuterStyle?: any;
     radioInnerStyle?: any;
     disabled?: boolean;
-    flexDirection?:
-      | ['row' | 'row-reverse' | 'column' | 'column-reverse']
-      | string;
+    flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | string;
     initialValue?: boolean;
     label: string;
     labelStyle?: any;
@@ -283,9 +273,7 @@ declare module 'galio-framework' {
 
   // Switch
   export interface SwitchProps extends RNSwitchProps, BaseProps {
-    color?:
-      | ['primary' | 'theme' | 'error' | 'warning' | 'success' | 'info']
-      | string;
+    color?: 'primary' | 'theme' | 'error' | 'warning' | 'success' | 'info' | string;
     disabled?: boolean;
     initialValue?: boolean;
     onChange: () => void;
@@ -300,9 +288,7 @@ declare module 'galio-framework' {
     positionOffset?: number;
     fadeInDuration?: number;
     fadeOutDuration?: number;
-    color?:
-      | ['primary', 'theme', 'info', 'error', 'warning', 'success']
-      | string;
+    color?: 'primary' | 'theme' | 'info' | 'error' | 'warning' | 'success' | string;
     round?: boolean;
     style?: ViewStyle;
     textStyle?: ViewStyle;
