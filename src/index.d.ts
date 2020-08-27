@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ComponentType } from 'react';
 import {
   TouchableOpacityProps,
   ViewStyle,
@@ -446,6 +446,17 @@ declare module 'galio-framework' {
       RADIO_THICKNESS?: number;
     }
   }
-  export type theme = GalioThemeProps;
+
+  // Default Theme
+  export const theme: GalioThemeProps;
+
+  // useGalioTheme
+  export function useGalioTheme(): GalioThemeProps;
+
+  // withGalio
+  export function withGalio<T extends ComponentType<any>>(
+    Component: T,
+    styles: any
+  ): ComponentType<any>;
 
 }
