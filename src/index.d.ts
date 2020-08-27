@@ -297,4 +297,155 @@ declare module 'galio-framework' {
   }
   export class Toast extends React.Component<ToastProps> {}
 
+  // Social colors
+  export interface SocialProps extends BaseProps {
+    FACEBOOK?: string;
+    TWITTER?: string;
+    DRIBBBLE?: string;
+  }
+
+  // Theme colors
+  export interface ThemeProps extends BaseProps {
+    THEME?: string;
+    PRIMARY?: string;
+    DARK_PRIMARY?: string;
+    LIGHT_PRIMARY?: string;
+    BRIGHT_PRIMARY?: string;
+    INFO?: string;
+    DARK_INFO?: string;
+    LIGHT_INFO?: string;
+    BRIGHT_INFO?: string;
+    DANGER?: string;
+    DARK_DANGER?: string;
+    LIGHT_DANGER?: string;
+    BRIGHT_DANGER?: string;
+    WARNING?: string;
+    DARK_WARNING?: string;
+    LIGHT_WARNING?: string;
+    BRIGHT_WARNING?: string;
+    SUCCESS?: string;
+    DARK_SUCCESS?: string;
+    LIGHT_SUCCESS?: string;
+    BRIGHT_SUCCESS?: string;
+    WHITE?: string;
+    DARK_BLACK?: string;
+    BLACK?: string;
+    BRIGHT_BLACK?: string;
+    LIGHT_BLACK?: string;
+    DARK_SECONDARY?: string;
+    SECONDARY?: string;
+    BRIGHT_SECONDARY?: string;
+    LIGHT_SECONDARY?: string;
+    DARK_GREY?: string;
+    GREY?: string;
+    BRIGHT_GREY?: string;
+    LIGHT_GREY?: string;
+    NEUTRAL?: string;
+  }
+
+  // Components colors
+  export interface ComponentsProps extends BaseProps {
+    INPUT?: string;
+    PLACEHOLDER?: string;
+    NAVBAR?: string;
+    BLOCK?: string;
+    ICON?: string;
+  }
+
+  export type BASE = number;
+
+  export interface GalioThemeProps extends BaseProps {
+    COLORS: {
+      WHITE?: string;
+      BLACK?: string;
+      GREY?: string;
+      MUTED?: string;
+      TRANSPARENT?: string;
+      NEUTRAL?: string;
+    } & ComponentsProps & ThemeProps & SocialProps;
+    SIZES: {
+      BASE?: BASE;
+      FONT?: BASE,
+      OPACITY?: number;
+      BORDER_RADIUS?: number;
+      BORDER_WIDTH?: number;
+
+      // Typography
+      H1?: number;
+      H2?: number;
+      H3?: number;
+      H4?: number;
+      H5?: number;
+      H6?: number;
+      BODY?: number;
+      SMALL?: number;
+
+      // Icons
+      ICON?: BASE,
+      ICON_MEDIUM?: number;
+      ICON_LARGE?: number;
+
+      // Button styles
+      BUTTON_WIDTH?: number;
+      BUTTON_HEIGHT?: number;
+      BUTTON_SHADOW_RADIUS?: number;
+
+      // Block styles
+      BLOCK_SHADOW_OPACITY?: number;
+      BLOCK_SHADOW_RADIUS?: number;
+      ANDROID_ELEVATION?: number;
+
+      // Card styles
+      CARD_BORDER_RADIUS?: number;
+      CARD_BORDER_WIDTH?: number;
+      CARD_WIDTH?: number;
+      CARD_MARGIN_VERTICAL?: number;
+      CARD_FOOTER_HORIZONTAL?: number;
+      CARD_FOOTER_VERTICAL?: number;
+      CARD_AVATAR_WIDTH?: number;
+      CARD_AVATAR_HEIGHT?: number;
+      CARD_AVATAR_RADIUS?: number;
+      CARD_IMAGE_HEIGHT?: number;
+      CARD_ROUND?: number;
+      CARD_ROUNDED?: number;
+
+      // Input styles
+      INPUT_BORDER_RADIUS?: number;
+      INPUT_BORDER_WIDTH?: number;
+      INPUT_HEIGHT?: number;
+      INPUT_HORIZONTAL?: number;
+      INPUT_VERTICAL_TEXT?: number;
+      INPUT_VERTICAL_LABEL?: number;
+      INPUT_TEXT?: number;
+      INPUT_ROUNDED?: number;
+
+      // NavBar styles
+      NAVBAR_HEIGHT?: number;
+      NAVBAR_VERTICAL?: number;
+      NAVBAR_TITLE_FLEX?: number;
+      NAVBAR_TITLE_HEIGHT?: number;
+      NAVBAR_TITLE_TEXT?: number;
+      NAVBAR_LEFT_FLEX?: number;
+      NAVBAR_LEFT_HEIGHT?: number;
+      NAVBAR_LEFT_MARGIN?: number;
+      NAVBAR_RIGHT_FLEX?: number;
+      NAVBAR_RIGHT_HEIGHT?: number;
+      NAVBAR_RIGHT_MARGIN?: number;
+
+      // Checkbox
+      CHECKBOX_WIDTH?: number;
+      CHECKBOX_HEIGHT?: number;
+
+      // Slider
+      TRACK_SIZE?: number;
+      THUMB_SIZE?: number;
+
+      // Radio Button
+      RADIO_WIDTH?: number;
+      RADIO_HEIGHT?: number;
+      RADIO_THICKNESS?: number;
+    }
+  }
+  export type theme = GalioThemeProps;
+
 }
