@@ -33,6 +33,7 @@ function Input({
   onRef,
   error,
   containerStyle,
+  rightContent,
   ...rest
 }) {
   const [isPassword, setIsPassword] = React.useState(false);
@@ -110,6 +111,7 @@ function Input({
         />
         {right && iconInstance}
         {viewPassElement}
+        {rightContent}
       </View>
       {bottomHelp && helpContent}
     </View>
@@ -142,6 +144,7 @@ Input.defaultProps = {
   theme: GalioTheme,
   onRef: null,
   containerStyle: null,
+  rightContent: null,
 };
 
 Input.propTypes = {
@@ -170,6 +173,7 @@ Input.propTypes = {
   theme: PropTypes.any,
   onRef: PropTypes.func,
   containerStyle: PropTypes.any,
+  rightContent: PropTypes.any,
 };
 
 const styles = theme =>
