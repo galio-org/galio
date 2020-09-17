@@ -215,7 +215,6 @@ const styles = theme =>
       fontSize: theme.SIZES.INPUT_HELP_TEXT,
       marginVertical: 8,
       paddingHorizontal: 16,
-      fontSize: 14,
     },
     rounded: {
       borderRadius: theme.SIZES.INPUT_ROUNDED,
