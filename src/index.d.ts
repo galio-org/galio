@@ -48,7 +48,7 @@ declare module 'galio-framework' {
     safe?: boolean;
     shadow?: boolean;
     shadowColor?: boolean;
-    space?: string;
+    space?: 'between' | 'around' | 'evenly';
     top?: boolean;
     width?: number;
   }
@@ -64,10 +64,11 @@ declare module 'galio-framework' {
     iconSize?: number;
     loading?: boolean;
     loadingSize?: 'small' | 'large';
+    loadingColor?: string;
     lowercase?: boolean;
     onlyIcon?: boolean;
     opacity?: number;
-    radius?: number;
+    round?: boolean;
     shadowColor?: boolean | string;
     shadowless?: boolean;
     size?: 'small' | 'large' | number;
@@ -80,7 +81,7 @@ declare module 'galio-framework' {
     shadow?: boolean;
     borderless?: boolean;
     image?: string;
-    imageBlockStyle?: strubg;
+    imageBlockStyle?: string;
     imageStyle?: ImageStyle;
     avatar?: string;
     location?: string;
@@ -159,15 +160,21 @@ declare module 'galio-framework' {
 
   export interface NavBarProps extends BaseProps {
     back?: boolean;
-    transparent?: boolean;
-    title?: ReactNode;
-    titleStyle?: ViewStyle;
+    hideLeft?: boolean;
+    hideRight?: boolean;
     left?: ReactNode;
-    leftStyle?: ViewStyle;
     leftIconColor?: string;
+    leftIconFamily?: string;
+    leftIconName?: string;
+    leftIconSize?: number;
+    leftStyle?: ViewStyle;
+    onLeftPress?: () => void;
     right?: ReactNode;
     rightStyle?: ViewStyle;
-    onLeftPress?: () => void;
+    title?: ReactNode;
+    titleNumberOfLines?: number;
+    titleStyle?: ViewStyle;
+    transparent?: boolean;
   }
   export class NavBar extends React.Component<NavBarProps> {}
 
@@ -210,6 +217,7 @@ declare module 'galio-framework' {
     color?: BaseColorType;
     round?: boolean;
     textStyle?: TextStyle;
+    useNativeDriver?: boolean;
   }
   export class Toast extends React.Component<ToastProps> {}
 
