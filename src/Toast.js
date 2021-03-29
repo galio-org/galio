@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Animated } from 'react-native';
 import PropTypes from 'prop-types';
-// galio components
+// Galio components
 import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
@@ -28,6 +28,7 @@ class Toast extends Component {
     }),
     styles: PropTypes.any,
     theme: PropTypes.any,
+    useNativeDriver: PropTypes.bool
   };
 
   static defaultProps = {
@@ -41,6 +42,7 @@ class Toast extends Component {
     textStyle: null,
     styles: {},
     theme: GalioTheme,
+    useNativeDriver: true
   };
 
   state = {
@@ -53,7 +55,7 @@ class Toast extends Component {
   visibilityTimeout;
 
   componentDidUpdate(prevProps) {
-    const { isShow, fadeInDuration, fadeOutDuration } = this.props;
+    const { isShow, fadeInDuration, fadeOutDuration, useNativeDriver } = this.props;
     const { isShow: prevIsShow } = prevProps;
     const { fadeAnim } = this.state;
 
@@ -63,6 +65,7 @@ class Toast extends Component {
       this.animation = Animated.timing(fadeAnim, {
         toValue: 1,
         duration: fadeInDuration,
+        useNativeDriver,
       }).start();
     }
 
@@ -70,6 +73,7 @@ class Toast extends Component {
       this.animation = Animated.timing(fadeAnim, {
         toValue: 0,
         duration: fadeOutDuration,
+        useNativeDriver,
       }).start();
 
       this.visibilityTimeout = setTimeout(() => {

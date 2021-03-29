@@ -93,7 +93,7 @@ Block.propTypes = {
   card: PropTypes.bool,
   left: PropTypes.bool,
   shadow: PropTypes.bool,
-  space: PropTypes.string,
+  space: PropTypes.oneOf(['between', 'around', 'evenly' ]),
   fluid: PropTypes.bool,
   height: PropTypes.number,
   width: PropTypes.number,
