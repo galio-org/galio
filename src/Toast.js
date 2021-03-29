@@ -21,9 +21,10 @@ class Toast extends Component {
     ]),
     round: PropTypes.bool,
     style: ViewPropTypes.style,
-    textStyle: ViewPropTypes.style,
+    textStyle: PropTypes.object,
     styles: PropTypes.any,
     theme: PropTypes.any,
+    useNativeDriver: PropTypes.bool
   };
 
   static defaultProps = {
@@ -37,6 +38,7 @@ class Toast extends Component {
     textStyle: null,
     styles: {},
     theme: GalioTheme,
+    useNativeDriver: true
   };
 
   state = {
@@ -49,7 +51,7 @@ class Toast extends Component {
   visibilityTimeout;
 
   componentDidUpdate(prevProps) {
-    const { isShow, fadeInDuration, fadeOutDuration } = this.props;
+    const { isShow, fadeInDuration, fadeOutDuration, useNativeDriver } = this.props;
     const { isShow: prevIsShow } = prevProps;
     const { fadeAnim } = this.state;
 
@@ -59,6 +61,7 @@ class Toast extends Component {
       this.animation = Animated.timing(fadeAnim, {
         toValue: 1,
         duration: fadeInDuration,
+        useNativeDriver,
       }).start();
     }
 
@@ -66,6 +69,7 @@ class Toast extends Component {
       this.animation = Animated.timing(fadeAnim, {
         toValue: 0,
         duration: fadeOutDuration,
+        useNativeDriver,
       }).start();
 
       this.visibilityTimeout = setTimeout(() => {
