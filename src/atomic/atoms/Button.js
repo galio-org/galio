@@ -19,6 +19,7 @@ function Button({
     iconColor,
     loading,
     loadingSize,
+    loadingColor,
     lowercase,
     onlyIcon,
     opacity,
@@ -90,7 +91,7 @@ function Button({
     }
 
     if (loading) {
-      content = <ActivityIndicator size={loadingSize} color={theme.COLORS.WHITE} />;
+      content = <ActivityIndicator size={loadingSize} color={loadingColor || theme.COLORS.WHITE} />;
     }
 
     return content;
