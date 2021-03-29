@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ViewPropTypes } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { withGalio } from 'theme';
 
@@ -87,12 +87,14 @@ Avatar.propTypes = {
   backgroundColor: PropTypes.string,
   imageProps: PropTypes.object,
   imageStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number]),
-  containerStyle: ViewPropTypes.style,
+  containerStyle: PropTypes.shape({
+    style: PropTypes.any,
+  }),
   styles: PropTypes.any,
   theme: PropTypes.any,
 };
 
-const styles = theme =>
+const styles = (theme) =>
   StyleSheet.create({
     labelContainerWithInset: {
       top: 1,

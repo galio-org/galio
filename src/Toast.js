@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Animated, ViewPropTypes } from 'react-native';
+import { Dimensions, StyleSheet, Animated } from 'react-native';
 import PropTypes from 'prop-types';
-// galio components
+// Galio components
 import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
@@ -20,8 +20,12 @@ class Toast extends Component {
       PropTypes.string,
     ]),
     round: PropTypes.bool,
-    style: ViewPropTypes.style,
-    textStyle: PropTypes.object,
+    style: PropTypes.shape({
+      style: PropTypes.any,
+    }),
+    textStyle: PropTypes.shape({
+      style: PropTypes.any,
+    }),
     styles: PropTypes.any,
     theme: PropTypes.any,
     useNativeDriver: PropTypes.bool
@@ -88,7 +92,7 @@ class Toast extends Component {
     }
   }
 
-  setVisibility = isShow => this.setState({ isShow });
+  setVisibility = (isShow) => this.setState({ isShow });
 
   getTopPosition = () => {
     const { positionIndicator, positionOffset } = this.props;
@@ -139,7 +143,7 @@ class Toast extends Component {
   }
 }
 
-const styles = theme =>
+const styles = (theme) =>
   StyleSheet.create({
     toast: {
       padding: theme.SIZES.BASE,
