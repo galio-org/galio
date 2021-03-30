@@ -30,12 +30,14 @@ function NavBar({
   theme,
   title,
   titleStyle,
+  titleNumberOfLines,
+  titleTextProps,
 }) {
   function renderTitle() {
     if (typeof title === 'string') {
       return (
         <View style={styles.title}>
-          <Text style={[styles.titleTextStyle, titleStyle]}>{title}</Text>
+          <Text numberOfLines={titleNumberOfLines || 1} style={[styles.titleTextStyle, titleStyle]} {...titleTextProps}>{title}</Text>
         </View>
       );
     }
