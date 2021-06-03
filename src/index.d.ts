@@ -11,20 +11,19 @@ import {
 declare module 'galio-framework' {
   type IconFamilyType =
     | 'Galio'
-    | 'AntDesign'
-    | 'Entypo'
-    | 'EvilIcons'
-    | 'Feather'
-    | 'FontAwesome'
-    | 'FontAwesome5'
-    | 'Fontisto'
-    | 'Foundation'
-    | 'Ionicons'
-    | 'MaterialIcons'
-    | 'MaterialCommunityIcons'
-    | 'Octicons'
-    | 'Zocial'
-    | 'SimpleLineIcons';
+    | 'zocial'
+    | 'octicon'
+    | 'material'
+    | 'material-community'
+    | 'ionicon'
+    | 'foundation'
+    | 'evilicons'
+    | 'entypo'
+    | 'font-awesome'
+    | 'font-awesome-5'
+    | 'simple-line-icon'
+    | 'feather'
+    | 'antdesign';
 
   type BaseColorType = string;
 
