@@ -78,7 +78,7 @@ function Radio({
   ];
   
   
-  // O N - C H E C K E D - P R O P - U P D A T E
+  // O N - V A L U E - P R O P - U P D A T E
   React.useEffect(() => {
     setChecked(initialValue || value);
   }, [value]);
