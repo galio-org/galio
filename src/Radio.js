@@ -18,6 +18,7 @@ function Radio({
   radioInnerStyle,
   styles,
   theme,
+  value
 }) {
   const [checked, setChecked] = React.useState(initialValue);
 
@@ -75,6 +76,12 @@ function Radio({
     disabled && styles.disabledRadioInner,
     radioInnerStyle,
   ];
+  
+  
+  // O N - C H E C K E D - P R O P - U P D A T E
+  React.useEffect(() => {
+    setChecked(initialValue || value);
+  }, [value]);
 
   return (
     <TouchableOpacity
@@ -135,6 +142,7 @@ Radio.defaultProps = {
   onChange: () => {},
   styles: {},
   theme: GalioTheme,
+  value: false
 };
 
 Radio.propTypes = {
@@ -153,6 +161,7 @@ Radio.propTypes = {
   onChange: PropTypes.func,
   styles: PropTypes.any,
   theme: PropTypes.any,
+  value: PropTypes.bool
 };
 
 export default withGalio(Radio, styles);
