@@ -6,20 +6,20 @@ import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Radio({
-  color,
-  containerStyle,
-  disabled,
-  flexDirection,
-  initialValue,
-  label,
-  labelStyle,
-  onChange,
-  radioOuterStyle,
-  radioInnerStyle,
-  styles,
-  theme,
-  value
-}) {
+                 color,
+                 containerStyle,
+                 disabled,
+                 flexDirection,
+                 initialValue,
+                 label,
+                 labelStyle,
+                 onChange,
+                 radioOuterStyle,
+                 radioInnerStyle,
+                 styles,
+                 theme,
+                 value
+               }) {
   const [checked, setChecked] = React.useState(initialValue);
 
   // A D D I N G - R E Q U I R E D - S P A C E (S) - B A S E D - O N - F L E X - D I R E C T I O N
@@ -53,7 +53,7 @@ function Radio({
 
   // O N - P R E S S - H A N D L E R
   function radioPressHandler() {
-    const current = !checked;
+    const current = true;
     onChange(current);
     setChecked(current);
   }
@@ -61,7 +61,7 @@ function Radio({
   const containerStyles = [styles.container, flexDirection && { flexDirection }, containerStyle];
 
   const whichColor =
-    color && theme.COLORS[color.toUpperCase()] ? theme.COLORS[color.toUpperCase()] : color;
+      color && theme.COLORS[color.toUpperCase()] ? theme.COLORS[color.toUpperCase()] : color;
 
   const radioButtonOuterStyles = [
     styles.radioOuterStyles,
@@ -76,61 +76,61 @@ function Radio({
     disabled && styles.disabledRadioInner,
     radioInnerStyle,
   ];
-  
-  
+
+
   // O N - V A L U E - P R O P - U P D A T E
   React.useEffect(() => {
     setChecked(initialValue || value);
   }, [value]);
 
   return (
-    <TouchableOpacity
-      onPress={() => radioPressHandler()}
-      style={containerStyles}
-      activeOpacity={0.8}
-      disabled={disabled}>
-      <View style={radioButtonOuterStyles}>
-        {checked ? <View style={radioButtonInnerStyles} /> : null}
-      </View>
-      {renderLabel()}
-    </TouchableOpacity>
+      <TouchableOpacity
+          onPress={() => radioPressHandler()}
+          style={containerStyles}
+          activeOpacity={0.8}
+          disabled={disabled}>
+        <View style={radioButtonOuterStyles}>
+          {checked ? <View style={radioButtonInnerStyles} /> : null}
+        </View>
+        {renderLabel()}
+      </TouchableOpacity>
   );
 }
 
 const styles = theme =>
-  StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-    },
-    radioOuterStyles: {
-      height: theme.SIZES.RADIO_HEIGHT,
-      width: theme.SIZES.RADIO_WIDTH,
-      borderRadius: theme.SIZES.RADIO_HEIGHT * 0.5,
-      borderWidth: theme.SIZES.RADIO_THICKNESS,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    radioInnerStyles: {
-      height: theme.SIZES.RADIO_HEIGHT * 0.5,
-      width: theme.SIZES.RADIO_WIDTH * 0.5,
-      borderRadius: theme.SIZES.RADIO_HEIGHT * 0.25,
-    },
-    disabledRadioOuter: {
-      borderColor: theme.COLORS.MUTED,
-    },
-    disabledRadioInner: {
-      backgroundColor: theme.COLORS.MUTED,
-    },
-    textStyles: {
-      color: theme.COLORS.BLACK,
-    },
-    disabledLabel: {
-      color: theme.COLORS.MUTED,
-      opacity: theme.SIZES.OPACITY,
-    },
-  });
+    StyleSheet.create({
+      container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      },
+      radioOuterStyles: {
+        height: theme.SIZES.RADIO_HEIGHT,
+        width: theme.SIZES.RADIO_WIDTH,
+        borderRadius: theme.SIZES.RADIO_HEIGHT * 0.5,
+        borderWidth: theme.SIZES.RADIO_THICKNESS,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      radioInnerStyles: {
+        height: theme.SIZES.RADIO_HEIGHT * 0.5,
+        width: theme.SIZES.RADIO_WIDTH * 0.5,
+        borderRadius: theme.SIZES.RADIO_HEIGHT * 0.25,
+      },
+      disabledRadioOuter: {
+        borderColor: theme.COLORS.MUTED,
+      },
+      disabledRadioInner: {
+        backgroundColor: theme.COLORS.MUTED,
+      },
+      textStyles: {
+        color: theme.COLORS.BLACK,
+      },
+      disabledLabel: {
+        color: theme.COLORS.MUTED,
+        opacity: theme.SIZES.OPACITY,
+      },
+    });
 
 Radio.defaultProps = {
   color: 'primary',
