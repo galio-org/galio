@@ -23,7 +23,7 @@ export default type => {
       return OcticonIcon;
     case 'material':
       return MaterialIcon;
-    case 'material-community':
+    case 'materialcommunity':
       return MaterialCommunityIcon;
     case 'ionicon':
       return Ionicon;
@@ -33,11 +33,11 @@ export default type => {
       return EvilIcon;
     case 'entypo':
       return EntypoIcon;
-    case 'font-awesome':
+    case 'fontawesome':
       return FAIcon;
-    case 'font-awesome-5':
+    case 'fontawesome5':
       return FA5Icon;
-    case 'simple-line-icon':
+    case 'simplelineicon':
       return SimpleLineIcon;
     case 'feather':
       return FeatherIcon;
