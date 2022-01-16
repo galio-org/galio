@@ -14,18 +14,19 @@ import FA5Icon from 'react-native-vector-icons/FontAwesome5';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 
 export default type => {
   switch (type.toLowerCase()) {
     case 'zocial':
       return ZocialIcon;
-    case 'octicon':
+    case 'octicons':
       return OcticonIcon;
-    case 'material':
+    case 'materialicons':
       return MaterialIcon;
-    case 'materialcommunity':
+    case 'materialcommunityicons':
       return MaterialCommunityIcon;
-    case 'ionicon':
+    case 'ionicons':
       return Ionicon;
     case 'foundation':
       return FoundationIcon;
@@ -37,13 +38,13 @@ export default type => {
       return FAIcon;
     case 'fontawesome5':
       return FA5Icon;
-    case 'simplelineicon':
+    case 'simplelineicons':
       return SimpleLineIcon;
     case 'feather':
       return FeatherIcon;
     case 'antdesign':
       return AntIcon;
     default:
-      return MaterialIcon;
+      return Fontisto;
   }
 };
