@@ -72,7 +72,7 @@ Under Galio's belt:
 
 ## Documentation
 
-The documentation for Galio is hosted at our [our website](https://galio.io/docs?ref=galio-repo)
+The documentation for Galio is hosted at [our website](https://galio.io/docs?ref=galio-repo)
 
 ## Resources
 
@@ -88,7 +88,7 @@ The documentation for Galio is hosted at our [our website](https://galio.io/docs
 We use GitHub Issues as the official bug tracker for Galio. Here are some advices for our users that want to report an issue:
 
 1. Make sure that you are using the latest version of Galio. Check for your fork's master branch status and see if it's up to date with the upstream/master (our repository)
-2. Provide us with reproductible steps for the issue.
+2. Provide us with reproducible steps for the issue.
 3. Some issues may be platform specific, so specifying what platform and if it's a simulator or a hardware device will help a lot.
 
 ## Contributors
