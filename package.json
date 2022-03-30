@@ -38,7 +38,7 @@
     "prettier": "^1.15.1",
     "prop-types": "^15.6.2",
     "react": "16.8.3",
-    "react-native": "^0.59",
+    "react-native": "^0.62",
     "react-native-vector-icons": "^6.5.0"
   },
   "peerDependencies": {
