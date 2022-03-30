@@ -79,8 +79,8 @@ function Input({
       />
     </TouchableOpacity>
   );
-  const labelContent = label && <Text style={[styles.label, labelStyles || {}]}>{label}</Text>;
-  const helpContent = help && <Text style={[styles.helpText, helpStyles || {}]}>{help}</Text>;
+  const labelContent = label?.length > 0 && <Text style={[styles.label, labelStyles || {}]}>{label}</Text>;
+  const helpContent = help?.length > 0 && <Text style={[styles.helpText, helpStyles || {}]}>{help}</Text>;
 
   return (
     <View

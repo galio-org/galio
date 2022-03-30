@@ -187,6 +187,7 @@ declare module 'galio-framework' {
     label?: string;
     labelStyle?: TextStyle;
     onChange?: () => void;
+    value?: boolean;
   }
   export class Radio extends React.Component<RadioProps> {}
 
