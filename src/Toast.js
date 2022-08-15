@@ -28,7 +28,7 @@ class Toast extends Component {
     }),
     styles: PropTypes.any,
     theme: PropTypes.any,
-    useNativeDriver: PropTypes.bool
+    useNativeDriver: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -42,7 +42,7 @@ class Toast extends Component {
     textStyle: null,
     styles: {},
     theme: GalioTheme,
-    useNativeDriver: true
+    useNativeDriver: true,
   };
 
   state = {
