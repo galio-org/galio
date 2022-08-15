@@ -32,6 +32,8 @@ function Input({
   password,
   onRef,
   error,
+  containerStyle,
+  rightContent,
   ...rest
 }) {
   const [isPassword, setIsPassword] = React.useState(false);
@@ -45,7 +47,7 @@ function Input({
     bgColor && { backgroundColor: bgColor },
     rounded && styles.rounded,
     borderless && styles.borderless,
-    error && { borderColor: theme.COLORS.DANGER},
+    error && { borderColor: theme.COLORS.DANGER },
     style,
   ];
 
@@ -54,7 +56,7 @@ function Input({
     borderless && icon && styles.inputIcon,
     styles.inputText,
     color && { color },
-    textInputStyle || {}
+    textInputStyle || {},
   ];
 
   const iconInstance = icon ? (
@@ -63,7 +65,12 @@ function Input({
       family={family}
       size={iconSize || theme.SIZES.BASE * 1.0625}
       style={{ marginRight: left && !right ? 4 : 0 }}
-      color={(error && theme.COLORS.DANGER) || iconColor || placeholderTextColor || theme.COLORS.PLACEHOLDER}
+      color={
+        (error && theme.COLORS.DANGER) ||
+        iconColor ||
+        placeholderTextColor ||
+        theme.COLORS.PLACEHOLDER
+      }
     />
   ) : (
     iconContent
@@ -87,6 +94,7 @@ function Input({
       style={{
         marginVertical: theme.SIZES.BASE / 2,
         alignContent: 'center',
+        ...containerStyle,
       }}>
       {labelContent}
       {topHelp && !bottomHelp && helpContent}
@@ -103,6 +111,7 @@ function Input({
         />
         {right && iconInstance}
         {viewPassElement}
+        {rightContent}
       </View>
       {bottomHelp && helpContent}
     </View>
@@ -134,6 +143,8 @@ Input.defaultProps = {
   iconContent: null,
   theme: GalioTheme,
   onRef: null,
+  containerStyle: null,
+  rightContent: null,
 };
 
 Input.propTypes = {
@@ -161,6 +172,8 @@ Input.propTypes = {
   iconContent: PropTypes.any,
   theme: PropTypes.any,
   onRef: PropTypes.func,
+  containerStyle: PropTypes.any,
+  rightContent: PropTypes.any,
 };
 
 const styles = theme =>
@@ -195,14 +208,13 @@ const styles = theme =>
       fontWeight: '500',
       fontSize: theme.SIZES.INPUT_LABEL_TEXT,
       marginVertical: theme.SIZES.INPUT_VERTICAL_LABEL,
-      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL
+      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
     },
     helpText: {
       color: theme.COLORS.SECONDARY,
       fontSize: theme.SIZES.INPUT_HELP_TEXT,
       marginVertical: 8,
       paddingHorizontal: 16,
-      fontSize: 14
     },
     rounded: {
       borderRadius: theme.SIZES.INPUT_ROUNDED,
