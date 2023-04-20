@@ -107,7 +107,7 @@ declare module 'galio-framework' {
     labelStyle?: TextStyle;
     onChange?: () => void;
   }
-  export class CheckBox extends React.Component<CheckBoxProps> {}
+  export class Checkbox extends React.Component<CheckBoxProps> {}
 
   export interface DeckSwiperProps extends BaseProps {
     style?: ViewStyle;
