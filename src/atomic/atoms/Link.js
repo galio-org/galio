@@ -4,11 +4,11 @@ import Text from '../ions/Text';
 import GalioTheme, { withGalio } from '../../theme';
 
 function Link({
-    children,
-    onPress,
-    theme,
-    ...rest
-  }) {
+  onPress,
+  children = null,
+  theme = GalioTheme,
+  ...rest
+}) {
     return (
     <Text
         color={theme.COLORS.PRIMARY}
@@ -18,11 +18,6 @@ function Link({
     </Text>
     );
   }
-
-  Link.defaultProps = {
-    children: null,
-    theme: GalioTheme,
-  };
 
   Link.propTypes = {
     children: PropTypes.any,

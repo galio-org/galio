@@ -11,27 +11,27 @@ import GalioTheme, { withGalio } from './theme';
 const { height } = Dimensions.get('screen');
 
 function NavBar({
-  back,
   hideLeft,
   hideRight,
-  left,
-  leftStyle,
-  leftIconColor,
-  leftHitSlop,
   leftIconSize,
   leftIconName,
   leftIconFamily,
-  onLeftPress,
-  right,
-  rightStyle,
-  style,
-  styles,
-  transparent,
-  theme,
-  title,
-  titleStyle,
   titleNumberOfLines,
   titleTextProps,
+  back = false,
+  transparent = false,
+  title = null,
+  titleStyle = null,
+  left = null,
+  leftStyle = null,
+  leftIconColor = null,
+  onLeftPress = () => {},
+  leftHitSlop = null,
+  right = null,
+  rightStyle = null,
+  style = null,
+  styles = {},
+  theme = GalioTheme,
 }) {
   function renderTitle() {
     if (typeof title === 'string') {
@@ -91,23 +91,6 @@ function NavBar({
     </Block>
   );
 }
-
-NavBar.defaultProps = {
-  back: false,
-  transparent: false,
-  title: null,
-  titleStyle: null,
-  left: null,
-  leftStyle: null,
-  leftIconColor: null,
-  onLeftPress: () => {},
-  leftHitSlop: null,
-  right: null,
-  rightStyle: null,
-  style: null,
-  styles: {},
-  theme: GalioTheme,
-};
 
 NavBar.propTypes = {
   back: PropTypes.bool,

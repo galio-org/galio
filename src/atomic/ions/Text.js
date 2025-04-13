@@ -6,26 +6,26 @@ import normalize from '../../helpers/normalize';
 import GalioTheme, { withGalio } from '../../theme';
 
 function Typography({
-  style,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  body,
-  small,
-  muted,
   neutral,
-  size,
-  color,
-  bold,
-  italic,
   center,
-  children,
-  styles,
-  theme,
+  children = null,
+  style = null,
+  h1 = false,
+  h2 = false,
+  h3 = false,
+  h4 = false,
+  h5 = false,
+  h6 = false,
+  p = false,
+  body = false,
+  small = false,
+  size = 0,
+  color = null,
+  muted = false,
+  bold = false,
+  italic = false,
+  styles = {},
+  theme = GalioTheme,
   ...rest
 }) {
   return (
@@ -54,27 +54,6 @@ function Typography({
     </Text>
   );
 }
-
-Typography.defaultProps = {
-  children: null,
-  style: null,
-  h1: false,
-  h2: false,
-  h3: false,
-  h4: false,
-  h5: false,
-  h6: false,
-  p: false,
-  body: false,
-  small: false,
-  size: 0,
-  color: null,
-  muted: false,
-  bold: false,
-  italic: false,
-  styles: {},
-  theme: GalioTheme,
-};
 
 Typography.propTypes = {
   children: PropTypes.any,

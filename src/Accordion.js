@@ -126,17 +126,17 @@ function AccordionItem({
 }
 
 function Accordion({
-  theme,
   dataArray,
   icon,
   expandedIcon,
   headerStyle,
   contentStyle,
-  opened,
   onAccordionOpen,
   onAccordionClose,
   listStyle,
-  style
+  style,
+  theme = GalioTheme,
+  opened = 0,
 }) {
   const [selected, setSelected] = useState(opened);
 
@@ -179,11 +179,6 @@ Accordion.propTypes = {
   contentStyle: PropTypes.any,
   onAccordionClose: PropTypes.func,
   onAccordionOpen: PropTypes.func,
-};
-
-Accordion.defaultProps = {
-  theme: GalioTheme,
-  opened: 0
 };
 
 const styles = StyleSheet.create({

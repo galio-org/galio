@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
 function Block({
-    row,
-    flex,
-    center,
-    middle,
-    top,
-    bottom,
-    right,
-    left,
-    shadow,
-    space,
-    fluid,
-    height,
-    shadowColor,
-    card,
-    width,
-    safe,
+    row = false,
+    flex = false,
+    center = false,
+    middle = false,
+    top = false,
+    bottom = false,
+    right = false,
+    left = false,
+    card = false,
+    shadow = false,
+    space = null,
+    fluid = false,
+    height = null,
+    width = null,
+    shadowColor = null,
+    safe = false,
+    styles = {},
+    theme = GalioTheme,
     children,
-    style,
-    styles,
     ...rest
 }) {
 
@@ -60,27 +60,6 @@ function Block({
     </View>
   );
 }
-
-Block.defaultProps = {
-  row: false,
-  flex: false,
-  center: false,
-  middle: false,
-  top: false,
-  bottom: false,
-  right: false,
-  left: false,
-  card: false,
-  shadow: false,
-  space: null,
-  fluid: false,
-  height: null,
-  width: null,
-  shadowColor: null,
-  safe: false,
-  styles: {},
-  theme: GalioTheme,
-};
 
 Block.propTypes = {
   row: PropTypes.bool,

@@ -8,23 +8,23 @@ import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Checkbox({
-  checkboxStyle,
-  color,
-  disabled,
-  flexDirection,
-  image,
-  imageStyle,
-  iconColor,
-  iconFamily,
-  iconName,
-  iconSize,
-  initialValue,
-  label,
-  labelStyle,
-  onChange,
   style,
-  styles,
-  theme,
+  checkboxStyle = null,
+  color = 'theme',
+  disabled = false,
+  flexDirection = 'row',
+  iconColor = '#fff',
+  iconName = 'check',
+  iconSize = 15,
+  iconFamily = 'FontAwesome',
+  image = null,
+  imageStyle = null,
+  initialValue = false,
+  label = null,
+  labelStyle = null,
+  onChange = () => {},
+  styles = {},
+  theme = GalioTheme,
 }) {
   const [checked, setChecked] = React.useState(initialValue);
 
@@ -146,25 +146,6 @@ const styles = theme =>
       height: 200,
     },
   });
-
-Checkbox.defaultProps = {
-  checkboxStyle: null,
-  color: 'theme',
-  disabled: false,
-  flexDirection: 'row',
-  iconColor: '#fff',
-  iconName: 'check',
-  iconSize: 15,
-  iconFamily: 'FontAwesome',
-  image: null,
-  imageStyle: null,
-  initialValue: false,
-  label: null,
-  labelStyle: null,
-  onChange: () => {},
-  styles: {},
-  theme: GalioTheme,
-};
 
 Checkbox.propTypes = {
   checkboxStyle: PropTypes.any,

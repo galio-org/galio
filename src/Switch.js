@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
 function Switch({
-  initialValue,
   onChange,
-  color,
-  disabled,
-  trackColor,
-  ios_backgroundColor,
+  color = GalioTheme.COLORS.PRIMARY,
+  ios_backgroundColor = GalioTheme.COLORS.GREY,
+  trackColor = {
+    false: GalioTheme.COLORS.GREY,
+    true: GalioTheme.COLORS.PRIMARY,
+  },
+  disabled = false,
+  initialValue = false,
   ...rest
 }) {
   const [switchValue, setSwitchValue] = React.useState(initialValue);
@@ -34,17 +37,6 @@ function Switch({
     />
   );
 }
-
-Switch.defaultProps = {
-  color: GalioTheme.COLORS.PRIMARY,
-  ios_backgroundColor: GalioTheme.COLORS.GREY,
-  trackColor: {
-    false: GalioTheme.COLORS.GREY,
-    true: GalioTheme.COLORS.PRIMARY,
-  },
-  disabled: false,
-  initialValue: false,
-};
 
 Switch.propTypes = {
   ...Switcher.propTypes,

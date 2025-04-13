@@ -6,20 +6,20 @@ import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
 function Radio({
-                 color,
-                 containerStyle,
-                 disabled,
-                 flexDirection,
-                 initialValue,
-                 label,
-                 labelStyle,
-                 onChange,
-                 radioOuterStyle,
-                 radioInnerStyle,
-                 styles,
-                 theme,
-                 value
-               }) {
+  containerStyle,
+  radioOuterStyle,
+  radioInnerStyle,
+  color = 'primary',
+  disabled = false,
+  flexDirection = 'row',
+  initialValue = false,
+  label = null,
+  labelStyle = null,
+  onChange = () => {},
+  styles = {},
+  value = false,
+  theme = GalioTheme,
+}) {
   const [checked, setChecked] = React.useState(initialValue);
 
   // A D D I N G - R E Q U I R E D - S P A C E (S) - B A S E D - O N - F L E X - D I R E C T I O N
@@ -131,19 +131,6 @@ const styles = theme =>
         opacity: theme.SIZES.OPACITY,
       },
     });
-
-Radio.defaultProps = {
-  color: 'primary',
-  disabled: false,
-  flexDirection: 'row',
-  initialValue: false,
-  label: null,
-  labelStyle: null,
-  onChange: () => {},
-  styles: {},
-  theme: GalioTheme,
-  value: false
-};
 
 Radio.propTypes = {
   color: PropTypes.string,

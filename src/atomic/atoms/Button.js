@@ -8,30 +8,30 @@ import GalioTheme, { withGalio } from '../../theme';
 const { width } = Dimensions.get('window');
 
 function Button({
-    color,
     children,
-    capitalize,
-    disabled,
-    iconSize,
-    icon,
-    iconRight,
-    iconFamily,
-    iconColor,
-    loading,
-    loadingSize,
     loadingColor,
-    lowercase,
-    onlyIcon,
-    opacity,
     round,
     style,
-    size,
-    shadowless,
-    shadowColor,
-    styles,
-    theme,
     textStyle,
-    uppercase,
+    color = 'primary',
+    size = 'default',
+    disabled = false,
+    uppercase = false,
+    lowercase = false,
+    capitalize = false,
+    shadowless = false,
+    shadowColor = false,
+    onlyIcon = false,
+    loading = false,
+    loadingSize = 'small',
+    opacity = 0.8,
+    icon = false,
+    iconRight = false,
+    iconFamily = false,
+    iconSize = 16,
+    iconColor = null,
+    styles = {},
+    theme = GalioTheme,
     ...rest
 }) {
   function renderContent() {
@@ -126,28 +126,6 @@ function Button({
     </TouchableOpacity>
   );
 }
-
-Button.defaultProps = {
-  color: 'primary',
-  size: 'default',
-  disabled: false,
-  uppercase: false,
-  lowercase: false,
-  capitalize: false,
-  shadowless: false,
-  shadowColor: false,
-  onlyIcon: false,
-  loading: false,
-  loadingSize: 'small',
-  opacity: .8,
-  icon: false,
-  iconRight: false,
-  iconFamily: false,
-  iconSize: 16,
-  iconColor: null,
-  styles: {},
-  theme: GalioTheme,
-};
 
 Button.propTypes = {
   ...TouchableOpacity.propTypes,
