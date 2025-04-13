@@ -9,7 +9,6 @@ import Icon from './atomic/ions/Icon';
 import GalioTheme, { withGalio } from './theme';
 
 function Card({
-  borderless, 
   children,
   image,
   imageBlockStyle,
