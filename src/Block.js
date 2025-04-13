@@ -4,26 +4,27 @@ import PropTypes from 'prop-types';
 import GalioTheme, { withGalio } from './theme';
 
 function Block({
-    row = false,
-    flex = false,
-    center = false,
-    middle = false,
-    top = false,
-    bottom = false,
-    right = false,
-    left = false,
-    card = false,
-    shadow = false,
-    space = null,
-    fluid = false,
-    height = null,
-    width = null,
-    shadowColor = null,
-    safe = false,
-    styles = {},
-    theme = GalioTheme,
-    children,
-    ...rest
+  style,
+  row = false,
+  flex = false,
+  center = false,
+  middle = false,
+  top = false,
+  bottom = false,
+  right = false,
+  left = false,
+  card = false,
+  shadow = false,
+  space = null,
+  fluid = false,
+  height = null,
+  width = null,
+  shadowColor = null,
+  safe = false,
+  styles = {},
+  theme = GalioTheme,
+  children,
+  ...rest
 }) {
 
   const styleBlock = [
