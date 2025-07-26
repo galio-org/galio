@@ -24,7 +24,7 @@ function Switch({
     <Switcher
       disabled={disabled}
       trackColor={{ ...trackColor }}
-      ios_backgroundColor={trackColor.false || ios_backgroundColor}
+      ios_backgroundColor={trackColor?.false || ios_backgroundColor}
       value={switchValue}
       onValueChange={() => {
         onPressSwitch();

@@ -4,7 +4,9 @@ import {
   TouchableWithoutFeedback,
   FlatList,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Platform,
+  View
 } from "react-native";
 import PropTypes from "prop-types";
 
@@ -13,7 +15,7 @@ import Icon from "./atomic/ions/Icon";
 import Text from "./atomic/ions/Text";
 import GalioTheme from "./theme";
 
-const { width } = Dimensions.get("screen");
+const { width } = Dimensions.get("window");
 
 // 
 function AccordionContent({ content, contentStyle }) {
@@ -64,16 +66,17 @@ function AccordionHeader({
 }
 
 function AccordionAnimation({ children, style }) {
+  if (Platform.OS === 'web') {
+    return <View style={style}>{children}</View>;
+  }
   const [fade, setFade] = useState(new Animated.Value(0.3));
-
   useEffect(() => {
     Animated.timing(fade, {
       toValue: 1,
       duration: 400,
       useNativeDriver: true
     }).start();
-  });
-
+  }, []);
   return (
     <Animated.View style={{ ...style, opacity: fade }}>
       {children}

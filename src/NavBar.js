@@ -8,7 +8,7 @@ import Text from './atomic/ions/Text';
 import Icon from './atomic/ions/Icon';
 import GalioTheme, { withGalio } from './theme';
 
-const { height } = Dimensions.get('screen');
+const { height } = Dimensions.get('window');
 
 function NavBar({
   back,

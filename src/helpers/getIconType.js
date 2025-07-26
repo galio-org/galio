@@ -1,49 +1,54 @@
 /****************************************************/
 /**** INSPIRED BY react-native-elements*************/
 /**************************************************/
-import ZocialIcon from 'react-native-vector-icons/Zocial';
-import OcticonIcon from 'react-native-vector-icons/Octicons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicon from 'react-native-vector-icons/Ionicons';
-import FoundationIcon from 'react-native-vector-icons/Foundation';
-import EvilIcon from 'react-native-vector-icons/EvilIcons';
-import EntypoIcon from 'react-native-vector-icons/Entypo';
-import FAIcon from 'react-native-vector-icons/FontAwesome';
-import FA5Icon from 'react-native-vector-icons/FontAwesome5';
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import AntIcon from 'react-native-vector-icons/AntDesign';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import { 
+  Zocial, 
+  Octicons, 
+  MaterialIcons, 
+  MaterialCommunityIcons, 
+  Ionicons, 
+  Foundation, 
+  EvilIcons, 
+  Entypo, 
+  FontAwesome, 
+  FontAwesome5, 
+  SimpleLineIcons, 
+  Feather, 
+  AntDesign, 
+  Fontisto 
+} from '@expo/vector-icons';
 
 export default type => {
+  if (!type) return Fontisto;
   switch (type.toLowerCase()) {
     case 'zocial':
-      return ZocialIcon;
+      return Zocial;
     case 'octicons':
-      return OcticonIcon;
+      return Octicons;
     case 'materialicons':
-      return MaterialIcon;
+      return MaterialIcons;
+    case 'material':
+      return MaterialIcons;
     case 'materialcommunityicons':
-      return MaterialCommunityIcon;
+      return MaterialCommunityIcons;
     case 'ionicons':
-      return Ionicon;
+      return Ionicons;
     case 'foundation':
-      return FoundationIcon;
+      return Foundation;
     case 'evilicons':
-      return EvilIcon;
+      return EvilIcons;
     case 'entypo':
-      return EntypoIcon;
+      return Entypo;
     case 'fontawesome':
-      return FAIcon;
+      return FontAwesome;
     case 'fontawesome5':
-      return FA5Icon;
+      return FontAwesome5;
     case 'simplelineicons':
-      return SimpleLineIcon;
+      return SimpleLineIcons;
     case 'feather':
-      return FeatherIcon;
+      return Feather;
     case 'antdesign':
-      return AntIcon;
+      return AntDesign;
     default:
       return Fontisto;
   }

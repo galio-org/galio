@@ -17,7 +17,6 @@ import Text from './atomic/ions/Text';
 import Toast from './Toast';
 import Link from './atomic/atoms/Link';
 
-
 import theme, { withGalio, GalioProvider, useGalioTheme } from './theme';
 
 import galioConfig from './config/galio.json';

@@ -76,7 +76,7 @@ function Checkbox({
     setChecked(current);
   }
 
-  const colorStyle = theme.COLORS[color.toUpperCase()]; // this sets the correct color for the theme file
+  const colorStyle = color && theme.COLORS[color.toUpperCase()]; // this sets the correct color for the theme file
 
   const checkBoxContainerStyle = [styles.container, flexDirection && { flexDirection }, style];
 

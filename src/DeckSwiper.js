@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 import Block from './Block';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('screen');
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 function DeckSwiper({
   onSwipeRight,

@@ -1,7 +1,8 @@
 {
   "name": "galio-framework",
   "main": "src/index.js",
-  "version": "0.8.1",
+  "version": "0.9.0",
+  "description": "Galio is a beautifully designed, free and open source React Native framework with a set of ready-to-use components. Updated for React 19, React Native 0.80, and Expo 50+.",
   "files": [
     "src/"
   ],
@@ -24,27 +25,37 @@
     "bootstrap"
   ],
   "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
     "precommit": "yarn lint",
     "lint": "eslint src/**.js",
     "test": "jest",
     "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
-    "opencollective-postinstall": "^2.0.1"
+    "@expo/metro-runtime": "~5.0.4",
+    "expo": "~53.0.0",
+    "expo-status-bar": "~2.0.0",
+    "opencollective-postinstall": "^2.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-native": "^0.79.5",
+    "react-native-url-polyfill": "^2.0.0",
+    "react-native-web": "^0.20.0"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "eslint-config-universe": "^1.0.7",
-    "prettier": "^1.15.1",
-    "prop-types": "^15.6.2",
-    "react": "16.8.3",
-    "react-native": "^0.59",
-    "react-native-vector-icons": "^6.5.0"
+    "@expo/vector-icons": "^14.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-universe": "^12.0.0",
+    "prettier": "^3.6.0",
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-native-vector-icons": ">6.0.0"
+    "@expo/vector-icons": ">=14.0.0",
+    "react": ">=18.0.0",
+    "react-native": ">=0.71.0"
   },
   "collective": {
     "type": "opencollective",

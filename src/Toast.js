@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Text from './atomic/ions/Text';
 import GalioTheme, { withGalio } from './theme';
 
-const { height } = Dimensions.get('screen');
+const { height } = Dimensions.get('window');
 
 class Toast extends Component {
   static propTypes = {

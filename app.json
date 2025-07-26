@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Galio Test App",
+    "slug": "galio-test-app",
+    "version": "1.0.0",
+    "sdkVersion": "53.0.0",
+    "platforms": ["ios", "android", "web"],
+    "entryPoint": "./index.js",
+    "jsEngine": "jsc",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF"
+      }
+    }
+  }
+} 

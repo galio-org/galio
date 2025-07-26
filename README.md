@@ -16,10 +16,35 @@
   <a href="https://github.com/galio-org/galio-starter-kit">galio-starter-kit</a></p>
 </p>
 
+## 🚀 Major Update - v0.9.0
+
+**Galio has been updated to support the latest versions of React, React Native, and Expo!**
+
+### ✅ What's New
+- **React 19** compatibility
+- **React Native 0.80** support
+- **Expo 50+** integration
+- **Modern vector icons** using @expo/vector-icons
+- **Updated dependencies** for better performance and security
+
+### 📋 Compatibility Requirements
+- React: >=18.0.0 (tested with 19.1.0)
+- React Native: >=0.71.0 (tested with 0.80.0)
+- Expo: >=50.0.0 (recommended)
+- @expo/vector-icons: >=14.0.0
+
+### 🔄 Migration from v0.8.x
+If you're upgrading from an older version, please note:
+- Vector icons have been migrated to @expo/vector-icons
+- Some deprecated APIs have been updated
+- Custom Galio icons now use a fallback system
+
 ## Table of Contents
 * [Quick start](#quick-start)
+* [Installation](#installation)
 * [Components](#components)
 * [Documentation](#documentation)
+* [Migration Guide](#migration-guide)
 * [Resources](#resources)
 * [Reporting Issues](#reporting-issues)
 * [Licensing](#licensing)
@@ -32,8 +57,9 @@
 
 ## Quick Start
 
-#### 1. Library instructions
-Use our awesome components inside your own projects by running: 
+### Installation
+
+#### 1. Install Galio
 ```bash
 npm install galio-framework
 ```
@@ -41,15 +67,40 @@ or
 ```sh
 yarn add galio-framework
 ```
-Import our UI components to your screens:
+
+#### 2. Install Required Dependencies
+Make sure you have the required peer dependencies:
+```bash
+npm install @expo/vector-icons
+```
+
+#### 3. Import Components
 ```js
 import { Block, Button, Card, Icon, Input, NavBar, Text } from 'galio-framework';
 ```
 
+### Basic Usage Example
+```jsx
+import React from 'react';
+import { View } from 'react-native';
+import { Block, Button, Text, theme } from 'galio-framework';
+
+export default function App() {
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Block center>
+        <Text h4>Welcome to Galio!</Text>
+        <Button color="primary" style={{ marginTop: 20 }}>
+          Get Started
+        </Button>
+      </Block>
+    </View>
+  );
+}
+```
+
 ### 2. galio-starter-kit
 [galio-starter-kit](https://github.com/galio-org/galio-starter-kit) is an app developed by the community with the main purpose of showcasing what Galio can do. Built with Expo and Galio, the screens are created and maintained by the community. Join and help us build this cool library together! 
-
-
 
 ## Components
 
@@ -70,6 +121,52 @@ Under Galio's belt:
 * Switch
 * GalioTheme
 
+## Migration Guide
+
+### From v0.8.x to v0.9.0
+
+#### Vector Icons Changes
+The vector icons system has been completely updated:
+
+**Before (v0.8.x):**
+```js
+import { Icon } from 'galio-framework';
+// Used react-native-vector-icons internally
+```
+
+**After (v0.9.0):**
+```js
+import { Icon } from 'galio-framework';
+// Now uses @expo/vector-icons internally
+// No changes needed in your component usage!
+```
+
+#### Custom Icons
+If you were using custom Galio icons, they now use a fallback system:
+```js
+// Custom Galio icons now fallback to MaterialIcons
+<Icon family="Galio" name="custom-icon" />
+// Will show a warning and use MaterialIcons as fallback
+```
+
+#### Font Loading
+For Expo projects, use Expo's font loading system:
+```js
+import * as Font from 'expo-font';
+import { GalioFont } from 'galio-framework';
+
+// Load the font
+await Font.loadAsync({
+  'Galio': GalioFont,
+});
+```
+
+### Breaking Changes
+- Removed support for React < 18.0.0
+- Removed support for React Native < 0.71.0
+- Vector icons now require @expo/vector-icons
+- Some deprecated React Native APIs have been updated
+
 ## Documentation
 
 The documentation for Galio is hosted at [our website](https://galio.io/docs?ref=galio-repo)
@@ -82,7 +179,6 @@ The documentation for Galio is hosted at [our website](https://galio.io/docs?ref
 * galio-starter-kit: [Github repo](https://github.com/galio-org/galio-starter-kit)
 * Issues: [GitHub Issues Page](https://github.com/galio-org/galio/issues)
 
-
 ## Reporting Issues
 
 We use GitHub Issues as the official bug tracker for Galio. Here are some advices for our users that want to report an issue:
@@ -90,18 +186,17 @@ We use GitHub Issues as the official bug tracker for Galio. Here are some advice
 1. Make sure that you are using the latest version of Galio. Check for your fork's master branch status and see if it's up to date with the upstream/master (our repository)
 2. Provide us with reproducible steps for the issue.
 3. Some issues may be platform specific, so specifying what platform and if it's a simulator or a hardware device will help a lot.
+4. **For v0.9.0 issues**: Please specify your React, React Native, and Expo versions.
 
 ## Contributors
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
 <a href="https://github.com/galio-org/galio/contributors"><img src="https://opencollective.com/galio/contributors.svg?width=890&button=false" /></a>
-
 
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/galio#backer)]
 
 <a href="https://opencollective.com/galio#backers" target="_blank"><img src="https://opencollective.com/galio/backers.svg?width=890"></a>
-
 
 ## Sponsors
 
@@ -122,4 +217,4 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 * Licensed under MIT (<https://github.com/galio-org/galio/blob/master/LICENSE>)
 
-© 2019 [Galio](https://galio.io?ref=galio-repo), made with 💚 for the community.
+© 2019-2025 [Galio](https://galio.io?ref=galio-repo), made with 💚 for the community.

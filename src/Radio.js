@@ -53,9 +53,7 @@ function Radio({
 
   // O N - P R E S S - H A N D L E R
   function radioPressHandler() {
-    const current = true;
-    onChange(current);
-    setChecked(current);
+    onChange(true);
   }
 
   const containerStyles = [styles.container, flexDirection && { flexDirection }, containerStyle];
@@ -80,7 +78,7 @@ function Radio({
 
   // O N - V A L U E - P R O P - U P D A T E
   React.useEffect(() => {
-    setChecked(initialValue || value);
+    setChecked(value);
   }, [value]);
 
   return (

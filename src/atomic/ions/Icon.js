@@ -1,16 +1,13 @@
 import React from 'react';
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import { Ionicons, MaterialIcons, MaterialCommunityIcons, FontAwesome, FontAwesome5, AntDesign, Feather, Entypo, EvilIcons, Foundation, SimpleLineIcons, Octicons, Zocial, Fontisto } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
 import GalioTheme, { withGalio } from '../../theme';
 import getIconType from '../../helpers/getIconType';
 import galioConfig from '../../config/galio.json';
 
-const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
-
-// Galio Fonts have to be linked with 'react-native link' if you're using react-native-cli
-// Galio Fonts have to loaded with Fonts.loadAsync if you're
-// using Expo (you can export GalioFont from index in order to import it)
+// Note: Galio custom icons would need to be handled differently with Expo
+// For now, we'll use a fallback approach
 
 function Icon({
   name,
@@ -24,16 +21,17 @@ function Icon({
   ...rest
 }) {
   if (family === 'Galio') {
-    if (name) {
-      return (
-        <Galio
-          name={name}
-          size={size || (medium ? theme.SIZES.ICON_MEDIUM : (large ? theme.SIZES.ICON_LARGE : theme.SIZES.ICON))}
-          color={color || theme.COLORS.THEME.BLACK}
-          {...rest}
-        />
-      );
-    }
+    // For Galio custom icons, we'll use a fallback to MaterialIcons for now
+    // In a real implementation, you'd need to create a custom icon font or use a different approach
+    console.warn('Galio custom icons are not yet supported with the new vector icons system. Using fallback.');
+    return (
+      <MaterialIcons
+        name={name}
+        size={size || (medium ? theme.SIZES.ICON_MEDIUM : (large ? theme.SIZES.ICON_LARGE : theme.SIZES.ICON))}
+        color={color || theme.COLORS.BLACK}
+        {...rest}
+      />
+    );
   } else {
     const IconInstance = getIconType(family);
     if (name && IconInstance) {
@@ -41,7 +39,7 @@ function Icon({
         <IconInstance
           name={name}
           size={size || (medium ? theme.SIZES.ICON_MEDIUM : (large ? theme.SIZES.ICON_LARGE : theme.SIZES.ICON))}
-          color={color || theme.COLORS.THEME.BLACK}
+          color={color || theme.COLORS.BLACK}
           {...rest}
         />
       );

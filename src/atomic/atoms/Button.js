@@ -115,7 +115,7 @@ function Button({
       borderRadius: iconSize * 2,
     },
     !shadowless && styles.shadow,
-    { shadowColor: shadowColor || theme.COLORS[color.toUpperCase()] },
+    { shadowColor: shadowColor || (color && theme.COLORS[color.toUpperCase()]) },
     { zIndex: 2 },
     style,
   ];
