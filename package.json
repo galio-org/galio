@@ -1,8 +1,10 @@
 {
   "name": "galio-framework",
-  "main": "src/index.js",
-  "version": "0.8.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "version": "2.0.0",
   "files": [
+    "dist/",
     "src/"
   ],
   "repository": {
@@ -21,36 +23,67 @@
     "react native",
     "component library",
     "ui kit",
-    "bootstrap"
+    "bootstrap",
+    "typescript"
   ],
   "scripts": {
     "precommit": "yarn lint",
-    "lint": "eslint src/**.js",
+    "lint": "eslint src/**/*.{js,ts,tsx}",
+    "lint:fix": "eslint src/**/*.{js,ts,tsx} --fix",
     "test": "jest",
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
     "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
+    "@expo/vector-icons": "^14.1.0",
     "opencollective-postinstall": "^2.0.1"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "eslint-config-universe": "^1.0.7",
-    "prettier": "^1.15.1",
-    "prop-types": "^15.6.2",
-    "react": "16.8.3",
-    "react-native": "^0.59",
-    "react-native-vector-icons": "^6.5.0"
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.72.0",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.0.0",
+    "eslint-config-universe": "^11.0.0",
+    "prettier": "^3.0.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
+    "react-native-vector-icons": "^10.0.0",
+    "typescript": "~5.1.6"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-native-vector-icons": ">6.0.0"
+    "react": ">=16.8.0",
+    "react-native": ">=0.59.0",
+    "react-native-vector-icons": ">=6.0.0"
   },
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/galio"
   },
   "eslintConfig": {
-    "extends": "universe/native"
+    "extends": [
+      "universe/native",
+      "universe/shared/typescript-analysis"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx",
+          "*.d.ts"
+        ],
+        "parserOptions": {
+          "project": "./tsconfig.json"
+        }
+      }
+    ],
+    "ignorePatterns": [
+      "node_modules/",
+      "dist/",
+      "build/"
+    ]
   }
 }
