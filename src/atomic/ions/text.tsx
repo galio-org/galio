@@ -91,7 +91,7 @@ function Typography({
     ], [h1, h2, h3, h4, h5, h6, p, body, small, muted, neutral, size, color, italic, bold, center, style, theme, shadow]);
 
     return (
-        <Text style={[styles.base, ...dynamicStyles] as ViewStyle} {...rest}>
+        <Text style={[styles.base, ...dynamicStyles] as unknown as TextStyle} {...rest}>
             {children}
         </Text>
     );

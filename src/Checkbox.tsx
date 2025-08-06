@@ -181,7 +181,7 @@ function Checkbox({
             accessibilityLabel={defaultAccessibilityLabel}
             accessibilityHint={accessibilityHint}
         >
-            <View style={checkedBoxViewStyles as ViewStyle}>
+            <View style={checkedBoxViewStyles as unknown as ViewStyle}>
                 {renderChecked({ checked, iconColor, iconFamily, iconName, iconSize })}
             </View>
             {renderLabel({ image, label, disabled, labelStyle, imageStyle, flexDirection })}

@@ -11,6 +11,7 @@ import {
 
 declare module 'galio-framework' {
   type IconFamilyType =
+    | 'fontisto'
     | 'Galio'
     | 'zocial'
     | 'octicon'
@@ -393,4 +394,9 @@ declare module 'galio-framework' {
   ): ComponentType<any>;
 
   export function useGalioTheme(): ThemeType;
+}
+
+declare module '*.ttf' {
+  const content: any;
+  export default content;
 }

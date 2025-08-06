@@ -169,7 +169,7 @@ const Input = forwardRef<InputRef, InputProps>(({
               onRef?.(r);
             }
           }}
-          style={inputStyles as TextStyle}
+          style={inputStyles}
           keyboardType={type}
           secureTextEntry={isPassword}
           placeholderTextColor={placeholderTextColor}

@@ -1,12 +1,13 @@
 import React, { memo } from 'react';
 import type { JSX } from 'react';
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import { Fontisto } from '@react-native-vector-icons/fontisto';
+import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 
 import galioConfig from '../../config/galio.json';
 import getIconType from '../../helpers/getIconType';
 import { useGalioTheme } from '../../theme';
 
-const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', './fonts/galio.ttf');
+const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', require('../../fonts/galio.ttf'));
 
 export interface IconProps {
     name: string;
@@ -41,6 +42,10 @@ function Icon({
 
     if (family === 'Galio') {
         return name ? <Galio name={name} size={iconSize} color={iconColor} {...rest} /> : null;
+    }
+
+    if (family === 'fontisto') {
+        return name ? <Fontisto name={name as any} size={iconSize} color={iconColor} {...rest} /> : null;
     }
 
     const IconInstance = getIconType(family);
