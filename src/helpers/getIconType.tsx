@@ -49,7 +49,18 @@ export type IconFamily =
     zocial: Zocial,
   };
 
+  const ICON_ALIASES: Record<string, IconFamily> = {
+    'font-awesome': 'fontawesome',
+    'font-awesome-5': 'fontawesome5',
+    'material': 'materialicons',
+    'material-community': 'materialcommunityicons',
+    'ionicon': 'ionicons',
+    'octicon': 'octicons',
+    'simple-line-icon': 'simplelineicons',
+  };
+  
   export default function getIconType(type: string): any {
-    const normalizedType = type.toLowerCase() as IconFamily;
-    return ICON_REGISTRY[normalizedType] || MaterialIcons;
+    const normalized = type.toLowerCase();
+    const mappedType = ICON_ALIASES[normalized] || normalized;
+    return ICON_REGISTRY[mappedType as IconFamily] || MaterialIcons;
   }
