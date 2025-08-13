@@ -69,7 +69,7 @@ function Toast({
     useEffect(() => {
         
         if (isShow && !internalIsShow) {
-            console.log('Showing toast');
+            
             setInternalIsShow(true);
             setOpacity(1);
             animationRef.current = Animated.timing(fadeAnim, {
