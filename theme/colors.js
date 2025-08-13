@@ -60,7 +60,7 @@ exports.SHADOWS = {
         boxShadow: '0px 8px 6.27px rgba(0,0,0,0.1)',
         elevation: 8,
         shadowColor: '#000',
-        shadhowOffset: { width: 0, height: 8 },
+        shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.2,
         shadowRadius: 6.27,
     },
