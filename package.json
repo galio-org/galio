@@ -24,7 +24,8 @@
     "component library",
     "ui kit",
     "bootstrap",
-    "typescript"
+    "typescript",
+    "mobile apps"
   ],
   "scripts": {
     "precommit": "yarn lint",
