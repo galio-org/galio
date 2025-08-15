@@ -1,0 +1,1 @@
+{"version":3,"file":"getIconType.d.ts","sourceRoot":"","sources":["../../src/helpers/getIconType.tsx"],"names":[],"mappings":"AAkBA,MAAM,MAAM,UAAU,GAClB,UAAU,GACV,WAAW,GACX,QAAQ,GACR,WAAW,GACX,SAAS,GACT,aAAa,GACb,cAAc,GACd,YAAY,GACZ,UAAU,GACV,wBAAwB,GACxB,eAAe,GACf,UAAU,GACV,iBAAiB,GACjB,QAAQ,CAAC;AA6BX,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,IAAI,EAAE,MAAM,GAAG,GAAG,CAIrD"}
