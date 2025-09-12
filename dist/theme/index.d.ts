@@ -19,8 +19,8 @@ export interface GalioProviderProps {
 declare const DEFAULT_THEME: GalioTheme;
 export declare function useGalioTheme(): GalioTheme;
 export declare function GalioProvider({ theme, children }: GalioProviderProps): JSX.Element;
-export declare function useGalioStyles<T>(styles?: (theme: GalioTheme) => T): T | undefined;
+export declare function useGalioStyles<T>(styleFactory?: (theme: GalioTheme) => T): T | undefined;
 type NamedStyles = ViewStyle | TextStyle | ImageStyle;
-export declare function withGalio<T extends ComponentType<any>>(Component: T, styles: NamedStyles): ComponentType<any>;
+export declare function withGalio<T extends ComponentType<any>>(Component: T, styleFactory?: (theme: GalioTheme) => Record<string, NamedStyles>): T;
 export default DEFAULT_THEME;
 //# sourceMappingURL=index.d.ts.map
