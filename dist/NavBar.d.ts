@@ -1,6 +1,5 @@
 import React, { JSX } from "react";
-import { TextProps, TextStyle } from "react-native";
-import { ViewStyle } from "react-native";
+import { TextProps, TextStyle, ViewStyle } from "react-native";
 interface NavBarProps {
     back?: boolean;
     hideLeft?: boolean;

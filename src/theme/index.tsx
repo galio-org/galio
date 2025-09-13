@@ -30,7 +30,10 @@ const GalioContext = createContext<GalioTheme | null>(null);
 export function useGalioTheme(): GalioTheme {
     const theme = useContext(GalioContext);
     if (!theme) {
-        console.warn('useGalioTheme: No GalioProvider found, using default theme');
+        if (!(global as any).__GALIO_WARNED_NO_PROVIDER__) {
+            (global as any).__GALIO_WARNED_NO_PROVIDER__ = true;
+            console.warn('useGalioTheme: No GalioProvider found, using default theme');
+        }
         return DEFAULT_THEME;
     }
     return theme;

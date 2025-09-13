@@ -58,27 +58,50 @@ var DEFAULT_THEME = {
     COLORS: colors_1.default,
     SIZES: sizes_1.default,
 };
-var GalioContext = (0, react_1.createContext)(DEFAULT_THEME);
+var GalioContext = (0, react_1.createContext)(null);
 function useGalioTheme() {
     var theme = (0, react_1.useContext)(GalioContext);
     if (!theme) {
-        throw new Error('useGalioTheme must be used within a GalioProvider');
+        if (!global.__GALIO_WARNED_NO_PROVIDER__) {
+            global.__GALIO_WARNED_NO_PROVIDER__ = true;
+            console.warn('useGalioTheme: No GalioProvider found, using default theme');
+        }
+        return DEFAULT_THEME;
     }
     return theme;
 }
 function GalioProvider(_a) {
     var _b = _a.theme, theme = _b === void 0 ? {} : _b, children = _a.children;
-    var providerTheme = (0, react_1.useMemo)(function () { return (__assign({ COLORS: __assign(__assign({}, DEFAULT_THEME.COLORS), theme === null || theme === void 0 ? void 0 : theme.COLORS), SIZES: __assign(__assign({}, DEFAULT_THEME.SIZES), theme === null || theme === void 0 ? void 0 : theme.SIZES) }, theme === null || theme === void 0 ? void 0 : theme.customTheme)); }, [theme]);
+    var providerTheme = (0, react_1.useMemo)(function () {
+        try {
+            return __assign({ COLORS: __assign(__assign({}, DEFAULT_THEME.COLORS), theme === null || theme === void 0 ? void 0 : theme.COLORS), SIZES: __assign(__assign({}, DEFAULT_THEME.SIZES), theme === null || theme === void 0 ? void 0 : theme.SIZES) }, theme === null || theme === void 0 ? void 0 : theme.customTheme);
+        }
+        catch (error) {
+            console.warn('GalioProvider: Error merging themes, falling back to default', error);
+            return DEFAULT_THEME;
+        }
+    }, [theme]);
     return (<GalioContext.Provider value={providerTheme}>
             {children}
         </GalioContext.Provider>);
 }
-function useGalioStyles(styles) {
+function useGalioStyles(styleFactory) {
     var theme = useGalioTheme();
-    return styles ? styles(theme) : undefined;
+    return (0, react_1.useMemo)(function () {
+        return styleFactory ? styleFactory(theme) : undefined;
+    }, [styleFactory, theme]);
 }
-function withGalio(Component, styles) {
-    return Component;
+function withGalio(Component, styleFactory) {
+    if (!styleFactory) {
+        return Component;
+    }
+    var WrappedComponent = function (props) {
+        var theme = useGalioTheme();
+        var styles = (0, react_1.useMemo)(function () { return styleFactory(theme); }, [theme]);
+        return <Component {...props} styles={styles}/>;
+    };
+    WrappedComponent.displayName = "withGalio(".concat(Component.displayName || Component.name, ")");
+    return WrappedComponent;
 }
 exports.default = DEFAULT_THEME;
 //# sourceMappingURL=index.js.map
