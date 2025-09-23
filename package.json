@@ -37,7 +37,7 @@
     "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.1.0",
+    "@expo/vector-icons": "^15.0.2",
     "@react-native-vector-icons/fontisto": "^12.3.0",
     "opencollective-postinstall": "^2.0.3"
   },
