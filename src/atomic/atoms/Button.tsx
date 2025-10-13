@@ -1,4 +1,4 @@
-import { useGalioTheme } from "../../theme";
+import { useGalioTheme, useThemeColors } from "../../theme";
 import { useCallback, useState } from "react";
 import type { JSX } from "react";
 import { ActivityIndicator, Dimensions, Platform, Pressable, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
@@ -56,35 +56,36 @@ function Button({
     onPress,
 }: ButtonProps): JSX.Element {
     const theme = useGalioTheme();
+    const colors = useThemeColors();
 
     const [pressed, setPressed] = useState(false);
 
     const getButtonColor = useCallback((colorName: string) => {
         const colorMap: { [key: string]: string } = {
-            'primary': theme.COLORS.LIGHT_MODE.primary,
-            'info': theme.COLORS.LIGHT_MODE.info,
-            'danger': theme.COLORS.LIGHT_MODE.danger,
-            'error': theme.COLORS.LIGHT_MODE.danger,
-            'warning': theme.COLORS.LIGHT_MODE.warning,
-            'success': theme.COLORS.LIGHT_MODE.success,
-            'white': theme.COLORS.LIGHT_MODE.white,
-            'black': theme.COLORS.LIGHT_MODE.black,
-            'secondary': theme.COLORS.LIGHT_MODE.primaryDark,
-            'grey': theme.COLORS.LIGHT_MODE.grey,
+            'primary': colors.primary,
+            'info': colors.info,
+            'danger': colors.danger,
+            'error': colors.danger,
+            'warning': colors.warning,
+            'success': colors.success,
+            'white': colors.white,
+            'black': colors.black,
+            'secondary': colors.primaryDark,
+            'grey': colors.grey,
         };
         
         const result = colorMap[colorName] || colorName;
         return result;
-    }, [theme]);
+    }, [colors]);
 
     const getTextColor = useCallback((backgroundColor: string) => {
-        const lightColors = ['white', '#FFFFFF', theme.COLORS.LIGHT_MODE.white];
+        const lightColors = ['white', '#FFFFFF', colors.white];
         const isLightBackground = lightColors.includes(backgroundColor);
         
         return isLightBackground 
-            ? theme.COLORS.LIGHT_MODE.black 
-            : theme.COLORS.LIGHT_MODE.white;
-    }, [theme]);
+            ? colors.black 
+            : colors.white;
+    }, [colors]);
 
     let content = children;
     const isString = children && typeof children === 'string';
@@ -103,7 +104,7 @@ function Button({
 
     const getContent = useCallback(() => {
         if (loading) {
-            return <ActivityIndicator size={loadingSize} color={loadingColor || theme.COLORS.LIGHT_MODE.white} />;
+            return <ActivityIndicator size={loadingSize} color={loadingColor || colors.white} />;
         }
 
         if (onlyIcon && icon) {
@@ -112,7 +113,7 @@ function Button({
                     name={icon as string}
                     family={iconFamily || 'AntDesign'}
                     size={iconSize}
-                    color={iconColor || theme.COLORS.LIGHT_MODE.white}
+                    color={iconColor || colors.white}
                 />
             );
         }
@@ -124,7 +125,7 @@ function Button({
                         name={icon as string}
                         family={iconFamily || 'AntDesign'}
                         size={iconSize}
-                        color={iconColor || theme.COLORS.LIGHT_MODE.white}
+                        color={iconColor || colors.white}
                         style={{ marginRight: 6 }}
                     />
                 )}
@@ -134,13 +135,13 @@ function Button({
                         name={icon as string}
                         family={iconFamily || 'AntDesign'}
                         size={iconSize}
-                        color={iconColor || theme.COLORS.LIGHT_MODE.white}
+                        color={iconColor || colors.white}
                         style={{ marginLeft: 6 }}
                     />
                 )}
             </View>
         );
-    }, [loading, loadingSize, loadingColor, theme.COLORS.LIGHT_MODE.white, onlyIcon, icon, iconFamily, iconSize, iconColor, iconRight, textElement]);
+    }, [loading, loadingSize, loadingColor, colors.white, onlyIcon, icon, iconFamily, iconSize, iconColor, iconRight, textElement]);
 
     const handlePressIn = useCallback(() => setPressed(true), []);
     const handlePressOut = useCallback(() => setPressed(false), []);
@@ -181,8 +182,11 @@ function Button({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
-    StyleSheet.create({
+const styles = (theme: ReturnType<typeof useGalioTheme>) => {
+    const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    const colors = theme.COLORS[modeKey];
+    
+    return StyleSheet.create({
         defaultButton: {
             borderRadius: theme.SIZES.BASE*2,
             height: theme.SIZES.BUTTON_HEIGHT,
@@ -194,7 +198,7 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
         shadow: {
             ...Platform.select({
                 ios: {
-                    shadowColor: theme.COLORS.LIGHT_MODE.black,
+                    shadowColor: colors.black,
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: theme.SIZES.OPACITY,
                     shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
@@ -209,7 +213,7 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
         },
         customText: {
             fontSize: theme.SIZES.FONT,
-            color: theme.COLORS.LIGHT_MODE.white,
+            color: colors.white,
         },
         transparent: { 
             backgroundColor: 'transparent',
@@ -218,5 +222,6 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
             shadowOpacity: 0,
         },
     });
+};
 
 export default Button;
