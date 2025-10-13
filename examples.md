@@ -389,7 +389,7 @@ function CardExample() {
 
 ### Checkbox
 
-Styled checkbox components.
+Styled checkbox components with controlled and uncontrolled modes.
 
 ```tsx
 import { Checkbox, Block, Text } from 'galio-framework';
@@ -400,7 +400,7 @@ function CheckboxExample() {
 
   return (
     <>
-      {/* Basic checkbox */}
+      {/* Controlled mode (recommended) */}
       <Checkbox 
         checked={checked}
         onChange={(value) => setChecked(value)}
@@ -444,18 +444,29 @@ function CheckboxExample() {
         labelStyle={{ fontSize: 18, color: '#666' }}
         checkboxStyle={{ borderRadius: 8 }}
       />
+
+      {/* Uncontrolled mode (legacy) */}
+      <Checkbox
+        initialValue={true}
+        onChange={(value) => console.log('Checked:', value)}
+        label="Uncontrolled checkbox"
+      />
     </>
   );
 }
 ```
 
 **Props:**
-- `checked`: Checked state (boolean)
-- `onChange`: Change handler function
+- `checked`: Checked state (boolean) - Use for controlled mode
+- `onChange`: Change handler function `(checked: boolean) => void`
+- `initialValue`: Initial checked state (boolean) - Use for uncontrolled mode (legacy)
 - `label`: Label text
-- `color`: Checkbox color
+- `color`: Checkbox color ('primary', 'success', etc.)
 - `disabled`: Disable checkbox
+- `iconName`, `iconFamily`, `iconColor`, `iconSize`: Customize check icon
 - `checkboxStyle`, `labelStyle`: Custom styles
+- `flexDirection`: Layout direction ('row', 'row-reverse', 'column', 'column-reverse')
+- `image`, `imageStyle`: Use image instead of text label
 
 ---
 

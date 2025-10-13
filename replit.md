@@ -98,15 +98,20 @@ This is a **library project**, not a standalone application. It:
 - Has a demo server for documentation purposes only
 
 ## Recent Changes
-- **2024-10-13**: Theme System Improvements
+- **2024-10-13**: Theme System & Component Improvements
   - ✅ Implemented proper dark mode support with system detection
   - ✅ Added `mode` prop to GalioProvider ('light' | 'dark' | 'auto')
   - ✅ Created `useThemeColors()` hook for accessing current mode colors
   - ✅ Implemented deep merge utility for custom theme overrides
   - ✅ Updated all core components to use current theme mode:
-    - Button, Input, Icon, Card, Block, Text
+    - Button, Input, Icon, Card, Block, Text, Checkbox
   - ✅ Fixed hardcoded LIGHT_MODE references throughout codebase
   - ✅ Added React Native `useColorScheme` for system theme detection
+  - ✅ **Checkbox component enhancement:**
+    - Added `checked` prop for controlled mode (recommended)
+    - Maintained `initialValue` for backward compatibility (uncontrolled mode)
+    - Now supports both controlled and uncontrolled usage patterns
+  - ✅ Created comprehensive examples.md with all component usage examples
   - Built TypeScript library successfully
   - Created demo documentation server
   - Configured workflow for port 5000

@@ -1,6 +1,6 @@
-import { JSX, useState } from "react";
+import { JSX, useState, useEffect } from "react";
 import { Image, ImageStyle, Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useGalioTheme, useThemeColors } from "./theme";
 import Text from "./atomic/ions/text";
 import Icon from "./atomic/ions/icon";
 
@@ -112,7 +112,8 @@ interface CheckboxProps {
     iconFamily?: string;
     iconName?: string;
     iconSize?: number;
-    initialValue?: boolean;
+    checked?: boolean; // Controlled mode
+    initialValue?: boolean; // Uncontrolled mode (deprecated, use checked instead)
     label?: string;
     labelStyle?: TextStyle;
     onChange?: (checked: boolean) => void;
@@ -132,6 +133,7 @@ function Checkbox({
     iconFamily = 'FontAwesome',
     iconName = 'check',
     iconSize = 15,
+    checked: controlledChecked,
     initialValue = false,
     label,
     labelStyle,
@@ -141,11 +143,23 @@ function Checkbox({
     accessibilityHint,
 }: CheckboxProps): JSX.Element {
     const theme = useGalioTheme();
-    const [checked, setChecked] = useState(initialValue);
+    const colors = useThemeColors();
+    
+    // Support both controlled and uncontrolled modes
+    const isControlled = controlledChecked !== undefined;
+    const [internalChecked, setInternalChecked] = useState(initialValue);
+    const checked = isControlled ? controlledChecked : internalChecked;
+
+    // Update internal state if controlledChecked changes (for controlled mode)
+    useEffect(() => {
+        if (isControlled && controlledChecked !== undefined) {
+            setInternalChecked(controlledChecked);
+        }
+    }, [controlledChecked, isControlled]);
 
     const colorStyle = color 
-        ? theme.COLORS.LIGHT_MODE[color as keyof typeof theme.COLORS.LIGHT_MODE] 
-        : theme.COLORS.LIGHT_MODE.primary;
+        ? colors[color as keyof typeof colors] || theme.COLORS.LIGHT_MODE[color as keyof typeof theme.COLORS.LIGHT_MODE]
+        : colors.primary;
 
     const checkBoxContainerStyle = [
         styles(theme).container, 
@@ -171,9 +185,19 @@ function Checkbox({
     const defaultAccessibilityLabel = accessibilityLabel || 
         (label ? `${label} checkbox` : 'checkbox');
     
+    const handlePress = () => {
+        if (!isControlled) {
+            // Uncontrolled mode: update internal state
+            _onPress({ checked, onChange, setChecked: setInternalChecked });
+        } else {
+            // Controlled mode: just call onChange, parent handles state
+            onChange(!checked);
+        }
+    };
+
     return (
         <Pressable
-            onPress={() => _onPress({ checked, onChange, setChecked })}
+            onPress={handlePress}
             style={checkBoxContainerStyle}
             disabled={disabled}
             accessibilityRole="checkbox"
@@ -189,8 +213,11 @@ function Checkbox({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
-  StyleSheet.create({
+const styles = (theme: ReturnType<typeof useGalioTheme>) => {
+  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+  const colors = theme.COLORS[modeKey];
+  
+  return StyleSheet.create({
     container: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -205,23 +232,24 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
       borderRadius: theme.SIZES.BORDER_RADIUS,
     },
     uncheckedBoxView: {
-      backgroundColor: theme.COLORS.LIGHT_MODE.transparent,
-      borderColor: theme.COLORS.LIGHT_MODE.grey,
+      backgroundColor: colors.transparent,
+      borderColor: colors.grey,
     },
     checked: {
-      backgroundColor: theme.COLORS.LIGHT_MODE.primary,
-      borderColor: theme.COLORS.LIGHT_MODE.primary,
+      backgroundColor: colors.primary,
+      borderColor: colors.primary,
     },
     disabled: {
-      borderColor: theme.COLORS.LIGHT_MODE.muted,
+      borderColor: colors.muted,
     },
     textStyles: {
-      color: theme.COLORS.LIGHT_MODE.black,
+      color: colors.black,
     },
     disabledLabel: {
-      color: theme.COLORS.LIGHT_MODE.muted,
+      color: colors.muted,
       opacity: theme.SIZES.OPACITY,
     },
   });
+};
 
 export default Checkbox;

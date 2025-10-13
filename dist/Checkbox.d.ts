@@ -14,6 +14,7 @@ interface CheckboxProps {
     iconFamily?: string;
     iconName?: string;
     iconSize?: number;
+    checked?: boolean;
     initialValue?: boolean;
     label?: string;
     labelStyle?: TextStyle;
@@ -22,6 +23,6 @@ interface CheckboxProps {
     accessibilityLabel?: string;
     accessibilityHint?: string;
 }
-declare function Checkbox({ checkboxStyle, color, disabled, flexDirection, image, imageStyle, iconColor, iconFamily, iconName, iconSize, initialValue, label, labelStyle, onChange, style, accessibilityLabel, accessibilityHint, }: CheckboxProps): JSX.Element;
+declare function Checkbox({ checkboxStyle, color, disabled, flexDirection, image, imageStyle, iconColor, iconFamily, iconName, iconSize, checked: controlledChecked, initialValue, label, labelStyle, onChange, style, accessibilityLabel, accessibilityHint, }: CheckboxProps): JSX.Element;
 export default Checkbox;
 //# sourceMappingURL=Checkbox.d.ts.map

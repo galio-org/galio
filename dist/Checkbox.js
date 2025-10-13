@@ -52,12 +52,22 @@ function _onPress(_a) {
     setChecked(current);
 }
 function Checkbox(_a) {
-    var checkboxStyle = _a.checkboxStyle, _b = _a.color, color = _b === void 0 ? 'theme' : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.flexDirection, flexDirection = _d === void 0 ? 'row' : _d, image = _a.image, imageStyle = _a.imageStyle, _e = _a.iconColor, iconColor = _e === void 0 ? '#fff' : _e, _f = _a.iconFamily, iconFamily = _f === void 0 ? 'FontAwesome' : _f, _g = _a.iconName, iconName = _g === void 0 ? 'check' : _g, _h = _a.iconSize, iconSize = _h === void 0 ? 15 : _h, _j = _a.initialValue, initialValue = _j === void 0 ? false : _j, label = _a.label, labelStyle = _a.labelStyle, _k = _a.onChange, onChange = _k === void 0 ? function () { } : _k, style = _a.style, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
+    var checkboxStyle = _a.checkboxStyle, _b = _a.color, color = _b === void 0 ? 'theme' : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.flexDirection, flexDirection = _d === void 0 ? 'row' : _d, image = _a.image, imageStyle = _a.imageStyle, _e = _a.iconColor, iconColor = _e === void 0 ? '#fff' : _e, _f = _a.iconFamily, iconFamily = _f === void 0 ? 'FontAwesome' : _f, _g = _a.iconName, iconName = _g === void 0 ? 'check' : _g, _h = _a.iconSize, iconSize = _h === void 0 ? 15 : _h, controlledChecked = _a.checked, _j = _a.initialValue, initialValue = _j === void 0 ? false : _j, label = _a.label, labelStyle = _a.labelStyle, _k = _a.onChange, onChange = _k === void 0 ? function () { } : _k, style = _a.style, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
     var theme = (0, theme_1.useGalioTheme)();
-    var _l = (0, react_1.useState)(initialValue), checked = _l[0], setChecked = _l[1];
+    var colors = (0, theme_1.useThemeColors)();
+    // Support both controlled and uncontrolled modes
+    var isControlled = controlledChecked !== undefined;
+    var _l = (0, react_1.useState)(initialValue), internalChecked = _l[0], setInternalChecked = _l[1];
+    var checked = isControlled ? controlledChecked : internalChecked;
+    // Update internal state if controlledChecked changes (for controlled mode)
+    (0, react_1.useEffect)(function () {
+        if (isControlled && controlledChecked !== undefined) {
+            setInternalChecked(controlledChecked);
+        }
+    }, [controlledChecked, isControlled]);
     var colorStyle = color
-        ? theme.COLORS.LIGHT_MODE[color]
-        : theme.COLORS.LIGHT_MODE.primary;
+        ? colors[color] || theme.COLORS.LIGHT_MODE[color]
+        : colors.primary;
     var checkBoxContainerStyle = [
         styles(theme).container,
         flexDirection && { flexDirection: flexDirection },
@@ -78,7 +88,17 @@ function Checkbox(_a) {
     ].filter(Boolean);
     var defaultAccessibilityLabel = accessibilityLabel ||
         (label ? "".concat(label, " checkbox") : 'checkbox');
-    return (<react_native_1.Pressable onPress={function () { return _onPress({ checked: checked, onChange: onChange, setChecked: setChecked }); }} style={checkBoxContainerStyle} disabled={disabled} accessibilityRole="checkbox" accessibilityState={{ checked: checked, disabled: disabled }} accessibilityLabel={defaultAccessibilityLabel} accessibilityHint={accessibilityHint}>
+    var handlePress = function () {
+        if (!isControlled) {
+            // Uncontrolled mode: update internal state
+            _onPress({ checked: checked, onChange: onChange, setChecked: setInternalChecked });
+        }
+        else {
+            // Controlled mode: just call onChange, parent handles state
+            onChange(!checked);
+        }
+    };
+    return (<react_native_1.Pressable onPress={handlePress} style={checkBoxContainerStyle} disabled={disabled} accessibilityRole="checkbox" accessibilityState={{ checked: checked, disabled: disabled }} accessibilityLabel={defaultAccessibilityLabel} accessibilityHint={accessibilityHint}>
             <react_native_1.View style={checkedBoxViewStyles}>
                 {renderChecked({ checked: checked, iconColor: iconColor, iconFamily: iconFamily, iconName: iconName, iconSize: iconSize })}
             </react_native_1.View>
@@ -86,6 +106,8 @@ function Checkbox(_a) {
         </react_native_1.Pressable>);
 }
 var styles = function (theme) {
+    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    var colors = theme.COLORS[modeKey];
     return react_native_1.StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -101,21 +123,21 @@ var styles = function (theme) {
             borderRadius: theme.SIZES.BORDER_RADIUS,
         },
         uncheckedBoxView: {
-            backgroundColor: theme.COLORS.LIGHT_MODE.transparent,
-            borderColor: theme.COLORS.LIGHT_MODE.grey,
+            backgroundColor: colors.transparent,
+            borderColor: colors.grey,
         },
         checked: {
-            backgroundColor: theme.COLORS.LIGHT_MODE.primary,
-            borderColor: theme.COLORS.LIGHT_MODE.primary,
+            backgroundColor: colors.primary,
+            borderColor: colors.primary,
         },
         disabled: {
-            borderColor: theme.COLORS.LIGHT_MODE.muted,
+            borderColor: colors.muted,
         },
         textStyles: {
-            color: theme.COLORS.LIGHT_MODE.black,
+            color: colors.black,
         },
         disabledLabel: {
-            color: theme.COLORS.LIGHT_MODE.muted,
+            color: colors.muted,
             opacity: theme.SIZES.OPACITY,
         },
     });
