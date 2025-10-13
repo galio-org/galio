@@ -37,21 +37,21 @@
     "postinstall": "opencollective-postinstall"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.1.0",
+    "@expo/vector-icons": "^15.0.2",
     "@react-native-vector-icons/fontisto": "^12.3.0",
     "opencollective-postinstall": "^2.0.3"
   },
   "devDependencies": {
-    "@types/react": "^19.1.9",
-    "@typescript-eslint/eslint-plugin": "^8.39.0",
-    "@typescript-eslint/parser": "^8.39.0",
-    "eslint": "^9.32.0",
+    "@types/react": "^19.2.2",
+    "@typescript-eslint/eslint-plugin": "^8.46.0",
+    "@typescript-eslint/parser": "^8.46.0",
+    "eslint": "^9.37.0",
     "eslint-config-universe": "^15.0.3",
     "prettier": "^3.6.2",
     "prop-types": "^15.8.1",
-    "react": "^19.1.1",
-    "react-native": "^0.80.2",
-    "typescript": "~5.9.2"
+    "react": "^19.2.0",
+    "react-native": "^0.82.0",
+    "typescript": "~5.9.3"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
