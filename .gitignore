@@ -3,3 +3,5 @@ node_modules/**/*
 npm-debug.*
 yarn.lock
 .DS_Store
+dist/
+*.log
