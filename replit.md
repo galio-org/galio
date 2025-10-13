@@ -98,12 +98,66 @@ This is a **library project**, not a standalone application. It:
 - Has a demo server for documentation purposes only
 
 ## Recent Changes
-- **2024-10-13**: Initial Replit setup
+- **2024-10-13**: Theme System Improvements
+  - ✅ Implemented proper dark mode support with system detection
+  - ✅ Added `mode` prop to GalioProvider ('light' | 'dark' | 'auto')
+  - ✅ Created `useThemeColors()` hook for accessing current mode colors
+  - ✅ Implemented deep merge utility for custom theme overrides
+  - ✅ Updated all core components to use current theme mode:
+    - Button, Input, Icon, Card, Block, Text
+  - ✅ Fixed hardcoded LIGHT_MODE references throughout codebase
+  - ✅ Added React Native `useColorScheme` for system theme detection
   - Built TypeScript library successfully
   - Created demo documentation server
   - Configured workflow for port 5000
   - Added .gitignore for Node.js projects
   - Set up proper cache control headers
+
+## Theme System
+The Galio theme system now supports proper dark mode and runtime theme switching:
+
+### Usage
+```tsx
+import { GalioProvider } from 'galio-framework';
+
+// Auto-detect system theme
+<GalioProvider mode="auto">
+  <App />
+</GalioProvider>
+
+// Force light mode
+<GalioProvider mode="light">
+  <App />
+</GalioProvider>
+
+// Force dark mode
+<GalioProvider mode="dark">
+  <App />
+</GalioProvider>
+
+// Custom theme with deep merge
+<GalioProvider 
+  mode="auto"
+  customColors={{
+    primary: '#FF6B6B',
+    secondary: '#4ECDC4'
+  }}
+>
+  <App />
+</GalioProvider>
+```
+
+### Accessing Theme Colors
+```tsx
+import { useThemeColors } from 'galio-framework';
+
+function MyComponent() {
+  const colors = useThemeColors();
+  // colors automatically switches between LIGHT_MODE and DARK_MODE
+  // based on current theme setting
+  return <View style={{ backgroundColor: colors.primary }} />;
+}
+```
 
 ## External Resources
 - Documentation: https://galio.io/docs

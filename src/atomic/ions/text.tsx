@@ -92,15 +92,15 @@ function Typography({
     ], [h1, h2, h3, h4, h5, h6, p, body, small, muted, neutral, size, color, italic, bold, center, style, theme, shadow]);
 
     return (
-        <Text style={[styles.base, ...dynamicStyles] as unknown as TextStyle} {...rest}>
+        <Text style={[styles(colors).base, ...dynamicStyles] as unknown as TextStyle} {...rest}>
             {children}
         </Text>
     );
 }
 
-const styles = StyleSheet.create({
+const styles = (colors: ReturnType<typeof useThemeColors> | undefined) => StyleSheet.create({
     base: {
-        color: '#000',
+        color: colors?.text || '#000',
     }
 });
 export default memo(Typography);

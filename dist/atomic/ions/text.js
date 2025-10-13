@@ -99,14 +99,14 @@ function Typography(_a) {
         getShadowStyle(),
         style,
     ]; }, [h1, h2, h3, h4, h5, h6, p, body, small, muted, neutral, size, color, italic, bold, center, style, theme, shadow]);
-    return (<react_native_1.Text style={__spreadArray([styles.base], dynamicStyles, true)} {...rest}>
+    return (<react_native_1.Text style={__spreadArray([styles(colors).base], dynamicStyles, true)} {...rest}>
             {children}
         </react_native_1.Text>);
 }
-var styles = react_native_1.StyleSheet.create({
+var styles = function (colors) { return react_native_1.StyleSheet.create({
     base: {
-        color: '#000',
+        color: (colors === null || colors === void 0 ? void 0 : colors.text) || '#000',
     }
-});
+}); };
 exports.default = (0, react_1.memo)(Typography);
 //# sourceMappingURL=text.js.map
