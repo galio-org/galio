@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import { Image, ImageStyle, StyleSheet, ViewStyle, Platform, TouchableOpacity } from "react-native";
 import Block from "./Block";
-import { useGalioTheme } from "./theme";
+import { useGalioTheme, useThemeColors } from "./theme";
 import Icon from "./atomic/ions/icon";
 import Text from "./atomic/ions/text";
 
@@ -47,6 +47,7 @@ function renderLocation({
     locationColor,
 }: LocationProps): JSX.Element | null {
     const theme = useGalioTheme();
+    const colors = useThemeColors();
     if (!location) return null;
     if (typeof location !== 'string') {
         return location as JSX.Element;
@@ -56,13 +57,13 @@ function renderLocation({
             <Icon 
                 name="map-pin" 
                 family="feather" 
-                color={locationColor || theme.COLORS.LIGHT_MODE.muted} 
+                color={locationColor || colors.muted} 
                 size={theme.SIZES.FONT * 0.75}
             />
             <Text 
                 muted 
                 size={theme.SIZES.FONT * 0.75} 
-                color={locationColor || theme.COLORS.LIGHT_MODE.muted} 
+                color={locationColor || colors.muted} 
                 style={{
                     marginLeft: theme.SIZES.BASE * 0.25,
                     textAlign: 'right',
@@ -100,6 +101,7 @@ function renderAuthor({
     rightSideComponent,
 }: AuthorProps): JSX.Element | null {
     const theme = useGalioTheme();
+    const colors = useThemeColors();
 
     if (!title && !caption) return null;
 
@@ -132,7 +134,7 @@ function renderAuthor({
                             p 
                             muted
                             size={theme.SIZES.FONT * 0.875}
-                            color={captionColor || theme.COLORS.LIGHT_MODE.muted}
+                            color={captionColor || colors.muted}
                             numberOfLines={2}
                         >
                             {caption}
@@ -206,6 +208,7 @@ function Card({
     shadowColor,
 }: CardProps): JSX.Element {
     const theme = useGalioTheme();
+    const colors = useThemeColors();
     
     // Use authorImageSrc as avatar if provided
     const finalAvatar = authorImageSrc || avatar;
@@ -228,7 +231,7 @@ function Card({
             borderWidth: 0.5, 
             borderColor: '#E5E5E5', 
             borderRadius: 12, 
-            backgroundColor: theme.COLORS.LIGHT_MODE.white,
+            backgroundColor: colors.white,
             marginVertical: 8,
             ...Platform.select({
                 ios: {
@@ -296,16 +299,19 @@ function Card({
     return cardContent;
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => 
-  StyleSheet.create({
+const styles = (theme: ReturnType<typeof useGalioTheme>) => {
+  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+  const colors = theme.COLORS[modeKey];
+  
+  return StyleSheet.create({
     card: {
       borderWidth: 0,
-      backgroundColor: theme.COLORS.LIGHT_MODE.white,
+      backgroundColor: colors.white,
       width: theme.SIZES.CARD_WIDTH,
       marginVertical: theme.SIZES.CARD_MARGIN_VERTICAL,
       ...Platform.select({
         ios: {
-          shadowColor: theme.COLORS.LIGHT_MODE.block,
+          shadowColor: colors.block,
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
@@ -323,7 +329,7 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
       alignItems: 'flex-start',
       paddingHorizontal: theme.SIZES.CARD_FOOTER_HORIZONTAL,
       paddingVertical: theme.SIZES.CARD_FOOTER_VERTICAL,
-      backgroundColor: theme.COLORS.LIGHT_MODE.transparent,
+      backgroundColor: colors.transparent,
       zIndex: 1,
     },
     avatar: {
@@ -350,5 +356,6 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
       borderRadius: theme.SIZES.CARD_ROUNDED,
     },
   });
+};
 
 export default Card;

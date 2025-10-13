@@ -54,6 +54,7 @@ var theme_1 = require("../../theme");
 var Input = (0, react_1.forwardRef)(function (_a, ref) {
     var style = _a.style, textInputStyle = _a.textInputStyle, _b = _a.type, type = _b === void 0 ? 'default' : _b, placeholderTextColor = _a.placeholderTextColor, label = _a.label, labelStyles = _a.labelStyles, _c = _a.color, color = _c === void 0 ? 'primary' : _c, help = _a.help, helpStyles = _a.helpStyles, bgColor = _a.bgColor, _d = _a.borderless, borderless = _d === void 0 ? false : _d, _e = _a.viewPass, viewPass = _e === void 0 ? false : _e, _f = _a.rounded, rounded = _f === void 0 ? false : _f, _g = _a.icon, icon = _g === void 0 ? false : _g, family = _a.family, _h = _a.left, left = _h === void 0 ? true : _h, _j = _a.right, right = _j === void 0 ? false : _j, _k = _a.iconColor, iconColor = _k === void 0 ? 'primary' : _k, _l = _a.topHelp, topHelp = _l === void 0 ? true : _l, _m = _a.bottomHelp, bottomHelp = _m === void 0 ? false : _m, _o = _a.iconSize, iconSize = _o === void 0 ? 16 : _o, iconContent = _a.iconContent, _p = _a.password, password = _p === void 0 ? false : _p, error = _a.error, onRef = _a.onRef, rest = __rest(_a, ["style", "textInputStyle", "type", "placeholderTextColor", "label", "labelStyles", "color", "help", "helpStyles", "bgColor", "borderless", "viewPass", "rounded", "icon", "family", "left", "right", "iconColor", "topHelp", "bottomHelp", "iconSize", "iconContent", "password", "error", "onRef"]);
     var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useThemeColors)();
     var _q = (0, react_1.useState)(password), isPassword = _q[0], setIsPassword = _q[1];
     var inputRef = (0, react_1.useRef)(null);
     (0, react_1.useImperativeHandle)(ref, function () { return ({
@@ -71,7 +72,7 @@ var Input = (0, react_1.forwardRef)(function (_a, ref) {
         bgColor && { backgroundColor: bgColor },
         rounded && styles(theme).rounded,
         borderless && styles(theme).borderless,
-        error && { borderColor: theme.COLORS.LIGHT_MODE.danger },
+        error && { borderColor: colors.danger },
         rest.multiline && { minHeight: theme.SIZES.INPUT_HEIGHT, height: 'auto' },
         style,
     ].filter(Boolean);
@@ -83,9 +84,9 @@ var Input = (0, react_1.forwardRef)(function (_a, ref) {
         rest.multiline && { textAlignVertical: 'top' },
         textInputStyle || {}
     ].filter(Boolean);
-    var iconInstance = icon ? (<icon_1.default name={icon} family={family} size={iconSize || theme.SIZES.BASE * 1.0625} style={{ marginRight: left && !right ? 4 : 0 }} color={(error && theme.COLORS.LIGHT_MODE.danger) || iconColor || placeholderTextColor || theme.COLORS.LIGHT_MODE.neutral(0.6)}/>) : (iconContent);
+    var iconInstance = icon ? (<icon_1.default name={icon} family={family} size={iconSize || theme.SIZES.BASE * 1.0625} style={{ marginRight: left && !right ? 4 : 0 }} color={(error && colors.danger) || iconColor || placeholderTextColor || colors.neutral(0.6)}/>) : (iconContent);
     var viewPassElement = password && viewPass && (<react_native_1.Pressable style={{ marginLeft: 2 }} onPress={function () { return setIsPassword(!isPassword); }}>
-      <icon_1.default size={iconSize || theme.SIZES.BASE * 1.0625} color={iconColor || theme.COLORS.LIGHT_MODE.black} name="eye" family="entypo"/>
+      <icon_1.default size={iconSize || theme.SIZES.BASE * 1.0625} color={iconColor || colors.black} name="eye" family="entypo"/>
     </react_native_1.Pressable>);
     var labelContent = label && label.length > 0 && (<react_native_1.Text style={[styles(theme).label, labelStyles || {}]}>{label}</react_native_1.Text>);
     var helpContent = help && help.length > 0 && (<react_native_1.Text style={[styles(theme).helpText, helpStyles || {}]}>{help}</react_native_1.Text>);
@@ -111,18 +112,20 @@ var Input = (0, react_1.forwardRef)(function (_a, ref) {
 });
 Input.displayName = 'Input';
 var styles = function (theme) {
+    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    var colors = theme.COLORS[modeKey];
     return react_native_1.StyleSheet.create({
         inputStyle: {
-            backgroundColor: theme.COLORS.LIGHT_MODE.white,
+            backgroundColor: colors.white,
             borderRadius: theme.SIZES.INPUT_BORDER_RADIUS,
             borderWidth: theme.SIZES.INPUT_BORDER_WIDTH,
-            borderColor: theme.COLORS.LIGHT_MODE.input,
+            borderColor: colors.input,
             height: theme.SIZES.INPUT_HEIGHT,
             paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
             width: '100%',
         },
         inputText: {
-            color: theme.COLORS.LIGHT_MODE.input,
+            color: colors.input,
             fontSize: theme.SIZES.INPUT_TEXT,
             textDecorationColor: 'transparent',
         },
@@ -144,7 +147,7 @@ var styles = function (theme) {
             paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL
         },
         helpText: {
-            color: theme.COLORS.LIGHT_MODE.warningLight,
+            color: colors.warningLight,
             fontSize: 14,
             marginVertical: 8,
             paddingHorizontal: 16,

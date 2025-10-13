@@ -60,6 +60,7 @@ var theme_1 = __importStar(require("../../theme"));
 function Typography(_a) {
     var style = _a.style, _b = _a.h1, h1 = _b === void 0 ? false : _b, _c = _a.h2, h2 = _c === void 0 ? false : _c, _d = _a.h3, h3 = _d === void 0 ? false : _d, _e = _a.h4, h4 = _e === void 0 ? false : _e, _f = _a.h5, h5 = _f === void 0 ? false : _f, _g = _a.h6, h6 = _g === void 0 ? false : _g, _h = _a.p, p = _h === void 0 ? false : _h, _j = _a.body, body = _j === void 0 ? false : _j, _k = _a.small, small = _k === void 0 ? false : _k, _l = _a.muted, muted = _l === void 0 ? false : _l, _m = _a.neutral, neutral = _m === void 0 ? false : _m, size = _a.size, color = _a.color, _o = _a.bold, bold = _o === void 0 ? false : _o, _p = _a.italic, italic = _p === void 0 ? false : _p, _q = _a.center, center = _q === void 0 ? false : _q, children = _a.children, propTheme = _a.theme, _r = _a.shadow, shadow = _r === void 0 ? false : _r, rest = __rest(_a, ["style", "h1", "h2", "h3", "h4", "h5", "h6", "p", "body", "small", "muted", "neutral", "size", "color", "bold", "italic", "center", "children", "theme", "shadow"]);
     var theme = (theme_1.useGalioTheme === null || theme_1.useGalioTheme === void 0 ? void 0 : (0, theme_1.useGalioTheme)()) || propTheme || theme_1.default;
+    var colors = theme_1.useThemeColors === null || theme_1.useThemeColors === void 0 ? void 0 : (0, theme_1.useThemeColors)();
     var getShadowStyle = function () {
         if (!shadow)
             return undefined;
@@ -88,8 +89,8 @@ function Typography(_a) {
         p && { fontSize: (0, normalize_1.normalize)(16) },
         body && { fontSize: (0, normalize_1.normalize)(14) },
         small && { fontSize: (0, normalize_1.normalize)(12) },
-        muted && { color: theme.COLORS.LIGHT_MODE.muted },
-        neutral && { color: theme.COLORS.LIGHT_MODE.neutral(0.65) },
+        muted && colors && { color: colors.muted },
+        neutral && colors && { color: colors.neutral(0.65) },
         size && typeof size === 'number' ? { fontSize: (0, normalize_1.normalize)(size) } : undefined,
         color && { color: color },
         italic && { fontStyle: 'italic' },

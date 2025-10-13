@@ -5,7 +5,7 @@ import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 
 import galioConfig from '../../config/galio.json';
 import getIconType from '../../helpers/getIconType';
-import { useGalioTheme } from '../../theme';
+import { useGalioTheme, useThemeColors } from '../../theme';
 
 const Galio = createIconSetFromIcoMoon(galioConfig, 'Galio', require('../../fonts/galio.ttf'));
 
@@ -29,6 +29,7 @@ function Icon({
     ...rest
 }: IconProps): JSX.Element | null {
     const theme = useGalioTheme();
+    const colors = useThemeColors();
 
     const iconSize = 
         size ||
@@ -38,7 +39,7 @@ function Icon({
             ? theme.SIZES.ICON_LARGE
             : theme.SIZES.ICON);
 
-    const iconColor = color || theme.COLORS.LIGHT_MODE.black;
+    const iconColor = color || colors.black;
 
     if (family === 'Galio') {
         return name ? <Galio name={name} size={iconSize} color={iconColor} {...rest} /> : null;

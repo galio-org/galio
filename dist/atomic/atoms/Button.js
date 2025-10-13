@@ -22,30 +22,31 @@ var width = react_native_1.Dimensions.get('window').width;
 function Button(_a) {
     var _b = _a.color, color = _b === void 0 ? 'primary' : _b, children = _a.children, _c = _a.disabled, disabled = _c === void 0 ? false : _c, icon = _a.icon, _d = _a.iconRight, iconRight = _d === void 0 ? false : _d, iconFamily = _a.iconFamily, _e = _a.iconSize, iconSize = _e === void 0 ? 16 : _e, iconColor = _a.iconColor, _f = _a.loading, loading = _f === void 0 ? false : _f, _g = _a.loadingSize, loadingSize = _g === void 0 ? 'small' : _g, loadingColor = _a.loadingColor, _h = _a.onlyIcon, onlyIcon = _h === void 0 ? false : _h, _j = _a.opacity, opacity = _j === void 0 ? 0.8 : _j, _k = _a.round, round = _k === void 0 ? false : _k, _l = _a.size, size = _l === void 0 ? 'default' : _l, _m = _a.shadowless, shadowless = _m === void 0 ? false : _m, style = _a.style, textStyle = _a.textStyle, _o = _a.uppercase, uppercase = _o === void 0 ? false : _o, _p = _a.lowercase, lowercase = _p === void 0 ? false : _p, _q = _a.capitalize, capitalize = _q === void 0 ? false : _q, onPress = _a.onPress;
     var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useThemeColors)();
     var _r = (0, react_1.useState)(false), pressed = _r[0], setPressed = _r[1];
     var getButtonColor = (0, react_1.useCallback)(function (colorName) {
         var colorMap = {
-            'primary': theme.COLORS.LIGHT_MODE.primary,
-            'info': theme.COLORS.LIGHT_MODE.info,
-            'danger': theme.COLORS.LIGHT_MODE.danger,
-            'error': theme.COLORS.LIGHT_MODE.danger,
-            'warning': theme.COLORS.LIGHT_MODE.warning,
-            'success': theme.COLORS.LIGHT_MODE.success,
-            'white': theme.COLORS.LIGHT_MODE.white,
-            'black': theme.COLORS.LIGHT_MODE.black,
-            'secondary': theme.COLORS.LIGHT_MODE.primaryDark,
-            'grey': theme.COLORS.LIGHT_MODE.grey,
+            'primary': colors.primary,
+            'info': colors.info,
+            'danger': colors.danger,
+            'error': colors.danger,
+            'warning': colors.warning,
+            'success': colors.success,
+            'white': colors.white,
+            'black': colors.black,
+            'secondary': colors.primaryDark,
+            'grey': colors.grey,
         };
         var result = colorMap[colorName] || colorName;
         return result;
-    }, [theme]);
+    }, [colors]);
     var getTextColor = (0, react_1.useCallback)(function (backgroundColor) {
-        var lightColors = ['white', '#FFFFFF', theme.COLORS.LIGHT_MODE.white];
+        var lightColors = ['white', '#FFFFFF', colors.white];
         var isLightBackground = lightColors.includes(backgroundColor);
         return isLightBackground
-            ? theme.COLORS.LIGHT_MODE.black
-            : theme.COLORS.LIGHT_MODE.white;
-    }, [theme]);
+            ? colors.black
+            : colors.white;
+    }, [colors]);
     var content = children;
     var isString = children && typeof children === 'string';
     if (uppercase && isString)
@@ -60,17 +61,17 @@ function Button(_a) {
     var textElement = isString && !onlyIcon ? (<react_native_1.Text style={[styles(theme).customText, { color: textColor }, textStyle]}>{content}</react_native_1.Text>) : (content);
     var getContent = (0, react_1.useCallback)(function () {
         if (loading) {
-            return <react_native_1.ActivityIndicator size={loadingSize} color={loadingColor || theme.COLORS.LIGHT_MODE.white}/>;
+            return <react_native_1.ActivityIndicator size={loadingSize} color={loadingColor || colors.white}/>;
         }
         if (onlyIcon && icon) {
-            return (<icon_1.default name={icon} family={iconFamily || 'AntDesign'} size={iconSize} color={iconColor || theme.COLORS.LIGHT_MODE.white}/>);
+            return (<icon_1.default name={icon} family={iconFamily || 'AntDesign'} size={iconSize} color={iconColor || colors.white}/>);
         }
         return (<react_native_1.View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                {!iconRight && icon && (<icon_1.default name={icon} family={iconFamily || 'AntDesign'} size={iconSize} color={iconColor || theme.COLORS.LIGHT_MODE.white} style={{ marginRight: 6 }}/>)}
+                {!iconRight && icon && (<icon_1.default name={icon} family={iconFamily || 'AntDesign'} size={iconSize} color={iconColor || colors.white} style={{ marginRight: 6 }}/>)}
                 {textElement}
-                {iconRight && icon && (<icon_1.default name={icon} family={iconFamily || 'AntDesign'} size={iconSize} color={iconColor || theme.COLORS.LIGHT_MODE.white} style={{ marginLeft: 6 }}/>)}
+                {iconRight && icon && (<icon_1.default name={icon} family={iconFamily || 'AntDesign'} size={iconSize} color={iconColor || colors.white} style={{ marginLeft: 6 }}/>)}
             </react_native_1.View>);
-    }, [loading, loadingSize, loadingColor, theme.COLORS.LIGHT_MODE.white, onlyIcon, icon, iconFamily, iconSize, iconColor, iconRight, textElement]);
+    }, [loading, loadingSize, loadingColor, colors.white, onlyIcon, icon, iconFamily, iconSize, iconColor, iconRight, textElement]);
     var handlePressIn = (0, react_1.useCallback)(function () { return setPressed(true); }, []);
     var handlePressOut = (0, react_1.useCallback)(function () { return setPressed(false); }, []);
     var buttonStyles = [
@@ -96,6 +97,8 @@ function Button(_a) {
         </react_native_1.Pressable>);
 }
 var styles = function (theme) {
+    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    var colors = theme.COLORS[modeKey];
     return react_native_1.StyleSheet.create({
         defaultButton: {
             borderRadius: theme.SIZES.BASE * 2,
@@ -107,7 +110,7 @@ var styles = function (theme) {
         },
         shadow: __assign({}, react_native_1.Platform.select({
             ios: {
-                shadowColor: theme.COLORS.LIGHT_MODE.black,
+                shadowColor: colors.black,
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: theme.SIZES.OPACITY,
                 shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
@@ -121,7 +124,7 @@ var styles = function (theme) {
         })),
         customText: {
             fontSize: theme.SIZES.FONT,
-            color: theme.COLORS.LIGHT_MODE.white,
+            color: colors.white,
         },
         transparent: {
             backgroundColor: 'transparent',

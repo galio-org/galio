@@ -38,14 +38,15 @@ function renderAvatar(_a) {
 function renderLocation(_a) {
     var location = _a.location, locationColor = _a.locationColor;
     var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useThemeColors)();
     if (!location)
         return null;
     if (typeof location !== 'string') {
         return location;
     }
     return (<Block_1.default row style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
-            <icon_1.default name="map-pin" family="feather" color={locationColor || theme.COLORS.LIGHT_MODE.muted} size={theme.SIZES.FONT * 0.75}/>
-            <text_1.default muted size={theme.SIZES.FONT * 0.75} color={locationColor || theme.COLORS.LIGHT_MODE.muted} style={{
+            <icon_1.default name="map-pin" family="feather" color={locationColor || colors.muted} size={theme.SIZES.FONT * 0.75}/>
+            <text_1.default muted size={theme.SIZES.FONT * 0.75} color={locationColor || colors.muted} style={{
             marginLeft: theme.SIZES.BASE * 0.25,
             textAlign: 'right',
             flexShrink: 1
@@ -57,6 +58,7 @@ function renderLocation(_a) {
 function renderAuthor(_a) {
     var avatar = _a.avatar, title = _a.title, titleColor = _a.titleColor, caption = _a.caption, captionColor = _a.captionColor, location = _a.location, locationColor = _a.locationColor, footerStyle = _a.footerStyle, rightSideComponent = _a.rightSideComponent;
     var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useThemeColors)();
     if (!title && !caption)
         return null;
     return (<Block_1.default flex style={[styles(theme).footer, footerStyle]}>
@@ -78,7 +80,7 @@ function renderAuthor(_a) {
             
             <Block_1.default row space="between" style={{ alignItems: 'flex-end' }}>
                 {caption && (<Block_1.default flex={1} style={{ marginRight: 8 }}>
-                        <text_1.default p muted size={theme.SIZES.FONT * 0.875} color={captionColor || theme.COLORS.LIGHT_MODE.muted} numberOfLines={2}>
+                        <text_1.default p muted size={theme.SIZES.FONT * 0.875} color={captionColor || colors.muted} numberOfLines={2}>
                             {caption}
                         </text_1.default>
                     </Block_1.default>)}
@@ -91,6 +93,7 @@ function renderAuthor(_a) {
 function Card(_a) {
     var avatar = _a.avatar, title = _a.title, titleColor = _a.titleColor, caption = _a.caption, captionColor = _a.captionColor, location = _a.location, locationColor = _a.locationColor, _b = _a.borderless, borderless = _b === void 0 ? false : _b, footerStyle = _a.footerStyle, image = _a.image, imageBlockStyle = _a.imageBlockStyle, imageStyle = _a.imageStyle, children = _a.children, _c = _a.card, card = _c === void 0 ? true : _c, _d = _a.shadow, shadow = _d === void 0 ? true : _d, style = _a.style, _e = _a.neutral, neutral = _e === void 0 ? false : _e, _f = _a.fullBackgroundImage, fullBackgroundImage = _f === void 0 ? false : _f, authorImageSrc = _a.authorImageSrc, authorTitle = _a.authorTitle, authorSubTitle = _a.authorSubTitle, onPress = _a.onPress, rightSideComponent = _a.rightSideComponent, _g = _a.flex, flex = _g === void 0 ? false : _g, shadowColor = _a.shadowColor;
     var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useThemeColors)();
     // Use authorImageSrc as avatar if provided
     var finalAvatar = authorImageSrc || avatar;
     // Use authorTitle as title if provided
@@ -107,7 +110,7 @@ function Card(_a) {
             borderRadius: 0,
         },
         flex && { flex: 1 },
-        __assign({ borderWidth: 0.5, borderColor: '#E5E5E5', borderRadius: 12, backgroundColor: theme.COLORS.LIGHT_MODE.white, marginVertical: 8 }, react_native_1.Platform.select({
+        __assign({ borderWidth: 0.5, borderColor: '#E5E5E5', borderRadius: 12, backgroundColor: colors.white, marginVertical: 8 }, react_native_1.Platform.select({
             ios: {
                 shadowColor: shadowColor || '#000',
                 shadowOffset: { width: 0, height: 2 },
@@ -155,10 +158,12 @@ function Card(_a) {
     return cardContent;
 }
 var styles = function (theme) {
+    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    var colors = theme.COLORS[modeKey];
     return react_native_1.StyleSheet.create({
-        card: __assign({ borderWidth: 0, backgroundColor: theme.COLORS.LIGHT_MODE.white, width: theme.SIZES.CARD_WIDTH, marginVertical: theme.SIZES.CARD_MARGIN_VERTICAL }, react_native_1.Platform.select({
+        card: __assign({ borderWidth: 0, backgroundColor: colors.white, width: theme.SIZES.CARD_WIDTH, marginVertical: theme.SIZES.CARD_MARGIN_VERTICAL }, react_native_1.Platform.select({
             ios: {
-                shadowColor: theme.COLORS.LIGHT_MODE.block,
+                shadowColor: colors.block,
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
                 shadowRadius: 4,
@@ -175,7 +180,7 @@ var styles = function (theme) {
             alignItems: 'flex-start',
             paddingHorizontal: theme.SIZES.CARD_FOOTER_HORIZONTAL,
             paddingVertical: theme.SIZES.CARD_FOOTER_VERTICAL,
-            backgroundColor: theme.COLORS.LIGHT_MODE.transparent,
+            backgroundColor: colors.transparent,
             zIndex: 1,
         },
         avatar: {

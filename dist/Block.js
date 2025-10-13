@@ -60,6 +60,8 @@ function Block(_a) {
         </react_native_1.View>);
 }
 var styles = function (theme) {
+    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    var colors = theme.COLORS[modeKey];
     return react_native_1.StyleSheet.create({
         block: {
             flexDirection: 'column',
@@ -92,11 +94,11 @@ var styles = function (theme) {
         card: {
             borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
             borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
-            borderColor: theme.COLORS.LIGHT_MODE.block,
+            borderColor: colors.block,
         },
         shadow: __assign({}, react_native_1.Platform.select({
             ios: {
-                shadowColor: theme.COLORS.LIGHT_MODE.block,
+                shadowColor: colors.block,
                 shadowOffset: {
                     width: 0,
                     height: 3,

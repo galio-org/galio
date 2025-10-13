@@ -57,13 +57,14 @@ var Galio = (0, vector_icons_1.createIconSetFromIcoMoon)(galio_json_1.default, '
 function Icon(_a) {
     var name = _a.name, family = _a.family, size = _a.size, color = _a.color, _b = _a.medium, medium = _b === void 0 ? false : _b, _c = _a.large, large = _c === void 0 ? false : _c, rest = __rest(_a, ["name", "family", "size", "color", "medium", "large"]);
     var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useThemeColors)();
     var iconSize = size ||
         (medium
             ? theme.SIZES.ICON_MEDIUM
             : large
                 ? theme.SIZES.ICON_LARGE
                 : theme.SIZES.ICON);
-    var iconColor = color || theme.COLORS.LIGHT_MODE.black;
+    var iconColor = color || colors.black;
     if (family === 'Galio') {
         return name ? <Galio name={name} size={iconSize} color={iconColor} {...rest}/> : null;
     }

@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import type { JSX } from 'react';
 import { Platform, StyleProp, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
 import { normalize } from '../../helpers/normalize';
-import GalioTheme, { useGalioTheme } from '../../theme';
+import GalioTheme, { useGalioTheme, useThemeColors } from '../../theme';
 
 interface TypographyProps {
     style?: StyleProp<TextStyle>;
@@ -52,6 +52,7 @@ function Typography({
     ...rest
 }: TypographyProps): JSX.Element {
     const theme = useGalioTheme?.() || propTheme || GalioTheme;
+    const colors = useThemeColors?.();
 
     const getShadowStyle = (): TextStyle | undefined => {
         if (!shadow) return undefined;
@@ -79,8 +80,8 @@ function Typography({
         p && { fontSize: normalize(16) },
         body && { fontSize: normalize(14) },
         small && { fontSize: normalize(12) },
-        muted && { color: theme.COLORS.LIGHT_MODE.muted },
-        neutral && { color: theme.COLORS.LIGHT_MODE.neutral(0.65) },
+        muted && colors && { color: colors.muted },
+        neutral && colors && { color: colors.neutral(0.65) },
         size && typeof size === 'number' ? { fontSize: normalize(size) } : undefined,
         color && { color },
         italic && { fontStyle: 'italic' as TextStyle['fontStyle'] },

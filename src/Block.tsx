@@ -1,7 +1,7 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { ViewStyle, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useGalioTheme, useThemeColors } from './theme';
 
 interface BlockProps {
     row?: boolean;
@@ -83,8 +83,11 @@ function Block({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
-    StyleSheet.create({
+const styles = (theme: ReturnType<typeof useGalioTheme>) => {
+    const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+    const colors = theme.COLORS[modeKey];
+    
+    return StyleSheet.create({
         block: {
             flexDirection: 'column',
         },
@@ -116,12 +119,12 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
         card: {
             borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
             borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
-            borderColor: theme.COLORS.LIGHT_MODE.block,
+            borderColor: colors.block,
         },
         shadow: {
             ...Platform.select({
                 ios: {
-                    shadowColor: theme.COLORS.LIGHT_MODE.block,
+                    shadowColor: colors.block,
                     shadowOffset: {
                         width: 0,
                         height: 3,
@@ -141,5 +144,6 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
             width: 'auto',
         },
     });
+};
 
 export default Block;
