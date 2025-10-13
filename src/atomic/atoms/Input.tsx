@@ -1,7 +1,7 @@
 import React,{forwardRef, useImperativeHandle, useRef, useState, useEffect} from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, KeyboardTypeOptions, ViewStyle, TextStyle, Platform } from 'react-native';
 import Icon from '../ions/icon';
-import  { useGalioTheme } from '../../theme';
+import  { useGalioTheme, useThemeColors } from '../../theme';
 
 export interface InputProps {
   style?: ViewStyle;
@@ -86,6 +86,7 @@ const Input = forwardRef<InputRef, InputProps>(({
   ...rest
 }, ref)=> {
   const theme = useGalioTheme();
+  const colors = useThemeColors();
   const [isPassword, setIsPassword] = useState(password);
   const inputRef = useRef<TextInput>(null)
 
@@ -106,7 +107,7 @@ const Input = forwardRef<InputRef, InputProps>(({
     bgColor && { backgroundColor: bgColor},
     rounded && styles(theme).rounded,
     borderless && styles(theme).borderless,
-    error && { borderColor: theme.COLORS.LIGHT_MODE.danger},
+    error && { borderColor: colors.danger},
     rest.multiline && { minHeight: theme.SIZES.INPUT_HEIGHT, height: 'auto' as any},
     style,
   ].filter(Boolean) as ViewStyle[];
@@ -126,7 +127,7 @@ const Input = forwardRef<InputRef, InputProps>(({
       family={family as string}
       size={iconSize || theme.SIZES.BASE * 1.0625}
       style={{ marginRight: left && !right ? 4 : 0 }}
-      color={(error && theme.COLORS.LIGHT_MODE.danger) || iconColor || placeholderTextColor || theme.COLORS.LIGHT_MODE.neutral(0.6)}
+      color={(error && colors.danger) || iconColor || placeholderTextColor || colors.neutral(0.6)}
     />
   ) : (
     iconContent
@@ -136,7 +137,7 @@ const Input = forwardRef<InputRef, InputProps>(({
     <Pressable style={{ marginLeft: 2 }} onPress={() => setIsPassword(!isPassword)}>
       <Icon
         size={iconSize || theme.SIZES.BASE * 1.0625}
-        color={iconColor || theme.COLORS.LIGHT_MODE.black}
+        color={iconColor || colors.black}
         name="eye"
         family="entypo"
       />
@@ -186,19 +187,22 @@ const Input = forwardRef<InputRef, InputProps>(({
 
 Input.displayName = 'Input';
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => 
-  StyleSheet.create({
+const styles = (theme: ReturnType<typeof useGalioTheme>) => {
+  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
+  const colors = theme.COLORS[modeKey];
+  
+  return StyleSheet.create({
     inputStyle: {
-      backgroundColor: theme.COLORS.LIGHT_MODE.white,
+      backgroundColor: colors.white,
       borderRadius: theme.SIZES.INPUT_BORDER_RADIUS,
       borderWidth: theme.SIZES.INPUT_BORDER_WIDTH,
-      borderColor: theme.COLORS.LIGHT_MODE.input,
+      borderColor: colors.input,
       height: theme.SIZES.INPUT_HEIGHT,
       paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
       width: '100%',
     },
     inputText: {
-      color: theme.COLORS.LIGHT_MODE.input,
+      color: colors.input,
       fontSize: theme.SIZES.INPUT_TEXT,
       textDecorationColor: 'transparent',
     },
@@ -220,7 +224,7 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
       paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL
     },
     helpText: {
-      color: theme.COLORS.LIGHT_MODE.warningLight,
+      color: colors.warningLight,
       fontSize: 14,
       marginVertical: 8,
       paddingHorizontal: 16,
@@ -232,6 +236,7 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
       borderColor: 'transparent',
       borderWidth: 0,
     }
-  })
+  });
+};
 
   export default Input;
