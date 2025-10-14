@@ -1,7 +1,8 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { ViewStyle } from 'react-native';
-interface BlockProps {
+type SpaceType = 'between' | 'around' | 'evenly' | 'left' | 'right' | 'center' | null;
+interface BlockProps extends Omit<ViewStyle, keyof BlockSpecificProps> {
     row?: boolean;
     flex?: boolean | number;
     center?: boolean;
@@ -10,18 +11,39 @@ interface BlockProps {
     bottom?: boolean;
     right?: boolean;
     left?: boolean;
-    shadow?: boolean;
-    space?: 'between' | 'around' | 'evenly' | 'left' | 'right' | 'center' | null;
+    space?: SpaceType;
     fluid?: boolean;
     height?: number | null;
+    width?: number | null;
+    shadow?: boolean;
     shadowColor?: string | null;
     card?: boolean;
-    width?: number | null;
     safe?: boolean;
+    background?: string | null;
     children?: React.ReactNode;
-    style?: ViewStyle;
-    [key: string]: any;
+    style?: ViewStyle | ViewStyle[];
 }
-declare function Block({ row, flex, center, middle, top, bottom, right, left, shadow, space, fluid, height, shadowColor, card, width, safe, children, style, ...rest }: BlockProps): JSX.Element;
+interface BlockSpecificProps {
+    row?: boolean;
+    flex?: boolean | number;
+    center?: boolean;
+    middle?: boolean;
+    top?: boolean;
+    bottom?: boolean;
+    right?: boolean;
+    left?: boolean;
+    space?: SpaceType;
+    fluid?: boolean;
+    height?: number | null;
+    width?: number | null;
+    shadow?: boolean;
+    shadowColor?: string | null;
+    card?: boolean;
+    safe?: boolean;
+    background?: string | null;
+    children?: React.ReactNode;
+    style?: ViewStyle | ViewStyle[];
+}
+declare function Block(props: BlockProps): JSX.Element;
 export default Block;
 //# sourceMappingURL=Block.d.ts.map
