@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import type { JSX } from 'react';
 import { Platform, StyleProp, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
 import { normalize } from './helpers/normalize';
-import GalioTheme, { useGalioTheme, useThemeColors } from './theme';
+import GalioTheme, { useTheme, useColors } from './theme';
 
 interface TypographyProps {
     style?: StyleProp<TextStyle>;
@@ -51,8 +51,8 @@ function Typography({
     shadow = false,
     ...rest
 }: TypographyProps): JSX.Element {
-    const theme = useGalioTheme?.() || propTheme || GalioTheme;
-    const colors = useThemeColors?.();
+    const theme = useTheme?.() || propTheme || GalioTheme;
+    const colors = useColors?.();
 
     const getShadowStyle = (): TextStyle | undefined => {
         if (!shadow) return undefined;
@@ -80,8 +80,8 @@ function Typography({
         p && { fontSize: normalize(16) },
         body && { fontSize: normalize(14) },
         small && { fontSize: normalize(12) },
-        muted && colors && { color: colors.muted },
-        neutral && colors && { color: colors.neutral(0.65) },
+        muted && colors && { color: colors.textTertiary },
+        neutral && colors && { color: colors.textSecondary },
         size && typeof size === 'number' ? { fontSize: normalize(size) } : undefined,
         color && { color },
         italic && { fontStyle: 'italic' as TextStyle['fontStyle'] },
@@ -98,7 +98,7 @@ function Typography({
     );
 }
 
-const styles = (colors: ReturnType<typeof useThemeColors> | undefined) => StyleSheet.create({
+const styles = (colors: ReturnType<typeof useColors> | undefined) => StyleSheet.create({
     base: {
         color: colors?.text || '#000',
     }

@@ -1,4 +1,4 @@
-import { useGalioTheme, useThemeColors } from "./theme";
+import { useTheme, useColors } from "./theme";
 import { useCallback, useState } from "react";
 import type { JSX } from "react";
 import { ActivityIndicator, Dimensions, Platform, Pressable, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
@@ -55,8 +55,8 @@ function Button({
     capitalize = false,
     onPress,
 }: ButtonProps): JSX.Element {
-    const theme = useGalioTheme();
-    const colors = useThemeColors();
+    const theme = useTheme();
+    const colors = useColors();
 
     const [pressed, setPressed] = useState(false);
 
@@ -64,14 +64,13 @@ function Button({
         const colorMap: { [key: string]: string } = {
             'primary': colors.primary,
             'info': colors.info,
-            'danger': colors.danger,
-            'error': colors.danger,
+            'danger': colors.error,
+            'error': colors.error,
             'warning': colors.warning,
             'success': colors.success,
             'white': colors.white,
             'black': colors.black,
-            'secondary': colors.primaryDark,
-            'grey': colors.grey,
+            'secondary': colors.primaryHover,
         };
         
         const result = colorMap[colorName] || colorName;
@@ -154,7 +153,7 @@ function Button({
             : size === 'small'
             ? { width: width * 0.3 }
             : { width: width * 0.42 },
-        round ? { borderRadius: theme.SIZES.BASE * 3 } : {},
+        round ? { borderRadius: theme.sizes.BASE * 3 } : {},
         onlyIcon ? {
             width: iconSize * 2.75,
             height: iconSize * 2.75,
@@ -182,14 +181,13 @@ function Button({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => {
-    const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-    const colors = theme.COLORS[modeKey];
+const styles = (theme: ReturnType<typeof useTheme>) => {
+    const colors = theme.colors; // Use semantic colors
     
     return StyleSheet.create({
         defaultButton: {
-            borderRadius: theme.SIZES.BASE*2,
-            height: theme.SIZES.BUTTON_HEIGHT,
+            borderRadius: theme.sizes.BASE*2,
+            height: theme.sizes.BUTTON_HEIGHT,
             alignItems: 'center',
             justifyContent: 'center',
             margin: 8,
@@ -200,11 +198,11 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) => {
                 ios: {
                     shadowColor: colors.black,
                     shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: theme.SIZES.OPACITY,
-                    shadowRadius: theme.SIZES.BUTTON_SHADOW_RADIUS,
+                    shadowOpacity: theme.sizes.OPACITY,
+                    shadowRadius: theme.sizes.BUTTON_SHADOW_RADIUS,
                 },
                 android: {
-                    elevation: theme.SIZES.ANDROID_ELEVATION,
+                    elevation: theme.sizes.ANDROID_ELEVATION,
                 },
                 web: {
                     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
@@ -212,7 +210,7 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) => {
             }),
         },
         customText: {
-            fontSize: theme.SIZES.FONT,
+            fontSize: theme.sizes.FONT,
             color: colors.white,
         },
         transparent: { 

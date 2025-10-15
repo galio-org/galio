@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GalioFont = exports.galioConfig = exports.withGalio = exports.useGalioTheme = exports.GalioProvider = exports.theme = exports.Text = exports.Icon = exports.Link = exports.Input = exports.Button = exports.Toast = exports.Switch = exports.Slider = exports.Radio = exports.NavBar = exports.DeckSwiper = exports.Checkbox = exports.Card = exports.Block = exports.Avatar = exports.Accordion = void 0;
+exports.GalioFont = exports.galioConfig = exports.withGalio = exports.useGalioStyles = exports.useThemeColors = exports.useGalioTheme = exports.useColors = exports.useTheme = exports.GalioProvider = exports.theme = exports.Text = exports.Icon = exports.Link = exports.Input = exports.Button = exports.Toast = exports.Switch = exports.Slider = exports.Radio = exports.NavBar = exports.DeckSwiper = exports.Checkbox = exports.Card = exports.Block = exports.Avatar = exports.Accordion = void 0;
 // Core Components
 var Accordion_1 = require("./Accordion");
 Object.defineProperty(exports, "Accordion", { enumerable: true, get: function () { return __importDefault(Accordion_1).default; } });
@@ -43,7 +43,13 @@ Object.defineProperty(exports, "Text", { enumerable: true, get: function () { re
 var theme_1 = require("./theme");
 Object.defineProperty(exports, "theme", { enumerable: true, get: function () { return __importDefault(theme_1).default; } });
 Object.defineProperty(exports, "GalioProvider", { enumerable: true, get: function () { return theme_1.GalioProvider; } });
+// Modern hooks (recommended)
+Object.defineProperty(exports, "useTheme", { enumerable: true, get: function () { return theme_1.useTheme; } });
+Object.defineProperty(exports, "useColors", { enumerable: true, get: function () { return theme_1.useColors; } });
+// Legacy hooks (deprecated)
 Object.defineProperty(exports, "useGalioTheme", { enumerable: true, get: function () { return theme_1.useGalioTheme; } });
+Object.defineProperty(exports, "useThemeColors", { enumerable: true, get: function () { return theme_1.useThemeColors; } });
+Object.defineProperty(exports, "useGalioStyles", { enumerable: true, get: function () { return theme_1.useGalioStyles; } });
 Object.defineProperty(exports, "withGalio", { enumerable: true, get: function () { return theme_1.withGalio; } });
 var galio_json_1 = require("./config/galio.json");
 Object.defineProperty(exports, "galioConfig", { enumerable: true, get: function () { return __importDefault(galio_json_1).default; } });

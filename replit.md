@@ -24,19 +24,38 @@ Preferred communication style: Simple, everyday language.
 - Memo optimization is applied to prevent unnecessary re-renders (Icon, Text)
 - Props are strongly typed using TypeScript interfaces for better developer experience
 
-### Theming System
+### Theming System (Modernized October 2025)
+
+**Semantic Color Token System**
+- Follows 2025 React Native standards (React Native Paper, NativeBase patterns)
+- Industry-standard semantic tokens: `background`, `surface`, `text`, `primary`, `success`, `error`, etc.
+- Colors automatically adapt to light/dark mode without manual branching
+- Full TypeScript autocomplete support for all color tokens
 
 **Dynamic Theme Provider**
 - Global theme management through React Context API (`GalioProvider`)
 - Supports three theme modes: light, dark, and auto (follows system preferences)
-- Theme consumption via custom hooks: `useGalioTheme()` and `useThemeColors()`
+- Controlled mode switching via `mode` prop for manual theme toggle
 - Deep merge capability for custom theme extensions while preserving defaults
 
+**Modern Hooks (2025)**
+- `useTheme()` - Returns complete theme object with `{ colors, sizes, mode }`
+- `useColors()` - Convenient shortcut for semantic colors that auto-adapt to mode
+- Legacy hooks maintained for backward compatibility with deprecation warnings
+
 **Theme Structure**
-- **Colors**: Organized into LIGHT_MODE and DARK_MODE with semantic naming (primary, success, warning, danger, info)
+- **Semantic Colors**: Auto-adapting tokens (background, surface, text, textSecondary, onPrimary, primary, success, error, warning, info, border, disabled)
+- **Light Mode Colors**: Optimized for light backgrounds with proper contrast ratios
+- **Dark Mode Colors**: Optimized for dark backgrounds with WCAG AA compliance
 - **Sizes**: Responsive sizing system based on screen dimensions with BASE unit of 16px
 - **Shadows**: Platform-specific shadow configurations for iOS and Android
 - Centralized design tokens ensure visual consistency across all components
+
+**Simple Customization**
+- Just pass brand colors, everything else auto-generates
+- Example: `<GalioProvider theme={{ colors: { primary: '#FF6B6B' } }}>`
+- Supports partial overrides - only customize what you need
+- Backward compatible with old API (COLORS/SIZES still work with warnings)
 
 **Responsive Design**
 - Custom normalization utilities for cross-device scaling

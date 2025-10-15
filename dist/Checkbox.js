@@ -22,7 +22,7 @@ function spaceAround(direction) {
 }
 function renderLabel(_a) {
     var image = _a.image, label = _a.label, disabled = _a.disabled, labelStyle = _a.labelStyle, imageStyle = _a.imageStyle, flexDirection = _a.flexDirection;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
     var labelStyles = [
         styles(theme).textStyles,
         disabled && styles(theme).disabledLabel,
@@ -52,9 +52,9 @@ function _onPress(_a) {
     setChecked(current);
 }
 function Checkbox(_a) {
-    var checkboxStyle = _a.checkboxStyle, _b = _a.color, color = _b === void 0 ? 'theme' : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.flexDirection, flexDirection = _d === void 0 ? 'row' : _d, image = _a.image, imageStyle = _a.imageStyle, _e = _a.iconColor, iconColor = _e === void 0 ? '#fff' : _e, _f = _a.iconFamily, iconFamily = _f === void 0 ? 'FontAwesome' : _f, _g = _a.iconName, iconName = _g === void 0 ? 'check' : _g, _h = _a.iconSize, iconSize = _h === void 0 ? 15 : _h, controlledChecked = _a.checked, _j = _a.initialValue, initialValue = _j === void 0 ? false : _j, label = _a.label, labelStyle = _a.labelStyle, _k = _a.onChange, onChange = _k === void 0 ? function () { } : _k, style = _a.style, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
-    var theme = (0, theme_1.useGalioTheme)();
-    var colors = (0, theme_1.useThemeColors)();
+    var checkboxStyle = _a.checkboxStyle, _b = _a.color, color = _b === void 0 ? 'primary' : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.flexDirection, flexDirection = _d === void 0 ? 'row' : _d, image = _a.image, imageStyle = _a.imageStyle, _e = _a.iconColor, iconColor = _e === void 0 ? '#fff' : _e, _f = _a.iconFamily, iconFamily = _f === void 0 ? 'FontAwesome' : _f, _g = _a.iconName, iconName = _g === void 0 ? 'check' : _g, _h = _a.iconSize, iconSize = _h === void 0 ? 15 : _h, controlledChecked = _a.checked, _j = _a.initialValue, initialValue = _j === void 0 ? false : _j, label = _a.label, labelStyle = _a.labelStyle, _k = _a.onChange, onChange = _k === void 0 ? function () { } : _k, style = _a.style, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     // Support both controlled and uncontrolled modes
     var isControlled = controlledChecked !== undefined;
     var _l = (0, react_1.useState)(initialValue), internalChecked = _l[0], setInternalChecked = _l[1];
@@ -66,7 +66,7 @@ function Checkbox(_a) {
         }
     }, [controlledChecked, isControlled]);
     var colorStyle = color
-        ? colors[color] || theme.COLORS.LIGHT_MODE[color]
+        ? colors[color] || color
         : colors.primary;
     var checkBoxContainerStyle = [
         styles(theme).container,
@@ -106,8 +106,7 @@ function Checkbox(_a) {
         </react_native_1.Pressable>);
 }
 var styles = function (theme) {
-    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-    var colors = theme.COLORS[modeKey];
+    var colors = theme.colors; // Use semantic colors
     return react_native_1.StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -115,30 +114,30 @@ var styles = function (theme) {
             justifyContent: 'flex-start',
         },
         checkboxView: {
-            width: theme.SIZES.CHECKBOX_WIDTH,
-            height: theme.SIZES.CHECKBOX_HEIGHT,
-            borderWidth: theme.SIZES.BORDER_WIDTH,
+            width: theme.sizes.CHECKBOX_WIDTH,
+            height: theme.sizes.CHECKBOX_HEIGHT,
+            borderWidth: theme.sizes.BORDER_WIDTH,
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: theme.SIZES.BORDER_RADIUS,
+            borderRadius: theme.sizes.BORDER_RADIUS,
         },
         uncheckedBoxView: {
             backgroundColor: colors.transparent,
-            borderColor: colors.grey,
+            borderColor: colors.border,
         },
         checked: {
             backgroundColor: colors.primary,
             borderColor: colors.primary,
         },
         disabled: {
-            borderColor: colors.muted,
+            borderColor: colors.disabled,
         },
         textStyles: {
-            color: colors.black,
+            color: colors.text,
         },
         disabledLabel: {
-            color: colors.muted,
-            opacity: theme.SIZES.OPACITY,
+            color: colors.disabledText,
+            opacity: theme.sizes.OPACITY,
         },
     });
 };

@@ -376,8 +376,65 @@ declare module 'galio-framework' {
   
   export const theme: ThemeType;
   
+  // Semantic color types (modern API)
+  export interface SemanticColors {
+    background: string;
+    surface: string;
+    surfaceVariant: string;
+    text: string;
+    textSecondary: string;
+    textTertiary: string;
+    onPrimary: string;
+    onSuccess: string;
+    onError: string;
+    onWarning: string;
+    onInfo: string;
+    onBackground: string;
+    onSurface: string;
+    primary: string;
+    primaryHover: string;
+    primaryActive: string;
+    success: string;
+    successHover: string;
+    error: string;
+    errorHover: string;
+    warning: string;
+    warningHover: string;
+    info: string;
+    infoHover: string;
+    border: string;
+    borderHover: string;
+    divider: string;
+    input: string;
+    inputBackground: string;
+    inputBorder: string;
+    placeholder: string;
+    disabled: string;
+    disabledText: string;
+    white: string;
+    black: string;
+    transparent: string;
+    [key: string]: string;
+  }
+
+  // Modern theme interface
+  export interface ModernTheme {
+    colors: SemanticColors;
+    sizes: ThemeType['SIZES'];
+    mode: 'light' | 'dark';
+    // Legacy props for backward compatibility
+    COLORS?: ThemeType['COLORS'];
+    SIZES?: ThemeType['SIZES'];
+    [key: string]: any;
+  }
+  
   export interface GalioProviderProps extends PropsWithChildren<{
+    mode?: 'light' | 'dark' | 'auto';
     theme?: {
+      // Modern API (recommended)
+      colors?: Partial<SemanticColors>;
+      sizes?: Partial<ThemeType['SIZES']>;
+      // Legacy API (deprecated)
       COLORS?: Partial<ThemeType['COLORS']>;
       SIZES?: Partial<ThemeType['SIZES']>;
       customTheme?: Record<string, any>;
@@ -393,7 +450,14 @@ declare module 'galio-framework' {
     styles: NamedStyles
   ): ComponentType<any>;
 
+  // Modern hooks (recommended)
+  export function useTheme(): ModernTheme;
+  export function useColors(): SemanticColors;
+  
+  // Legacy hooks (deprecated)
   export function useGalioTheme(): ThemeType;
+  export function useThemeColors(): Record<string, string>;
+  export function useGalioStyles<T>(styleFactory?: (theme: ModernTheme) => T): T | undefined;
 }
 
 declare module '*.ttf' {

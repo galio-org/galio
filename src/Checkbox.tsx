@@ -1,6 +1,6 @@
 import { JSX, useState, useEffect } from "react";
 import { Image, ImageStyle, Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { useGalioTheme, useThemeColors } from "./theme";
+import { useTheme, useColors } from "./theme";
 import Text from "./Text";
 import Icon from "./Icon";
 
@@ -38,7 +38,7 @@ function renderLabel({
     imageStyle,
     flexDirection,
 }: LabelProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useTheme();
     const labelStyles = [
         styles(theme).textStyles,
         disabled && styles(theme).disabledLabel,
@@ -124,7 +124,7 @@ interface CheckboxProps {
 
 function Checkbox({
     checkboxStyle,
-    color = 'theme',
+    color = 'primary',
     disabled = false,
     flexDirection = 'row',
     image,
@@ -142,8 +142,8 @@ function Checkbox({
     accessibilityLabel,
     accessibilityHint,
 }: CheckboxProps): JSX.Element {
-    const theme = useGalioTheme();
-    const colors = useThemeColors();
+    const theme = useTheme();
+    const colors = useColors();
     
     // Support both controlled and uncontrolled modes
     const isControlled = controlledChecked !== undefined;
@@ -158,7 +158,7 @@ function Checkbox({
     }, [controlledChecked, isControlled]);
 
     const colorStyle = color 
-        ? colors[color as keyof typeof colors] || theme.COLORS.LIGHT_MODE[color as keyof typeof theme.COLORS.LIGHT_MODE]
+        ? colors[color as keyof typeof colors] || color
         : colors.primary;
 
     const checkBoxContainerStyle = [
@@ -213,9 +213,8 @@ function Checkbox({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => {
-  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-  const colors = theme.COLORS[modeKey];
+const styles = (theme: ReturnType<typeof useTheme>) => {
+  const colors = theme.colors; // Use semantic colors
   
   return StyleSheet.create({
     container: {
@@ -224,30 +223,30 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) => {
       justifyContent: 'flex-start',
     },
     checkboxView: {
-      width: theme.SIZES.CHECKBOX_WIDTH,
-      height: theme.SIZES.CHECKBOX_HEIGHT,
-      borderWidth: theme.SIZES.BORDER_WIDTH,
+      width: theme.sizes.CHECKBOX_WIDTH,
+      height: theme.sizes.CHECKBOX_HEIGHT,
+      borderWidth: theme.sizes.BORDER_WIDTH,
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: theme.SIZES.BORDER_RADIUS,
+      borderRadius: theme.sizes.BORDER_RADIUS,
     },
     uncheckedBoxView: {
       backgroundColor: colors.transparent,
-      borderColor: colors.grey,
+      borderColor: colors.border,
     },
     checked: {
       backgroundColor: colors.primary,
       borderColor: colors.primary,
     },
     disabled: {
-      borderColor: colors.muted,
+      borderColor: colors.disabled,
     },
     textStyles: {
-      color: colors.black,
+      color: colors.text,
     },
     disabledLabel: {
-      color: colors.muted,
-      opacity: theme.SIZES.OPACITY,
+      color: colors.disabledText,
+      opacity: theme.sizes.OPACITY,
     },
   });
 };

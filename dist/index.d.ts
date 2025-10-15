@@ -14,7 +14,7 @@ export { default as Input } from './Input';
 export { default as Link } from './Link';
 export { default as Icon } from './Icon';
 export { default as Text } from './Text';
-export { default as theme, GalioProvider, useGalioTheme, withGalio } from './theme';
+export { default as theme, GalioProvider, useTheme, useColors, useGalioTheme, useThemeColors, useGalioStyles, withGalio } from './theme';
 export { default as galioConfig } from './config/galio.json';
 declare const GalioFont: any;
 export { GalioFont };

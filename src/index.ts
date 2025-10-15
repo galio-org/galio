@@ -21,7 +21,18 @@ export { default as Icon } from './Icon';
 export { default as Text } from './Text';
 
 // Theme and Utilities
-export { default as theme, GalioProvider, useGalioTheme, withGalio } from './theme';
+export { 
+    default as theme, 
+    GalioProvider, 
+    // Modern hooks (recommended)
+    useTheme,
+    useColors,
+    // Legacy hooks (deprecated)
+    useGalioTheme, 
+    useThemeColors,
+    useGalioStyles,
+    withGalio 
+} from './theme';
 export { default as galioConfig } from './config/galio.json';
 
 // Fonts
