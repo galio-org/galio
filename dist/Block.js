@@ -28,10 +28,12 @@ var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
 function Block(props) {
     var row = props.row, flex = props.flex, center = props.center, middle = props.middle, top = props.top, bottom = props.bottom, right = props.right, left = props.left, space = props.space, fluid = props.fluid, height = props.height, width = props.width, shadow = props.shadow, shadowColor = props.shadowColor, card = props.card, safe = props.safe, background = props.background, children = props.children, style = props.style, rest = __rest(props, ["row", "flex", "center", "middle", "top", "bottom", "right", "left", "space", "fluid", "height", "width", "shadow", "shadowColor", "card", "safe", "background", "children", "style"]);
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     // Build styles using composition pattern for better maintainability
     var blockStyles = useBlockStyles({
         theme: theme,
+        colors: colors,
         row: row,
         flex: flex,
         center: center,
@@ -62,9 +64,7 @@ function Block(props) {
 }
 // Custom hook for building block styles - improves testability and reusability
 function useBlockStyles(_a) {
-    var theme = _a.theme, row = _a.row, flex = _a.flex, center = _a.center, middle = _a.middle, top = _a.top, bottom = _a.bottom, right = _a.right, left = _a.left, space = _a.space, fluid = _a.fluid, height = _a.height, width = _a.width, shadow = _a.shadow, shadowColor = _a.shadowColor, card = _a.card, background = _a.background, customStyle = _a.customStyle;
-    var modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-    var colors = theme.COLORS[modeKey];
+    var theme = _a.theme, colors = _a.colors, row = _a.row, flex = _a.flex, center = _a.center, middle = _a.middle, top = _a.top, bottom = _a.bottom, right = _a.right, left = _a.left, space = _a.space, fluid = _a.fluid, height = _a.height, width = _a.width, shadow = _a.shadow, shadowColor = _a.shadowColor, card = _a.card, background = _a.background, customStyle = _a.customStyle;
     // Base block styles with theme integration
     var baseStyles = {
         flexDirection: 'column',
@@ -112,24 +112,24 @@ function useBlockStyles(_a) {
 function getShadowStyles(theme, colors) {
     return react_native_1.Platform.select({
         ios: {
-            shadowColor: colors.block,
+            shadowColor: colors.border,
             shadowOffset: { width: 0, height: 3 },
-            shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
-            shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
+            shadowOpacity: theme.sizes.BLOCK_SHADOW_OPACITY,
+            shadowRadius: theme.sizes.BLOCK_SHADOW_RADIUS,
         },
         android: {
-            elevation: theme.SIZES.ANDROID_ELEVATION,
+            elevation: theme.sizes.ANDROID_ELEVATION,
         },
         web: {
-            boxShadow: "0px 3px ".concat(theme.SIZES.BLOCK_SHADOW_RADIUS, "px rgba(0, 0, 0, ").concat(theme.SIZES.BLOCK_SHADOW_OPACITY, ")"),
+            boxShadow: "0px 3px ".concat(theme.sizes.BLOCK_SHADOW_RADIUS, "px rgba(0, 0, 0, ").concat(theme.sizes.BLOCK_SHADOW_OPACITY, ")"),
         },
     });
 }
 function getCardStyles(theme, colors) {
     return {
-        borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
-        borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
-        borderColor: colors.block,
+        borderRadius: theme.sizes.CARD_BORDER_RADIUS,
+        borderWidth: theme.sizes.CARD_BORDER_WIDTH,
+        borderColor: colors.border,
     };
 }
 exports.default = Block;

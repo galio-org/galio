@@ -1,7 +1,7 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { ViewStyle, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useTheme, useColors } from './theme';
 
 // Enhanced type definitions for better type safety
 type SpaceType = 'between' | 'around' | 'evenly' | 'left' | 'right' | 'center' | null;
@@ -86,11 +86,13 @@ function Block(props: BlockProps): JSX.Element {
     ...rest
   } = props;
 
-  const theme = useGalioTheme();
+  const theme = useTheme();
+  const colors = useColors();
 
   // Build styles using composition pattern for better maintainability
   const blockStyles = useBlockStyles({
     theme,
+    colors,
     row,
     flex,
     center,
@@ -129,6 +131,7 @@ function Block(props: BlockProps): JSX.Element {
 // Custom hook for building block styles - improves testability and reusability
 function useBlockStyles({
   theme,
+  colors,
   row,
   flex,
   center,
@@ -147,7 +150,8 @@ function useBlockStyles({
   background,
   customStyle,
 }: {
-  theme: ReturnType<typeof useGalioTheme>;
+  theme: ReturnType<typeof useTheme>;
+  colors: ReturnType<typeof useColors>;
   row?: boolean;
   flex?: boolean | number;
   center?: boolean;
@@ -166,8 +170,6 @@ function useBlockStyles({
   background?: string | null;
   customStyle?: ViewStyle | ViewStyle[];
 }) {
-  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-  const colors = theme.COLORS[modeKey];
 
   // Base block styles with theme integration
   const baseStyles = {
@@ -224,28 +226,28 @@ function useBlockStyles({
 }
 
 // Extracted style builders for better organization
-function getShadowStyles(theme: ReturnType<typeof useGalioTheme>, colors: any) {
+function getShadowStyles(theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) {
   return Platform.select({
     ios: {
-      shadowColor: colors.block,
+      shadowColor: colors.border,
       shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
-      shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
+      shadowOpacity: theme.sizes.BLOCK_SHADOW_OPACITY,
+      shadowRadius: theme.sizes.BLOCK_SHADOW_RADIUS,
     },
     android: {
-      elevation: theme.SIZES.ANDROID_ELEVATION,
+      elevation: theme.sizes.ANDROID_ELEVATION,
     },
     web: {
-      boxShadow: `0px 3px ${theme.SIZES.BLOCK_SHADOW_RADIUS}px rgba(0, 0, 0, ${theme.SIZES.BLOCK_SHADOW_OPACITY})`,
+      boxShadow: `0px 3px ${theme.sizes.BLOCK_SHADOW_RADIUS}px rgba(0, 0, 0, ${theme.sizes.BLOCK_SHADOW_OPACITY})`,
     },
   });
 }
 
-function getCardStyles(theme: ReturnType<typeof useGalioTheme>, colors: any) {
+function getCardStyles(theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) {
   return {
-    borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
-    borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
-    borderColor: colors.block,
+    borderRadius: theme.sizes.CARD_BORDER_RADIUS,
+    borderWidth: theme.sizes.CARD_BORDER_WIDTH,
+    borderColor: colors.border,
   };
 }
 

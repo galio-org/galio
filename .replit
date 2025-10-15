@@ -33,10 +33,6 @@ outputType = "webview"
 localPort = 5000
 externalPort = 80
 
-[[ports]]
-localPort = 45227
-externalPort = 3000
-
 [deployment]
 deploymentTarget = "autoscale"
 run = ["node", "demo/server.js"]
