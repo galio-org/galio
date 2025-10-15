@@ -14,11 +14,11 @@ export { default as Switch } from './Switch';
 export { default as Toast } from './Toast';
 
 // Atomic Components
-export { default as Button } from './atomic/atoms/Button';
-export { default as Input } from './atomic/atoms/Input';
-export { default as Link } from './atomic/atoms/Link';
-export { default as Icon } from './atomic/ions/icon';
-export { default as Text } from './atomic/ions/text';
+export { default as Button } from './Button';
+export { default as Input } from './Input';
+export { default as Link } from './Link';
+export { default as Icon } from './Icon';
+export { default as Text } from './Text';
 
 // Theme and Utilities
 export { default as theme, GalioProvider, useGalioTheme, withGalio } from './theme';
