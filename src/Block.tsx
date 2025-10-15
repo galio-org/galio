@@ -174,7 +174,7 @@ function useBlockStyles({
   // Base block styles with theme integration
   const baseStyles = {
     flexDirection: 'column' as const,
-    backgroundColor: background || colors.background,
+    backgroundColor: background || 'transparent',
   };
 
   // Compose all styles using a more functional approach

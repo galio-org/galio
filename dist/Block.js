@@ -68,7 +68,7 @@ function useBlockStyles(_a) {
     // Base block styles with theme integration
     var baseStyles = {
         flexDirection: 'column',
-        backgroundColor: background || colors.background,
+        backgroundColor: background || 'transparent',
     };
     // Compose all styles using a more functional approach
     var styles = __spreadArray([
