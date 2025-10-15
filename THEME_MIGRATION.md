@@ -53,6 +53,84 @@ const colors = useColors();
 
 ---
 
+## 📦 Creating Your Own Theme File
+
+**Important:** The framework provides **neutral defaults only**. You should define your brand colors in your own application's theme file, not in the framework.
+
+### Step 1: Create `theme.ts` in Your Application
+
+Create a file in your project (e.g., `src/theme.ts` or `app/theme.ts`):
+
+```tsx
+// src/theme.ts - Your application's theme file
+export const myAppTheme = {
+  colors: {
+    // Your brand colors - override the neutral defaults
+    primary: '#FF6B6B',       // Your brand primary color
+    success: '#51CF66',       // Your brand success color
+    error: '#FF6B6B',         // Your brand error color
+    warning: '#FFA94D',       // Your brand warning color
+    info: '#4DABF7',          // Your brand info color
+    
+    // Optional: Override other semantic colors
+    background: '#FAFAFA',    // Custom background
+    surface: '#FFFFFF',       // Custom surface
+    text: '#1A1A1A',          // Custom text color
+  },
+  sizes: {
+    // Optional: Custom size overrides
+    BASE: 18,                 // Base font size
+  }
+};
+```
+
+### Step 2: Use Your Theme in GalioProvider
+
+```tsx
+// App.tsx
+import { GalioProvider } from 'galio-framework';
+import { myAppTheme } from './theme';
+
+export default function App() {
+  return (
+    <GalioProvider theme={myAppTheme}>
+      <YourApp />
+    </GalioProvider>
+  );
+}
+```
+
+### Step 3: Use Colors in Your Components
+
+```tsx
+import { useColors } from 'galio-framework';
+
+function MyComponent() {
+  const colors = useColors();
+  
+  return (
+    <Button 
+      color={colors.primary}  // Uses YOUR brand primary color
+    >
+      Click Me
+    </Button>
+  );
+}
+```
+
+### What the Framework Provides
+
+The Galio Framework provides **neutral defaults** that are designed to be overridden:
+
+- **Neutral grays** for primary/secondary colors
+- **Subtle blues/greens/reds** for info/success/error states  
+- **Light/Dark mode** auto-adaptation logic
+- **Semantic token structure** that you fill with your brand colors
+
+**You provide the brand colors** via your theme file - the framework just handles the structure and light/dark mode logic! 🎨
+
+---
+
 ## 🎨 Semantic Color System
 
 ### Available Semantic Colors

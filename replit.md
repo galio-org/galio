@@ -44,17 +44,25 @@ Preferred communication style: Simple, everyday language.
 - Legacy hooks maintained for backward compatibility with deprecation warnings
 
 **Theme Structure**
+- **Framework Provides**: Neutral default colors and semantic token structure
+- **User Provides**: Brand colors via their application's theme file (not in framework)
 - **Semantic Colors**: Auto-adapting tokens (background, surface, text, textSecondary, onPrimary, primary, success, error, warning, info, border, disabled)
 - **Light Mode Colors**: Optimized for light backgrounds with proper contrast ratios
 - **Dark Mode Colors**: Optimized for dark backgrounds with WCAG AA compliance
 - **Sizes**: Responsive sizing system based on screen dimensions with BASE unit of 16px
 - **Shadows**: Platform-specific shadow configurations for iOS and Android
-- Centralized design tokens ensure visual consistency across all components
+
+**Architecture: Framework vs User Responsibility**
+- **Framework**: Provides neutral defaults (grays, subtle colors) and semantic token structure
+- **User Application**: Creates own `theme.ts` file with brand colors
+- **Integration**: User passes their theme via `<GalioProvider theme={myAppTheme}>`
+- Framework handles light/dark mode logic, user provides the brand colors
 
 **Simple Customization**
-- Just pass brand colors, everything else auto-generates
-- Example: `<GalioProvider theme={{ colors: { primary: '#FF6B6B' } }}>`
+- Users create `theme.ts` in their own application with brand colors
+- Example: `<GalioProvider theme={{ colors: { primary: '#FF6B6B', success: '#51CF66' } }}>`
 - Supports partial overrides - only customize what you need
+- Framework provides neutral defaults that users override with their brands
 - Backward compatible with old API (COLORS/SIZES still work with warnings)
 
 **Responsive Design**
