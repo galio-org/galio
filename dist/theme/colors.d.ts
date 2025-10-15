@@ -3,7 +3,7 @@ export declare const SOCIAL: {
     twitter: string;
     dribbble: string;
 };
-export declare const BRAND_COLORS: {
+export declare const NEUTRAL_DEFAULTS: {
     primary: string;
     primaryDark: string;
     primaryLight: string;
@@ -397,7 +397,7 @@ declare const _default: {
         black: string;
         transparent: string;
     };
-    BRAND_COLORS: {
+    NEUTRAL_DEFAULTS: {
         primary: string;
         primaryDark: string;
         primaryLight: string;

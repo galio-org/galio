@@ -12,29 +12,31 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DARK_MODE = exports.LIGHT_MODE = exports.BASE = exports.COMPONENTS = exports.THEME = exports.DARK_COLORS = exports.LIGHT_COLORS = exports.SHADOWS = exports.BRAND_COLORS = exports.SOCIAL = void 0;
+exports.DARK_MODE = exports.LIGHT_MODE = exports.BASE = exports.COMPONENTS = exports.THEME = exports.DARK_COLORS = exports.LIGHT_COLORS = exports.SHADOWS = exports.NEUTRAL_DEFAULTS = exports.SOCIAL = void 0;
 // Base color palette - shared across modes
 exports.SOCIAL = {
     facebook: '#3B5998',
     twitter: '#5BC0DE',
     dribbble: '#EA4C89',
 };
-exports.BRAND_COLORS = {
-    primary: '#FE2472',
-    primaryDark: '#F4075C',
-    primaryLight: '#FF8AB9',
-    info: '#0E2ADD',
-    infoDark: '#0520D0',
-    infoLight: '#8794FF',
-    danger: '#FF3F31',
-    dangerDark: '#F43324',
-    dangerLight: '#FF7167',
-    warning: '#FF9C09',
-    warningDark: '#EE8E00',
-    warningLight: '#FFCC76',
-    success: '#18CE0F',
-    successDark: '#24AD12',
-    successLight: '#88F38E',
+// NEUTRAL DEFAULTS - Users should override these with their brand colors
+// Define your brand colors in your application's theme file and pass via GalioProvider
+exports.NEUTRAL_DEFAULTS = {
+    primary: '#6B7280', // Neutral gray - override with your brand primary
+    primaryDark: '#4B5563',
+    primaryLight: '#9CA3AF',
+    info: '#60A5FA', // Neutral blue - override with your brand info
+    infoDark: '#3B82F6',
+    infoLight: '#93C5FD',
+    danger: '#F87171', // Neutral red - override with your brand error
+    dangerDark: '#EF4444',
+    dangerLight: '#FCA5A5',
+    warning: '#FBBF24', // Neutral orange - override with your brand warning
+    warningDark: '#F59E0B',
+    warningLight: '#FCD34D',
+    success: '#34D399', // Neutral green - override with your brand success
+    successDark: '#10B981',
+    successLight: '#6EE7B7',
 };
 exports.SHADOWS = {
     default: {
@@ -62,8 +64,8 @@ exports.LIGHT_COLORS = __assign({
     text: '#161D28', textSecondary: '#666666', textTertiary: '#9FA5AA', 
     // Colors for text on branded backgrounds
     onPrimary: '#FFFFFF', onSuccess: '#FFFFFF', onError: '#FFFFFF', onWarning: '#FFFFFF', onInfo: '#FFFFFF', onBackground: '#161D28', onSurface: '#161D28', 
-    // Semantic state colors (use brand colors)
-    primary: exports.BRAND_COLORS.primary, primaryHover: exports.BRAND_COLORS.primaryDark, primaryActive: exports.BRAND_COLORS.primaryDark, success: exports.BRAND_COLORS.success, successHover: exports.BRAND_COLORS.successDark, error: exports.BRAND_COLORS.danger, errorHover: exports.BRAND_COLORS.dangerDark, warning: exports.BRAND_COLORS.warning, warningHover: exports.BRAND_COLORS.warningDark, info: exports.BRAND_COLORS.info, infoHover: exports.BRAND_COLORS.infoDark, 
+    // Semantic state colors (neutral defaults - users override via GalioProvider)
+    primary: exports.NEUTRAL_DEFAULTS.primary, primaryHover: exports.NEUTRAL_DEFAULTS.primaryDark, primaryActive: exports.NEUTRAL_DEFAULTS.primaryDark, success: exports.NEUTRAL_DEFAULTS.success, successHover: exports.NEUTRAL_DEFAULTS.successDark, error: exports.NEUTRAL_DEFAULTS.danger, errorHover: exports.NEUTRAL_DEFAULTS.dangerDark, warning: exports.NEUTRAL_DEFAULTS.warning, warningHover: exports.NEUTRAL_DEFAULTS.warningDark, info: exports.NEUTRAL_DEFAULTS.info, infoHover: exports.NEUTRAL_DEFAULTS.infoDark, 
     // UI element colors
     border: '#E0E0E0', borderHover: '#CCCCCC', divider: '#EEEEEE', 
     // Component-specific defaults
@@ -79,7 +81,7 @@ exports.DARK_COLORS = __assign({
     // Colors for text on branded backgrounds (same as light)
     onPrimary: '#FFFFFF', onSuccess: '#FFFFFF', onError: '#FFFFFF', onWarning: '#FFFFFF', onInfo: '#FFFFFF', onBackground: '#FFFFFF', onSurface: '#FFFFFF', 
     // Semantic state colors (slightly brighter for dark mode)
-    primary: exports.BRAND_COLORS.primaryLight, primaryHover: exports.BRAND_COLORS.primary, primaryActive: exports.BRAND_COLORS.primary, success: exports.BRAND_COLORS.successLight, successHover: exports.BRAND_COLORS.success, error: exports.BRAND_COLORS.dangerLight, errorHover: exports.BRAND_COLORS.danger, warning: exports.BRAND_COLORS.warningLight, warningHover: exports.BRAND_COLORS.warning, info: exports.BRAND_COLORS.infoLight, infoHover: exports.BRAND_COLORS.info, 
+    primary: exports.NEUTRAL_DEFAULTS.primaryLight, primaryHover: exports.NEUTRAL_DEFAULTS.primary, primaryActive: exports.NEUTRAL_DEFAULTS.primary, success: exports.NEUTRAL_DEFAULTS.successLight, successHover: exports.NEUTRAL_DEFAULTS.success, error: exports.NEUTRAL_DEFAULTS.dangerLight, errorHover: exports.NEUTRAL_DEFAULTS.danger, warning: exports.NEUTRAL_DEFAULTS.warningLight, warningHover: exports.NEUTRAL_DEFAULTS.warning, info: exports.NEUTRAL_DEFAULTS.infoLight, infoHover: exports.NEUTRAL_DEFAULTS.info, 
     // UI element colors
     border: '#374151', borderHover: '#4B5563', divider: '#2A3441', 
     // Component-specific defaults
@@ -87,8 +89,8 @@ exports.DARK_COLORS = __assign({
     // Utility colors
     white: '#FFFFFF', black: '#000000', transparent: 'transparent' }, exports.SOCIAL);
 // Legacy exports for backward compatibility
-// These maintain the old API structure but use new semantic tokens
-exports.THEME = exports.BRAND_COLORS;
+// These maintain the old API structure but use neutral defaults
+exports.THEME = exports.NEUTRAL_DEFAULTS;
 exports.COMPONENTS = {
     input: '#808080',
     placeholder: '#9FA5AA',
@@ -118,6 +120,6 @@ exports.default = {
     // New semantic exports
     LIGHT_COLORS: exports.LIGHT_COLORS,
     DARK_COLORS: exports.DARK_COLORS,
-    BRAND_COLORS: exports.BRAND_COLORS,
+    NEUTRAL_DEFAULTS: exports.NEUTRAL_DEFAULTS,
 };
 //# sourceMappingURL=colors.js.map

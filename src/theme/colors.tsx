@@ -7,26 +7,28 @@ export const SOCIAL = {
   dribbble: '#EA4C89',
 };
 
-export const BRAND_COLORS = {
-  primary: '#FE2472',
-  primaryDark: '#F4075C',
-  primaryLight: '#FF8AB9',
+// NEUTRAL DEFAULTS - Users should override these with their brand colors
+// Define your brand colors in your application's theme file and pass via GalioProvider
+export const NEUTRAL_DEFAULTS = {
+  primary: '#6B7280',      // Neutral gray - override with your brand primary
+  primaryDark: '#4B5563',
+  primaryLight: '#9CA3AF',
   
-  info: '#0E2ADD',
-  infoDark: '#0520D0',
-  infoLight: '#8794FF',
+  info: '#60A5FA',         // Neutral blue - override with your brand info
+  infoDark: '#3B82F6',
+  infoLight: '#93C5FD',
   
-  danger: '#FF3F31',
-  dangerDark: '#F43324',
-  dangerLight: '#FF7167',
+  danger: '#F87171',       // Neutral red - override with your brand error
+  dangerDark: '#EF4444',
+  dangerLight: '#FCA5A5',
   
-  warning: '#FF9C09',
-  warningDark: '#EE8E00',
-  warningLight: '#FFCC76',
+  warning: '#FBBF24',      // Neutral orange - override with your brand warning
+  warningDark: '#F59E0B',
+  warningLight: '#FCD34D',
   
-  success: '#18CE0F',
-  successDark: '#24AD12',
-  successLight: '#88F38E',
+  success: '#34D399',      // Neutral green - override with your brand success
+  successDark: '#10B981',
+  successLight: '#6EE7B7',
 };
 
 export const SHADOWS = {
@@ -69,22 +71,22 @@ export const LIGHT_COLORS = {
   onBackground: '#161D28',
   onSurface: '#161D28',
   
-  // Semantic state colors (use brand colors)
-  primary: BRAND_COLORS.primary,
-  primaryHover: BRAND_COLORS.primaryDark,
-  primaryActive: BRAND_COLORS.primaryDark,
+  // Semantic state colors (neutral defaults - users override via GalioProvider)
+  primary: NEUTRAL_DEFAULTS.primary,
+  primaryHover: NEUTRAL_DEFAULTS.primaryDark,
+  primaryActive: NEUTRAL_DEFAULTS.primaryDark,
   
-  success: BRAND_COLORS.success,
-  successHover: BRAND_COLORS.successDark,
+  success: NEUTRAL_DEFAULTS.success,
+  successHover: NEUTRAL_DEFAULTS.successDark,
   
-  error: BRAND_COLORS.danger,
-  errorHover: BRAND_COLORS.dangerDark,
+  error: NEUTRAL_DEFAULTS.danger,
+  errorHover: NEUTRAL_DEFAULTS.dangerDark,
   
-  warning: BRAND_COLORS.warning,
-  warningHover: BRAND_COLORS.warningDark,
+  warning: NEUTRAL_DEFAULTS.warning,
+  warningHover: NEUTRAL_DEFAULTS.warningDark,
   
-  info: BRAND_COLORS.info,
-  infoHover: BRAND_COLORS.infoDark,
+  info: NEUTRAL_DEFAULTS.info,
+  infoHover: NEUTRAL_DEFAULTS.infoDark,
   
   // UI element colors
   border: '#E0E0E0',
@@ -131,21 +133,21 @@ export const DARK_COLORS = {
   onSurface: '#FFFFFF',
   
   // Semantic state colors (slightly brighter for dark mode)
-  primary: BRAND_COLORS.primaryLight,
-  primaryHover: BRAND_COLORS.primary,
-  primaryActive: BRAND_COLORS.primary,
+  primary: NEUTRAL_DEFAULTS.primaryLight,
+  primaryHover: NEUTRAL_DEFAULTS.primary,
+  primaryActive: NEUTRAL_DEFAULTS.primary,
   
-  success: BRAND_COLORS.successLight,
-  successHover: BRAND_COLORS.success,
+  success: NEUTRAL_DEFAULTS.successLight,
+  successHover: NEUTRAL_DEFAULTS.success,
   
-  error: BRAND_COLORS.dangerLight,
-  errorHover: BRAND_COLORS.danger,
+  error: NEUTRAL_DEFAULTS.dangerLight,
+  errorHover: NEUTRAL_DEFAULTS.danger,
   
-  warning: BRAND_COLORS.warningLight,
-  warningHover: BRAND_COLORS.warning,
+  warning: NEUTRAL_DEFAULTS.warningLight,
+  warningHover: NEUTRAL_DEFAULTS.warning,
   
-  info: BRAND_COLORS.infoLight,
-  infoHover: BRAND_COLORS.info,
+  info: NEUTRAL_DEFAULTS.infoLight,
+  infoHover: NEUTRAL_DEFAULTS.info,
   
   // UI element colors
   border: '#374151',
@@ -171,8 +173,8 @@ export const DARK_COLORS = {
 };
 
 // Legacy exports for backward compatibility
-// These maintain the old API structure but use new semantic tokens
-export const THEME = BRAND_COLORS;
+// These maintain the old API structure but use neutral defaults
+export const THEME = NEUTRAL_DEFAULTS;
 
 export const COMPONENTS = {
   input: '#808080',
@@ -218,5 +220,5 @@ export default {
   // New semantic exports
   LIGHT_COLORS,
   DARK_COLORS,
-  BRAND_COLORS,
+  NEUTRAL_DEFAULTS,
 };
