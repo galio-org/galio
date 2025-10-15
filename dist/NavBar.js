@@ -50,8 +50,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
-var text_1 = __importDefault(require("./atomic/ions/text"));
-var icon_1 = __importDefault(require("./atomic/ions/icon"));
+var Text_1 = __importDefault(require("./Text"));
+var Icon_1 = __importDefault(require("./Icon"));
 var Block_1 = __importDefault(require("./Block"));
 var height = react_native_1.Dimensions.get("screen").height;
 function NavBar(_a) {
@@ -60,9 +60,9 @@ function NavBar(_a) {
     var renderTitle = (0, react_1.useCallback)(function () {
         if (typeof title === "string") {
             return (<react_native_1.View style={styles(theme).title}>
-          <text_1.default numberOfLines={titleNumberOfLines || 1} style={[styles(theme).titleTextStyle, titleStyle]} {...titleTextProps}>
+          <Text_1.default numberOfLines={titleNumberOfLines || 1} style={[styles(theme).titleTextStyle, titleStyle]} {...titleTextProps}>
             {title}
-          </text_1.default>
+          </Text_1.default>
         </react_native_1.View>);
         }
         if (!title)
@@ -74,7 +74,7 @@ function NavBar(_a) {
             if (leftIconName || (back && !left)) {
                 return (<react_native_1.View style={[styles(theme).left, leftStyle]}>
             <react_native_1.Pressable onPress={onLeftPress} hitSlop={leftHitSlop} accessibilityRole="button" accessibilityLabel={accessibilityLabel || "Back button"}>
-              <icon_1.default name={leftIconName || (back ? "chevron-left" : "navicon")} family={leftIconFamily || "material"} color={leftIconColor || theme.COLORS.LIGHT_MODE.icon} size={leftIconSize || theme.SIZES.BASE * 2.2}/>
+              <Icon_1.default name={leftIconName || (back ? "chevron-left" : "navicon")} family={leftIconFamily || "material"} color={leftIconColor || theme.COLORS.LIGHT_MODE.icon} size={leftIconSize || theme.SIZES.BASE * 2.2}/>
             </react_native_1.Pressable>
           </react_native_1.View>);
             }

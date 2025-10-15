@@ -12,14 +12,13 @@ Preferred communication style: Simple, everyday language.
 
 ### Component Architecture
 
-**Atomic Design Pattern**
-- The library follows an atomic design methodology with three distinct levels:
-  - **Ions**: Fundamental building blocks (Text, Icon)
-  - **Atoms**: Simple UI elements (Button, Input, Link)
-  - **Molecules/Organisms**: Complex components (Card, NavBar, Accordion, DeckSwiper)
-- This hierarchical structure promotes reusability and consistent design patterns throughout the application
+**File Structure** (Updated October 2025)
+- All components are located in `src/` root directory for simplicity
+- Flat structure makes it easy to find and import any component
+- Components: Accordion, Avatar, Block, Button, Card, Checkbox, DeckSwiper, Icon, Input, Link, NavBar, Radio, Slider, Switch, Text, Toast
 
-**Component Design Philosophy**
+**Design Philosophy**
+- While the codebase follows atomic design principles conceptually (basic components like Text/Icon, interactive atoms like Button/Input, and complex molecules like Card/NavBar), the file structure is intentionally flat
 - All components are built as functional components using React Hooks
 - Components utilize forwardRef where imperative handles are needed (Input, Link)
 - Memo optimization is applied to prevent unnecessary re-renders (Icon, Text)

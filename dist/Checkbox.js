@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
-var text_1 = __importDefault(require("./atomic/ions/text"));
-var icon_1 = __importDefault(require("./atomic/ions/icon"));
+var Text_1 = __importDefault(require("./Text"));
+var Icon_1 = __importDefault(require("./Icon"));
 function spaceAround(direction) {
     switch (direction) {
         case 'row-reverse':
@@ -34,14 +34,14 @@ function renderLabel(_a) {
         return <react_native_1.Image source={{ uri: image }} style={imageStyles}/>;
     }
     if (!image && label) {
-        return <text_1.default style={labelStyles}>{label}</text_1.default>;
+        return <Text_1.default style={labelStyles}>{label}</Text_1.default>;
     }
     return null;
 }
 function renderChecked(_a) {
     var checked = _a.checked, iconColor = _a.iconColor, iconFamily = _a.iconFamily, iconName = _a.iconName, iconSize = _a.iconSize;
     if (checked) {
-        return (<icon_1.default name={iconName || 'check'} family={iconFamily || 'antdesign'} color={iconColor || '#000'} size={iconSize || 16}/>);
+        return (<Icon_1.default name={iconName || 'check'} family={iconFamily || 'antdesign'} color={iconColor || '#000'} size={iconSize || 16}/>);
     }
     return null;
 }

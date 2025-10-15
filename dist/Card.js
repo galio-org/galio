@@ -17,8 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_native_1 = require("react-native");
 var Block_1 = __importDefault(require("./Block"));
 var theme_1 = require("./theme");
-var icon_1 = __importDefault(require("./atomic/ions/icon"));
-var text_1 = __importDefault(require("./atomic/ions/text"));
+var Icon_1 = __importDefault(require("./Icon"));
+var Text_1 = __importDefault(require("./Text"));
 function renderImage(_a) {
     var image = _a.image, imageBlockStyle = _a.imageBlockStyle, imageStyle = _a.imageStyle;
     var theme = (0, theme_1.useGalioTheme)();
@@ -45,14 +45,14 @@ function renderLocation(_a) {
         return location;
     }
     return (<Block_1.default row style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
-            <icon_1.default name="map-pin" family="feather" color={locationColor || colors.muted} size={theme.SIZES.FONT * 0.75}/>
-            <text_1.default muted size={theme.SIZES.FONT * 0.75} color={locationColor || colors.muted} style={{
+            <Icon_1.default name="map-pin" family="feather" color={locationColor || colors.muted} size={theme.SIZES.FONT * 0.75}/>
+            <Text_1.default muted size={theme.SIZES.FONT * 0.75} color={locationColor || colors.muted} style={{
             marginLeft: theme.SIZES.BASE * 0.25,
             textAlign: 'right',
             flexShrink: 1
         }} numberOfLines={1}>
                 {location}
-            </text_1.default>
+            </Text_1.default>
         </Block_1.default>);
 }
 function renderAuthor(_a) {
@@ -68,9 +68,9 @@ function renderAuthor(_a) {
                 </Block_1.default>
                 <Block_1.default flex={1.8} style={{ paddingLeft: 8 }}>
                     {title && (<Block_1.default style={styles(theme).title}>
-                            <text_1.default size={theme.SIZES.FONT * 0.875} color={titleColor} numberOfLines={1}>
+                            <Text_1.default size={theme.SIZES.FONT * 0.875} color={titleColor} numberOfLines={1}>
                                 {title}
-                            </text_1.default>
+                            </Text_1.default>
                         </Block_1.default>)}
                 </Block_1.default>
                 {rightSideComponent && (<Block_1.default flex={0.5} style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
@@ -80,9 +80,9 @@ function renderAuthor(_a) {
             
             <Block_1.default row space="between" style={{ alignItems: 'flex-end' }}>
                 {caption && (<Block_1.default flex={1} style={{ marginRight: 8 }}>
-                        <text_1.default p muted size={theme.SIZES.FONT * 0.875} color={captionColor || colors.muted} numberOfLines={2}>
+                        <Text_1.default p muted size={theme.SIZES.FONT * 0.875} color={captionColor || colors.muted} numberOfLines={2}>
                             {caption}
-                        </text_1.default>
+                        </Text_1.default>
                     </Block_1.default>)}
                 {location && (<Block_1.default style={{ alignItems: 'flex-end', justifyContent: 'flex-end', minWidth: 0 }}>
                         {renderLocation({ location: location, locationColor: locationColor })}

@@ -17,25 +17,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_native_1 = require("react-native");
 var react_1 = require("react");
 var react_native_2 = require("react-native");
-var text_1 = __importDefault(require("./atomic/ions/text"));
+var Text_1 = __importDefault(require("./Text"));
 var Block_1 = __importDefault(require("./Block"));
-var icon_1 = __importDefault(require("./atomic/ions/icon"));
+var Icon_1 = __importDefault(require("./Icon"));
 var theme_1 = require("./theme");
 var width = react_native_2.Dimensions.get('screen').width;
 function AccordionContent(_a) {
     var content = _a.content, contentStyle = _a.contentStyle;
     var theme = (0, theme_1.useGalioTheme)();
-    return <text_1.default style={[styles(theme).content, contentStyle]}>{content}</text_1.default>;
+    return <Text_1.default style={[styles(theme).content, contentStyle]}>{content}</Text_1.default>;
 }
 function AccordionHeader(_a) {
     var expanded = _a.expanded, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, icon = _a.icon, title = _a.title, chapterIcon = _a.chapterIcon;
     var theme = (0, theme_1.useGalioTheme)();
     return (<Block_1.default row middle style={[{ padding: 6 }, headerStyle]}>
-            {chapterIcon ? (<icon_1.default name={chapterIcon.name} family={chapterIcon.family} size={chapterIcon.size || 14} color={chapterIcon.color || theme.COLORS.LIGHT_MODE.primary} style={chapterIcon.style || { marginRight: 5 }}/>) : null}
+            {chapterIcon ? (<Icon_1.default name={chapterIcon.name} family={chapterIcon.family} size={chapterIcon.size || 14} color={chapterIcon.color || theme.COLORS.LIGHT_MODE.primary} style={chapterIcon.style || { marginRight: 5 }}/>) : null}
             <Block_1.default row space="between" middle flex>
-                <text_1.default size={16}>{title}</text_1.default>
+                <Text_1.default size={16}>{title}</Text_1.default>
                 {expanded
-            ? (expandedIcon ? (<icon_1.default name={expandedIcon.name} family={expandedIcon.family} size={expandedIcon.size || 16} color={expandedIcon.color || theme.COLORS.LIGHT_MODE.muted}/>) : (<icon_1.default name="keyboard-arrow-up" family="material" size={16} color={theme.COLORS.LIGHT_MODE.muted}/>)) : (icon ? (<icon_1.default name={icon.name} family={icon.family} size={icon.size || 16} color={icon.color || theme.COLORS.LIGHT_MODE.muted}/>) : (<icon_1.default name="keyboard-arrow-down" family="material" size={16} color={theme.COLORS.LIGHT_MODE.muted}/>))}
+            ? (expandedIcon ? (<Icon_1.default name={expandedIcon.name} family={expandedIcon.family} size={expandedIcon.size || 16} color={expandedIcon.color || theme.COLORS.LIGHT_MODE.muted}/>) : (<Icon_1.default name="keyboard-arrow-up" family="material" size={16} color={theme.COLORS.LIGHT_MODE.muted}/>)) : (icon ? (<Icon_1.default name={icon.name} family={icon.family} size={icon.size || 16} color={icon.color || theme.COLORS.LIGHT_MODE.muted}/>) : (<Icon_1.default name="keyboard-arrow-down" family="material" size={16} color={theme.COLORS.LIGHT_MODE.muted}/>))}
             </Block_1.default>
         </Block_1.default>);
 }

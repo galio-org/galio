@@ -39,7 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
-var text_1 = __importDefault(require("./atomic/ions/text"));
+var Text_1 = __importDefault(require("./Text"));
 var _a = react_native_1.Dimensions.get('screen'), height = _a.height, width = _a.width;
 function Toast(_a) {
     var children = _a.children, isShow = _a.isShow, _b = _a.positionIndicator, positionIndicator = _b === void 0 ? 'top' : _b, _c = _a.positionOffset, positionOffset = _c === void 0 ? 120 : _c, _d = _a.fadeInDuration, fadeInDuration = _d === void 0 ? 300 : _d, _e = _a.fadeOutDuration, fadeOutDuration = _e === void 0 ? 300 : _e, _f = _a.color, color = _f === void 0 ? 'primary' : _f, _g = _a.round, round = _g === void 0 ? false : _g, style = _a.style, textStyle = _a.textStyle;
@@ -107,7 +107,7 @@ function Toast(_a) {
     }, [isShow, internalIsShow, fadeInDuration, fadeOutDuration, fadeAnim]);
     var renderContent = function () {
         if (typeof children === 'string') {
-            return <text_1.default style={[styles(theme).text, textStyle]}>{children}</text_1.default>;
+            return <Text_1.default style={[styles(theme).text, textStyle]}>{children}</Text_1.default>;
         }
         return children;
     };
