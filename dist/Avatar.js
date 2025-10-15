@@ -15,12 +15,12 @@ var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
 function Avatar(_a) {
     var source = _a.source, label = _a.label, labelColor = _a.labelColor, _b = _a.size, size = _b === void 0 ? 50 : _b, backgroundColor = _a.backgroundColor, imageProps = _a.imageProps, imageStyle = _a.imageStyle, containerStyle = _a.containerStyle, style = _a.style, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
-    var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useColors)();
     var avatarSize = size || 50;
     var stylesheet = react_native_1.StyleSheet.create({
         container: __assign({ width: avatarSize, height: avatarSize, alignItems: 'center', justifyContent: 'center', borderRadius: avatarSize / 2, overflow: 'hidden' }, react_native_1.Platform.select({
             ios: {
-                shadowColor: theme.COLORS.LIGHT_MODE.block,
+                shadowColor: colors.border,
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
                 shadowRadius: 4,
@@ -43,10 +43,10 @@ function Avatar(_a) {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: avatarSize / 2,
-            backgroundColor: backgroundColor || theme.COLORS.LIGHT_MODE.muted,
+            backgroundColor: backgroundColor || colors.disabled,
         },
         labelText: {
-            color: labelColor || theme.COLORS.LIGHT_MODE.white,
+            color: labelColor || colors.white,
             fontSize: Math.max(12, avatarSize * 0.32),
             fontWeight: '600',
             textAlign: 'center',

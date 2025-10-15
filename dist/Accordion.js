@@ -24,18 +24,19 @@ var theme_1 = require("./theme");
 var width = react_native_2.Dimensions.get('screen').width;
 function AccordionContent(_a) {
     var content = _a.content, contentStyle = _a.contentStyle;
-    var theme = (0, theme_1.useGalioTheme)();
-    return <Text_1.default style={[styles(theme).content, contentStyle]}>{content}</Text_1.default>;
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
+    return <Text_1.default style={[styles(theme, colors).content, contentStyle]}>{content}</Text_1.default>;
 }
 function AccordionHeader(_a) {
     var expanded = _a.expanded, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, icon = _a.icon, title = _a.title, chapterIcon = _a.chapterIcon;
-    var theme = (0, theme_1.useGalioTheme)();
+    var colors = (0, theme_1.useColors)();
     return (<Block_1.default row middle style={[{ padding: 6 }, headerStyle]}>
-            {chapterIcon ? (<Icon_1.default name={chapterIcon.name} family={chapterIcon.family} size={chapterIcon.size || 14} color={chapterIcon.color || theme.COLORS.LIGHT_MODE.primary} style={chapterIcon.style || { marginRight: 5 }}/>) : null}
+            {chapterIcon ? (<Icon_1.default name={chapterIcon.name} family={chapterIcon.family} size={chapterIcon.size || 14} color={chapterIcon.color || colors.primary} style={chapterIcon.style || { marginRight: 5 }}/>) : null}
             <Block_1.default row space="between" middle flex>
                 <Text_1.default size={16}>{title}</Text_1.default>
                 {expanded
-            ? (expandedIcon ? (<Icon_1.default name={expandedIcon.name} family={expandedIcon.family} size={expandedIcon.size || 16} color={expandedIcon.color || theme.COLORS.LIGHT_MODE.muted}/>) : (<Icon_1.default name="keyboard-arrow-up" family="material" size={16} color={theme.COLORS.LIGHT_MODE.muted}/>)) : (icon ? (<Icon_1.default name={icon.name} family={icon.family} size={icon.size || 16} color={icon.color || theme.COLORS.LIGHT_MODE.muted}/>) : (<Icon_1.default name="keyboard-arrow-down" family="material" size={16} color={theme.COLORS.LIGHT_MODE.muted}/>))}
+            ? (expandedIcon ? (<Icon_1.default name={expandedIcon.name} family={expandedIcon.family} size={expandedIcon.size || 16} color={expandedIcon.color || colors.textSecondary}/>) : (<Icon_1.default name="keyboard-arrow-up" family="material" size={16} color={colors.textSecondary}/>)) : (icon ? (<Icon_1.default name={icon.name} family={icon.family} size={icon.size || 16} color={icon.color || colors.textSecondary}/>) : (<Icon_1.default name="keyboard-arrow-down" family="material" size={16} color={colors.textSecondary}/>))}
             </Block_1.default>
         </Block_1.default>);
 }
@@ -78,19 +79,20 @@ function AccordionItem(_a) {
 }
 function Accordion(_a) {
     var dataArray = _a.dataArray, icon = _a.icon, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, contentStyle = _a.contentStyle, opened = _a.opened, onAccordionOpen = _a.onAccordionOpen, onAccordionClose = _a.onAccordionClose, listStyle = _a.listStyle, style = _a.style;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     var _b = (0, react_1.useState)(opened), selected = _b[0], setSelected = _b[1];
-    return (<Block_1.default style={[styles(theme).container, style]}>
+    return (<Block_1.default style={[styles(theme, colors).container, style]}>
             <react_native_1.View style={listStyle}>
                 {dataArray === null || dataArray === void 0 ? void 0 : dataArray.map(function (item, index) { return (<AccordionItem key={String(index)} expanded={selected === index} expandedIcon={expandedIcon} icon={icon} headerStyle={headerStyle} contentStyle={contentStyle} onAccordionOpen={onAccordionOpen} onAccordionClose={onAccordionClose} item={item} index={index} setSelected={function (s) { return setSelected(selected === s ? undefined : s); }}/>); })}
             </react_native_1.View>
         </Block_1.default>);
 }
-var styles = function (theme) {
+var styles = function (theme, colors) {
     return react_native_1.StyleSheet.create({
-        container: __assign({ flex: 1, width: width * 0.8, borderRadius: 16, padding: 8, backgroundColor: 'white' }, react_native_2.Platform.select({
+        container: __assign({ flex: 1, width: width * 0.8, borderRadius: 16, padding: 8, backgroundColor: colors.surface }, react_native_2.Platform.select({
             ios: {
-                shadowColor: "black",
+                shadowColor: colors.border,
                 shadowOffset: { width: 0, height: 1 },
                 shadowOpacity: 0.2,
                 shadowRadius: 4,
