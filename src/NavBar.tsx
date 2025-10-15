@@ -11,8 +11,8 @@ import {
 } from "react-native";
 
 import { useGalioTheme } from "./theme";
-import Text from "./atomic/ions/text";
-import Icon from "./atomic/ions/icon";
+import Text from "./Text";
+import Icon from "./Icon";
 import Block from "./Block";
 
 const { height } = Dimensions.get("screen");

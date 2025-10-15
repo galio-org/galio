@@ -1,9 +1,9 @@
 import { Animated, FlatList, StyleSheet, TouchableWithoutFeedback, ViewStyle, TextStyle, Pressable, View } from "react-native";
 import { useEffect, useState, type JSX } from "react";
 import { Dimensions, Platform } from "react-native";
-import Text from "./atomic/ions/text";
+import Text from "./Text";
 import Block from "./Block";
-import Icon from "./atomic/ions/icon";
+import Icon from "./Icon";
 import { useGalioTheme } from "./theme";
 
 const { width } = Dimensions.get('screen');

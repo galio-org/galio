@@ -1,7 +1,7 @@
 import { JSX, useCallback, useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { useGalioTheme } from "./theme";
-import Text from "./atomic/ions/text";
+import Text from "./Text";
 
 interface RadioProps {
     color?: string;

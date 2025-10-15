@@ -2,8 +2,8 @@ import { JSX } from "react";
 import { Image, ImageStyle, StyleSheet, ViewStyle, Platform, TouchableOpacity } from "react-native";
 import Block from "./Block";
 import { useGalioTheme, useThemeColors } from "./theme";
-import Icon from "./atomic/ions/icon";
-import Text from "./atomic/ions/text";
+import Icon from "./Icon";
+import Text from "./Text";
 
 interface ImageProps {
     image?: string;

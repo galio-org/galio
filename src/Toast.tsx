@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, StyleSheet, Animated, View } from 'react-native';
 import { useGalioTheme } from './theme';
-import Text from './atomic/ions/text';
+import Text from './Text';
 
 const { height, width } = Dimensions.get('screen');
 

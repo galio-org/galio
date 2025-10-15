@@ -1,8 +1,8 @@
 import { JSX, useState, useEffect } from "react";
 import { Image, ImageStyle, Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { useGalioTheme, useThemeColors } from "./theme";
-import Text from "./atomic/ions/text";
-import Icon from "./atomic/ions/icon";
+import Text from "./Text";
+import Icon from "./Icon";
 
 interface SpaceAroundProps {
     direction: 'row-reverse' | 'column' | 'column-reverse' | 'row';
