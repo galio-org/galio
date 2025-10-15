@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import { StyleSheet, ViewStyle, View, Text, Image, ImageSourcePropType, Platform, ImageStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useTheme, useColors } from "./theme";
 
 interface AvatarProps {
     source?: ImageSourcePropType;
@@ -29,7 +29,7 @@ function Avatar({
     accessibilityLabel,
     accessibilityHint,
 }: AvatarProps): JSX.Element {
-    const theme = useGalioTheme();
+    const colors = useColors();
     const avatarSize = size || 50;
 
     const stylesheet = StyleSheet.create({
@@ -42,7 +42,7 @@ function Avatar({
             overflow: 'hidden',
             ...Platform.select({
                 ios: {
-                    shadowColor: theme.COLORS.LIGHT_MODE.block,
+                    shadowColor: colors.border,
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: 0.1,
                     shadowRadius: 4,
@@ -66,10 +66,10 @@ function Avatar({
             alignItems: 'center' as const,
             justifyContent: 'center' as const,
             borderRadius: avatarSize / 2,
-            backgroundColor: backgroundColor || theme.COLORS.LIGHT_MODE.muted,
+            backgroundColor: backgroundColor || colors.disabled,
         },
         labelText: {
-            color: labelColor || theme.COLORS.LIGHT_MODE.white,
+            color: labelColor || colors.white,
             fontSize: Math.max(12, avatarSize * 0.32),
             fontWeight: '600' as const,
             textAlign: 'center' as const,
