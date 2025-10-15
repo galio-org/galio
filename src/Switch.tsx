@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, JSX } from 'react';
 import { Switch as Switcher, ViewStyle } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useTheme, useColors } from './theme';
 
 interface SwitchProps {
     value?: boolean;
@@ -25,7 +25,8 @@ function Switch({
     accessibilityLabel,
     accessibilityHint,
 }: SwitchProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useTheme();
+  const colors = useColors();
     const [internalValue, setInternalValue] = useState(value ?? false);
     
     const isControlled = value !== undefined;
@@ -45,7 +46,7 @@ function Switch({
     }, [isControlled, onValueChange]);
     
     const getThemeColor = useCallback((colorName?: string) => {
-        if (!colorName) return theme.COLORS.LIGHT_MODE.primary;
+        if (!colorName) return colors.primary;
         
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
@@ -55,16 +56,16 @@ function Switch({
         if (typeof themeColor === 'function') {
             return themeColor();
         }
-        return themeColor || theme.COLORS.LIGHT_MODE.primary;
+        return themeColor || colors.primary;
     }, [theme.COLORS.LIGHT_MODE]);
     
     const defaultTrackColor = {
-        false: theme.COLORS.LIGHT_MODE.grey,
+        false: colors.disabled,
         true: getThemeColor(color),
     };
     
     const finalTrackColor = trackColor || defaultTrackColor;
-    const finalIosBackgroundColor = ios_backgroundColor || theme.COLORS.LIGHT_MODE.grey;
+    const finalIosBackgroundColor = ios_backgroundColor || colors.disabled;
     
     const accessibilityProps = {
         accessibilityRole: 'switch' as const,

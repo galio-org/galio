@@ -39,7 +39,8 @@ var theme_1 = require("./theme");
 var Slider = function (_a) {
     var _b, _c;
     var _d = _a.value, value = _d === void 0 ? 0 : _d, _e = _a.minimumValue, minimumValue = _e === void 0 ? 0 : _e, _f = _a.maximumValue, maximumValue = _f === void 0 ? 1 : _f, _g = _a.step, step = _g === void 0 ? 0.01 : _g, onValueChange = _a.onValueChange, _h = _a.disabled, disabled = _h === void 0 ? false : _h, trackStyle = _a.trackStyle, activeColor = _a.activeColor, containerStyle = _a.containerStyle, thumbStyle = _a.thumbStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     var _j = (0, react_1.useState)(0), containerWidth = _j[0], setContainerWidth = _j[1];
     var trackWidth = (0, react_1.useRef)(0);
     var thumbX = (0, react_1.useRef)(new react_native_1.Animated.Value(0)).current;
@@ -107,10 +108,10 @@ var Slider = function (_a) {
         var width = event.nativeEvent.layout.width;
         setContainerWidth(Math.round(width));
     };
-    return (<react_native_1.View style={[styles(theme).container, containerStyle]} onLayout={handleContainerLayout}>
-        <react_native_1.View onLayout={onTrackLayout} style={[styles(theme).track, trackStyle]}></react_native_1.View>
+    return (<react_native_1.View style={[styles(theme, colors).container, containerStyle]} onLayout={handleContainerLayout}>
+        <react_native_1.View onLayout={onTrackLayout} style={[styles(theme, colors).track, trackStyle]}></react_native_1.View>
         <react_native_1.View style={[
-            styles(theme).track,
+            styles(theme, colors).track,
             {
                 position: 'absolute',
                 width: trackWidth.current,
@@ -118,15 +119,15 @@ var Slider = function (_a) {
             }
         ]}>
             <react_native_1.Animated.View style={[
-            styles(theme).thumb,
+            styles(theme, colors).thumb,
             thumbStyle,
-            disabled && styles(theme).disabled,
+            disabled && styles(theme, colors).disabled,
             { transform: [{ translateX: thumbX }] },
         ]} {...panResponder.panHandlers}/>
         </react_native_1.View>
     </react_native_1.View>);
 };
-var styles = function (theme) {
+var styles = function (theme, colors) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
     return react_native_1.StyleSheet.create({
         container: {

@@ -1,6 +1,6 @@
 import { JSX, useCallback, useEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { useGalioTheme } from "./theme";
+import { useTheme, useColors } from "./theme";
 import Text from "./Text";
 
 interface RadioProps {
@@ -35,7 +35,8 @@ function Radio({
     accessibilityHint,
 }: RadioProps): JSX.Element {
 
-    const theme = useGalioTheme();
+    const theme = useTheme();
+  const colors = useColors();
     const [internalValue, setInternalValue] = useState(initialValue);
     
     const isControlled = value !== undefined;
@@ -58,8 +59,8 @@ function Radio({
 
     const renderLabel = useCallback(() => {
         const labelStyles = [
-            styles(theme).textStyles,
-            disabled && styles(theme).disabledLabel,
+            styles(theme, colors).textStyles,
+            disabled && styles(theme, colors).disabledLabel,
             labelStyle,
             flexDirection && spaceAround(flexDirection),
         ];
@@ -82,13 +83,13 @@ function Radio({
     }, [checked, disabled, onChange, isControlled]);
 
     const containerStyles = useMemo(() => [
-        styles(theme).container, 
+        styles(theme, colors).container, 
         flexDirection && { flexDirection }, 
         containerStyle
     ], [theme, flexDirection, containerStyle]);
 
     const whichColor = useMemo(() => {
-        if (!color) return theme.COLORS.LIGHT_MODE.info;
+        if (!color) return colors.info;
         
         const upperColor = color.toUpperCase();
         const themeColor = theme.COLORS.LIGHT_MODE[upperColor as keyof typeof theme.COLORS.LIGHT_MODE];
@@ -104,16 +105,16 @@ function Radio({
     }, [color, theme.COLORS]);
 
     const radioButtonOuterStyles = useMemo(() => [
-        styles(theme).radioOuterStyles,
+        styles(theme, colors).radioOuterStyles,
         { borderColor: whichColor as string },
-        disabled && styles(theme).disabledRadioOuter,
+        disabled && styles(theme, colors).disabledRadioOuter,
         radioOuterStyle,
     ], [theme, whichColor, disabled, radioOuterStyle]);
 
     const radioButtonInnerStyles = useMemo(() => [
-        styles(theme).radioInnerStyles,
+        styles(theme, colors).radioInnerStyles,
         { backgroundColor: whichColor as string },
-        disabled && styles(theme).disabledRadioInner,
+        disabled && styles(theme, colors).disabledRadioInner,
         radioInnerStyle,
     ], [theme, whichColor, disabled, radioInnerStyle]);
 
@@ -155,7 +156,7 @@ function Radio({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
     StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -163,32 +164,32 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
             justifyContent: 'flex-start',
         },
         radioOuterStyles: {
-            height: theme.SIZES.RADIO_HEIGHT,
-            width: theme.SIZES.RADIO_WIDTH,
-            borderRadius: theme.SIZES.RADIO_HEIGHT * 0.5,
-            borderWidth: theme.SIZES.RADIO_THICKNESS,
-            borderColor: theme.COLORS.LIGHT_MODE.grey,
+            height: theme.sizes.RADIO_HEIGHT,
+            width: theme.sizes.RADIO_WIDTH,
+            borderRadius: theme.sizes.RADIO_HEIGHT * 0.5,
+            borderWidth: theme.sizes.RADIO_THICKNESS,
+            borderColor: colors.border,
             alignItems: 'center',
             justifyContent: 'center',
         },
         radioInnerStyles: {
-            height: theme.SIZES.RADIO_HEIGHT * 0.5,
-            width: theme.SIZES.RADIO_WIDTH * 0.5,
-            borderRadius: theme.SIZES.RADIO_HEIGHT * 0.25,
-            backgroundColor: theme.COLORS.LIGHT_MODE.black,
+            height: theme.sizes.RADIO_HEIGHT * 0.5,
+            width: theme.sizes.RADIO_WIDTH * 0.5,
+            borderRadius: theme.sizes.RADIO_HEIGHT * 0.25,
+            backgroundColor: colors.black,
         },
         disabledRadioOuter: {
-            borderColor: theme.COLORS.LIGHT_MODE.muted,
+            borderColor: colors.disabled,
         },
         disabledRadioInner: {
-            backgroundColor: theme.COLORS.LIGHT_MODE.muted,
+            backgroundColor: colors.disabled,
         },
         textStyles: {
-            color: theme.COLORS.LIGHT_MODE.black,
+            color: colors.black,
         },
         disabledLabel: {
-            color: theme.COLORS.LIGHT_MODE.muted,
-            opacity: theme.SIZES.OPACITY,
+            color: colors.textSecondary,
+            opacity: theme.sizes.OPACITY,
         },
     });
 

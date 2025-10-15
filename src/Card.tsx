@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import { Image, ImageStyle, StyleSheet, ViewStyle, Platform, TouchableOpacity } from "react-native";
 import Block from "./Block";
-import { useGalioTheme, useThemeColors } from "./theme";
+import { useTheme, useColors } from "./theme";
 import Icon from "./Icon";
 import Text from "./Text";
 
@@ -16,11 +16,12 @@ function renderImage({
     imageBlockStyle,
     imageStyle,
 }: ImageProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useTheme();
+    const colors = useColors();
     if (!image) return null;
     return (
-        <Block card style={[styles(theme).imageBlock, imageBlockStyle] as any}>
-            <Image source={{uri: image}} style={[styles(theme).image, imageStyle] as any}/>
+        <Block card style={[styles(theme, colors).imageBlock, imageBlockStyle] as any}>
+            <Image source={{uri: image}} style={[styles(theme, colors).image, imageStyle] as any}/>
         </Block>
     );
 }
@@ -32,9 +33,10 @@ interface AvatarProps {
 function renderAvatar({
     avatar,
 }: AvatarProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useTheme();
+    const colors = useColors();
     if (!avatar) return null;
-    return <Image source={{uri: avatar}} style={styles(theme).avatar}/>;
+    return <Image source={{uri: avatar}} style={styles(theme, colors).avatar}/>;
 }
 
 interface LocationProps {
@@ -46,8 +48,8 @@ function renderLocation({
     location,
     locationColor,
 }: LocationProps): JSX.Element | null {
-    const theme = useGalioTheme();
-    const colors = useThemeColors();
+    const theme = useTheme();
+    const colors = useColors();
     if (!location) return null;
     if (typeof location !== 'string') {
         return location as JSX.Element;
@@ -57,15 +59,15 @@ function renderLocation({
             <Icon 
                 name="map-pin" 
                 family="feather" 
-                color={locationColor || colors.muted} 
-                size={theme.SIZES.FONT * 0.75}
+                color={locationColor || colors.textSecondary} 
+                size={theme.sizes.FONT * 0.75}
             />
             <Text 
                 muted 
-                size={theme.SIZES.FONT * 0.75} 
-                color={locationColor || colors.muted} 
+                size={theme.sizes.FONT * 0.75} 
+                color={locationColor || colors.textSecondary} 
                 style={{
-                    marginLeft: theme.SIZES.BASE * 0.25,
+                    marginLeft: theme.sizes.BASE * 0.25,
                     textAlign: 'right',
                     flexShrink: 1
                 }}
@@ -100,21 +102,21 @@ function renderAuthor({
     footerStyle,
     rightSideComponent,
 }: AuthorProps): JSX.Element | null {
-    const theme = useGalioTheme();
-    const colors = useThemeColors();
+    const theme = useTheme();
+    const colors = useColors();
 
     if (!title && !caption) return null;
 
     return (
-        <Block flex style={[styles(theme).footer, footerStyle] as any}>
+        <Block flex style={[styles(theme, colors).footer, footerStyle] as any}>
             <Block row space="between" style={{ marginBottom: 4 }}>
                 <Block flex={0.2} style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
                     {renderAvatar({avatar})}
                 </Block>
                 <Block flex={1.8} style={{ paddingLeft: 8 }}>
                     {title && (
-                        <Block style={styles(theme).title}>
-                            <Text size={theme.SIZES.FONT * 0.875} color={titleColor} numberOfLines={1}>
+                        <Block style={styles(theme, colors).title}>
+                            <Text size={theme.sizes.FONT * 0.875} color={titleColor} numberOfLines={1}>
                                 {title}
                             </Text>
                         </Block>
@@ -133,8 +135,8 @@ function renderAuthor({
                         <Text
                             p 
                             muted
-                            size={theme.SIZES.FONT * 0.875}
-                            color={captionColor || colors.muted}
+                            size={theme.sizes.FONT * 0.875}
+                            color={captionColor || colors.textSecondary}
                             numberOfLines={2}
                         >
                             {caption}
@@ -207,8 +209,8 @@ function Card({
     flex = false,
     shadowColor,
 }: CardProps): JSX.Element {
-    const theme = useGalioTheme();
-    const colors = useThemeColors();
+    const theme = useTheme();
+    const colors = useColors();
     
     // Use authorImageSrc as avatar if provided
     const finalAvatar = authorImageSrc || avatar;
@@ -229,13 +231,13 @@ function Card({
         flex && { flex: 1 },
         {
             borderWidth: 0.5, 
-            borderColor: '#E5E5E5', 
+            borderColor: colors.border, 
             borderRadius: 12, 
-            backgroundColor: colors.white,
+            backgroundColor: colors.surface,
             marginVertical: 8,
             ...Platform.select({
                 ios: {
-                    shadowColor: shadowColor || '#000',
+                    shadowColor: shadowColor || colors.border,
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: 0.1,
                     shadowRadius: 4,
@@ -299,19 +301,16 @@ function Card({
     return cardContent;
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => {
-  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-  const colors = theme.COLORS[modeKey];
-  
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) => {
   return StyleSheet.create({
     card: {
       borderWidth: 0,
-      backgroundColor: colors.white,
-      width: theme.SIZES.CARD_WIDTH,
-      marginVertical: theme.SIZES.CARD_MARGIN_VERTICAL,
+      backgroundColor: colors.surface,
+      width: theme.sizes.CARD_WIDTH,
+      marginVertical: theme.sizes.CARD_MARGIN_VERTICAL,
       ...Platform.select({
         ios: {
-          shadowColor: colors.block,
+          shadowColor: colors.border,
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
@@ -327,15 +326,15 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) => {
     footer: {
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
-      paddingHorizontal: theme.SIZES.CARD_FOOTER_HORIZONTAL,
-      paddingVertical: theme.SIZES.CARD_FOOTER_VERTICAL,
+      paddingHorizontal: theme.sizes.CARD_FOOTER_HORIZONTAL,
+      paddingVertical: theme.sizes.CARD_FOOTER_VERTICAL,
       backgroundColor: colors.transparent,
       zIndex: 1,
     },
     avatar: {
-      width: theme.SIZES.CARD_AVATAR_WIDTH,
-      height: theme.SIZES.CARD_AVATAR_HEIGHT,
-      borderRadius: theme.SIZES.CARD_AVATAR_RADIUS,
+      width: theme.sizes.CARD_AVATAR_WIDTH,
+      height: theme.sizes.CARD_AVATAR_HEIGHT,
+      borderRadius: theme.sizes.CARD_AVATAR_RADIUS,
     },
     title: {
       justifyContent: 'flex-start',
@@ -347,13 +346,13 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) => {
     },
     image: {
       width: 'auto',
-      height: theme.SIZES.CARD_IMAGE_HEIGHT,
+      height: theme.sizes.CARD_IMAGE_HEIGHT,
     },
     round: {
-      borderRadius: theme.SIZES.CARD_ROUND,
+      borderRadius: theme.sizes.CARD_ROUND,
     },
     rounded: {
-      borderRadius: theme.SIZES.CARD_ROUNDED,
+      borderRadius: theme.sizes.CARD_ROUNDED,
     },
   });
 };

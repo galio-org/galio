@@ -10,7 +10,7 @@ import {
   ViewStyle,
 } from "react-native";
 
-import { useGalioTheme } from "./theme";
+import { useTheme, useColors } from "./theme";
 import Text from "./Text";
 import Icon from "./Icon";
 import Block from "./Block";
@@ -62,15 +62,16 @@ function NavBar({
   titleTextProps,
   accessibilityLabel,
 }: NavBarProps): JSX.Element {
-  const theme = useGalioTheme();
+  const theme = useTheme();
+  const colors = useColors();
 
   const renderTitle = useCallback(() => {
     if (typeof title === "string") {
       return (
-        <View style={styles(theme).title}>
+        <View style={styles(theme, colors).title}>
           <Text
             numberOfLines={titleNumberOfLines || 1}
-            style={[styles(theme).titleTextStyle, titleStyle]}
+            style={[styles(theme, colors).titleTextStyle, titleStyle]}
             {...titleTextProps}
           >
             {title}
@@ -80,13 +81,13 @@ function NavBar({
     }
     if (!title) return null;
     return title;
-  }, [title, titleStyle, titleNumberOfLines, titleTextProps, theme]);
+  }, [title, titleStyle, titleNumberOfLines, titleTextProps, theme, colors]);
 
   const renderLeft = useCallback(() => {
     if (!hideLeft) {
       if (leftIconName || (back && !left)) {
         return (
-          <View style={[styles(theme).left, leftStyle]}>
+          <View style={[styles(theme, colors).left, leftStyle]}>
             <Pressable
               onPress={onLeftPress}
               hitSlop={leftHitSlop}
@@ -96,16 +97,16 @@ function NavBar({
               <Icon
                 name={leftIconName || (back ? "chevron-left" : "navicon")}
                 family={leftIconFamily || "material"}
-                color={leftIconColor || theme.COLORS.LIGHT_MODE.icon}
-                size={leftIconSize || theme.SIZES.BASE * 2.2} 
+                color={leftIconColor || colors.text}
+                size={leftIconSize || theme.sizes.BASE * 2.2} 
               />
             </Pressable>
           </View>
         );
       }
-      return <View style={[styles(theme).left, leftStyle]}>{left}</View>;
+      return <View style={[styles(theme, colors).left, leftStyle]}>{left}</View>;
     }
-    return <View style={styles(theme).left} />;
+    return <View style={styles(theme, colors).left} />;
   }, [
     hideLeft,
     leftIconName,
@@ -119,29 +120,30 @@ function NavBar({
     leftIconColor,
     leftIconSize,
     theme,
+    colors,
   ]);
 
   const renderRight = useCallback(() => {
     const hasIcons = React.Children.count(right) > 1;
-    const rightStyles = { ...styles(theme).right, ...rightStyle };
+    const rightStyles = { ...styles(theme, colors).right, ...rightStyle };
 
     if (!hideRight) {
       return (
         <View style={rightStyles}>
           {hasIcons ? (
-            <View style={styles(theme).rightIconsContainer}>{right}</View>
+            <View style={styles(theme, colors).rightIconsContainer}>{right}</View>
           ) : (
             right
           )}
         </View>
       );
     }
-    return <View style={styles(theme).right} />;
-  }, [hideRight, right, rightStyle, theme]);
+    return <View style={styles(theme, colors).right} />;
+  }, [hideRight, right, rightStyle, theme, colors]);
 
   const navStyles = useMemo((): ViewStyle => {
-    const defaultStyles = styles(theme).navBar;
-    const transparentStyles = transparent ? styles(theme).transparent : {};
+    const defaultStyles = styles(theme, colors).navBar;
+    const transparentStyles = transparent ? styles(theme, colors).transparent : {};
     const merged = StyleSheet.flatten([
       defaultStyles,
       transparentStyles,
@@ -152,7 +154,7 @@ function NavBar({
       merged.height = defaultStyles.height;
     }
     return merged;
-  }, [theme, transparent, style]);
+  }, [theme, colors, transparent, style]);
 
   return (
     <Block style={navStyles}>
@@ -163,18 +165,18 @@ function NavBar({
   );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
   StyleSheet.create({
     navBar: {
       flexDirection: 'row',
       alignItems: "center",
       justifyContent: "space-evenly",
-      backgroundColor: theme.COLORS.LIGHT_MODE.white,
-      paddingVertical: theme.SIZES.BASE * 0.5,
-      height: theme.SIZES.BASE * 4.125,
+      backgroundColor: colors.white,
+      paddingVertical: theme.sizes.BASE * 0.5,
+      height: theme.sizes.BASE * 4.125,
       width: "auto",
       borderBottomWidth: 1,
-      borderBottomColor: theme.COLORS.LIGHT_MODE.grey || "#f0f0f0",
+      borderBottomColor: colors.border || "#f0f0f0",
       ...Platform.select({
         ios: {
           shadowColor: "#000",
@@ -198,8 +200,8 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
     },
     titleTextStyle: {
       fontWeight: "700",
-      fontSize: theme.SIZES.FONT * 0.875,
-      color: theme.COLORS.LIGHT_MODE.black,
+      fontSize: theme.sizes.FONT * 0.875,
+      color: colors.black,
       textAlign: "center",
       letterSpacing: 0.3,
     },
@@ -207,13 +209,13 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
       height: height * 0.07,
       justifyContent: "center",
       alignItems: "center",
-      marginLeft: theme.SIZES.BASE,
+      marginLeft: theme.sizes.BASE,
     },
     right: {
       height: height * 0.07,
       alignItems: "center",
       justifyContent: "center",
-      marginRight: theme.SIZES.BASE,
+      marginRight: theme.sizes.BASE,
     },
     transparent: {
       backgroundColor: "transparent",

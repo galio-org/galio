@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, StyleSheet, Animated, View } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useTheme, useColors } from './theme';
 import Text from './Text';
 
 const { height, width } = Dimensions.get('screen');
@@ -30,7 +30,8 @@ function Toast({
     style,
     textStyle,
 }: ToastProps) {
-    const theme = useGalioTheme();
+    const theme = useTheme();
+  const colors = useColors();
     const [internalIsShow, setInternalIsShow] = useState(isShow);
     const [opacity, setOpacity] = useState(0);
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -38,22 +39,22 @@ function Toast({
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const getThemeColor = (colorName?: string) => {
-        if (!colorName) return theme.COLORS.LIGHT_MODE.primary;
+        if (!colorName) return colors.primary;
         
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
         }
         
         const colorMap: { [key: string]: string } = {
-            'primary': theme.COLORS.LIGHT_MODE.primary,
-            'success': theme.COLORS.LIGHT_MODE.success,
-            'warning': theme.COLORS.LIGHT_MODE.warning,
-            'error': theme.COLORS.LIGHT_MODE.danger,
-            'danger': theme.COLORS.LIGHT_MODE.danger,
-            'info': theme.COLORS.LIGHT_MODE.info,
+            'primary': colors.primary,
+            'success': colors.success,
+            'warning': colors.warning,
+            'error': colors.error,
+            'danger': colors.error,
+            'info': colors.info,
         };
         
-        return colorMap[colorName] || theme.COLORS.LIGHT_MODE.primary;
+        return colorMap[colorName] || colors.primary;
     };
 
     const getTopPosition = () => {
@@ -108,7 +109,7 @@ function Toast({
 
     const renderContent = () => {
         if (typeof children === 'string') {
-            return <Text style={[styles(theme).text, textStyle]}>{children}</Text>;
+            return <Text style={[styles(theme, colors).text, textStyle]}>{children}</Text>;
         }
         return children;
     };
@@ -116,13 +117,13 @@ function Toast({
    
 
     const backgroundColor = getThemeColor(color);
-    const borderRadius = round ? theme.SIZES.BASE * 2 : theme.SIZES.BASE;
+    const borderRadius = round ? theme.sizes.BASE * 2 : theme.sizes.BASE;
     const topPosition = getTopPosition();
     
    
     
     const toastStyles = [
-        styles(theme).toast,
+        styles(theme, colors).toast,
         { 
             backgroundColor,
             top: topPosition,
@@ -133,7 +134,7 @@ function Toast({
     ];
 
     return (
-        <View style={styles(theme).overlay} pointerEvents="none">
+        <View style={styles(theme, colors).overlay} pointerEvents="none">
             <Animated.View style={toastStyles}>
                 {renderContent()}
             </Animated.View>
@@ -141,7 +142,7 @@ function Toast({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
     StyleSheet.create({
         overlay: {
             position: 'absolute',
@@ -153,11 +154,11 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
             pointerEvents: 'none',
         },
         toast: {
-            padding: theme.SIZES.BASE * 1.5,
+            padding: theme.sizes.BASE * 1.5,
             position: 'absolute',
-            left: theme.SIZES.BASE,
-            right: theme.SIZES.BASE,
-            shadowColor: theme.COLORS.LIGHT_MODE.black,
+            left: theme.sizes.BASE,
+            right: theme.sizes.BASE,
+            shadowColor: colors.black,
             shadowOffset: { width: 0, height: 4 },
             shadowOpacity: 0.3,
             shadowRadius: 8,
@@ -167,8 +168,8 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) =>
             borderColor: 'rgba(255,255,255,0.3)',
         },
         text: {
-            fontSize: theme.SIZES.FONT,
-            color: theme.COLORS.LIGHT_MODE.white,
+            fontSize: theme.sizes.FONT,
+            color: colors.white,
             textAlign: 'center',
             fontWeight: '600',
         },

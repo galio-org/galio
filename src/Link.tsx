@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle} from 'react';
 import type { JSX } from 'react';
 import Typography from './Text';
-import { useGalioTheme } from './theme';
+import { useColors } from './theme';
 import { TextStyle, Pressable, ViewStyle, Platform } from 'react-native';
 
 export interface LinkProps {
@@ -28,7 +28,7 @@ const Link = forwardRef<linkRef, LinkProps>(({
     activeOpacity = 0.7,
     ...rest
 }, ref): JSX.Element => {
-    const theme = useGalioTheme();
+    const colors = useColors();
 
     const handlePress = () => {
         if (!disabled && onPress) {
@@ -58,7 +58,7 @@ const Link = forwardRef<linkRef, LinkProps>(({
             accessibilityState={{ disabled }}
         >
             <Typography
-                color={color || theme.COLORS.LIGHT_MODE.primary}
+                color={color || colors.primary}
                 style={[
                     {
                         textDecorationLine: 'underline',

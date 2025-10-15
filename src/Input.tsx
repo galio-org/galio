@@ -1,7 +1,7 @@
 import React,{forwardRef, useImperativeHandle, useRef, useState, useEffect} from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, KeyboardTypeOptions, ViewStyle, TextStyle, Platform } from 'react-native';
 import Icon from './Icon';
-import  { useGalioTheme, useThemeColors } from './theme';
+import  { useTheme, useColors } from './theme';
 
 export interface InputProps {
   style?: ViewStyle;
@@ -85,8 +85,8 @@ const Input = forwardRef<InputRef, InputProps>(({
   onRef,
   ...rest
 }, ref)=> {
-  const theme = useGalioTheme();
-  const colors = useThemeColors();
+  const theme = useTheme();
+  const colors = useColors();
   const [isPassword, setIsPassword] = useState(password);
   const inputRef = useRef<TextInput>(null)
 
@@ -102,20 +102,20 @@ const Input = forwardRef<InputRef, InputProps>(({
   },[password]);
 
   const inputViewStyles = [
-    styles(theme).inputStyle,
-    styles(theme).inputContainer,
+    styles(theme, colors).inputStyle,
+    styles(theme, colors).inputContainer,
     bgColor && { backgroundColor: bgColor},
-    rounded && styles(theme).rounded,
-    borderless && styles(theme).borderless,
-    error && { borderColor: colors.danger},
-    rest.multiline && { minHeight: theme.SIZES.INPUT_HEIGHT, height: 'auto' as any},
+    rounded && styles(theme, colors).rounded,
+    borderless && styles(theme, colors).borderless,
+    error && { borderColor: colors.error},
+    rest.multiline && { minHeight: theme.sizes.INPUT_HEIGHT, height: 'auto' as any},
     style,
   ].filter(Boolean) as ViewStyle[];
 
   const inputStyles = [
-    styles(theme).inputView,
-    borderless && icon && styles(theme).inputIcon,
-    styles(theme).inputText,
+    styles(theme, colors).inputView,
+    borderless && icon && styles(theme, colors).inputIcon,
+    styles(theme, colors).inputText,
     color && { color},
     rest.multiline && { textAlignVertical: 'top' as const },
     textInputStyle || {}
@@ -125,9 +125,9 @@ const Input = forwardRef<InputRef, InputProps>(({
     <Icon
       name={icon as string}
       family={family as string}
-      size={iconSize || theme.SIZES.BASE * 1.0625}
+      size={iconSize || theme.sizes.BASE * 1.0625}
       style={{ marginRight: left && !right ? 4 : 0 }}
-      color={(error && colors.danger) || iconColor || placeholderTextColor || colors.neutral(0.6)}
+      color={(error && colors.error) || iconColor || placeholderTextColor || colors.placeholder}
     />
   ) : (
     iconContent
@@ -136,8 +136,8 @@ const Input = forwardRef<InputRef, InputProps>(({
   const viewPassElement = password && viewPass && (
     <Pressable style={{ marginLeft: 2 }} onPress={() => setIsPassword(!isPassword)}>
       <Icon
-        size={iconSize || theme.SIZES.BASE * 1.0625}
-        color={iconColor || colors.black}
+        size={iconSize || theme.sizes.BASE * 1.0625}
+        color={iconColor || colors.text}
         name="eye"
         family="entypo"
       />
@@ -145,17 +145,17 @@ const Input = forwardRef<InputRef, InputProps>(({
   );
 
   const labelContent = label && label.length > 0 && (
-    <Text style={[styles(theme).label, labelStyles || {}]}>{label}</Text>
+    <Text style={[styles(theme, colors).label, labelStyles || {}]}>{label}</Text>
   );
 
   const helpContent = help && help.length > 0 && (
-    <Text style={[styles(theme).helpText, helpStyles || {}]}>{help}</Text>
+    <Text style={[styles(theme, colors).helpText, helpStyles || {}]}>{help}</Text>
   );
 
   return(
     <View
       style ={{
-        marginVertical: theme.SIZES.BASE /2,
+        marginVertical: theme.sizes.BASE /2,
         alignContent: 'center',
       }}
     >
@@ -187,23 +187,20 @@ const Input = forwardRef<InputRef, InputProps>(({
 
 Input.displayName = 'Input';
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) => {
-  const modeKey = theme.mode === 'dark' ? 'DARK_MODE' : 'LIGHT_MODE';
-  const colors = theme.COLORS[modeKey];
-  
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) => {
   return StyleSheet.create({
     inputStyle: {
-      backgroundColor: colors.white,
-      borderRadius: theme.SIZES.INPUT_BORDER_RADIUS,
-      borderWidth: theme.SIZES.INPUT_BORDER_WIDTH,
-      borderColor: colors.input,
-      height: theme.SIZES.INPUT_HEIGHT,
-      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL,
+      backgroundColor: colors.inputBackground,
+      borderRadius: theme.sizes.INPUT_BORDER_RADIUS,
+      borderWidth: theme.sizes.INPUT_BORDER_WIDTH,
+      borderColor: colors.inputBorder,
+      height: theme.sizes.INPUT_HEIGHT,
+      paddingHorizontal: theme.sizes.INPUT_HORIZONTAL,
       width: '100%',
     },
     inputText: {
       color: colors.input,
-      fontSize: theme.SIZES.INPUT_TEXT,
+      fontSize: theme.sizes.INPUT_TEXT,
       textDecorationColor: 'transparent',
     },
     inputContainer: {
@@ -215,22 +212,22 @@ const styles = (theme: ReturnType<typeof useGalioTheme>) => {
       flex: 1,
     },
     inputIcon: {
-      marginHorizontal: theme.SIZES.BASE,
+      marginHorizontal: theme.sizes.BASE,
     },
     label: {
       fontWeight: '500',
-      fontSize: theme.SIZES.INPUT_TEXT,
-      marginVertical: theme.SIZES.INPUT_VERTICAL_LABEL,
-      paddingHorizontal: theme.SIZES.INPUT_HORIZONTAL
+      fontSize: theme.sizes.INPUT_TEXT,
+      marginVertical: theme.sizes.INPUT_VERTICAL_LABEL,
+      paddingHorizontal: theme.sizes.INPUT_HORIZONTAL
     },
     helpText: {
-      color: colors.warningLight,
+      color: colors.warning,
       fontSize: 14,
       marginVertical: 8,
       paddingHorizontal: 16,
     },
     rounded: {
-      borderRadius: theme.SIZES.INPUT_ROUNDED,
+      borderRadius: theme.sizes.INPUT_ROUNDED,
     },
     borderless: {
       borderColor: 'transparent',

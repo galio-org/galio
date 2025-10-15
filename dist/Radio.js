@@ -9,7 +9,8 @@ var theme_1 = require("./theme");
 var Text_1 = __importDefault(require("./Text"));
 function Radio(_a) {
     var _b = _a.color, color = _b === void 0 ? 'primary' : _b, containerStyle = _a.containerStyle, _c = _a.disabled, disabled = _c === void 0 ? false : _c, _d = _a.flexDirection, flexDirection = _d === void 0 ? 'row' : _d, _e = _a.initialValue, initialValue = _e === void 0 ? false : _e, label = _a.label, labelStyle = _a.labelStyle, onChange = _a.onChange, radioOuterStyle = _a.radioOuterStyle, radioInnerStyle = _a.radioInnerStyle, value = _a.value, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     var _f = (0, react_1.useState)(initialValue), internalValue = _f[0], setInternalValue = _f[1];
     var isControlled = value !== undefined;
     var checked = isControlled ? value : internalValue;
@@ -29,8 +30,8 @@ function Radio(_a) {
     }, []);
     var renderLabel = (0, react_1.useCallback)(function () {
         var labelStyles = [
-            styles(theme).textStyles,
-            disabled && styles(theme).disabledLabel,
+            styles(theme, colors).textStyles,
+            disabled && styles(theme, colors).disabledLabel,
             labelStyle,
             flexDirection && spaceAround(flexDirection),
         ];
@@ -49,13 +50,13 @@ function Radio(_a) {
         }
     }, [checked, disabled, onChange, isControlled]);
     var containerStyles = (0, react_1.useMemo)(function () { return [
-        styles(theme).container,
+        styles(theme, colors).container,
         flexDirection && { flexDirection: flexDirection },
         containerStyle
     ]; }, [theme, flexDirection, containerStyle]);
     var whichColor = (0, react_1.useMemo)(function () {
         if (!color)
-            return theme.COLORS.LIGHT_MODE.info;
+            return colors.info;
         var upperColor = color.toUpperCase();
         var themeColor = theme.COLORS.LIGHT_MODE[upperColor];
         if (themeColor) {
@@ -67,15 +68,15 @@ function Radio(_a) {
         return color;
     }, [color, theme.COLORS]);
     var radioButtonOuterStyles = (0, react_1.useMemo)(function () { return [
-        styles(theme).radioOuterStyles,
+        styles(theme, colors).radioOuterStyles,
         { borderColor: whichColor },
-        disabled && styles(theme).disabledRadioOuter,
+        disabled && styles(theme, colors).disabledRadioOuter,
         radioOuterStyle,
     ]; }, [theme, whichColor, disabled, radioOuterStyle]);
     var radioButtonInnerStyles = (0, react_1.useMemo)(function () { return [
-        styles(theme).radioInnerStyles,
+        styles(theme, colors).radioInnerStyles,
         { backgroundColor: whichColor },
-        disabled && styles(theme).disabledRadioInner,
+        disabled && styles(theme, colors).disabledRadioInner,
         radioInnerStyle,
     ]; }, [theme, whichColor, disabled, radioInnerStyle]);
     (0, react_1.useEffect)(function () {
@@ -101,7 +102,7 @@ function Radio(_a) {
             {renderLabel()}
         </react_native_1.Pressable>);
 }
-var styles = function (theme) {
+var styles = function (theme, colors) {
     return react_native_1.StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -109,32 +110,32 @@ var styles = function (theme) {
             justifyContent: 'flex-start',
         },
         radioOuterStyles: {
-            height: theme.SIZES.RADIO_HEIGHT,
-            width: theme.SIZES.RADIO_WIDTH,
-            borderRadius: theme.SIZES.RADIO_HEIGHT * 0.5,
-            borderWidth: theme.SIZES.RADIO_THICKNESS,
-            borderColor: theme.COLORS.LIGHT_MODE.grey,
+            height: theme.sizes.RADIO_HEIGHT,
+            width: theme.sizes.RADIO_WIDTH,
+            borderRadius: theme.sizes.RADIO_HEIGHT * 0.5,
+            borderWidth: theme.sizes.RADIO_THICKNESS,
+            borderColor: colors.border,
             alignItems: 'center',
             justifyContent: 'center',
         },
         radioInnerStyles: {
-            height: theme.SIZES.RADIO_HEIGHT * 0.5,
-            width: theme.SIZES.RADIO_WIDTH * 0.5,
-            borderRadius: theme.SIZES.RADIO_HEIGHT * 0.25,
-            backgroundColor: theme.COLORS.LIGHT_MODE.black,
+            height: theme.sizes.RADIO_HEIGHT * 0.5,
+            width: theme.sizes.RADIO_WIDTH * 0.5,
+            borderRadius: theme.sizes.RADIO_HEIGHT * 0.25,
+            backgroundColor: colors.black,
         },
         disabledRadioOuter: {
-            borderColor: theme.COLORS.LIGHT_MODE.muted,
+            borderColor: colors.disabled,
         },
         disabledRadioInner: {
-            backgroundColor: theme.COLORS.LIGHT_MODE.muted,
+            backgroundColor: colors.disabled,
         },
         textStyles: {
-            color: theme.COLORS.LIGHT_MODE.black,
+            color: colors.black,
         },
         disabledLabel: {
-            color: theme.COLORS.LIGHT_MODE.muted,
-            opacity: theme.SIZES.OPACITY,
+            color: colors.textSecondary,
+            opacity: theme.sizes.OPACITY,
         },
     });
 };

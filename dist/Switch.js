@@ -38,7 +38,8 @@ var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
 function Switch(_a) {
     var value = _a.value, onValueChange = _a.onValueChange, color = _a.color, _b = _a.disabled, disabled = _b === void 0 ? false : _b, trackColor = _a.trackColor, ios_backgroundColor = _a.ios_backgroundColor, containerStyle = _a.containerStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     var _c = (0, react_1.useState)(value !== null && value !== void 0 ? value : false), internalValue = _c[0], setInternalValue = _c[1];
     var isControlled = value !== undefined;
     var currentValue = isControlled ? value : internalValue;
@@ -55,7 +56,7 @@ function Switch(_a) {
     }, [isControlled, onValueChange]);
     var getThemeColor = (0, react_1.useCallback)(function (colorName) {
         if (!colorName)
-            return theme.COLORS.LIGHT_MODE.primary;
+            return colors.primary;
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
         }
@@ -63,14 +64,14 @@ function Switch(_a) {
         if (typeof themeColor === 'function') {
             return themeColor();
         }
-        return themeColor || theme.COLORS.LIGHT_MODE.primary;
+        return themeColor || colors.primary;
     }, [theme.COLORS.LIGHT_MODE]);
     var defaultTrackColor = {
-        false: theme.COLORS.LIGHT_MODE.grey,
+        false: colors.disabled,
         true: getThemeColor(color),
     };
     var finalTrackColor = trackColor || defaultTrackColor;
-    var finalIosBackgroundColor = ios_backgroundColor || theme.COLORS.LIGHT_MODE.grey;
+    var finalIosBackgroundColor = ios_backgroundColor || colors.disabled;
     var accessibilityProps = {
         accessibilityRole: 'switch',
         accessibilityLabel: accessibilityLabel || 'Switch',

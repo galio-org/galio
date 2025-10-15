@@ -43,7 +43,8 @@ var Text_1 = __importDefault(require("./Text"));
 var _a = react_native_1.Dimensions.get('screen'), height = _a.height, width = _a.width;
 function Toast(_a) {
     var children = _a.children, isShow = _a.isShow, _b = _a.positionIndicator, positionIndicator = _b === void 0 ? 'top' : _b, _c = _a.positionOffset, positionOffset = _c === void 0 ? 120 : _c, _d = _a.fadeInDuration, fadeInDuration = _d === void 0 ? 300 : _d, _e = _a.fadeOutDuration, fadeOutDuration = _e === void 0 ? 300 : _e, _f = _a.color, color = _f === void 0 ? 'primary' : _f, _g = _a.round, round = _g === void 0 ? false : _g, style = _a.style, textStyle = _a.textStyle;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     var _h = (0, react_1.useState)(isShow), internalIsShow = _h[0], setInternalIsShow = _h[1];
     var _j = (0, react_1.useState)(0), opacity = _j[0], setOpacity = _j[1];
     var fadeAnim = (0, react_1.useRef)(new react_native_1.Animated.Value(0)).current;
@@ -51,19 +52,19 @@ function Toast(_a) {
     var timeoutRef = (0, react_1.useRef)(null);
     var getThemeColor = function (colorName) {
         if (!colorName)
-            return theme.COLORS.LIGHT_MODE.primary;
+            return colors.primary;
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
         }
         var colorMap = {
-            'primary': theme.COLORS.LIGHT_MODE.primary,
-            'success': theme.COLORS.LIGHT_MODE.success,
-            'warning': theme.COLORS.LIGHT_MODE.warning,
-            'error': theme.COLORS.LIGHT_MODE.danger,
-            'danger': theme.COLORS.LIGHT_MODE.danger,
-            'info': theme.COLORS.LIGHT_MODE.info,
+            'primary': colors.primary,
+            'success': colors.success,
+            'warning': colors.warning,
+            'error': colors.error,
+            'danger': colors.error,
+            'info': colors.info,
         };
-        return colorMap[colorName] || theme.COLORS.LIGHT_MODE.primary;
+        return colorMap[colorName] || colors.primary;
     };
     var getTopPosition = function () {
         if (positionIndicator === 'top') {
@@ -107,15 +108,15 @@ function Toast(_a) {
     }, [isShow, internalIsShow, fadeInDuration, fadeOutDuration, fadeAnim]);
     var renderContent = function () {
         if (typeof children === 'string') {
-            return <Text_1.default style={[styles(theme).text, textStyle]}>{children}</Text_1.default>;
+            return <Text_1.default style={[styles(theme, colors).text, textStyle]}>{children}</Text_1.default>;
         }
         return children;
     };
     var backgroundColor = getThemeColor(color);
-    var borderRadius = round ? theme.SIZES.BASE * 2 : theme.SIZES.BASE;
+    var borderRadius = round ? theme.sizes.BASE * 2 : theme.sizes.BASE;
     var topPosition = getTopPosition();
     var toastStyles = [
-        styles(theme).toast,
+        styles(theme, colors).toast,
         {
             backgroundColor: backgroundColor,
             top: topPosition,
@@ -124,13 +125,13 @@ function Toast(_a) {
         },
         style,
     ];
-    return (<react_native_1.View style={styles(theme).overlay} pointerEvents="none">
+    return (<react_native_1.View style={styles(theme, colors).overlay} pointerEvents="none">
             <react_native_1.Animated.View style={toastStyles}>
                 {renderContent()}
             </react_native_1.Animated.View>
         </react_native_1.View>);
 }
-var styles = function (theme) {
+var styles = function (theme, colors) {
     return react_native_1.StyleSheet.create({
         overlay: {
             position: 'absolute',
@@ -142,11 +143,11 @@ var styles = function (theme) {
             pointerEvents: 'none',
         },
         toast: {
-            padding: theme.SIZES.BASE * 1.5,
+            padding: theme.sizes.BASE * 1.5,
             position: 'absolute',
-            left: theme.SIZES.BASE,
-            right: theme.SIZES.BASE,
-            shadowColor: theme.COLORS.LIGHT_MODE.black,
+            left: theme.sizes.BASE,
+            right: theme.sizes.BASE,
+            shadowColor: colors.black,
             shadowOffset: { width: 0, height: 4 },
             shadowOpacity: 0.3,
             shadowRadius: 8,
@@ -156,8 +157,8 @@ var styles = function (theme) {
             borderColor: 'rgba(255,255,255,0.3)',
         },
         text: {
-            fontSize: theme.SIZES.FONT,
-            color: theme.COLORS.LIGHT_MODE.white,
+            fontSize: theme.sizes.FONT,
+            color: colors.white,
             textAlign: 'center',
             fontWeight: '600',
         },

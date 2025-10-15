@@ -7,7 +7,7 @@ import {
   LayoutChangeEvent,
   ViewStyle,
 } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useTheme, useColors } from './theme';
 
 interface SliderProps {
   value?: number;
@@ -39,7 +39,8 @@ const Slider: React.FC<SliderProps> = ({
   accessibilityHint,
 }: SliderProps):JSX.Element => {
   
-  const theme = useGalioTheme();
+  const theme = useTheme();
+  const colors = useColors();
   const [containerWidth, setContainerWidth] = useState(0);
   const trackWidth = useRef(0);
   const thumbX = useRef(new Animated.Value(0)).current;
@@ -120,15 +121,15 @@ const Slider: React.FC<SliderProps> = ({
 
   return (
     <View
-        style={[styles(theme).container, containerStyle]}
+        style={[styles(theme, colors).container, containerStyle]}
         onLayout={handleContainerLayout}
     >
         <View 
             onLayout={onTrackLayout}
-            style = {[styles(theme).track, trackStyle]}
+            style = {[styles(theme, colors).track, trackStyle]}
             ></View>
         <View style={[
-            styles(theme).track,
+            styles(theme, colors).track,
             {
                 position: 'absolute',
                 width: trackWidth.current,
@@ -138,9 +139,9 @@ const Slider: React.FC<SliderProps> = ({
         >
             <Animated.View
                 style={[
-                    styles(theme).thumb,
+                    styles(theme, colors).thumb,
                     thumbStyle,
-                    disabled && styles(theme).disabled,
+                    disabled && styles(theme, colors).disabled,
                     {transform: [{ translateX: thumbX }]},
                 ]}
                 {...panResponder.panHandlers}
@@ -150,7 +151,7 @@ const Slider: React.FC<SliderProps> = ({
   );
 };
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
     StyleSheet.create({
         container: {
             height: 40,
