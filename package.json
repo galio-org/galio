@@ -51,11 +51,13 @@
     "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-native": "^0.82.0",
+    "react-native-safe-area-context": "^5.6.1",
     "typescript": "~5.9.3"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-native": ">=0.59.0"
+    "react-native": ">=0.59.0",
+    "react-native-safe-area-context": ">=4.0.0"
   },
   "collective": {
     "type": "opencollective",

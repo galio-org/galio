@@ -25,6 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
+var react_native_safe_area_context_1 = require("react-native-safe-area-context");
 var theme_1 = require("./theme");
 function Block(props) {
     var row = props.row, flex = props.flex, center = props.center, middle = props.middle, top = props.top, bottom = props.bottom, right = props.right, left = props.left, space = props.space, fluid = props.fluid, height = props.height, width = props.width, shadow = props.shadow, shadowColor = props.shadowColor, card = props.card, safe = props.safe, background = props.background, children = props.children, style = props.style, rest = __rest(props, ["row", "flex", "center", "middle", "top", "bottom", "right", "left", "space", "fluid", "height", "width", "shadow", "shadowColor", "card", "safe", "background", "children", "style"]);
@@ -54,9 +55,9 @@ function Block(props) {
     });
     // Render with SafeAreaView if needed
     if (safe) {
-        return (<react_native_1.SafeAreaView style={blockStyles} {...rest}>
+        return (<react_native_safe_area_context_1.SafeAreaView style={blockStyles} {...rest}>
         {children}
-      </react_native_1.SafeAreaView>);
+      </react_native_safe_area_context_1.SafeAreaView>);
     }
     return (<react_native_1.View style={blockStyles} {...rest}>
       {children}

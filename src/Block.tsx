@@ -1,6 +1,7 @@
 import React from 'react';
 import type { JSX } from 'react';
-import { ViewStyle, View, StyleSheet, SafeAreaView, Platform } from 'react-native';
+import { ViewStyle, View, StyleSheet, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme, useColors } from './theme';
 
 // Enhanced type definitions for better type safety
