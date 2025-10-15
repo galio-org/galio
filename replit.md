@@ -126,20 +126,26 @@ Preferred communication style: Simple, everyday language.
 
 ### Component Features
 
+**Modernization Status (October 2025)**
+- ✅ All 16 components fully modernized with useTheme()/useColors() hooks
+- ✅ Legacy color references replaced with semantic tokens
+- ✅ No manual mode branching - colors auto-adapt to light/dark
+- ✅ Components: Text, Button, Checkbox, Block, Accordion, Avatar, Card, Icon, Input, Link, NavBar, Radio, Slider, Switch, Toast, DeckSwiper
+
 **Form Components**
-- Input: Password visibility toggle, icon integration, validation states, label/help text
-- Checkbox/Radio: Flexible layouts (row, column, reverse), custom styling, controlled/uncontrolled modes
-- Switch: Theme-aware colors, accessibility support
-- Slider: Continuous value tracking, step-based increments, custom styling
+- Input: Password visibility toggle, icon integration, validation states, label/help text, semantic color tokens
+- Checkbox/Radio: Flexible layouts (row, column, reverse), custom styling, controlled/uncontrolled modes, auto-adapting colors
+- Switch: Theme-aware colors with semantic tokens, accessibility support
+- Slider: Continuous value tracking, step-based increments, custom styling with semantic colors
 
 **Display Components**
-- Card: Image support, avatar display, location metadata, configurable layouts
-- Avatar: Dynamic sizing, label fallback, image support, shadow effects
-- Toast: Position variants (top, center, bottom), fade animations, auto-dismiss
-- Accordion: Expandable sections, custom icons, animated transitions
+- Card: Image support, avatar display, location metadata, configurable layouts, semantic theming
+- Avatar: Dynamic sizing, label fallback, image support, shadow effects, theme-aware styling
+- Toast: Position variants (top, center, bottom), fade animations, auto-dismiss, semantic color variants
+- Accordion: Expandable sections, custom icons, animated transitions, modern theming
 
 **Navigation Components**
-- NavBar: Back navigation, left/right actions, transparent mode, custom title rendering
+- NavBar: Back navigation, left/right actions, transparent mode, custom title rendering, semantic colors
 - DeckSwiper: Card stack navigation, swipe gestures, callback hooks
 
 ### TypeScript Integration
