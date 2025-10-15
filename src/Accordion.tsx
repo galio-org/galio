@@ -4,7 +4,7 @@ import { Dimensions, Platform } from "react-native";
 import Text from "./Text";
 import Block from "./Block";
 import Icon from "./Icon";
-import { useGalioTheme } from "./theme";
+import { useTheme, useColors } from "./theme";
 
 const { width } = Dimensions.get('screen');
 
@@ -14,8 +14,9 @@ interface AccordionContentProps {
 }
 
 function AccordionContent({ content, contentStyle }: AccordionContentProps): JSX.Element {
-    const theme = useGalioTheme();
-    return <Text style={[styles(theme).content, contentStyle]}>{content}</Text>;
+    const theme = useTheme();
+    const colors = useColors();
+    return <Text style={[styles(theme, colors).content, contentStyle]}>{content}</Text>;
 }
 
 interface AccordionHeaderProps {
@@ -35,7 +36,7 @@ function AccordionHeader({
     title,
     chapterIcon
 }: AccordionHeaderProps): JSX.Element {
-    const theme = useGalioTheme();
+    const colors = useColors();
     return (
         <Block row middle style={[{ padding: 6 }, headerStyle] as any}>
             {chapterIcon ? (
@@ -43,7 +44,7 @@ function AccordionHeader({
                     name={chapterIcon.name}
                     family={chapterIcon.family}
                     size={chapterIcon.size || 14}
-                    color={chapterIcon.color || theme.COLORS.LIGHT_MODE.primary}
+                    color={chapterIcon.color || colors.primary}
                     style={chapterIcon.style || { marginRight: 5 }}
                 />
             ) : null}
@@ -55,28 +56,28 @@ function AccordionHeader({
                             name={expandedIcon.name}
                             family={expandedIcon.family}
                             size={expandedIcon.size || 16}
-                            color={expandedIcon.color || theme.COLORS.LIGHT_MODE.muted}
+                            color={expandedIcon.color || colors.textSecondary}
                         />
                     ) : (
                         <Icon
                             name="keyboard-arrow-up"
                             family="material"
                             size={16}
-                            color={theme.COLORS.LIGHT_MODE.muted}
+                            color={colors.textSecondary}
                         />
                     )) : (icon ? (
                         <Icon
                             name={icon.name}
                             family={icon.family}
                             size={icon.size || 16}
-                            color={icon.color || theme.COLORS.LIGHT_MODE.muted}
+                            color={icon.color || colors.textSecondary}
                         />
                     ) : (
                         <Icon
                             name="keyboard-arrow-down"
                             family="material"
                             size={16}
-                            color={theme.COLORS.LIGHT_MODE.muted}
+                            color={colors.textSecondary}
                         />
                     ))}
             </Block>
@@ -195,11 +196,12 @@ function Accordion({
     listStyle,
     style
 }: MainAccordionProps): JSX.Element {
-    const theme = useGalioTheme();
+    const theme = useTheme();
+    const colors = useColors();
     const [selected, setSelected] = useState<number | undefined>(opened);
     
     return (
-        <Block style={[styles(theme).container, style] as any}>
+        <Block style={[styles(theme, colors).container, style] as any}>
             <View style={listStyle}>
                 {dataArray?.map((item, index) => (
                     <AccordionItem
@@ -221,17 +223,17 @@ function Accordion({
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
     StyleSheet.create({
         container: {
             flex: 1,
             width: width * 0.8,
             borderRadius: 16,
             padding: 8,
-            backgroundColor: 'white',
+            backgroundColor: colors.surface,
             ...Platform.select({
                 ios: {
-                    shadowColor: "black",
+                    shadowColor: colors.border,
                     shadowOffset: { width: 0, height: 1 },
                     shadowOpacity: 0.2,
                     shadowRadius: 4,
