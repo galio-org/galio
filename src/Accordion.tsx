@@ -223,35 +223,50 @@ function Accordion({
     );
 }
 
-const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
-    StyleSheet.create({
+// Semantic version: use theme.sizes and theme.shadows if available
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) => {
+    // Prefer semantic theme values if present, fallback to old values
+    const borderRadius = theme?.sizes?.CARD_BORDER_RADIUS ?? 16;
+    const padding = 8;
+    const headerPadding = 6;
+    const contentPadding = 10;
+    // Use semantic shadow (md) for Accordion
+    const shadow = theme?.shadows?.md ?? theme?.shadows?.default ?? {
+        ios: {
+            shadowColor: colors.border,
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+        },
+        android: {
+            elevation: 4,
+        },
+        web: {
+            boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.2)',
+        },
+    };
+    const baseShadow = Platform.select({
+        ios: shadow.ios,
+        android: shadow.android,
+    });
+    const webShadow = Platform.OS === 'web' ? shadow.web : {};
+    return StyleSheet.create({
         container: {
             flex: 1,
             width: width * 0.8,
-            borderRadius: 16,
-            padding: 8,
+            borderRadius,
+            padding,
             backgroundColor: colors.surface,
-            ...Platform.select({
-                ios: {
-                    shadowColor: colors.border,
-                    shadowOffset: { width: 0, height: 1 },
-                    shadowOpacity: 0.2,
-                    shadowRadius: 4,
-                },
-                android: {
-                    elevation: 4,
-                },
-                web: {
-                    boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.2)',
-                },
-            }),
+            ...baseShadow,
+            ...webShadow,
         },
         header: {
-            padding: 6,
+            padding: headerPadding,
         },
         content: {
-            padding: 10,
+            padding: contentPadding,
         },
     });
+};
 
 export default Accordion;

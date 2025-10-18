@@ -2,7 +2,7 @@ import React, { createContext, ReactNode, useContext, useMemo, useState, useEffe
 import type { JSX } from 'react';
 import { ViewStyle, TextStyle, ImageStyle, useColorScheme } from 'react-native';
 
-import GALIO_COLORS, { LIGHT_COLORS, DARK_COLORS } from './colors';
+import GALIO_COLORS, { LIGHT_COLORS, DARK_COLORS, SHADOWS } from './colors';
 import GALIO_SIZES from './sizes';
 
 export type ThemeMode = 'light' | 'dark' | 'auto';
@@ -15,12 +15,13 @@ export interface GalioTheme {
     // Legacy structure (deprecated but maintained for compatibility)
     COLORS: typeof GALIO_COLORS;
     SIZES: typeof GALIO_SIZES;
-    
+
     // Modern semantic structure
     colors: SemanticColors;
     sizes: typeof GALIO_SIZES;
+    shadows: typeof SHADOWS;
     mode: 'light' | 'dark';
-    
+
     [key: string]: any;
 }
 
@@ -32,7 +33,8 @@ export interface GalioProviderProps {
         // Modern API (preferred)
         colors?: Partial<SemanticColors>;
         sizes?: Partial<typeof GALIO_SIZES>;
-        
+        shadows?: Partial<typeof SHADOWS>;
+
         // Legacy API (deprecated)
         COLORS?: Partial<typeof GALIO_COLORS>;
         SIZES?: Partial<typeof GALIO_SIZES>;
@@ -75,6 +77,7 @@ const DEFAULT_THEME: GalioTheme = {
     SIZES: GALIO_SIZES,
     colors: LIGHT_COLORS,
     sizes: GALIO_SIZES,
+    shadows: SHADOWS,
     mode: 'light',
 };
 
@@ -175,7 +178,7 @@ export function GalioProvider({ mode = 'auto', theme = {}, children }: GalioProv
         try {
             // Check if using new API (colors) or legacy API (COLORS)
             const isLegacyAPI = theme.COLORS && !theme.colors;
-            
+
             if (isLegacyAPI && !(global as any).__GALIO_WARNED_LEGACY_API__) {
                 (global as any).__GALIO_WARNED_LEGACY_API__ = true;
                 console.warn(
@@ -193,23 +196,27 @@ export function GalioProvider({ mode = 'auto', theme = {}, children }: GalioProv
             const customSizes = theme.sizes || theme.SIZES || {};
             const mergedSizes = customSizes ? deepMerge(GALIO_SIZES, customSizes) : GALIO_SIZES;
 
+            // Merge shadows (allow override via theme.shadows)
+            const mergedShadows = theme.shadows ? deepMerge(SHADOWS, theme.shadows) : SHADOWS;
+
             return {
                 // Legacy structure (for backward compatibility)
                 COLORS: deepMerge(GALIO_COLORS, theme?.COLORS || {}),
                 SIZES: mergedSizes,
-                
+
                 // Modern structure
                 colors: semanticColors,
                 sizes: mergedSizes,
+                shadows: mergedShadows,
                 mode: currentMode,
-                
+
                 // Custom theme properties
                 ...theme?.customTheme,
             };
         } catch (error) {
             console.warn('GalioProvider: Error merging themes, falling back to default', error);
-            return { 
-                ...DEFAULT_THEME, 
+            return {
+                ...DEFAULT_THEME,
                 mode: currentMode,
                 colors: getSemanticColors(currentMode),
             };
