@@ -23,18 +23,20 @@ function Radio(_a) {
     var _g = (0, react_1.useState)(initialValue), internalValue = _g[0], setInternalValue = _g[1];
     var isControlled = value !== undefined;
     var checked = isControlled ? value : internalValue;
-    var spaceAround = (0, react_1.useCallback)(function (direction) {
+    // Consistent spacing between radio and label
+    var getLabelSpacing = (0, react_1.useCallback)(function (direction) {
+        var space = 10;
         switch (direction) {
             case 'row':
-                return { marginRight: 10 };
+                return { marginLeft: space };
             case 'row-reverse':
-                return { marginLeft: 10 };
+                return { marginRight: space };
             case 'column':
-                return { marginBottom: 10 };
+                return { marginTop: space };
             case 'column-reverse':
-                return { marginTop: 10 };
+                return { marginBottom: space };
             default:
-                return { marginRight: 10 };
+                return { marginLeft: space };
         }
     }, []);
     var resolvedLabelColor = labelColor
@@ -55,13 +57,13 @@ function Radio(_a) {
             { color: resolvedLabelColor },
             disabled && styles(theme, colors, radioSize).disabledLabel
         ], (Array.isArray(labelStyle) ? labelStyle : [labelStyle]), true), [
-            flexDirection && spaceAround(flexDirection),
+            getLabelSpacing(flexDirection),
         ], false).filter(Boolean);
         if (label) {
             return <Text_1.default style={labelStyles}>{label}</Text_1.default>;
         }
         return null;
-    }, [label, disabled, labelStyle, flexDirection, spaceAround, theme, colors, resolvedLabelColor, radioSize]);
+    }, [label, disabled, labelStyle, flexDirection, getLabelSpacing, theme, colors, resolvedLabelColor, radioSize]);
     var radioPressHandler = (0, react_1.useCallback)(function () {
         if (disabled)
             return;
