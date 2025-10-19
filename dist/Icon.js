@@ -55,24 +55,40 @@ var getIconType_1 = __importDefault(require("./helpers/getIconType"));
 var theme_1 = require("./theme");
 var Galio = (0, vector_icons_1.createIconSetFromIcoMoon)(galio_json_1.default, 'Galio', require('./fonts/galio.ttf'));
 function Icon(_a) {
-    var name = _a.name, family = _a.family, size = _a.size, color = _a.color, _b = _a.medium, medium = _b === void 0 ? false : _b, _c = _a.large, large = _c === void 0 ? false : _c, rest = __rest(_a, ["name", "family", "size", "color", "medium", "large"]);
+    var name = _a.name, family = _a.family, size = _a.size, color = _a.color, style = _a.style, rest = __rest(_a, ["name", "family", "size", "color", "style"]);
     var theme = (0, theme_1.useTheme)();
     var colors = (0, theme_1.useColors)();
-    var iconSize = size ||
-        (medium
-            ? theme.sizes.ICON_MEDIUM
-            : large
-                ? theme.sizes.ICON_LARGE
-                : theme.sizes.ICON);
-    var iconColor = color || colors.text;
+    // Semantic size mapping to theme sizes
+    var sizeMap = {
+        xs: theme.sizes.SMALL, // smallest icon size
+        sm: theme.sizes.ICON, // default icon size
+        md: theme.sizes.ICON_MEDIUM, // medium icon size
+        lg: theme.sizes.ICON_LARGE, // large icon size
+        xl: theme.sizes.ICON_LARGE * 1.5, // extra large, custom
+    };
+    var iconSize = sizeMap.sm;
+    if (typeof size === 'string' && sizeMap[size]) {
+        iconSize = sizeMap[size];
+    }
+    else if (typeof size === 'number') {
+        iconSize = size;
+    }
+    // Color: if color matches a theme key, use theme color, else use as is or fallback
+    var iconColor = color;
+    if (iconColor && colors[iconColor]) {
+        iconColor = colors[iconColor];
+    }
+    if (!iconColor) {
+        iconColor = colors.text;
+    }
     if (family === 'Galio') {
-        return name ? <Galio name={name} size={iconSize} color={iconColor} {...rest}/> : null;
+        return name ? <Galio name={name} size={iconSize} color={iconColor} style={style} {...rest}/> : null;
     }
     if (family === 'fontisto') {
-        return name ? <fontisto_1.Fontisto name={name} size={iconSize} color={iconColor} {...rest}/> : null;
+        return name ? <fontisto_1.Fontisto name={name} size={iconSize} color={iconColor} style={style} {...rest}/> : null;
     }
     var IconInstance = (0, getIconType_1.default)(family);
-    return name && IconInstance ? (<IconInstance name={name} size={iconSize} color={iconColor} {...rest}/>) : null;
+    return name && IconInstance ? (<IconInstance name={name} size={iconSize} color={iconColor} style={style} {...rest}/>) : null;
 }
 exports.default = (0, react_1.memo)(Icon);
 //# sourceMappingURL=Icon.js.map
