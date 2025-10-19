@@ -1,11 +1,12 @@
-# Avatar Component Usage
 
-The `Avatar` component provides a flexible way to display user profile images, initials, or custom labels with full theme and style support. It adapts to your theme, supports shadows, and is highly customizable for various use cases.
+# Avatar Component Usage (v2)
+
+The `Avatar` component is a flexible, theme-aware UI element for displaying user images, initials, or custom labels. It is fully customizable and now supports semantic shadow levels via a single `shadow` prop.
 
 ## Basic Usage
 
 ```tsx
-import Avatar from 'galio-be/src/Avatar';
+import { Avatar } from 'galio-framework';
 
 <Avatar source={{ uri: 'https://example.com/user.jpg' }} />
 ```
@@ -19,24 +20,25 @@ import Avatar from 'galio-be/src/Avatar';
 ## Customizing Size
 
 ```tsx
-<Avatar source={{ uri: '...' }} size={80} />
+<Avatar label="CD" size={80} />
 ```
 
 ## Customizing Colors
 
 ```tsx
-<Avatar label="CD" backgroundColor="#FF6B6B" labelColor="#FFF" />
+<Avatar label="EF" backgroundColor="#FF6B6B" labelColor="#FFF" />
 ```
 
-## Shadow Levels
-
-You can set the shadow level for the avatar using the `shadowLevel` prop:
+## Shadows
     
+Apply a shadow using the `shadow` prop. Available levels: `xs`, `sm`, `md`, `lg`, `xl`.
+
 ```tsx
-<Avatar source={{ uri: '...' }} shadowLevel="lg" />
+<Avatar label="GH" shadow="md" />
 ```
 
-Available levels: `xs`, `sm`, `md`, `lg`, `xl`
+- If you do not provide the `shadow` prop, no shadow is applied and the avatar uses `overflow: 'hidden'` for a perfect circle.
+- If you provide `shadow`, the corresponding theme shadow is applied and `overflow` is disabled so the shadow is visible.
 
 ## Custom Styles
 
@@ -44,7 +46,7 @@ You can override styles for the container, image, label, and label text:
 
 ```tsx
 <Avatar
-  label="EF"
+  label="IJ"
   containerStyle={{ borderWidth: 2, borderColor: '#333' }}
   imageStyle={{ resizeMode: 'cover' }}
   labelStyle={{ backgroundColor: '#222' }}
@@ -58,38 +60,20 @@ Set accessibility labels and hints for better screen reader support:
 
 ```tsx
 <Avatar
-  label="GH"
-  accessibilityLabel="User avatar for George Harris"
+  label="KL"
+  accessibilityLabel="User avatar for Kevin Lee"
   accessibilityHint="Shows the user's initials"
 />
 ```
 
 ## All Avatar Variants
 
-- **Image Avatar**: Displays a profile image.
-  ```tsx
-  <Avatar source={{ uri: '...' }} />
-  ```
-- **Label Avatar**: Displays initials or custom text.
-  ```tsx
-  <Avatar label="XY" />
-  ```
-- **Custom Colors**: Override background and text colors.
-  ```tsx
-  <Avatar label="XY" backgroundColor="#123456" labelColor="#FFF" />
-  ```
-- **Custom Size**: Change avatar size.
-  ```tsx
-  <Avatar label="XY" size={64} />
-  ```
-- **Custom Shadow**: Set shadow level.
-  ```tsx
-  <Avatar label="XY" shadowLevel="xl" />
-  ```
-- **Custom Styles**: Override any style.
-  ```tsx
-  <Avatar label="XY" containerStyle={{ borderWidth: 1 }} />
-  ```
+- **Image Avatar**: `<Avatar source={{ uri: '...' }} />`
+- **Label Avatar**: `<Avatar label="XY" />`
+- **Custom Colors**: `<Avatar label="XY" backgroundColor="#123456" labelColor="#FFF" />`
+- **Custom Size**: `<Avatar label="XY" size={64} />`
+- **Custom Shadow**: `<Avatar label="XY" shadow="xl" />`
+- **Custom Styles**: `<Avatar label="XY" containerStyle={{ borderWidth: 1 }} />`
 
 ## Theming
 

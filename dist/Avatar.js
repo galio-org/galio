@@ -14,19 +14,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
 function Avatar(_a) {
-    var source = _a.source, label = _a.label, labelColor = _a.labelColor, _b = _a.size, size = _b === void 0 ? 50 : _b, backgroundColor = _a.backgroundColor, labelFontSize = _a.labelFontSize, labelFontWeight = _a.labelFontWeight, imageProps = _a.imageProps, imageStyle = _a.imageStyle, containerStyle = _a.containerStyle, style = _a.style, labelStyle = _a.labelStyle, labelTextStyle = _a.labelTextStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
+    var _b;
+    var source = _a.source, label = _a.label, labelColor = _a.labelColor, _c = _a.size, size = _c === void 0 ? 50 : _c, backgroundColor = _a.backgroundColor, labelFontSize = _a.labelFontSize, labelFontWeight = _a.labelFontWeight, imageProps = _a.imageProps, imageStyle = _a.imageStyle, containerStyle = _a.containerStyle, style = _a.style, labelStyle = _a.labelStyle, labelTextStyle = _a.labelTextStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint, shadow = _a.shadow;
     var theme = (0, theme_1.useTheme)();
     var colors = theme.colors;
     var avatarSize = size || 50;
-    var containerBaseStyle = {
-        width: avatarSize,
-        height: avatarSize,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: avatarSize / 2,
-        overflow: 'hidden',
-        backgroundColor: backgroundColor || colors.background,
-    };
+    // If shadow prop is set and not 'none', apply theme shadow for current platform
+    var shadowStyle = {};
+    if (shadow && shadow !== 'none') {
+        var shadowDef = ((_b = theme.shadows) === null || _b === void 0 ? void 0 : _b[shadow]) || {};
+        shadowStyle = react_native_1.Platform.select({
+            ios: shadowDef.ios || {},
+            android: shadowDef.android || {},
+        }) || {};
+        if (react_native_1.Platform.OS === 'web' && shadowDef.web) {
+            shadowStyle = __assign({}, shadowDef.web);
+        }
+    }
+    // Only apply overflow: 'hidden' if no shadow is present
+    var containerBaseStyle = __assign({ width: avatarSize, height: avatarSize, alignItems: 'center', justifyContent: 'center', borderRadius: avatarSize / 2, backgroundColor: backgroundColor || colors.background }, (shadow ? shadowStyle : { overflow: 'hidden' }));
     var stylesheet = react_native_1.StyleSheet.create({
         container: __assign({}, containerBaseStyle),
         image: {

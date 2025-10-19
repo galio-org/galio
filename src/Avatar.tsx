@@ -3,20 +3,70 @@ import { StyleSheet, ViewStyle, View, Text, Image, ImageSourcePropType, Platform
 import { useTheme, useColors } from "./theme";
 
 interface AvatarProps {
+    /**
+     * Semantic shadow level: 'none', 'xs', 'sm', 'md', 'lg', 'xl'.
+     * If not set, no shadow is applied.
+     */
+    shadow?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    /**
+     * Image source for the avatar (URL, require, etc.)
+     */
     source?: ImageSourcePropType;
+    /**
+     * Text or initials to display if no image is provided
+     */
     label?: string;
+    /**
+     * Color for the label text
+     */
     labelColor?: string;
+    /**
+     * Size of the avatar (width & height)
+     */
     size?: number;
+    /**
+     * Background color for the avatar
+     */
     backgroundColor?: string;
+    /**
+     * Font size for the label text
+     */
     labelFontSize?: number;
+    /**
+     * Font weight for the label text
+     */
     labelFontWeight?: TextStyle['fontWeight'];
+    /**
+     * Props to pass to the underlying Image component
+     */
     imageProps?: object;
+    /**
+     * Style for the Image component
+     */
     imageStyle?: ImageStyle;
+    /**
+     * Style for the avatar container (outer View)
+     */
     containerStyle?: ViewStyle;
+    /**
+     * Additional style for the outermost View
+     */
     style?: ViewStyle;
+    /**
+     * Style for the label container (View around Text)
+     */
     labelStyle?: ViewStyle;
+    /**
+     * Style for the label Text
+     */
     labelTextStyle?: TextStyle;
+    /**
+     * Accessibility label for screen readers
+     */
     accessibilityLabel?: string;
+    /**
+     * Accessibility hint for screen readers
+     */
     accessibilityHint?: string;
 }
 
@@ -37,18 +87,34 @@ function Avatar({
     labelTextStyle,
     accessibilityLabel,
     accessibilityHint,
+    shadow,
 }: AvatarProps): JSX.Element {
     const theme = useTheme();
     const colors = theme.colors;
     const avatarSize = size || 50;
+
+    // If shadow prop is set and not 'none', apply theme shadow for current platform
+    let shadowStyle: ViewStyle = {};
+    if (shadow && shadow !== 'none') {
+        const shadowDef = theme.shadows?.[shadow] || {};
+        shadowStyle = Platform.select({
+            ios: shadowDef.ios || {},
+            android: shadowDef.android || {},
+        }) || {};
+        if (Platform.OS === 'web' && shadowDef.web) {
+            shadowStyle = { ...shadowDef.web };
+        }
+    }
+
+    // Only apply overflow: 'hidden' if no shadow is present
     const containerBaseStyle: ViewStyle = {
         width: avatarSize,
         height: avatarSize,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: avatarSize / 2,
-        overflow: 'hidden',
         backgroundColor: backgroundColor || colors.background,
+        ...(shadow ? shadowStyle : { overflow: 'hidden' }),
     };
 
     const stylesheet = StyleSheet.create({

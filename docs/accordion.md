@@ -1,84 +1,62 @@
-# Accordion Component Usage
 
-The Accordion component in Galio allows you to display collapsible sections with customizable headers, icons, and content. It supports semantic theming, shadows, and flexible styling for both light and dark modes.
+# Accordion Component Usage (v2)
 
-## Importing Accordion
-
-```tsx
-import Accordion from 'galio-framework/src/Accordion';
-```
+The `Accordion` component is a flexible, theme-aware UI element for displaying expandable/collapsible content. It now supports semantic shadow levels via a single `shadow` prop for all platforms.
 
 ## Basic Usage
 
 ```tsx
+import { Accordion } from 'galio-framework';
+
 <Accordion
   dataArray={[
-    {
-      title: 'Section 1',
-      content: 'Content for section 1',
-      icon: { name: 'info', family: 'feather', color: colors.info, size: 18 },
-    },
-    {
-      title: 'Section 2',
-      content: 'Content for section 2',
-      icon: { name: 'layers', family: 'feather', color: colors.success, size: 18 },
-    },
+    { title: 'Section 1', content: 'Content 1' },
+    { title: 'Section 2', content: 'Content 2' },
   ]}
-  titleStyle={{ color: colors.text, fontWeight: 'bold' }}
-  headerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center' }}
-  expandedIcon={{ name: 'chevron-up', family: 'feather', color: colors.success, size: 20 }}
-  icon={{ name: 'chevron-down', family: 'feather', color: colors.textSecondary, size: 20 }}
-  contentStyle={{ fontSize: 16, color: colors.text, minHeight: 48 }}
 />
 ```
+
+## Customizing Shadows
+
+Apply a shadow using the `shadow` prop. Available levels: `xs`, `sm`, `md`, `lg`, `xl`.
+
+```tsx
+<Accordion
+  dataArray={...}
+  shadow="lg"
+/>
+```
+- If you do not provide the `shadow` prop, no shadow is applied.
+- If you provide `shadow`, the corresponding theme shadow is applied for the current platform.
+
+## Custom Styles
+
+You can override styles for the container, header, and content:
+
+```tsx
+<Accordion
+  dataArray={...}
+  style={{ borderRadius: 24 }}
+  headerStyle={{ backgroundColor: '#eee' }}
+  contentStyle={{ color: '#333', fontSize: 18 }}
+/>
+```
+
+## Theming
+
+The Accordion automatically adapts to your theme (light/dark) and uses semantic colors and shadows from your theme provider. You can override any value via props for full control.
 
 ## Props
 
-- `dataArray`: Array of sections. Each item can have:
-  - `title`: Header text
-  - `content`: Content text
-  - `icon`: Icon object for header
-- `titleStyle`: Style for all header titles
-- `headerStyle`: Style for header container
-- `expandedIcon`: Icon when section is open
-- `icon`: Icon when section is closed
-- `contentStyle`: Style for content area
-- `opened`: Index of initially opened section
-- `onAccordionOpen`: Callback when a section opens
-- `onAccordionClose`: Callback when a section closes
-- `style`: Container style
-- `listStyle`: Style for the list wrapper
-
-## Example with Callbacks
-
-```tsx
-<Accordion
-  dataArray={data}
-  onAccordionOpen={(item, index) => console.log('Opened:', item, index)}
-  onAccordionClose={(item, index) => console.log('Closed:', item, index)}
-/>
-```
-
-## Theming and Shadows
-
-Accordion supports semantic theming and shadows. Use `theme.shadows.md` or `theme.shadows.lg` for consistent elevation across platforms.
-
-```tsx
-style={{
-  ...Platform.select({
-    ios: theme.shadows?.lg?.ios,
-    android: theme.shadows?.lg?.android,
-  }),
-  ...(Platform.OS === 'web' ? theme.shadows?.lg?.web : {}),
-  borderRadius: theme.sizes?.CARD_BORDER_RADIUS || 16,
-  backgroundColor: colors.background,
-}}
-```
-
-## Notes
-- You can override styles and icons for each item by passing them in the `dataArray`.
-- The `titleStyle` prop applies to all headers unless overridden by an item's own `titleStyle`.
-- Works with both light and dark themes.
+- `dataArray`: Array of sections, each with `title`, `content`, and optional `icon`.
+- `shadow`: Semantic shadow level (`'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'`).
+- `style`: Style for the outer container.
+- `headerStyle`: Style for each header row.
+- `contentStyle`: Style for the content text.
+- `titleStyle`: Style for the title text.
+- `expandedIcon`, `icon`: Custom icons for expanded/collapsed state.
+- `opened`: Index of the initially opened section.
+- `onAccordionOpen`, `onAccordionClose`: Callbacks for open/close events.
 
 ---
-For more details, see the source code in `src/Accordion.tsx` and the UI example in `screens/ui/Components.tsx`.
+For more advanced usage, see the source code or ask for specific examples.

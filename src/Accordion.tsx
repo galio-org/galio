@@ -188,6 +188,11 @@ interface MainAccordionProps {
     listStyle?: ViewStyle;
     style?: ViewStyle;
     titleStyle?: TextStyle;
+    /**
+     * Semantic shadow level: 'none', 'xs', 'sm', 'md', 'lg', 'xl'.
+     * If not set, no shadow is applied.
+     */
+    shadow?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 function Accordion({
@@ -201,12 +206,13 @@ function Accordion({
     onAccordionClose,
     listStyle,
     style,
-    titleStyle
+    titleStyle,
+    shadow = 'md',
 }: MainAccordionProps): JSX.Element {
     const theme = useTheme();
     const colors = useColors();
     const [selected, setSelected] = useState<number | undefined>(opened);
-    
+
     // Default styles for light/dark mode
     const defaultHeaderStyle: ViewStyle = {
         padding: theme.sizes?.BASE ?? 16,
@@ -228,16 +234,25 @@ function Accordion({
         borderTopWidth: theme.mode === 'dark' ? 1 : 0,
         borderTopColor: theme.mode === 'dark' ? colors.borderHover : undefined,
     };
+    // Use semantic shadow prop for all platforms
+    let shadowStyle: ViewStyle = {};
+    if (shadow && shadow !== 'none') {
+        const shadowDef = theme.shadows?.[shadow] || {};
+        shadowStyle = Platform.select({
+            ios: shadowDef.ios || {},
+            android: shadowDef.android || {},
+        }) || {};
+        if (Platform.OS === 'web' && shadowDef.web) {
+            shadowStyle = { ...shadowDef.web };
+        }
+    }
+    // Only apply overflow: 'visible' if shadow is present, otherwise let user override
     const defaultContainerStyle: ViewStyle = {
-        ...Platform.select({
-            ios: theme.mode === 'dark' ? theme.shadows?.lg?.ios : theme.shadows?.md?.ios,
-            android: theme.mode === 'dark' ? theme.shadows?.lg?.android : theme.shadows?.md?.android,
-        }),
-        ...(Platform.OS === 'web' ? (theme.mode === 'dark' ? theme.shadows?.lg?.web : theme.shadows?.md?.web) : {}),
+        ...shadowStyle,
         borderRadius: theme.sizes?.CARD_BORDER_RADIUS ?? 16,
         marginBottom: theme.sizes?.BASE ?? 16,
         backgroundColor: 'transparent',
-        overflow: 'visible',
+        ...(shadow && shadow !== 'none' ? { overflow: 'visible' } : {}),
     };
     return (
         <Block style={[styles(theme, colors).container, defaultContainerStyle, style] as any}>
