@@ -31,7 +31,7 @@ import Avatar from 'galio-be/src/Avatar';
 ## Shadow Levels
 
 You can set the shadow level for the avatar using the `shadowLevel` prop:
-
+    
 ```tsx
 <Avatar source={{ uri: '...' }} shadowLevel="lg" />
 ```

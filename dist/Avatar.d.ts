@@ -6,7 +6,8 @@ interface AvatarProps {
     labelColor?: string;
     size?: number;
     backgroundColor?: string;
-    shadowLevel?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    shadowLevel?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    disableShadow?: boolean;
     imageProps?: object;
     imageStyle?: ImageStyle;
     containerStyle?: ViewStyle;
@@ -16,6 +17,6 @@ interface AvatarProps {
     accessibilityLabel?: string;
     accessibilityHint?: string;
 }
-declare function Avatar({ source, label, labelColor, size, backgroundColor, shadowLevel, imageProps, imageStyle, containerStyle, style, labelStyle, labelTextStyle, accessibilityLabel, accessibilityHint, }: AvatarProps): JSX.Element;
+declare function Avatar({ source, label, labelColor, size, backgroundColor, shadowLevel, disableShadow, imageProps, imageStyle, containerStyle, style, labelStyle, labelTextStyle, accessibilityLabel, accessibilityHint, }: AvatarProps): JSX.Element;
 export default Avatar;
 //# sourceMappingURL=Avatar.d.ts.map
