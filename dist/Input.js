@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -52,10 +63,14 @@ var react_native_1 = require("react-native");
 var Icon_1 = __importDefault(require("./Icon"));
 var theme_1 = require("./theme");
 var Input = (0, react_1.forwardRef)(function (_a, ref) {
-    var style = _a.style, textInputStyle = _a.textInputStyle, _b = _a.type, type = _b === void 0 ? 'default' : _b, placeholderTextColor = _a.placeholderTextColor, label = _a.label, labelStyles = _a.labelStyles, _c = _a.color, color = _c === void 0 ? 'primary' : _c, help = _a.help, helpStyles = _a.helpStyles, bgColor = _a.bgColor, _d = _a.borderless, borderless = _d === void 0 ? false : _d, _e = _a.viewPass, viewPass = _e === void 0 ? false : _e, _f = _a.rounded, rounded = _f === void 0 ? false : _f, _g = _a.icon, icon = _g === void 0 ? false : _g, family = _a.family, _h = _a.left, left = _h === void 0 ? true : _h, _j = _a.right, right = _j === void 0 ? false : _j, _k = _a.iconColor, iconColor = _k === void 0 ? 'primary' : _k, _l = _a.topHelp, topHelp = _l === void 0 ? true : _l, _m = _a.bottomHelp, bottomHelp = _m === void 0 ? false : _m, _o = _a.iconSize, iconSize = _o === void 0 ? 16 : _o, iconContent = _a.iconContent, _p = _a.password, password = _p === void 0 ? false : _p, error = _a.error, onRef = _a.onRef, rest = __rest(_a, ["style", "textInputStyle", "type", "placeholderTextColor", "label", "labelStyles", "color", "help", "helpStyles", "bgColor", "borderless", "viewPass", "rounded", "icon", "family", "left", "right", "iconColor", "topHelp", "bottomHelp", "iconSize", "iconContent", "password", "error", "onRef"]);
+    var style = _a.style, textInputStyle = _a.textInputStyle, _b = _a.type, type = _b === void 0 ? 'default' : _b, placeholderTextColor = _a.placeholderTextColor, label = _a.label, labelStyles = _a.labelStyles, _c = _a.color, color = _c === void 0 ? 'primary' : _c, help = _a.help, helpStyles = _a.helpStyles, bgColor = _a.bgColor, _d = _a.borderless, borderless = _d === void 0 ? false : _d, _e = _a.viewPass, viewPass = _e === void 0 ? false : _e, _f = _a.rounded, rounded = _f === void 0 ? false : _f, _g = _a.icon, icon = _g === void 0 ? false : _g, family = _a.family, _h = _a.left, left = _h === void 0 ? true : _h, _j = _a.right, right = _j === void 0 ? false : _j, _k = _a.iconColor, iconColor = _k === void 0 ? 'primary' : _k, // legacy
+    _l = _a.iconSize, // legacy
+    iconSize = _l === void 0 ? 16 : _l, // legacy
+    _m = _a.iconProps, // legacy
+    iconProps = _m === void 0 ? {} : _m, _o = _a.topHelp, topHelp = _o === void 0 ? true : _o, _p = _a.bottomHelp, bottomHelp = _p === void 0 ? false : _p, iconContent = _a.iconContent, _q = _a.password, password = _q === void 0 ? false : _q, error = _a.error, onRef = _a.onRef, rest = __rest(_a, ["style", "textInputStyle", "type", "placeholderTextColor", "label", "labelStyles", "color", "help", "helpStyles", "bgColor", "borderless", "viewPass", "rounded", "icon", "family", "left", "right", "iconColor", "iconSize", "iconProps", "topHelp", "bottomHelp", "iconContent", "password", "error", "onRef"]);
     var theme = (0, theme_1.useTheme)();
     var colors = (0, theme_1.useColors)();
-    var _q = (0, react_1.useState)(password), isPassword = _q[0], setIsPassword = _q[1];
+    var _r = (0, react_1.useState)(password), isPassword = _r[0], setIsPassword = _r[1];
     var inputRef = (0, react_1.useRef)(null);
     (0, react_1.useImperativeHandle)(ref, function () { return ({
         focus: function () { var _a; return (_a = inputRef.current) === null || _a === void 0 ? void 0 : _a.focus(); },
@@ -66,30 +81,82 @@ var Input = (0, react_1.forwardRef)(function (_a, ref) {
     (0, react_1.useEffect)(function () {
         setIsPassword(password);
     }, [password]);
+    // Use theme color for bgColor if it's a theme key
+    var resolvedBgColor = bgColor;
+    if (resolvedBgColor && colors[resolvedBgColor]) {
+        resolvedBgColor = colors[resolvedBgColor];
+    }
     var inputViewStyles = [
         styles(theme, colors).inputStyle,
         styles(theme, colors).inputContainer,
-        bgColor && { backgroundColor: bgColor },
+        resolvedBgColor && { backgroundColor: resolvedBgColor },
         rounded && styles(theme, colors).rounded,
         borderless && styles(theme, colors).borderless,
         error && { borderColor: colors.error },
         rest.multiline && { minHeight: theme.sizes.INPUT_HEIGHT, height: 'auto' },
         style,
     ].filter(Boolean);
+    // Use theme color for text color if it's a theme key
+    var resolvedTextColor = color;
+    if (resolvedTextColor && colors[resolvedTextColor]) {
+        resolvedTextColor = colors[resolvedTextColor];
+    }
     var inputStyles = [
         styles(theme, colors).inputView,
         borderless && icon && styles(theme, colors).inputIcon,
         styles(theme, colors).inputText,
-        color && { color: color },
+        resolvedTextColor && { color: resolvedTextColor },
         rest.multiline && { textAlignVertical: 'top' },
         textInputStyle || {}
     ].filter(Boolean);
-    var iconInstance = icon ? (<Icon_1.default name={icon} family={family} size={iconSize || theme.sizes.BASE * 1.0625} style={{ marginRight: left && !right ? 4 : 0 }} color={(error && colors.error) || iconColor || placeholderTextColor || colors.placeholder}/>) : (iconContent);
+    // Prefer new iconProps API, fallback to legacy iconColor/iconSize
+    var resolvedIconColor = (error && colors.error)
+        || iconProps.color
+        || iconColor
+        || placeholderTextColor
+        || colors.placeholder;
+    // If resolvedIconColor matches a theme color, use it
+    if (resolvedIconColor && colors[resolvedIconColor]) {
+        resolvedIconColor = colors[resolvedIconColor];
+    }
+    var resolvedIconSize = iconProps.size || iconSize || theme.sizes.BASE * 1.0625;
+    // Warn if using legacy props
+    (0, react_1.useEffect)(function () {
+        if (iconColor !== undefined && iconProps.color === undefined) {
+            // eslint-disable-next-line no-console
+            console.warn('[Input] iconColor is deprecated. Use iconProps.color instead.');
+        }
+        if (iconSize !== undefined && iconProps.size === undefined) {
+            // eslint-disable-next-line no-console
+            console.warn('[Input] iconSize is deprecated. Use iconProps.size instead.');
+        }
+    }, [iconColor, iconSize, iconProps.color, iconProps.size]);
+    // Use theme color for icon if it's a theme key
+    var iconThemeColor = resolvedIconColor;
+    if (iconThemeColor && colors[iconThemeColor]) {
+        iconThemeColor = colors[iconThemeColor];
+    }
+    var iconInstance = icon ? (<Icon_1.default name={icon} family={iconProps.family || family} size={resolvedIconSize} style={__assign({ marginRight: left && !right ? 4 : 0 }, (iconProps.style || {}))} color={iconThemeColor} {...iconProps}/>) : (iconContent);
+    // Use theme color for viewPass icon if it's a theme key
+    var viewPassColor = iconProps.color || iconColor || colors.text;
+    if (viewPassColor && colors[viewPassColor]) {
+        viewPassColor = colors[viewPassColor];
+    }
     var viewPassElement = password && viewPass && (<react_native_1.Pressable style={{ marginLeft: 2 }} onPress={function () { return setIsPassword(!isPassword); }}>
-      <Icon_1.default size={iconSize || theme.sizes.BASE * 1.0625} color={iconColor || colors.text} name="eye" family="entypo"/>
+      <Icon_1.default size={iconProps.size || iconSize || theme.sizes.BASE * 1.0625} color={viewPassColor} name="eye" family="entypo"/>
     </react_native_1.Pressable>);
-    var labelContent = label && label.length > 0 && (<react_native_1.Text style={[styles(theme, colors).label, labelStyles || {}]}>{label}</react_native_1.Text>);
-    var helpContent = help && help.length > 0 && (<react_native_1.Text style={[styles(theme, colors).helpText, helpStyles || {}]}>{help}</react_native_1.Text>);
+    // Use theme color for label if it's a theme key
+    var resolvedLabelColor = labelStyles && labelStyles.color;
+    if (resolvedLabelColor && colors[resolvedLabelColor]) {
+        resolvedLabelColor = colors[resolvedLabelColor];
+    }
+    var labelContent = label && label.length > 0 && (<react_native_1.Text style={[styles(theme, colors).label, labelStyles, resolvedLabelColor ? { color: resolvedLabelColor } : {}]}>{label}</react_native_1.Text>);
+    // Use theme color for help text if it's a theme key
+    var resolvedHelpColor = helpStyles && helpStyles.color;
+    if (resolvedHelpColor && colors[resolvedHelpColor]) {
+        resolvedHelpColor = colors[resolvedHelpColor];
+    }
+    var helpContent = help && help.length > 0 && (<react_native_1.Text style={[styles(theme, colors).helpText, helpStyles, resolvedHelpColor ? { color: resolvedHelpColor } : {}]}>{help}</react_native_1.Text>);
     return (<react_native_1.View style={{
             marginVertical: theme.sizes.BASE / 2,
             alignContent: 'center',
@@ -103,7 +170,9 @@ var Input = (0, react_1.forwardRef)(function (_a, ref) {
                 inputRef.current = r;
                 onRef === null || onRef === void 0 ? void 0 : onRef(r);
             }
-        }} style={inputStyles} keyboardType={type} secureTextEntry={isPassword} placeholderTextColor={placeholderTextColor} underlineColorAndroid="transparent" {...rest}/>
+        }} style={inputStyles} keyboardType={type} secureTextEntry={isPassword} placeholderTextColor={placeholderTextColor && colors[placeholderTextColor]
+            ? colors[placeholderTextColor]
+            : placeholderTextColor || colors.placeholder} underlineColorAndroid="transparent" {...rest}/>
         {right && iconInstance}
         {viewPassElement}
       </react_native_1.View>

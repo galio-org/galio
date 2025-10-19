@@ -18,10 +18,23 @@ export interface InputProps {
     family?: string;
     left?: boolean;
     right?: boolean;
+    /**
+     * @deprecated Use iconProps.color instead. Will be removed in a future version.
+     */
     iconColor?: string;
+    /**
+     * @deprecated Use iconProps.size instead. Will be removed in a future version.
+     */
+    iconSize?: number;
+    iconProps?: {
+        color?: string;
+        size?: number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        style?: any;
+        family?: string;
+        [key: string]: any;
+    };
     topHelp?: boolean;
     bottomHelp?: boolean;
-    iconSize?: number;
     iconContent?: React.ReactNode;
     password?: boolean;
     error?: boolean;
