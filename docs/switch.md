@@ -1,6 +1,6 @@
 # Switch Component
 
-The `Switch` component provides a simple, themeable toggle for boolean values. It supports palette keys, custom colors, and easy accessibility.
+The `Switch` component provides a simple, themeable toggle for boolean values. It supports theme palette keys, custom colors, and accessibility props.
 
 ## Usage
 
@@ -44,6 +44,7 @@ import Switch from 'galio-be/src/Switch';
 - Replace any direct color values with theme palette keys for consistency.
 - Use semantic props for colors and accessibility.
 - Remove legacy theme.COLORS usage and use `useColors` for palette.
+- Use `iosBackgroundColor` (camelCase) instead of `ios_backgroundColor`.
 
 ## Example
 
@@ -53,6 +54,7 @@ import Switch from 'galio-be/src/Switch';
   onValueChange={setDarkMode}
   color="success"
   trackColor={{ false: 'surfaceVariant', true: 'success' }}
+  iosBackgroundColor="surfaceVariant"
 />
 ```
 
