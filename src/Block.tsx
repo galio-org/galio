@@ -278,7 +278,7 @@ function getSemanticShadowStyles(theme: ReturnType<typeof useTheme>, level: Shad
   if (level === 'none') return {};
   const def = theme.shadows?.[level as keyof typeof theme.shadows] || {};
   const neutralShadowColor = '#b0b0b0';
-  const nativeShadow = Platform.select({
+  let nativeShadow = Platform.select({
     ios: {
       ...(def.ios || {}),
       shadowColor: shadowColor || (def.ios && def.ios.shadowColor) || neutralShadowColor,
@@ -291,6 +291,11 @@ function getSemanticShadowStyles(theme: ReturnType<typeof useTheme>, level: Shad
   // For web, merge boxShadow if present
   if (Platform.OS === 'web' && def.web) {
     return { ...nativeShadow, ...def.web };
+  }
+  // Always add elevation for Android
+  if (Platform.OS === 'android') {
+    const elevation = (def.android && typeof def.android.elevation === 'number') ? def.android.elevation : 0;
+    nativeShadow = { ...nativeShadow, elevation };
   }
   return nativeShadow;
 }

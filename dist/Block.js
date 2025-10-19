@@ -151,6 +151,11 @@ function getSemanticShadowStyles(theme, level, shadowColor) {
     if (react_native_1.Platform.OS === 'web' && def.web) {
         return __assign(__assign({}, nativeShadow), def.web);
     }
+    // Always add elevation for Android
+    if (react_native_1.Platform.OS === 'android') {
+        var elevation = (def.android && typeof def.android.elevation === 'number') ? def.android.elevation : 0;
+        nativeShadow = __assign(__assign({}, nativeShadow), { elevation: elevation });
+    }
     return nativeShadow;
 }
 function getCardStyles(theme, colors) {
