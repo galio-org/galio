@@ -26,6 +26,7 @@ interface AccordionHeaderProps {
     icon?: any;
     title?: string;
     chapterIcon?: any;
+    titleStyle?: TextStyle;
 }
 
 function AccordionHeader({
@@ -34,7 +35,8 @@ function AccordionHeader({
     headerStyle,
     icon,
     title,
-    chapterIcon
+    chapterIcon,
+    titleStyle
 }: AccordionHeaderProps): JSX.Element {
     const colors = useColors();
     return (
@@ -49,7 +51,7 @@ function AccordionHeader({
                 />
             ) : null}
             <Block row space="between" middle flex>
-                <Text size={16}>{title}</Text>
+                <Text size={16} style={titleStyle}>{title}</Text>
                 {expanded
                     ? (expandedIcon ? (
                         <Icon
@@ -156,6 +158,7 @@ function AccordionItem({
                         icon={icon}
                         title={item?.title}
                         chapterIcon={item?.icon}
+                        titleStyle={item?.titleStyle}
                     />
                 </Block>
             </Pressable>
