@@ -55,7 +55,7 @@ function AccordionAnimation(_a) {
         </react_native_1.Animated.View>);
 }
 function AccordionItem(_a) {
-    var expanded = _a.expanded, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, contentStyle = _a.contentStyle, icon = _a.icon, index = _a.index, item = _a.item, onAccordionClose = _a.onAccordionClose, onAccordionOpen = _a.onAccordionOpen, setSelected = _a.setSelected;
+    var expanded = _a.expanded, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, contentStyle = _a.contentStyle, icon = _a.icon, index = _a.index, item = _a.item, onAccordionClose = _a.onAccordionClose, onAccordionOpen = _a.onAccordionOpen, setSelected = _a.setSelected, titleStyle = _a.titleStyle;
     return (<Block_1.default>
             <react_native_1.Pressable onPress={function () {
             if (index !== undefined) {
@@ -69,7 +69,7 @@ function AccordionItem(_a) {
             }
         }}>
                 <Block_1.default>
-                    <AccordionHeader expanded={expanded} expandedIcon={expandedIcon} headerStyle={headerStyle} icon={icon} title={item === null || item === void 0 ? void 0 : item.title} chapterIcon={item === null || item === void 0 ? void 0 : item.icon} titleStyle={item === null || item === void 0 ? void 0 : item.titleStyle}/>
+                    <AccordionHeader expanded={expanded} expandedIcon={expandedIcon} headerStyle={headerStyle} icon={icon} title={item === null || item === void 0 ? void 0 : item.title} chapterIcon={item === null || item === void 0 ? void 0 : item.icon} titleStyle={(item === null || item === void 0 ? void 0 : item.titleStyle) || titleStyle}/>
                 </Block_1.default>
             </react_native_1.Pressable>
             {expanded ? (<AccordionAnimation style={contentStyle}>
@@ -79,7 +79,7 @@ function AccordionItem(_a) {
 }
 function Accordion(_a) {
     var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4;
-    var dataArray = _a.dataArray, icon = _a.icon, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, contentStyle = _a.contentStyle, opened = _a.opened, onAccordionOpen = _a.onAccordionOpen, onAccordionClose = _a.onAccordionClose, listStyle = _a.listStyle, style = _a.style;
+    var dataArray = _a.dataArray, icon = _a.icon, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, contentStyle = _a.contentStyle, opened = _a.opened, onAccordionOpen = _a.onAccordionOpen, onAccordionClose = _a.onAccordionClose, listStyle = _a.listStyle, style = _a.style, titleStyle = _a.titleStyle;
     var theme = (0, theme_1.useTheme)();
     var colors = (0, theme_1.useColors)();
     var _5 = (0, react_1.useState)(opened), selected = _5[0], setSelected = _5[1];
@@ -110,7 +110,7 @@ function Accordion(_a) {
     })), (react_native_2.Platform.OS === 'web' ? (theme.mode === 'dark' ? (_y = (_x = theme.shadows) === null || _x === void 0 ? void 0 : _x.lg) === null || _y === void 0 ? void 0 : _y.web : (_0 = (_z = theme.shadows) === null || _z === void 0 ? void 0 : _z.md) === null || _0 === void 0 ? void 0 : _0.web) : {})), { borderRadius: (_2 = (_1 = theme.sizes) === null || _1 === void 0 ? void 0 : _1.CARD_BORDER_RADIUS) !== null && _2 !== void 0 ? _2 : 16, marginBottom: (_4 = (_3 = theme.sizes) === null || _3 === void 0 ? void 0 : _3.BASE) !== null && _4 !== void 0 ? _4 : 16, backgroundColor: 'transparent', overflow: 'visible' });
     return (<Block_1.default style={[styles(theme, colors).container, defaultContainerStyle, style]}>
             <react_native_1.View style={listStyle}>
-                {dataArray === null || dataArray === void 0 ? void 0 : dataArray.map(function (item, index) { return (<AccordionItem key={String(index)} expanded={selected === index} expandedIcon={expandedIcon} icon={icon} headerStyle={headerStyle !== null && headerStyle !== void 0 ? headerStyle : defaultHeaderStyle} contentStyle={contentStyle !== null && contentStyle !== void 0 ? contentStyle : defaultContentStyle} onAccordionOpen={onAccordionOpen} onAccordionClose={onAccordionClose} item={item} index={index} setSelected={function (s) { return setSelected(selected === s ? undefined : s); }}/>); })}
+                {dataArray === null || dataArray === void 0 ? void 0 : dataArray.map(function (item, index) { return (<AccordionItem key={String(index)} expanded={selected === index} expandedIcon={expandedIcon} icon={icon} headerStyle={headerStyle !== null && headerStyle !== void 0 ? headerStyle : defaultHeaderStyle} contentStyle={contentStyle !== null && contentStyle !== void 0 ? contentStyle : defaultContentStyle} onAccordionOpen={onAccordionOpen} onAccordionClose={onAccordionClose} item={item} index={index} setSelected={function (s) { return setSelected(selected === s ? undefined : s); }} titleStyle={titleStyle}/>); })}
             </react_native_1.View>
         </Block_1.default>);
 }

@@ -121,6 +121,7 @@ interface AccordionItemProps {
     onAccordionClose?: (item: any, index: number) => void;
     onAccordionOpen?: (item: any, index: number) => void;
     setSelected?: (index: number) => void;
+    titleStyle?: TextStyle;
 }
 
 function AccordionItem({
@@ -133,7 +134,8 @@ function AccordionItem({
     item,
     onAccordionClose,
     onAccordionOpen,
-    setSelected
+    setSelected,
+    titleStyle
 }: AccordionItemProps): JSX.Element {
     return (
         <Block>
@@ -158,7 +160,7 @@ function AccordionItem({
                         icon={icon}
                         title={item?.title}
                         chapterIcon={item?.icon}
-                        titleStyle={item?.titleStyle}
+                        titleStyle={item?.titleStyle || titleStyle}
                     />
                 </Block>
             </Pressable>
@@ -185,6 +187,7 @@ interface MainAccordionProps {
     onAccordionClose?: (item: any, index: number) => void;
     listStyle?: ViewStyle;
     style?: ViewStyle;
+    titleStyle?: TextStyle;
 }
 
 function Accordion({
@@ -197,7 +200,8 @@ function Accordion({
     onAccordionOpen,
     onAccordionClose,
     listStyle,
-    style
+    style,
+    titleStyle
 }: MainAccordionProps): JSX.Element {
     const theme = useTheme();
     const colors = useColors();
@@ -251,6 +255,7 @@ function Accordion({
                         item={item}
                         index={index}
                         setSelected={(s) => setSelected(selected === s ? undefined : s)}
+                        titleStyle={titleStyle}
                     />
                 ))}
             </View>
