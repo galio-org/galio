@@ -56,13 +56,17 @@ function Toast(_a) {
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
         }
+        // Explicit color map for theme safety
         var colorMap = {
-            'primary': colors.primary,
-            'success': colors.success,
-            'warning': colors.warning,
-            'error': colors.error,
-            'danger': colors.error,
-            'info': colors.info,
+            primary: colors.primary,
+            success: colors.success,
+            warning: colors.warning,
+            error: colors.error,
+            danger: colors.error,
+            info: colors.info,
+            white: colors.white,
+            black: colors.black,
+            onPrimary: colors.onPrimary,
         };
         return colorMap[colorName] || colors.primary;
     };
@@ -122,6 +126,8 @@ function Toast(_a) {
             top: topPosition,
             opacity: opacity,
             borderRadius: borderRadius,
+            borderColor: colors.border || 'rgba(255,255,255,0.3)',
+            shadowColor: colors.black,
         },
         style,
     ];
@@ -132,6 +138,7 @@ function Toast(_a) {
         </react_native_1.View>);
 }
 var styles = function (theme, colors) {
+    var _a;
     return react_native_1.StyleSheet.create({
         overlay: {
             position: 'absolute',
@@ -147,20 +154,18 @@ var styles = function (theme, colors) {
             position: 'absolute',
             left: theme.sizes.BASE,
             right: theme.sizes.BASE,
-            shadowColor: colors.black,
             shadowOffset: { width: 0, height: 4 },
             shadowOpacity: 0.3,
             shadowRadius: 8,
             elevation: 15,
             minHeight: 60,
             borderWidth: 1,
-            borderColor: 'rgba(255,255,255,0.3)',
         },
         text: {
             fontSize: theme.sizes.FONT,
-            color: colors.white,
+            color: colors.onPrimary || colors.white,
             textAlign: 'center',
-            fontWeight: '600',
+            fontWeight: ((_a = theme.fontWeights) === null || _a === void 0 ? void 0 : _a.bold) || '600',
         },
     });
 };

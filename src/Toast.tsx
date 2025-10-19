@@ -31,7 +31,7 @@ function Toast({
     textStyle,
 }: ToastProps) {
     const theme = useTheme();
-  const colors = useColors();
+    const colors = useColors();
     const [internalIsShow, setInternalIsShow] = useState(isShow);
     const [opacity, setOpacity] = useState(0);
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -40,20 +40,21 @@ function Toast({
 
     const getThemeColor = (colorName?: string) => {
         if (!colorName) return colors.primary;
-        
         if (typeof colorName === 'string' && colorName.startsWith('#')) {
             return colorName;
         }
-        
+        // Explicit color map for theme safety
         const colorMap: { [key: string]: string } = {
-            'primary': colors.primary,
-            'success': colors.success,
-            'warning': colors.warning,
-            'error': colors.error,
-            'danger': colors.error,
-            'info': colors.info,
+            primary: colors.primary,
+            success: colors.success,
+            warning: colors.warning,
+            error: colors.error,
+            danger: colors.error,
+            info: colors.info,
+            white: colors.white,
+            black: colors.black,
+            onPrimary: colors.onPrimary,
         };
-        
         return colorMap[colorName] || colors.primary;
     };
 
@@ -124,11 +125,13 @@ function Toast({
     
     const toastStyles = [
         styles(theme, colors).toast,
-        { 
+        {
             backgroundColor,
             top: topPosition,
             opacity: opacity,
             borderRadius,
+            borderColor: colors.border || 'rgba(255,255,255,0.3)',
+            shadowColor: colors.black,
         },
         style,
     ];
@@ -158,20 +161,18 @@ const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof us
             position: 'absolute',
             left: theme.sizes.BASE,
             right: theme.sizes.BASE,
-            shadowColor: colors.black,
             shadowOffset: { width: 0, height: 4 },
             shadowOpacity: 0.3,
             shadowRadius: 8,
             elevation: 15,
             minHeight: 60,
             borderWidth: 1,
-            borderColor: 'rgba(255,255,255,0.3)',
         },
         text: {
             fontSize: theme.sizes.FONT,
-            color: colors.white,
+            color: colors.onPrimary || colors.white,
             textAlign: 'center',
-            fontWeight: '600',
+            fontWeight: theme.fontWeights?.bold || '600',
         },
     });
 
