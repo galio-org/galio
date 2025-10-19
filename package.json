@@ -2,7 +2,7 @@
   "name": "galio-framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.9.5-beta.12",
+  "version": "0.9.5-beta.13",
   "files": [
     "dist/",
     "src/"
