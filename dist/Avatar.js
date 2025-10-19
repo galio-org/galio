@@ -14,31 +14,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
 function Avatar(_a) {
-    var _b;
-    var source = _a.source, label = _a.label, labelColor = _a.labelColor, _c = _a.size, size = _c === void 0 ? 50 : _c, backgroundColor = _a.backgroundColor, shadowLevel = _a.shadowLevel, _d = _a.disableShadow, disableShadow = _d === void 0 ? false : _d, imageProps = _a.imageProps, imageStyle = _a.imageStyle, containerStyle = _a.containerStyle, style = _a.style, labelStyle = _a.labelStyle, labelTextStyle = _a.labelTextStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
+    var source = _a.source, label = _a.label, labelColor = _a.labelColor, _b = _a.size, size = _b === void 0 ? 50 : _b, backgroundColor = _a.backgroundColor, labelFontSize = _a.labelFontSize, labelFontWeight = _a.labelFontWeight, imageProps = _a.imageProps, imageStyle = _a.imageStyle, containerStyle = _a.containerStyle, style = _a.style, labelStyle = _a.labelStyle, labelTextStyle = _a.labelTextStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
     var theme = (0, theme_1.useTheme)();
     var colors = theme.colors;
     var avatarSize = size || 50;
-    var shadow = {};
-    // Only apply shadow if shadowLevel is set and not 'none', and not disabled
-    if (!disableShadow && shadowLevel && shadowLevel !== 'none') {
-        shadow = ((_b = theme.shadows) === null || _b === void 0 ? void 0 : _b[shadowLevel]) || {};
-    }
-    // Platform shadow composition (web boxShadow must be handled separately)
-    var nativeShadow = (!disableShadow && shadowLevel && shadowLevel !== 'none')
-        ? react_native_1.Platform.select({
-            ios: shadow.ios || {},
-            android: shadow.android || {},
-        }) || {}
-        : {};
-    // Compose container style, adding boxShadow for web
-    var containerBaseStyle = __assign({ width: avatarSize, height: avatarSize, alignItems: 'center', justifyContent: 'center', borderRadius: avatarSize / 2, overflow: 'hidden', backgroundColor: backgroundColor || colors.background }, nativeShadow);
-    // For web, add boxShadow if present
-    var containerWebStyle = (!disableShadow && shadowLevel && shadowLevel !== 'none' && react_native_1.Platform.OS === 'web' && shadow.web)
-        ? { boxShadow: shadow.web.boxShadow }
-        : {};
+    var containerBaseStyle = {
+        width: avatarSize,
+        height: avatarSize,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: avatarSize / 2,
+        overflow: 'hidden',
+        backgroundColor: backgroundColor || colors.background,
+    };
     var stylesheet = react_native_1.StyleSheet.create({
-        container: __assign(__assign({}, containerBaseStyle), containerWebStyle),
+        container: __assign({}, containerBaseStyle),
         image: {
             width: avatarSize,
             height: avatarSize,
@@ -54,8 +44,8 @@ function Avatar(_a) {
         },
         labelText: {
             color: labelColor || colors.white,
-            fontSize: Math.max(12, avatarSize * 0.32),
-            fontWeight: '600',
+            fontSize: labelFontSize !== undefined ? labelFontSize : Math.max(12, avatarSize * 0.32),
+            fontWeight: labelFontWeight !== undefined ? labelFontWeight : '600',
             textAlign: 'center',
         },
     });

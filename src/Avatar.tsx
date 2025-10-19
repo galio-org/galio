@@ -8,8 +8,8 @@ interface AvatarProps {
     labelColor?: string;
     size?: number;
     backgroundColor?: string;
-    shadowLevel?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'; // If not set, no shadow
-    disableShadow?: boolean;
+    labelFontSize?: number;
+    labelFontWeight?: TextStyle['fontWeight'];
     imageProps?: object;
     imageStyle?: ImageStyle;
     containerStyle?: ViewStyle;
@@ -27,8 +27,8 @@ function Avatar({
     labelColor,
     size = 50,
     backgroundColor,
-    shadowLevel,
-    disableShadow = false,
+    labelFontSize,
+    labelFontWeight,
     imageProps,
     imageStyle,
     containerStyle,
@@ -41,21 +41,6 @@ function Avatar({
     const theme = useTheme();
     const colors = theme.colors;
     const avatarSize = size || 50;
-    let shadow: any = {};
-    // Only apply shadow if shadowLevel is set and not 'none', and not disabled
-    if (!disableShadow && shadowLevel && shadowLevel !== 'none') {
-        shadow = theme.shadows?.[shadowLevel] || {};
-    }
-
-    // Platform shadow composition (web boxShadow must be handled separately)
-    const nativeShadow = (!disableShadow && shadowLevel && shadowLevel !== 'none')
-        ? Platform.select({
-            ios: shadow.ios || {},
-            android: shadow.android || {},
-        }) || {}
-        : {};
-
-    // Compose container style, adding boxShadow for web
     const containerBaseStyle: ViewStyle = {
         width: avatarSize,
         height: avatarSize,
@@ -64,17 +49,11 @@ function Avatar({
         borderRadius: avatarSize / 2,
         overflow: 'hidden',
         backgroundColor: backgroundColor || colors.background,
-        ...nativeShadow,
     };
-    // For web, add boxShadow if present
-    const containerWebStyle: ViewStyle = (!disableShadow && shadowLevel && shadowLevel !== 'none' && Platform.OS === 'web' && shadow.web)
-        ? { boxShadow: shadow.web.boxShadow }
-        : {};
 
     const stylesheet = StyleSheet.create({
         container: {
             ...containerBaseStyle,
-            ...containerWebStyle,
         },
         image: {
             width: avatarSize,
@@ -91,8 +70,8 @@ function Avatar({
         },
         labelText: {
             color: labelColor || colors.white,
-            fontSize: Math.max(12, avatarSize * 0.32),
-            fontWeight: '600',
+            fontSize: labelFontSize !== undefined ? labelFontSize : Math.max(12, avatarSize * 0.32),
+            fontWeight: labelFontWeight !== undefined ? labelFontWeight : '600',
             textAlign: 'center',
         },
     });
