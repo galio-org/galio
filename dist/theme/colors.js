@@ -39,21 +39,132 @@ exports.NEUTRAL_DEFAULTS = {
     successLight: '#6EE7B7',
 };
 exports.SHADOWS = {
+    xs: {
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.08,
+            shadowRadius: 1.5,
+        },
+        android: {
+            elevation: 1,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.08,
+            shadowRadius: 1.5,
+        },
+        web: {
+            boxShadow: '0px 1px 2px rgba(0,0,0,0.08)',
+        },
+    },
+    sm: {
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.10,
+            shadowRadius: 2.5,
+        },
+        android: {
+            elevation: 2,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.10,
+            shadowRadius: 2.5,
+        },
+        web: {
+            boxShadow: '0px 2px 4px rgba(0,0,0,0.10)',
+        },
+    },
+    md: {
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.13,
+            shadowRadius: 4.65,
+        },
+        android: {
+            elevation: 4,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.13,
+            shadowRadius: 4.65,
+        },
+        web: {
+            boxShadow: '0px 4px 8px rgba(0,0,0,0.13)',
+        },
+    },
+    lg: {
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.18,
+            shadowRadius: 8,
+        },
+        android: {
+            elevation: 8,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.18,
+            shadowRadius: 8,
+        },
+        web: {
+            boxShadow: '0px 8px 16px rgba(0,0,0,0.18)',
+        },
+    },
+    xl: {
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 16 },
+            shadowOpacity: 0.22,
+            shadowRadius: 16,
+        },
+        android: {
+            elevation: 16,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 16 },
+            shadowOpacity: 0.22,
+            shadowRadius: 16,
+        },
+        web: {
+            boxShadow: '0px 16px 32px rgba(0,0,0,0.22)',
+        },
+    },
+    // For backward compatibility
     default: {
-        boxShadow: '0px 4px 4.65px rgba(0,0,0,0.1)',
-        elevation: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4.65,
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.1,
+            shadowRadius: 4.65,
+        },
+        android: {
+            elevation: 4,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.1,
+            shadowRadius: 4.65,
+        },
+        web: {
+            boxShadow: '0px 4px 4.65px rgba(0,0,0,0.1)',
+        },
     },
     strong: {
-        boxShadow: '0px 8px 6.27px rgba(0,0,0,0.1)',
-        elevation: 8,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.2,
-        shadowRadius: 6.27,
+        ios: {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.2,
+            shadowRadius: 6.27,
+        },
+        android: {
+            elevation: 8,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 8 },
+            shadowOpacity: 0.2,
+            shadowRadius: 6.27,
+        },
+        web: {
+            boxShadow: '0px 8px 6.27px rgba(0,0,0,0.1)',
+        },
     },
 };
 // Semantic color tokens for light mode

@@ -21,27 +21,173 @@ export declare const NEUTRAL_DEFAULTS: {
     successLight: string;
 };
 export declare const SHADOWS: {
-    default: {
-        boxShadow: string;
-        elevation: number;
-        shadowColor: string;
-        shadowOffset: {
-            width: number;
-            height: number;
+    xs: {
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
         };
-        shadowOpacity: number;
-        shadowRadius: number;
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
+    };
+    sm: {
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
+    };
+    md: {
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
+    };
+    lg: {
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
+    };
+    xl: {
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
+    };
+    default: {
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
     };
     strong: {
-        boxShadow: string;
-        elevation: number;
-        shadowColor: string;
-        shadowOffset: {
-            width: number;
-            height: number;
+        ios: {
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
         };
-        shadowOpacity: number;
-        shadowRadius: number;
+        android: {
+            elevation: number;
+            shadowColor: string;
+            shadowOffset: {
+                width: number;
+                height: number;
+            };
+            shadowOpacity: number;
+            shadowRadius: number;
+        };
+        web: {
+            boxShadow: string;
+        };
     };
 };
 export declare const LIGHT_COLORS: {
@@ -292,27 +438,173 @@ declare const _default: {
         neutral: (opacity?: number) => string;
     };
     SHADOWS: {
-        default: {
-            boxShadow: string;
-            elevation: number;
-            shadowColor: string;
-            shadowOffset: {
-                width: number;
-                height: number;
+        xs: {
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
             };
-            shadowOpacity: number;
-            shadowRadius: number;
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
+        };
+        sm: {
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
+        };
+        md: {
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
+        };
+        lg: {
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
+        };
+        xl: {
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
+        };
+        default: {
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
         };
         strong: {
-            boxShadow: string;
-            elevation: number;
-            shadowColor: string;
-            shadowOffset: {
-                width: number;
-                height: number;
+            ios: {
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
             };
-            shadowOpacity: number;
-            shadowRadius: number;
+            android: {
+                elevation: number;
+                shadowColor: string;
+                shadowOffset: {
+                    width: number;
+                    height: number;
+                };
+                shadowOpacity: number;
+                shadowRadius: number;
+            };
+            web: {
+                boxShadow: string;
+            };
         };
     };
     LIGHT_COLORS: {

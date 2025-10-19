@@ -1,7 +1,7 @@
 import { ReactNode, ComponentType } from 'react';
 import type { JSX } from 'react';
 import { ViewStyle, TextStyle, ImageStyle } from 'react-native';
-import GALIO_COLORS, { LIGHT_COLORS } from './colors';
+import GALIO_COLORS, { LIGHT_COLORS, SHADOWS } from './colors';
 import GALIO_SIZES from './sizes';
 export type ThemeMode = 'light' | 'dark' | 'auto';
 export type SemanticColors = typeof LIGHT_COLORS;
@@ -10,6 +10,7 @@ export interface GalioTheme {
     SIZES: typeof GALIO_SIZES;
     colors: SemanticColors;
     sizes: typeof GALIO_SIZES;
+    shadows: typeof SHADOWS;
     mode: 'light' | 'dark';
     [key: string]: any;
 }
@@ -19,6 +20,7 @@ export interface GalioProviderProps {
     theme?: {
         colors?: Partial<SemanticColors>;
         sizes?: Partial<typeof GALIO_SIZES>;
+        shadows?: Partial<typeof SHADOWS>;
         COLORS?: Partial<typeof GALIO_COLORS>;
         SIZES?: Partial<typeof GALIO_SIZES>;
         customTheme?: Record<string, any>;

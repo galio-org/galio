@@ -90,6 +90,7 @@ var DEFAULT_THEME = {
     SIZES: sizes_1.default,
     colors: colors_1.LIGHT_COLORS,
     sizes: sizes_1.default,
+    shadows: colors_1.SHADOWS,
     mode: 'light',
 };
 var GalioContext = (0, react_1.createContext)(null);
@@ -197,11 +198,13 @@ function GalioProvider(_a) {
             // Merge sizes
             var customSizes = theme.sizes || theme.SIZES || {};
             var mergedSizes = customSizes ? deepMerge(sizes_1.default, customSizes) : sizes_1.default;
+            // Merge shadows (allow override via theme.shadows)
+            var mergedShadows = theme.shadows ? deepMerge(colors_1.SHADOWS, theme.shadows) : colors_1.SHADOWS;
             return __assign({ 
                 // Legacy structure (for backward compatibility)
                 COLORS: deepMerge(colors_1.default, (theme === null || theme === void 0 ? void 0 : theme.COLORS) || {}), SIZES: mergedSizes, 
                 // Modern structure
-                colors: semanticColors, sizes: mergedSizes, mode: currentMode }, theme === null || theme === void 0 ? void 0 : theme.customTheme);
+                colors: semanticColors, sizes: mergedSizes, shadows: mergedShadows, mode: currentMode }, theme === null || theme === void 0 ? void 0 : theme.customTheme);
         }
         catch (error) {
             console.warn('GalioProvider: Error merging themes, falling back to default', error);

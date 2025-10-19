@@ -88,27 +88,41 @@ function Accordion(_a) {
             </react_native_1.View>
         </Block_1.default>);
 }
+// Semantic version: use theme.sizes and theme.shadows if available
 var styles = function (theme, colors) {
+    var _a, _b, _c, _d, _e, _f;
+    // Prefer semantic theme values if present, fallback to old values
+    var borderRadius = (_b = (_a = theme === null || theme === void 0 ? void 0 : theme.sizes) === null || _a === void 0 ? void 0 : _a.CARD_BORDER_RADIUS) !== null && _b !== void 0 ? _b : 16;
+    var padding = 8;
+    var headerPadding = 6;
+    var contentPadding = 10;
+    // Use semantic shadow (md) for Accordion
+    var shadow = (_f = (_d = (_c = theme === null || theme === void 0 ? void 0 : theme.shadows) === null || _c === void 0 ? void 0 : _c.md) !== null && _d !== void 0 ? _d : (_e = theme === null || theme === void 0 ? void 0 : theme.shadows) === null || _e === void 0 ? void 0 : _e.default) !== null && _f !== void 0 ? _f : {
+        ios: {
+            shadowColor: colors.border,
+            shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+        },
+        android: {
+            elevation: 4,
+        },
+        web: {
+            boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.2)',
+        },
+    };
+    var baseShadow = react_native_2.Platform.select({
+        ios: shadow.ios,
+        android: shadow.android,
+    });
+    var webShadow = react_native_2.Platform.OS === 'web' ? shadow.web : {};
     return react_native_1.StyleSheet.create({
-        container: __assign({ flex: 1, width: width * 0.8, borderRadius: 16, padding: 8, backgroundColor: colors.surface }, react_native_2.Platform.select({
-            ios: {
-                shadowColor: colors.border,
-                shadowOffset: { width: 0, height: 1 },
-                shadowOpacity: 0.2,
-                shadowRadius: 4,
-            },
-            android: {
-                elevation: 4,
-            },
-            web: {
-                boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.2)',
-            },
-        })),
+        container: __assign(__assign({ flex: 1, width: width * 0.8, borderRadius: borderRadius, padding: padding, backgroundColor: colors.surface }, baseShadow), webShadow),
         header: {
-            padding: 6,
+            padding: headerPadding,
         },
         content: {
-            padding: 10,
+            padding: contentPadding,
         },
     });
 };
