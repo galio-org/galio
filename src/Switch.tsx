@@ -1,92 +1,76 @@
+
 import React, { useCallback, useEffect, useState, JSX } from 'react';
-import { Switch as Switcher, ViewStyle } from 'react-native';
-import { useTheme, useColors } from './theme';
+import { Switch as RNSwitch, ViewStyle } from 'react-native';
+import { useColors } from './theme';
 
 interface SwitchProps {
     value?: boolean;
     onValueChange?: (value: boolean) => void;
-    color?: string;
+    color?: keyof ReturnType<typeof useColors> | string;
     disabled?: boolean;
     trackColor?: { false?: string; true?: string };
-    ios_backgroundColor?: string;
+    iosBackgroundColor?: string;
     containerStyle?: ViewStyle;
     accessibilityLabel?: string;
     accessibilityHint?: string;
 }
 
-function Switch({
+const Switch: React.FC<SwitchProps> = ({
     value,
     onValueChange,
-    color,
+    color = 'primary',
     disabled = false,
     trackColor,
-    ios_backgroundColor,
+    iosBackgroundColor,
     containerStyle,
     accessibilityLabel,
     accessibilityHint,
-}: SwitchProps): JSX.Element {
-    const theme = useTheme();
-  const colors = useColors();
+}) => {
+    const colors = useColors();
     const [internalValue, setInternalValue] = useState(value ?? false);
-    
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
-    
+
     useEffect(() => {
-        if (value !== undefined) {
-            setInternalValue(value);
-        }
-    }, [value]);
-    
+        if (isControlled) setInternalValue(value!);
+    }, [value, isControlled]);
+
     const handleValueChange = useCallback((newValue: boolean) => {
-        if (!isControlled) {
-            setInternalValue(newValue);
-        }
+        if (!isControlled) setInternalValue(newValue);
         onValueChange?.(newValue);
     }, [isControlled, onValueChange]);
-    
-    const getThemeColor = useCallback((colorName?: string) => {
-        if (!colorName) return colors.primary;
-        
-        if (typeof colorName === 'string' && colorName.startsWith('#')) {
-            return colorName;
-        }
-        
-        const themeColor = theme.COLORS.LIGHT_MODE[colorName as keyof typeof theme.COLORS.LIGHT_MODE];
-        if (typeof themeColor === 'function') {
-            return themeColor();
-        }
-        return themeColor || colors.primary;
-    }, [theme.COLORS.LIGHT_MODE]);
-    
+
+    // Resolve theme palette key or custom color
+    const resolveColor = (c?: keyof typeof colors | string, fallback?: string) => {
+        if (!c) return fallback || colors.primary;
+        if (typeof c === 'string' && c.startsWith('#')) return c;
+        return colors[c as keyof typeof colors] || fallback || colors.primary;
+    };
+
     const defaultTrackColor = {
-        false: colors.disabled,
-        true: getThemeColor(color),
+        false: resolveColor(trackColor?.false || 'surfaceVariant', colors.surfaceVariant),
+        true: resolveColor(trackColor?.true || color, colors.primary),
     };
-    
-    const finalTrackColor = trackColor || defaultTrackColor;
-    const finalIosBackgroundColor = ios_backgroundColor || colors.disabled;
-    
-    const accessibilityProps = {
-        accessibilityRole: 'switch' as const,
-        accessibilityLabel: accessibilityLabel || 'Switch',
-        accessibilityHint: accessibilityHint || 'Toggle switch on or off',
-        accessibilityState: {
-            checked: currentValue,
-        },
+    const finalTrackColor = {
+        false: defaultTrackColor.false,
+        true: defaultTrackColor.true,
     };
-    
+    const finalIosBackgroundColor = resolveColor(iosBackgroundColor || 'surfaceVariant', colors.surfaceVariant);
+
     return (
-        <Switcher
+        <RNSwitch
             value={currentValue}
             onValueChange={handleValueChange}
             disabled={disabled}
             trackColor={finalTrackColor}
             ios_backgroundColor={finalIosBackgroundColor}
             style={containerStyle}
-            {...accessibilityProps}
+            accessibilityRole="switch"
+            accessibilityLabel={accessibilityLabel || 'Switch'}
+            accessibilityHint={accessibilityHint || 'Toggle switch on or off'}
+            accessibilityState={{ checked: currentValue }}
         />
     );
-}
+};
 
 export default Switch;

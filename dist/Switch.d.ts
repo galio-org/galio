@@ -1,19 +1,20 @@
-import { JSX } from 'react';
+import React from 'react';
 import { ViewStyle } from 'react-native';
+import { useColors } from './theme';
 interface SwitchProps {
     value?: boolean;
     onValueChange?: (value: boolean) => void;
-    color?: string;
+    color?: keyof ReturnType<typeof useColors> | string;
     disabled?: boolean;
     trackColor?: {
         false?: string;
         true?: string;
     };
-    ios_backgroundColor?: string;
+    iosBackgroundColor?: string;
     containerStyle?: ViewStyle;
     accessibilityLabel?: string;
     accessibilityHint?: string;
 }
-declare function Switch({ value, onValueChange, color, disabled, trackColor, ios_backgroundColor, containerStyle, accessibilityLabel, accessibilityHint, }: SwitchProps): JSX.Element;
+declare const Switch: React.FC<SwitchProps>;
 export default Switch;
 //# sourceMappingURL=Switch.d.ts.map
