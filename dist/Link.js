@@ -69,8 +69,17 @@ var Link = (0, react_1.forwardRef)(function (_a, ref) {
             userSelect: 'none',
         },
     ];
+    // Support theme palette keys for color and textStyle.color
+    var resolvedColor = color;
+    if (resolvedColor && colors[resolvedColor]) {
+        resolvedColor = colors[resolvedColor];
+    }
+    var resolvedTextColor = textStyle && textStyle.color;
+    if (resolvedTextColor && colors[resolvedTextColor]) {
+        resolvedTextColor = colors[resolvedTextColor];
+    }
     return (<react_native_1.Pressable onPress={handlePress} style={pressableStyle} disabled={disabled} android_ripple={{ color: 'rgba(0,0,0,0.1)' }} accessibilityRole="link" accessibilityState={{ disabled: disabled }}>
-            <Text_1.default color={color || colors.primary} style={[
+            <Text_1.default color={resolvedTextColor || resolvedColor || colors.primary} style={[
             {
                 textDecorationLine: 'underline',
                 opacity: disabled ? 0.5 : 1,

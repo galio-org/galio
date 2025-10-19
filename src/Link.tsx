@@ -48,6 +48,16 @@ const Link = forwardRef<linkRef, LinkProps>(({
         } as any,
     ];
 
+    // Support theme palette keys for color and textStyle.color
+    let resolvedColor = color;
+    if (resolvedColor && colors[resolvedColor as keyof typeof colors]) {
+        resolvedColor = colors[resolvedColor as keyof typeof colors];
+    }
+    let resolvedTextColor = textStyle && (textStyle as any).color;
+    if (resolvedTextColor && colors[resolvedTextColor as keyof typeof colors]) {
+        resolvedTextColor = colors[resolvedTextColor as keyof typeof colors];
+    }
+
     return (
         <Pressable
             onPress={handlePress}
@@ -58,7 +68,7 @@ const Link = forwardRef<linkRef, LinkProps>(({
             accessibilityState={{ disabled }}
         >
             <Typography
-                color={color || colors.primary}
+                color={resolvedTextColor || resolvedColor || colors.primary}
                 style={[
                     {
                         textDecorationLine: 'underline',
