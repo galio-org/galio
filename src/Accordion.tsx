@@ -203,8 +203,40 @@ function Accordion({
     const colors = useColors();
     const [selected, setSelected] = useState<number | undefined>(opened);
     
+    // Default styles for light/dark mode
+    const defaultHeaderStyle: ViewStyle = {
+        padding: theme.sizes?.BASE ?? 16,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: theme.mode === 'dark' ? colors.borderHover : colors.border,
+        backgroundColor: theme.mode === 'dark' ? colors.primary : colors.primary,
+        borderTopLeftRadius: theme.sizes?.CARD_BORDER_RADIUS ?? 16,
+        borderTopRightRadius: theme.sizes?.CARD_BORDER_RADIUS ?? 16,
+    };
+    const defaultContentStyle: TextStyle = {
+        fontSize: theme.sizes?.FONT ?? 16,
+        backgroundColor: theme.mode === 'dark' ? colors.surface : colors.surface,
+        color: theme.mode === 'dark' ? colors.onPrimary : colors.text,
+        borderBottomLeftRadius: theme.sizes?.CARD_BORDER_RADIUS ?? 16,
+        borderBottomRightRadius: theme.sizes?.CARD_BORDER_RADIUS ?? 16,
+        minHeight: 48,
+        borderTopWidth: theme.mode === 'dark' ? 1 : 0,
+        borderTopColor: theme.mode === 'dark' ? colors.borderHover : undefined,
+    };
+    const defaultContainerStyle: ViewStyle = {
+        ...Platform.select({
+            ios: theme.mode === 'dark' ? theme.shadows?.lg?.ios : theme.shadows?.md?.ios,
+            android: theme.mode === 'dark' ? theme.shadows?.lg?.android : theme.shadows?.md?.android,
+        }),
+        ...(Platform.OS === 'web' ? (theme.mode === 'dark' ? theme.shadows?.lg?.web : theme.shadows?.md?.web) : {}),
+        borderRadius: theme.sizes?.CARD_BORDER_RADIUS ?? 16,
+        marginBottom: theme.sizes?.BASE ?? 16,
+        backgroundColor: 'transparent',
+        overflow: 'visible',
+    };
     return (
-        <Block style={[styles(theme, colors).container, style] as any}>
+        <Block style={[styles(theme, colors).container, defaultContainerStyle, style] as any}>
             <View style={listStyle}>
                 {dataArray?.map((item, index) => (
                     <AccordionItem
@@ -212,8 +244,8 @@ function Accordion({
                         expanded={selected === index}
                         expandedIcon={expandedIcon}
                         icon={icon}
-                        headerStyle={headerStyle}
-                        contentStyle={contentStyle}
+                        headerStyle={headerStyle ?? defaultHeaderStyle}
+                        contentStyle={contentStyle ?? defaultContentStyle}
                         onAccordionOpen={onAccordionOpen}
                         onAccordionClose={onAccordionClose}
                         item={item}

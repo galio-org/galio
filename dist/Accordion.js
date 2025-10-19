@@ -78,13 +78,39 @@ function AccordionItem(_a) {
         </Block_1.default>);
 }
 function Accordion(_a) {
+    var _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4;
     var dataArray = _a.dataArray, icon = _a.icon, expandedIcon = _a.expandedIcon, headerStyle = _a.headerStyle, contentStyle = _a.contentStyle, opened = _a.opened, onAccordionOpen = _a.onAccordionOpen, onAccordionClose = _a.onAccordionClose, listStyle = _a.listStyle, style = _a.style;
     var theme = (0, theme_1.useTheme)();
     var colors = (0, theme_1.useColors)();
-    var _b = (0, react_1.useState)(opened), selected = _b[0], setSelected = _b[1];
-    return (<Block_1.default style={[styles(theme, colors).container, style]}>
+    var _5 = (0, react_1.useState)(opened), selected = _5[0], setSelected = _5[1];
+    // Default styles for light/dark mode
+    var defaultHeaderStyle = {
+        padding: (_c = (_b = theme.sizes) === null || _b === void 0 ? void 0 : _b.BASE) !== null && _c !== void 0 ? _c : 16,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: theme.mode === 'dark' ? colors.borderHover : colors.border,
+        backgroundColor: theme.mode === 'dark' ? colors.primary : colors.primary,
+        borderTopLeftRadius: (_e = (_d = theme.sizes) === null || _d === void 0 ? void 0 : _d.CARD_BORDER_RADIUS) !== null && _e !== void 0 ? _e : 16,
+        borderTopRightRadius: (_g = (_f = theme.sizes) === null || _f === void 0 ? void 0 : _f.CARD_BORDER_RADIUS) !== null && _g !== void 0 ? _g : 16,
+    };
+    var defaultContentStyle = {
+        fontSize: (_j = (_h = theme.sizes) === null || _h === void 0 ? void 0 : _h.FONT) !== null && _j !== void 0 ? _j : 16,
+        backgroundColor: theme.mode === 'dark' ? colors.surface : colors.surface,
+        color: theme.mode === 'dark' ? colors.onPrimary : colors.text,
+        borderBottomLeftRadius: (_l = (_k = theme.sizes) === null || _k === void 0 ? void 0 : _k.CARD_BORDER_RADIUS) !== null && _l !== void 0 ? _l : 16,
+        borderBottomRightRadius: (_o = (_m = theme.sizes) === null || _m === void 0 ? void 0 : _m.CARD_BORDER_RADIUS) !== null && _o !== void 0 ? _o : 16,
+        minHeight: 48,
+        borderTopWidth: theme.mode === 'dark' ? 1 : 0,
+        borderTopColor: theme.mode === 'dark' ? colors.borderHover : undefined,
+    };
+    var defaultContainerStyle = __assign(__assign(__assign({}, react_native_2.Platform.select({
+        ios: theme.mode === 'dark' ? (_q = (_p = theme.shadows) === null || _p === void 0 ? void 0 : _p.lg) === null || _q === void 0 ? void 0 : _q.ios : (_s = (_r = theme.shadows) === null || _r === void 0 ? void 0 : _r.md) === null || _s === void 0 ? void 0 : _s.ios,
+        android: theme.mode === 'dark' ? (_u = (_t = theme.shadows) === null || _t === void 0 ? void 0 : _t.lg) === null || _u === void 0 ? void 0 : _u.android : (_w = (_v = theme.shadows) === null || _v === void 0 ? void 0 : _v.md) === null || _w === void 0 ? void 0 : _w.android,
+    })), (react_native_2.Platform.OS === 'web' ? (theme.mode === 'dark' ? (_y = (_x = theme.shadows) === null || _x === void 0 ? void 0 : _x.lg) === null || _y === void 0 ? void 0 : _y.web : (_0 = (_z = theme.shadows) === null || _z === void 0 ? void 0 : _z.md) === null || _0 === void 0 ? void 0 : _0.web) : {})), { borderRadius: (_2 = (_1 = theme.sizes) === null || _1 === void 0 ? void 0 : _1.CARD_BORDER_RADIUS) !== null && _2 !== void 0 ? _2 : 16, marginBottom: (_4 = (_3 = theme.sizes) === null || _3 === void 0 ? void 0 : _3.BASE) !== null && _4 !== void 0 ? _4 : 16, backgroundColor: 'transparent', overflow: 'visible' });
+    return (<Block_1.default style={[styles(theme, colors).container, defaultContainerStyle, style]}>
             <react_native_1.View style={listStyle}>
-                {dataArray === null || dataArray === void 0 ? void 0 : dataArray.map(function (item, index) { return (<AccordionItem key={String(index)} expanded={selected === index} expandedIcon={expandedIcon} icon={icon} headerStyle={headerStyle} contentStyle={contentStyle} onAccordionOpen={onAccordionOpen} onAccordionClose={onAccordionClose} item={item} index={index} setSelected={function (s) { return setSelected(selected === s ? undefined : s); }}/>); })}
+                {dataArray === null || dataArray === void 0 ? void 0 : dataArray.map(function (item, index) { return (<AccordionItem key={String(index)} expanded={selected === index} expandedIcon={expandedIcon} icon={icon} headerStyle={headerStyle !== null && headerStyle !== void 0 ? headerStyle : defaultHeaderStyle} contentStyle={contentStyle !== null && contentStyle !== void 0 ? contentStyle : defaultContentStyle} onAccordionOpen={onAccordionOpen} onAccordionClose={onAccordionClose} item={item} index={index} setSelected={function (s) { return setSelected(selected === s ? undefined : s); }}/>); })}
             </react_native_1.View>
         </Block_1.default>);
 }
