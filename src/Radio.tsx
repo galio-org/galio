@@ -4,19 +4,21 @@ import { useTheme, useColors } from "./theme";
 import Text from "./Text";
 
 interface RadioProps {
-    color?: string;
+    color?: keyof ReturnType<typeof useColors> | string;
     containerStyle?: ViewStyle;
     disabled?: boolean;
     flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
     initialValue?: boolean;
     label?: string;
-    labelStyle?: TextStyle;
+    labelStyle?: TextStyle | TextStyle[];
+    labelColor?: keyof ReturnType<typeof useColors> | string;
     onChange?: (value: boolean) => void;
     radioOuterStyle?: ViewStyle;
     radioInnerStyle?: ViewStyle;
     value?: boolean;
     accessibilityLabel?: string;
     accessibilityHint?: string;
+    size?: number | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 function Radio({
@@ -27,16 +29,17 @@ function Radio({
     initialValue = false,
     label,
     labelStyle,
+    labelColor,
     onChange,
     radioOuterStyle,
     radioInnerStyle,
     value,
     accessibilityLabel,
     accessibilityHint,
+    size = 'md',
 }: RadioProps): JSX.Element {
-
     const theme = useTheme();
-  const colors = useColors();
+    const colors = useColors();
     const [internalValue, setInternalValue] = useState(initialValue);
     
     const isControlled = value !== undefined;
@@ -57,19 +60,31 @@ function Radio({
         }
     }, []);
 
+    const resolvedLabelColor = labelColor
+        ? colors[labelColor as keyof typeof colors] || labelColor
+        : colors.text;
+    // Semantic size mapping
+    const sizeMap: Record<string, number> = {
+        xs: theme.sizes.RADIO_WIDTH * 0.5,
+        sm: theme.sizes.RADIO_WIDTH * 0.75,
+        md: theme.sizes.RADIO_WIDTH,
+        lg: theme.sizes.RADIO_WIDTH * 1.25,
+        xl: theme.sizes.RADIO_WIDTH * 1.5,
+    };
+    const radioSize = typeof size === 'string' && sizeMap[size] ? sizeMap[size] : (typeof size === 'number' ? size : theme.sizes.RADIO_WIDTH);
     const renderLabel = useCallback(() => {
         const labelStyles = [
-            styles(theme, colors).textStyles,
-            disabled && styles(theme, colors).disabledLabel,
-            labelStyle,
+            styles(theme, colors, radioSize).textStyles,
+            { color: resolvedLabelColor },
+            disabled && styles(theme, colors, radioSize).disabledLabel,
+            ...(Array.isArray(labelStyle) ? labelStyle : [labelStyle]),
             flexDirection && spaceAround(flexDirection),
-        ];
-
+        ].filter(Boolean);
         if (label) {
             return <Text style={labelStyles}>{label}</Text>;
         }
         return null;
-    }, [label, disabled, labelStyle, flexDirection, spaceAround, theme]);
+    }, [label, disabled, labelStyle, flexDirection, spaceAround, theme, colors, resolvedLabelColor, radioSize]);
 
     const radioPressHandler = useCallback(() => {
         if (disabled) return;
@@ -83,40 +98,32 @@ function Radio({
     }, [checked, disabled, onChange, isControlled]);
 
     const containerStyles = useMemo(() => [
-        styles(theme, colors).container, 
+        styles(theme, colors, radioSize).container, 
         flexDirection && { flexDirection }, 
         containerStyle
-    ], [theme, flexDirection, containerStyle]);
+    ], [theme, colors, radioSize, flexDirection, containerStyle]);
 
+    // Use theme palette key for color if available
     const whichColor = useMemo(() => {
-        if (!color) return colors.info;
-        
-        const upperColor = color.toUpperCase();
-        const themeColor = theme.COLORS.LIGHT_MODE[upperColor as keyof typeof theme.COLORS.LIGHT_MODE];
-        
-        if (themeColor) {
-            if (typeof themeColor === 'function') {
-                return themeColor();
-            }
-            return themeColor;
+        if (color && colors[color as keyof typeof colors]) {
+            return colors[color as keyof typeof colors];
         }
-        
-        return color;
-    }, [color, theme.COLORS]);
+        return color || colors.primary;
+    }, [color, colors]);
 
     const radioButtonOuterStyles = useMemo(() => [
-        styles(theme, colors).radioOuterStyles,
+        styles(theme, colors, radioSize).radioOuterStyles,
         { borderColor: whichColor as string },
-        disabled && styles(theme, colors).disabledRadioOuter,
+        disabled && styles(theme, colors, radioSize).disabledRadioOuter,
         radioOuterStyle,
-    ], [theme, whichColor, disabled, radioOuterStyle]);
+    ], [theme, colors, radioSize, whichColor, disabled, radioOuterStyle]);
 
     const radioButtonInnerStyles = useMemo(() => [
-        styles(theme, colors).radioInnerStyles,
+        styles(theme, colors, radioSize).radioInnerStyles,
         { backgroundColor: whichColor as string },
-        disabled && styles(theme, colors).disabledRadioInner,
+        disabled && styles(theme, colors, radioSize).disabledRadioInner,
         radioInnerStyle,
-    ], [theme, whichColor, disabled, radioInnerStyle]);
+    ], [theme, colors, radioSize, whichColor, disabled, radioInnerStyle]);
 
     useEffect(() => {
         if (isControlled && value !== undefined) {
@@ -156,7 +163,7 @@ function Radio({
     );
 }
 
-const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>, radioSize: number) =>
     StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -164,18 +171,18 @@ const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof us
             justifyContent: 'flex-start',
         },
         radioOuterStyles: {
-            height: theme.sizes.RADIO_HEIGHT,
-            width: theme.sizes.RADIO_WIDTH,
-            borderRadius: theme.sizes.RADIO_HEIGHT * 0.5,
+            height: radioSize,
+            width: radioSize,
+            borderRadius: radioSize * 0.5,
             borderWidth: theme.sizes.RADIO_THICKNESS,
             borderColor: colors.border,
             alignItems: 'center',
             justifyContent: 'center',
         },
         radioInnerStyles: {
-            height: theme.sizes.RADIO_HEIGHT * 0.5,
-            width: theme.sizes.RADIO_WIDTH * 0.5,
-            borderRadius: theme.sizes.RADIO_HEIGHT * 0.25,
+            height: radioSize * 0.5,
+            width: radioSize * 0.5,
+            borderRadius: radioSize * 0.25,
             backgroundColor: colors.black,
         },
         disabledRadioOuter: {
@@ -185,10 +192,10 @@ const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof us
             backgroundColor: colors.disabled,
         },
         textStyles: {
-            color: colors.black,
+            color: colors.text,
         },
         disabledLabel: {
-            color: colors.textSecondary,
+            color: colors.disabledText,
             opacity: theme.sizes.OPACITY,
         },
     });

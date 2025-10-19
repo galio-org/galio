@@ -25,7 +25,7 @@ interface LabelProps {
     image?: string;
     label?: string;
     disabled?: boolean;
-    labelStyle?: TextStyle;
+    labelStyle?: TextStyle | TextStyle[];
     imageStyle?: ImageStyle;
     flexDirection?: SpaceAroundProps['direction'];
 }
@@ -42,7 +42,7 @@ function renderLabel({
     const labelStyles = [
         styles(theme).textStyles,
         disabled && styles(theme).disabledLabel,
-        labelStyle,
+        ...(Array.isArray(labelStyle) ? labelStyle : [labelStyle]),
         flexDirection && spaceAround(flexDirection),
     ].filter(Boolean);
 
@@ -103,19 +103,45 @@ function _onPress({
 
 interface CheckboxProps {
     checkboxStyle?: ViewStyle;
-    color?: string;
+    color?: keyof ReturnType<typeof useColors> | string;
     disabled?: boolean;
     flexDirection?: SpaceAroundProps['direction'];
     image?: string;
     imageStyle?: ImageStyle;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconColor?: string;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconFamily?: string;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconName?: string;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconSize?: number;
+    /**
+     * Icon customization object (family, name, color, size, etc.)
+     */
+    iconProps?: {
+        name?: string;
+        family?: string;
+        color?: string;
+        size?: number;
+        [key: string]: any;
+    };
     checked?: boolean; // Controlled mode
-    initialValue?: boolean; // Uncontrolled mode (deprecated, use checked instead)
+    /**
+     * @deprecated Use checked instead
+     */
+    initialValue?: boolean;
     label?: string;
     labelStyle?: TextStyle;
+    labelColor?: keyof ReturnType<typeof useColors> | string;
     onChange?: (checked: boolean) => void;
     style?: ViewStyle;
     accessibilityLabel?: string;
@@ -129,14 +155,16 @@ function Checkbox({
     flexDirection = 'row',
     image,
     imageStyle,
-    iconColor = '#fff',
-    iconFamily = 'FontAwesome',
-    iconName = 'check',
-    iconSize = 15,
+    iconColor = '#fff', // deprecated
+    iconFamily = 'FontAwesome', // deprecated
+    iconName = 'check', // deprecated
+    iconSize = 15, // deprecated
+    iconProps = {},
     checked: controlledChecked,
     initialValue = false,
     label,
     labelStyle,
+    labelColor,
     onChange = () => {},
     style,
     accessibilityLabel,
@@ -160,6 +188,9 @@ function Checkbox({
     const colorStyle = color 
         ? colors[color as keyof typeof colors] || color
         : colors.primary;
+    const resolvedLabelColor = labelColor
+        ? colors[labelColor as keyof typeof colors] || labelColor
+        : colors.text;
 
     const checkBoxContainerStyle = [
         styles(theme).container, 
@@ -206,9 +237,24 @@ function Checkbox({
             accessibilityHint={accessibilityHint}
         >
             <View style={checkedBoxViewStyles as unknown as ViewStyle}>
-                {renderChecked({ checked, iconColor, iconFamily, iconName, iconSize })}
+                {checked ? (
+                    <Icon
+                        name={iconProps.name || iconName}
+                        family={iconProps.family || iconFamily}
+                        color={iconProps.color || iconColor}
+                        size={iconProps.size || iconSize}
+                        {...iconProps}
+                    />
+                ) : null}
             </View>
-            {renderLabel({ image, label, disabled, labelStyle, imageStyle, flexDirection })}
+            {renderLabel({
+                image,
+                label,
+                disabled,
+                labelStyle: ([{ color: resolvedLabelColor }, labelStyle].filter(Boolean)) as TextStyle[],
+                imageStyle,
+                flexDirection,
+            })}
         </Pressable>
     );
 }
