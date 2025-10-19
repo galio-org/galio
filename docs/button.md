@@ -39,7 +39,7 @@ import Button from 'galio-be/src/Button';
 | onlyIcon            | boolean                                           | false        | Show only the icon (no text)                                    |
 | opacity             | number                                            | 0.8          | Opacity when pressed                                            |
 | round               | boolean                                           | false        | Makes button fully rounded                                      |
-| size                | 'large' \| 'default' \| 'small'                   | 'default'    | Button size (width)                                             |
+| size                | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' <br> <sub>Legacy: 'small' \| 'default' \| 'large'</sub> | 'md' | Button size (width). Prefer new values; legacy values supported for now. |
 | fullWidth           | boolean                                           | false        | Makes button 100% width                                         |
 | block               | boolean                                           | false        | Makes button 100% width (alias for fullWidth)                   |
 | shadow              | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| ...      | —            | Shadow style from theme                                         |
@@ -56,6 +56,20 @@ import Button from 'galio-be/src/Button';
 **Primary Button:**
 ```tsx
 <Button color="primary">Primary</Button>
+```
+
+
+**Button Sizes:**
+```tsx
+<Button size="xs">XS</Button>
+<Button size="sm">SM</Button>
+<Button size="md">MD</Button>
+<Button size="lg">LG</Button>
+<Button size="xl">XL</Button>
+// Legacy (still works, but migrate soon):
+<Button size="small">Small (legacy)</Button>
+<Button size="default">Default (legacy)</Button>
+<Button size="large">Large (legacy)</Button>
 ```
 
 **With Icon:**
@@ -80,13 +94,14 @@ import Button from 'galio-be/src/Button';
 
 ---
 
+
 # Migration Guide: v2.x → v3.x
 
 ## Major Changes
 - **Text transform props**: `uppercase`, `lowercase`, `capitalize` replaced by `textTransform`.
 - **Icon position**: `iconRight` replaced by `iconPosition` ('left' | 'right').
-- **Size**: Only accepts `'small' | 'default' | 'large'` (custom width via `style` or `fullWidth`).
-- **Shadow**: No shadow by default. Use `shadow` prop to enable.
+- **Size**: Now accepts `'xs' | 'sm' | 'md' | 'lg' | 'xl'` (preferred). Legacy: `'small' | 'default' | 'large'` still work for now.
+- **Shadow**: No shadow by default. Use `shadow` prop to enable. Short keys like `shadow="md"` are supported.
 - **Removed**: `shadowless` prop (just omit `shadow`), `iconRight` (use `iconPosition`).
 - **Added**: `fullWidth`, `block`, `testID`, `accessibilityLabel`, `rippleColor`.
 
@@ -109,7 +124,7 @@ import Button from 'galio-be/src/Button';
   textTransform="uppercase"
   icon="check"
   iconPosition="right"
-  size="large"
+  size="lg" // or size="large" (legacy)
 >
   Confirm
 </Button>

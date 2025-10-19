@@ -17,8 +17,18 @@ export interface ButtonProps {
     onlyIcon?: boolean;
     opacity?: number;
     round?: boolean;
-    size?: 'large' | 'default' | 'small';
+    /**
+     * Button size. Use 'xs', 'sm', 'md', 'lg', 'xl'.
+     * Legacy: 'small', 'default', 'large' (will be removed in future)
+     */
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'small' | 'default' | 'large';
+    /**
+     * Makes the button take 100% width of its container. Alias: block.
+     */
     fullWidth?: boolean;
+    /**
+     * Alias for fullWidth. If both are set, fullWidth takes precedence.
+     */
     block?: boolean;
     shadow?: ShadowKey;
     style?: ViewStyle;

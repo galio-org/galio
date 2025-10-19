@@ -23,8 +23,18 @@ export interface ButtonProps {
     onlyIcon?: boolean;
     opacity?: number;
     round?: boolean;
-    size?: 'large' | 'default' | 'small';
+    /**
+     * Button size. Use 'xs', 'sm', 'md', 'lg', 'xl'.
+     * Legacy: 'small', 'default', 'large' (will be removed in future)
+     */
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'small' | 'default' | 'large';
+    /**
+     * Makes the button take 100% width of its container. Alias: block.
+     */
     fullWidth?: boolean;
+    /**
+     * Alias for fullWidth. If both are set, fullWidth takes precedence.
+     */
     block?: boolean;
     shadow?: ShadowKey;
     style?: ViewStyle;
@@ -38,30 +48,30 @@ export interface ButtonProps {
 
 function Button({
     color = 'primary',
-    children,
+    children = undefined,
     disabled = false,
-    icon,
+    icon = undefined,
     iconPosition = 'left',
-    iconFamily,
+    iconFamily = 'AntDesign',
     iconSize = 16,
-    iconColor,
+    iconColor = undefined,
     loading = false,
     loadingSize = 'small',
-    loadingColor,
+    loadingColor = undefined,
     onlyIcon = false,
     opacity = 0.8,
     round = false,
-    size = 'default',
+    size = 'md',
     fullWidth = false,
     block = false,
-    shadow,
-    style,
-    textStyle,
+    shadow = undefined,
+    style = undefined,
+    textStyle = undefined,
     textTransform = 'none',
-    onPress,
-    testID,
-    accessibilityLabel,
-    rippleColor,
+    onPress = undefined,
+    testID = undefined,
+    accessibilityLabel = undefined,
+    rippleColor = undefined,
 }: ButtonProps): JSX.Element {
     const theme = useTheme();
     const colors = useColors();
@@ -177,15 +187,33 @@ function Button({
         }
     }
 
+    // Map size values to widths (legacy values supported, will be removed in future)
+    let widthStyle: ViewStyle = {};
+    if (fullWidth) {
+        widthStyle = { width: '100%' };
+    } else if (block) {
+        widthStyle = { width: '100%' };
+    } else if (size === 'xs') {
+        widthStyle = { width: width * 0.2 };
+    } else if (size === 'sm' || size === 'small') {
+        widthStyle = { width: width * 0.3 };
+    } else if (size === 'md' || size === 'default') {
+        widthStyle = { width: width * 0.42 };
+    } else if (size === 'lg' || size === 'large') {
+        widthStyle = { width: width * 0.6 };
+    } else if (size === 'xl') {
+        widthStyle = { width: width * 0.8 };
+    } else {
+        widthStyle = { width: width * 0.42 };
+    }
+
+    // Disabled style: lower opacity, block pointer events
+    const disabledStyle: ViewStyle = disabled ? { opacity: 0.6 } : { opacity: pressed ? opacity : 1 };
+
     const buttonStyles: ViewStyle[] = [
         styles(theme).defaultButton,
         { backgroundColor: buttonColor },
-        size === 'large'
-            ? { width: width * 0.8 }
-            : size === 'small'
-            ? { width: width * 0.3 }
-            : { width: width * 0.42 },
-        fullWidth || block ? { width: '100%' } : {},
+        widthStyle,
         round ? { borderRadius: theme.sizes.BASE * 3 } : {},
         onlyIcon ? {
             width: iconSize * 2.75,
@@ -193,15 +221,15 @@ function Button({
             borderRadius: (iconSize * 2.75) / 2,
         } : {},
         shadowStyle,
-        { opacity: disabled ? 0.6 : pressed ? opacity : 1 },
+        disabledStyle,
         style || {},
     ];
 
     return (
         <Pressable
             onPress={!disabled ? onPress : undefined}
-            onPressIn={handlePressIn}
-            onPressOut={handlePressOut}
+            onPressIn={!disabled ? handlePressIn : undefined}
+            onPressOut={!disabled ? handlePressOut : undefined}
             style={buttonStyles}
             disabled={disabled}
             android_ripple={{ color: rippleColor || 'rgba(0,0,0,0.1)' }}
@@ -209,6 +237,7 @@ function Button({
             accessibilityState={{ disabled }}
             accessibilityLabel={accessibilityLabel || (typeof children === 'string' ? children : 'Button')}
             testID={testID}
+            pointerEvents={disabled ? 'none' : 'auto'}
         >
             {getContent()}
         </Pressable>
