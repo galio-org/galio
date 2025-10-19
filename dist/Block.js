@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -27,8 +38,24 @@ var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
 var react_native_safe_area_context_1 = require("react-native-safe-area-context");
 var theme_1 = require("./theme");
+// Extract specific props that aren't part of React Native's ViewStyle
+// No longer needed: all props are now documented in BlockProps
 function Block(props) {
-    var row = props.row, flex = props.flex, center = props.center, middle = props.middle, top = props.top, bottom = props.bottom, right = props.right, left = props.left, space = props.space, fluid = props.fluid, height = props.height, width = props.width, shadow = props.shadow, shadowColor = props.shadowColor, card = props.card, safe = props.safe, background = props.background, children = props.children, style = props.style, rest = __rest(props, ["row", "flex", "center", "middle", "top", "bottom", "right", "left", "space", "fluid", "height", "width", "shadow", "shadowColor", "card", "safe", "background", "children", "style"]);
+    var row = props.row, flex = props.flex, center = props.center, middle = props.middle, top = props.top, bottom = props.bottom, right = props.right, left = props.left, space = props.space, fluid = props.fluid, height = props.height, width = props.width, shadowProp = props.shadow, shadowColor = props.shadowColor, card = props.card, safe = props.safe, background = props.background, children = props.children, style = props.style, rest = __rest(props, ["row", "flex", "center", "middle", "top", "bottom", "right", "left", "space", "fluid", "height", "width", "shadow", "shadowColor", "card", "safe", "background", "children", "style"]);
+    // Backward compatibility: coerce boolean shadow to semantic value
+    var shadow = shadowProp;
+    if (typeof shadow === 'boolean') {
+        if (shadow) {
+            shadow = 'md';
+            if (process.env.NODE_ENV !== 'production') {
+                // eslint-disable-next-line no-console
+                console.warn('[Block] Passing shadow as boolean is deprecated. Use semantic values (xs, sm, md, lg, xl) instead.');
+            }
+        }
+        else {
+            shadow = undefined;
+        }
+    }
     var theme = (0, theme_1.useTheme)();
     var colors = (0, theme_1.useColors)();
     // Build styles using composition pattern for better maintainability
@@ -63,7 +90,7 @@ function Block(props) {
       {children}
     </react_native_1.View>);
 }
-// Custom hook for building block styles - improves testability and reusability
+// Custom hook for building block styles - now supports semantic shadow levels
 function useBlockStyles(_a) {
     var theme = _a.theme, colors = _a.colors, row = _a.row, flex = _a.flex, center = _a.center, middle = _a.middle, top = _a.top, bottom = _a.bottom, right = _a.right, left = _a.left, space = _a.space, fluid = _a.fluid, height = _a.height, width = _a.width, shadow = _a.shadow, shadowColor = _a.shadowColor, card = _a.card, background = _a.background, customStyle = _a.customStyle;
     // Base block styles with theme integration
@@ -101,30 +128,30 @@ function useBlockStyles(_a) {
         fluid && { width: 'auto' },
         height && { height: height },
         width && { width: width },
-        // Visual effects
-        shadow && getShadowStyles(theme, colors),
+        // Visual effects: semantic shadow
+        (typeof shadow === 'string' && shadow !== 'none') ? getSemanticShadowStyles(theme, shadow, shadowColor) : undefined,
         card && getCardStyles(theme, colors),
         // Custom shadow color override
         shadowColor && { shadowColor: shadowColor }
     ], (Array.isArray(customStyle) ? customStyle : [customStyle]), true).filter(Boolean);
     return styles;
 }
-// Extracted style builders for better organization
-function getShadowStyles(theme, colors) {
-    return react_native_1.Platform.select({
-        ios: {
-            shadowColor: colors.border,
-            shadowOffset: { width: 0, height: 3 },
-            shadowOpacity: theme.sizes.BLOCK_SHADOW_OPACITY,
-            shadowRadius: theme.sizes.BLOCK_SHADOW_RADIUS,
-        },
-        android: {
-            elevation: theme.sizes.ANDROID_ELEVATION,
-        },
-        web: {
-            boxShadow: "0px 3px ".concat(theme.sizes.BLOCK_SHADOW_RADIUS, "px rgba(0, 0, 0, ").concat(theme.sizes.BLOCK_SHADOW_OPACITY, ")"),
-        },
-    });
+// Semantic shadow style builder
+function getSemanticShadowStyles(theme, level, shadowColor) {
+    var _a;
+    if (level === 'none')
+        return {};
+    var def = ((_a = theme.shadows) === null || _a === void 0 ? void 0 : _a[level]) || {};
+    var neutralShadowColor = '#b0b0b0';
+    var nativeShadow = react_native_1.Platform.select({
+        ios: __assign(__assign({}, (def.ios || {})), { shadowColor: shadowColor || (def.ios && def.ios.shadowColor) || neutralShadowColor }),
+        android: __assign(__assign({}, (def.android || {})), { shadowColor: shadowColor || (def.android && def.android.shadowColor) || neutralShadowColor }),
+    }) || {};
+    // For web, merge boxShadow if present
+    if (react_native_1.Platform.OS === 'web' && def.web) {
+        return __assign(__assign({}, nativeShadow), def.web);
+    }
+    return nativeShadow;
 }
 function getCardStyles(theme, colors) {
     return {

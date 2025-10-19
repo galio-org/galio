@@ -1,69 +1,102 @@
 import React from 'react';
 import type { JSX } from 'react';
-import { ViewStyle, View, StyleSheet, Platform } from 'react-native';
+import { ViewStyle, View, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme, useColors } from './theme';
 
 // Enhanced type definitions for better type safety
+
+/**
+ * Semantic shadow levels for cross-platform consistency.
+ */
+type ShadowLevel = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type SpaceType = 'between' | 'around' | 'evenly' | 'left' | 'right' | 'center' | null;
 
-interface BlockProps extends Omit<ViewStyle, keyof BlockSpecificProps> {
-  // Layout props
+interface BlockProps {
+  /**
+   * Layout direction: row (horizontal)
+   */
   row?: boolean;
+  /**
+   * Flex value or enable flex: 1
+   */
   flex?: boolean | number;
+  /**
+   * Center content horizontally
+   */
   center?: boolean;
+  /**
+   * Center content vertically and horizontally
+   */
   middle?: boolean;
+  /**
+   * Align content to top
+   */
   top?: boolean;
+  /**
+   * Align content to bottom
+   */
   bottom?: boolean;
+  /**
+   * Align content to right
+   */
   right?: boolean;
+  /**
+   * Align content to left
+   */
   left?: boolean;
-
-  // Spacing and sizing
+  /**
+   * Space distribution
+   */
   space?: SpaceType;
+  /**
+   * Fluid width (auto)
+   */
   fluid?: boolean;
+  /**
+   * Height override
+   */
   height?: number | null;
+  /**
+   * Width override
+   */
   width?: number | null;
-
-  // Visual effects
-  shadow?: boolean;
+  /**
+   * Semantic shadow level: 'none', 'xs', 'sm', 'md', 'lg', 'xl'. If not set, no shadow is applied.
+   */
+  shadow?: ShadowLevel | boolean;
+  /**
+   * Custom shadow color (overrides default)
+   */
   shadowColor?: string | null;
+  /**
+   * Card style (border, radius)
+   */
   card?: boolean;
+  /**
+   * Use SafeAreaView
+   */
   safe?: boolean;
-
-  // Custom background
+  /**
+   * Custom background color
+   */
   background?: string | null;
-
-  // Content
+  /**
+   * Content
+   */
   children?: React.ReactNode;
-
-  // Override styles
+  /**
+   * Custom style(s)
+   */
   style?: ViewStyle | ViewStyle[];
+
 }
 
 // Extract specific props that aren't part of React Native's ViewStyle
-interface BlockSpecificProps {
-  row?: boolean;
-  flex?: boolean | number;
-  center?: boolean;
-  middle?: boolean;
-  top?: boolean;
-  bottom?: boolean;
-  right?: boolean;
-  left?: boolean;
-  space?: SpaceType;
-  fluid?: boolean;
-  height?: number | null;
-  width?: number | null;
-  shadow?: boolean;
-  shadowColor?: string | null;
-  card?: boolean;
-  safe?: boolean;
-  background?: string | null;
-  children?: React.ReactNode;
-  style?: ViewStyle | ViewStyle[];
-}
+// No longer needed: all props are now documented in BlockProps
 
 function Block(props: BlockProps): JSX.Element {
+
   const {
     row,
     flex,
@@ -77,7 +110,7 @@ function Block(props: BlockProps): JSX.Element {
     fluid,
     height,
     width,
-    shadow,
+    shadow: shadowProp,
     shadowColor,
     card,
     safe,
@@ -87,6 +120,19 @@ function Block(props: BlockProps): JSX.Element {
     ...rest
   } = props;
 
+  // Backward compatibility: coerce boolean shadow to semantic value
+  let shadow = shadowProp;
+  if (typeof shadow === 'boolean') {
+    if (shadow) {
+      shadow = 'md';
+      if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line no-console
+        console.warn('[Block] Passing shadow as boolean is deprecated. Use semantic values (xs, sm, md, lg, xl) instead.');
+      }
+    } else {
+      shadow = undefined;
+    }
+  }
   const theme = useTheme();
   const colors = useColors();
 
@@ -129,7 +175,7 @@ function Block(props: BlockProps): JSX.Element {
   );
 }
 
-// Custom hook for building block styles - improves testability and reusability
+// Custom hook for building block styles - now supports semantic shadow levels
 function useBlockStyles({
   theme,
   colors,
@@ -165,7 +211,7 @@ function useBlockStyles({
   fluid?: boolean;
   height?: number | null;
   width?: number | null;
-  shadow?: boolean;
+  shadow?: ShadowLevel;
   shadowColor?: string | null;
   card?: boolean;
   background?: string | null;
@@ -212,8 +258,8 @@ function useBlockStyles({
     height && { height },
     width && { width },
 
-    // Visual effects
-    shadow && getShadowStyles(theme, colors),
+    // Visual effects: semantic shadow
+    (typeof shadow === 'string' && shadow !== 'none') ? getSemanticShadowStyles(theme, shadow, shadowColor) : undefined,
     card && getCardStyles(theme, colors),
 
     // Custom shadow color override
@@ -226,22 +272,27 @@ function useBlockStyles({
   return styles;
 }
 
-// Extracted style builders for better organization
-function getShadowStyles(theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) {
-  return Platform.select({
+
+// Semantic shadow style builder
+function getSemanticShadowStyles(theme: ReturnType<typeof useTheme>, level: ShadowLevel, shadowColor?: string | null) {
+  if (level === 'none') return {};
+  const def = theme.shadows?.[level as keyof typeof theme.shadows] || {};
+  const neutralShadowColor = '#b0b0b0';
+  const nativeShadow = Platform.select({
     ios: {
-      shadowColor: colors.border,
-      shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: theme.sizes.BLOCK_SHADOW_OPACITY,
-      shadowRadius: theme.sizes.BLOCK_SHADOW_RADIUS,
+      ...(def.ios || {}),
+      shadowColor: shadowColor || (def.ios && def.ios.shadowColor) || neutralShadowColor,
     },
     android: {
-      elevation: theme.sizes.ANDROID_ELEVATION,
+      ...(def.android || {}),
+      shadowColor: shadowColor || (def.android && def.android.shadowColor) || neutralShadowColor,
     },
-    web: {
-      boxShadow: `0px 3px ${theme.sizes.BLOCK_SHADOW_RADIUS}px rgba(0, 0, 0, ${theme.sizes.BLOCK_SHADOW_OPACITY})`,
-    },
-  });
+  }) || {};
+  // For web, merge boxShadow if present
+  if (Platform.OS === 'web' && def.web) {
+    return { ...nativeShadow, ...def.web };
+  }
+  return nativeShadow;
 }
 
 function getCardStyles(theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) {
