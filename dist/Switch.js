@@ -36,50 +36,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
-function Switch(_a) {
-    var value = _a.value, onValueChange = _a.onValueChange, color = _a.color, _b = _a.disabled, disabled = _b === void 0 ? false : _b, trackColor = _a.trackColor, ios_backgroundColor = _a.ios_backgroundColor, containerStyle = _a.containerStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
-    var theme = (0, theme_1.useGalioTheme)();
-    var _c = (0, react_1.useState)(value !== null && value !== void 0 ? value : false), internalValue = _c[0], setInternalValue = _c[1];
+var Switch = function (_a) {
+    var value = _a.value, onValueChange = _a.onValueChange, _b = _a.color, color = _b === void 0 ? 'primary' : _b, _c = _a.disabled, disabled = _c === void 0 ? false : _c, trackColor = _a.trackColor, iosBackgroundColor = _a.iosBackgroundColor, containerStyle = _a.containerStyle, accessibilityLabel = _a.accessibilityLabel, accessibilityHint = _a.accessibilityHint;
+    var colors = (0, theme_1.useColors)();
+    var _d = (0, react_1.useState)(value !== null && value !== void 0 ? value : false), internalValue = _d[0], setInternalValue = _d[1];
     var isControlled = value !== undefined;
     var currentValue = isControlled ? value : internalValue;
     (0, react_1.useEffect)(function () {
-        if (value !== undefined) {
+        if (isControlled)
             setInternalValue(value);
-        }
-    }, [value]);
+    }, [value, isControlled]);
     var handleValueChange = (0, react_1.useCallback)(function (newValue) {
-        if (!isControlled) {
+        if (!isControlled)
             setInternalValue(newValue);
-        }
         onValueChange === null || onValueChange === void 0 ? void 0 : onValueChange(newValue);
     }, [isControlled, onValueChange]);
-    var getThemeColor = (0, react_1.useCallback)(function (colorName) {
-        if (!colorName)
-            return theme.COLORS.LIGHT_MODE.primary;
-        if (typeof colorName === 'string' && colorName.startsWith('#')) {
-            return colorName;
-        }
-        var themeColor = theme.COLORS.LIGHT_MODE[colorName];
-        if (typeof themeColor === 'function') {
-            return themeColor();
-        }
-        return themeColor || theme.COLORS.LIGHT_MODE.primary;
-    }, [theme.COLORS.LIGHT_MODE]);
+    // Resolve theme palette key or custom color
+    var resolveColor = function (c, fallback) {
+        if (!c)
+            return fallback || colors.primary;
+        if (typeof c === 'string' && c.startsWith('#'))
+            return c;
+        return colors[c] || fallback || colors.primary;
+    };
     var defaultTrackColor = {
-        false: theme.COLORS.LIGHT_MODE.grey,
-        true: getThemeColor(color),
+        false: resolveColor((trackColor === null || trackColor === void 0 ? void 0 : trackColor.false) || 'surfaceVariant', colors.surfaceVariant),
+        true: resolveColor((trackColor === null || trackColor === void 0 ? void 0 : trackColor.true) || color, colors.primary),
     };
-    var finalTrackColor = trackColor || defaultTrackColor;
-    var finalIosBackgroundColor = ios_backgroundColor || theme.COLORS.LIGHT_MODE.grey;
-    var accessibilityProps = {
-        accessibilityRole: 'switch',
-        accessibilityLabel: accessibilityLabel || 'Switch',
-        accessibilityHint: accessibilityHint || 'Toggle switch on or off',
-        accessibilityState: {
-            checked: currentValue,
-        },
+    var finalTrackColor = {
+        false: defaultTrackColor.false,
+        true: defaultTrackColor.true,
     };
-    return (<react_native_1.Switch value={currentValue} onValueChange={handleValueChange} disabled={disabled} trackColor={finalTrackColor} ios_backgroundColor={finalIosBackgroundColor} style={containerStyle} {...accessibilityProps}/>);
-}
+    var finalIosBackgroundColor = resolveColor(iosBackgroundColor || 'surfaceVariant', colors.surfaceVariant);
+    return (<react_native_1.Switch value={currentValue} onValueChange={handleValueChange} disabled={disabled} trackColor={finalTrackColor} ios_backgroundColor={finalIosBackgroundColor} style={containerStyle} accessibilityRole="switch" accessibilityLabel={accessibilityLabel || 'Switch'} accessibilityHint={accessibilityHint || 'Toggle switch on or off'} accessibilityState={{ checked: currentValue }}/>);
+};
 exports.default = Switch;
 //# sourceMappingURL=Switch.js.map

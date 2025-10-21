@@ -21,100 +21,149 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var react_native_1 = require("react-native");
+var react_native_safe_area_context_1 = require("react-native-safe-area-context");
 var theme_1 = require("./theme");
-function Block(_a) {
-    var _b = _a.row, row = _b === void 0 ? false : _b, _c = _a.flex, flex = _c === void 0 ? false : _c, _d = _a.center, center = _d === void 0 ? false : _d, _e = _a.middle, middle = _e === void 0 ? false : _e, _f = _a.top, top = _f === void 0 ? false : _f, _g = _a.bottom, bottom = _g === void 0 ? false : _g, _h = _a.right, right = _h === void 0 ? false : _h, _j = _a.left, left = _j === void 0 ? false : _j, _k = _a.shadow, shadow = _k === void 0 ? false : _k, _l = _a.space, space = _l === void 0 ? null : _l, _m = _a.fluid, fluid = _m === void 0 ? false : _m, _o = _a.height, height = _o === void 0 ? null : _o, _p = _a.shadowColor, shadowColor = _p === void 0 ? null : _p, _q = _a.card, card = _q === void 0 ? false : _q, _r = _a.width, width = _r === void 0 ? null : _r, _s = _a.safe, safe = _s === void 0 ? false : _s, children = _a.children, style = _a.style, rest = __rest(_a, ["row", "flex", "center", "middle", "top", "bottom", "right", "left", "shadow", "space", "fluid", "height", "shadowColor", "card", "width", "safe", "children", "style"]);
-    var theme = (0, theme_1.useGalioTheme)();
-    var styleBlock = [
-        styles(theme).block,
-        row && styles(theme).row,
-        flex && { flex: flex === true ? 1 : flex },
-        center && styles(theme).center,
-        middle && styles(theme).middle,
-        top && styles(theme).top,
-        bottom && styles(theme).bottom,
-        right && styles(theme).right,
-        left && styles(theme).left,
-        space && { justifyContent: "space-".concat(space) },
-        shadow && styles(theme).shadow,
-        fluid && styles(theme).fluid,
-        card && styles(theme).card,
-        height && { height: height },
-        width && { width: width },
-        shadowColor && { shadowColor: shadowColor },
-        style,
-    ].filter(Boolean);
-    if (safe) {
-        return (<react_native_1.SafeAreaView style={styleBlock} {...rest}>
-                {children}
-            </react_native_1.SafeAreaView>);
+// Extract specific props that aren't part of React Native's ViewStyle
+// No longer needed: all props are now documented in BlockProps
+function Block(props) {
+    var row = props.row, flex = props.flex, center = props.center, middle = props.middle, top = props.top, bottom = props.bottom, right = props.right, left = props.left, space = props.space, fluid = props.fluid, height = props.height, width = props.width, shadowProp = props.shadow, shadowColor = props.shadowColor, card = props.card, safe = props.safe, background = props.background, children = props.children, style = props.style, rest = __rest(props, ["row", "flex", "center", "middle", "top", "bottom", "right", "left", "space", "fluid", "height", "width", "shadow", "shadowColor", "card", "safe", "background", "children", "style"]);
+    // Backward compatibility: coerce boolean shadow to semantic value
+    var shadow = shadowProp;
+    if (typeof shadow === 'boolean') {
+        if (shadow) {
+            shadow = 'md';
+            if (process.env.NODE_ENV !== 'production') {
+                // eslint-disable-next-line no-console
+                console.warn('[Block] Passing shadow as boolean is deprecated. Use semantic values (xs, sm, md, lg, xl) instead.');
+            }
+        }
+        else {
+            shadow = undefined;
+        }
     }
-    return (<react_native_1.View style={styleBlock} {...rest}>
-            {children}
-        </react_native_1.View>);
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
+    // Build styles using composition pattern for better maintainability
+    var blockStyles = useBlockStyles({
+        theme: theme,
+        colors: colors,
+        row: row,
+        flex: flex,
+        center: center,
+        middle: middle,
+        top: top,
+        bottom: bottom,
+        right: right,
+        left: left,
+        space: space,
+        fluid: fluid,
+        height: height,
+        width: width,
+        shadow: shadow,
+        shadowColor: shadowColor,
+        card: card,
+        background: background,
+        customStyle: style,
+    });
+    // Render with SafeAreaView if needed
+    if (safe) {
+        return (<react_native_safe_area_context_1.SafeAreaView style={blockStyles} {...rest}>
+        {children}
+      </react_native_safe_area_context_1.SafeAreaView>);
+    }
+    return (<react_native_1.View style={blockStyles} {...rest}>
+      {children}
+    </react_native_1.View>);
 }
-var styles = function (theme) {
-    return react_native_1.StyleSheet.create({
-        block: {
-            flexDirection: 'column',
-        },
-        row: {
-            flexDirection: 'row',
-        },
-        middle: {
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        center: {
+// Custom hook for building block styles - now supports semantic shadow levels
+function useBlockStyles(_a) {
+    var theme = _a.theme, colors = _a.colors, row = _a.row, flex = _a.flex, center = _a.center, middle = _a.middle, top = _a.top, bottom = _a.bottom, right = _a.right, left = _a.left, space = _a.space, fluid = _a.fluid, height = _a.height, width = _a.width, shadow = _a.shadow, shadowColor = _a.shadowColor, card = _a.card, background = _a.background, customStyle = _a.customStyle;
+    // Base block styles with theme integration
+    var baseStyles = {
+        flexDirection: 'column',
+        backgroundColor: background || 'transparent',
+    };
+    // Compose all styles using a more functional approach
+    var styles = __spreadArray([
+        baseStyles,
+        // Layout styles
+        row && { flexDirection: 'row' },
+        flex && { flex: flex === true ? 1 : flex },
+        center && {
             alignItems: 'center',
             alignSelf: 'center',
         },
-        left: {
-            alignItems: 'flex-start',
+        middle && {
+            alignItems: 'center',
+            justifyContent: 'center',
         },
-        right: {
-            alignItems: 'flex-end',
-        },
-        top: {
+        top && {
             alignItems: 'flex-start',
             alignSelf: 'flex-start',
         },
-        bottom: {
+        bottom && {
             alignItems: 'flex-end',
             alignSelf: 'flex-end',
         },
-        card: {
-            borderRadius: theme.SIZES.CARD_BORDER_RADIUS,
-            borderWidth: theme.SIZES.CARD_BORDER_WIDTH,
-            borderColor: theme.COLORS.LIGHT_MODE.block,
-        },
-        shadow: __assign({}, react_native_1.Platform.select({
-            ios: {
-                shadowColor: theme.COLORS.LIGHT_MODE.block,
-                shadowOffset: {
-                    width: 0,
-                    height: 3,
-                },
-                shadowOpacity: theme.SIZES.BLOCK_SHADOW_OPACITY,
-                shadowRadius: theme.SIZES.BLOCK_SHADOW_RADIUS,
-            },
-            android: {
-                elevation: theme.SIZES.ANDROID_ELEVATION,
-            },
-            web: {
-                boxShadow: "0px 3px ".concat(theme.SIZES.BLOCK_SHADOW_RADIUS, "px rgba(0, 0, 0, ").concat(theme.SIZES.BLOCK_SHADOW_OPACITY, ")"),
-            },
-        })),
-        fluid: {
-            width: 'auto',
-        },
-    });
-};
+        right && { alignItems: 'flex-end' },
+        left && { alignItems: 'flex-start' },
+        // Spacing
+        space && { justifyContent: "space-".concat(space) },
+        // Sizing
+        fluid && { width: 'auto' },
+        height && { height: height },
+        width && { width: width },
+        // Visual effects: semantic shadow
+        (typeof shadow === 'string' && shadow !== 'none') ? getSemanticShadowStyles(theme, shadow, shadowColor) : undefined,
+        card && getCardStyles(theme, colors),
+        // Custom shadow color override
+        shadowColor && { shadowColor: shadowColor }
+    ], (Array.isArray(customStyle) ? customStyle : [customStyle]), true).filter(Boolean);
+    return styles;
+}
+// Semantic shadow style builder
+function getSemanticShadowStyles(theme, level, shadowColor) {
+    var _a;
+    if (level === 'none')
+        return {};
+    var def = ((_a = theme.shadows) === null || _a === void 0 ? void 0 : _a[level]) || {};
+    var neutralShadowColor = '#b0b0b0';
+    var nativeShadow = react_native_1.Platform.select({
+        ios: __assign(__assign({}, (def.ios || {})), { shadowColor: shadowColor || (def.ios && def.ios.shadowColor) || neutralShadowColor }),
+        android: __assign(__assign({}, (def.android || {})), { shadowColor: shadowColor || (def.android && def.android.shadowColor) || neutralShadowColor }),
+    }) || {};
+    // For web, merge boxShadow if present
+    if (react_native_1.Platform.OS === 'web' && def.web) {
+        return __assign(__assign({}, nativeShadow), def.web);
+    }
+    // Always add elevation for Android
+    if (react_native_1.Platform.OS === 'android') {
+        var elevation = (def.android && typeof def.android.elevation === 'number') ? def.android.elevation : 0;
+        nativeShadow = __assign(__assign({}, nativeShadow), { elevation: elevation });
+    }
+    return nativeShadow;
+}
+function getCardStyles(theme, colors) {
+    return {
+        borderRadius: theme.sizes.CARD_BORDER_RADIUS,
+        borderWidth: theme.sizes.CARD_BORDER_WIDTH,
+        borderColor: colors.border,
+    };
+}
 exports.default = Block;
 //# sourceMappingURL=Block.js.map

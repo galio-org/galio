@@ -1,5 +1,6 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
+import { useColors } from './theme';
 interface SliderProps {
     value?: number;
     minimumValue?: number;
@@ -7,7 +8,7 @@ interface SliderProps {
     step?: number;
     disabled?: boolean;
     trackStyle?: ViewStyle;
-    activeColor?: string;
+    activeColor?: keyof ReturnType<typeof useColors> | string;
     thumbStyle?: ViewStyle;
     containerStyle?: ViewStyle;
     onValueChange?: (value: number) => void;

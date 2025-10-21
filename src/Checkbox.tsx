@@ -1,8 +1,8 @@
-import { JSX, useState } from "react";
+import { JSX, useState, useEffect } from "react";
 import { Image, ImageStyle, Pressable, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { useGalioTheme } from "./theme";
-import Text from "./atomic/ions/text";
-import Icon from "./atomic/ions/icon";
+import { useTheme, useColors } from "./theme";
+import Text from "./Text";
+import Icon from "./Icon";
 
 interface SpaceAroundProps {
     direction: 'row-reverse' | 'column' | 'column-reverse' | 'row';
@@ -25,7 +25,7 @@ interface LabelProps {
     image?: string;
     label?: string;
     disabled?: boolean;
-    labelStyle?: TextStyle;
+    labelStyle?: TextStyle | TextStyle[];
     imageStyle?: ImageStyle;
     flexDirection?: SpaceAroundProps['direction'];
 }
@@ -38,11 +38,11 @@ function renderLabel({
     imageStyle,
     flexDirection,
 }: LabelProps): JSX.Element | null {
-    const theme = useGalioTheme();
+    const theme = useTheme();
     const labelStyles = [
         styles(theme).textStyles,
         disabled && styles(theme).disabledLabel,
-        labelStyle,
+        ...(Array.isArray(labelStyle) ? labelStyle : [labelStyle]),
         flexDirection && spaceAround(flexDirection),
     ].filter(Boolean);
 
@@ -103,18 +103,45 @@ function _onPress({
 
 interface CheckboxProps {
     checkboxStyle?: ViewStyle;
-    color?: string;
+    color?: keyof ReturnType<typeof useColors> | string;
     disabled?: boolean;
     flexDirection?: SpaceAroundProps['direction'];
     image?: string;
     imageStyle?: ImageStyle;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconColor?: string;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconFamily?: string;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconName?: string;
+    /**
+     * @deprecated Use iconProps instead
+     */
     iconSize?: number;
+    /**
+     * Icon customization object (family, name, color, size, etc.)
+     */
+    iconProps?: {
+        name?: string;
+        family?: string;
+        color?: string;
+        size?: number;
+        [key: string]: any;
+    };
+    checked?: boolean; // Controlled mode
+    /**
+     * @deprecated Use checked instead
+     */
     initialValue?: boolean;
     label?: string;
     labelStyle?: TextStyle;
+    labelColor?: keyof ReturnType<typeof useColors> | string;
     onChange?: (checked: boolean) => void;
     style?: ViewStyle;
     accessibilityLabel?: string;
@@ -123,29 +150,47 @@ interface CheckboxProps {
 
 function Checkbox({
     checkboxStyle,
-    color = 'theme',
+    color = 'primary',
     disabled = false,
     flexDirection = 'row',
     image,
     imageStyle,
-    iconColor = '#fff',
-    iconFamily = 'FontAwesome',
-    iconName = 'check',
-    iconSize = 15,
+    iconColor = '#fff', // deprecated
+    iconFamily = 'FontAwesome', // deprecated
+    iconName = 'check', // deprecated
+    iconSize = 15, // deprecated
+    iconProps = {},
+    checked: controlledChecked,
     initialValue = false,
     label,
     labelStyle,
+    labelColor,
     onChange = () => {},
     style,
     accessibilityLabel,
     accessibilityHint,
 }: CheckboxProps): JSX.Element {
-    const theme = useGalioTheme();
-    const [checked, setChecked] = useState(initialValue);
+    const theme = useTheme();
+    const colors = useColors();
+    
+    // Support both controlled and uncontrolled modes
+    const isControlled = controlledChecked !== undefined;
+    const [internalChecked, setInternalChecked] = useState(initialValue);
+    const checked = isControlled ? controlledChecked : internalChecked;
+
+    // Update internal state if controlledChecked changes (for controlled mode)
+    useEffect(() => {
+        if (isControlled && controlledChecked !== undefined) {
+            setInternalChecked(controlledChecked);
+        }
+    }, [controlledChecked, isControlled]);
 
     const colorStyle = color 
-        ? theme.COLORS.LIGHT_MODE[color as keyof typeof theme.COLORS.LIGHT_MODE] 
-        : theme.COLORS.LIGHT_MODE.primary;
+        ? colors[color as keyof typeof colors] || color
+        : colors.primary;
+    const resolvedLabelColor = labelColor
+        ? colors[labelColor as keyof typeof colors] || labelColor
+        : colors.text;
 
     const checkBoxContainerStyle = [
         styles(theme).container, 
@@ -171,9 +216,19 @@ function Checkbox({
     const defaultAccessibilityLabel = accessibilityLabel || 
         (label ? `${label} checkbox` : 'checkbox');
     
+    const handlePress = () => {
+        if (!isControlled) {
+            // Uncontrolled mode: update internal state
+            _onPress({ checked, onChange, setChecked: setInternalChecked });
+        } else {
+            // Controlled mode: just call onChange, parent handles state
+            onChange(!checked);
+        }
+    };
+
     return (
         <Pressable
-            onPress={() => _onPress({ checked, onChange, setChecked })}
+            onPress={handlePress}
             style={checkBoxContainerStyle}
             disabled={disabled}
             accessibilityRole="checkbox"
@@ -182,46 +237,64 @@ function Checkbox({
             accessibilityHint={accessibilityHint}
         >
             <View style={checkedBoxViewStyles as unknown as ViewStyle}>
-                {renderChecked({ checked, iconColor, iconFamily, iconName, iconSize })}
+                {checked ? (
+                    <Icon
+                        name={iconProps.name || iconName}
+                        family={iconProps.family || iconFamily}
+                        color={iconProps.color || iconColor}
+                        size={iconProps.size || iconSize}
+                        {...iconProps}
+                    />
+                ) : null}
             </View>
-            {renderLabel({ image, label, disabled, labelStyle, imageStyle, flexDirection })}
+            {renderLabel({
+                image,
+                label,
+                disabled,
+                labelStyle: ([{ color: resolvedLabelColor }, labelStyle].filter(Boolean)) as TextStyle[],
+                imageStyle,
+                flexDirection,
+            })}
         </Pressable>
     );
 }
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
-  StyleSheet.create({
+const styles = (theme: ReturnType<typeof useTheme>) => {
+  const colors = theme.colors; // Use semantic colors
+  
+  return StyleSheet.create({
     container: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
     checkboxView: {
-      width: theme.SIZES.CHECKBOX_WIDTH,
-      height: theme.SIZES.CHECKBOX_HEIGHT,
-      borderWidth: theme.SIZES.BORDER_WIDTH,
+      width: theme.sizes.CHECKBOX_WIDTH,
+      height: theme.sizes.CHECKBOX_HEIGHT,
+      borderWidth: theme.sizes.BORDER_WIDTH,
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: theme.SIZES.BORDER_RADIUS,
+      borderRadius: theme.sizes.BORDER_RADIUS,
     },
     uncheckedBoxView: {
-      backgroundColor: theme.COLORS.LIGHT_MODE.transparent,
-      borderColor: theme.COLORS.LIGHT_MODE.grey,
+      backgroundColor: colors.transparent,
+      borderColor: colors.border,
     },
     checked: {
-      backgroundColor: theme.COLORS.LIGHT_MODE.primary,
-      borderColor: theme.COLORS.LIGHT_MODE.primary,
+      backgroundColor: colors.primary,
+      borderColor: colors.primary,
     },
     disabled: {
-      borderColor: theme.COLORS.LIGHT_MODE.muted,
+      borderColor: colors.disabled,
     },
     textStyles: {
-      color: theme.COLORS.LIGHT_MODE.black,
+      color: colors.text,
     },
     disabledLabel: {
-      color: theme.COLORS.LIGHT_MODE.muted,
-      opacity: theme.SIZES.OPACITY,
+      color: colors.disabledText,
+      opacity: theme.sizes.OPACITY,
     },
   });
+};
 
 export default Checkbox;

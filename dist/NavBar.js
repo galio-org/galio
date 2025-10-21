@@ -50,37 +50,38 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var react_native_1 = require("react-native");
 var theme_1 = require("./theme");
-var text_1 = __importDefault(require("./atomic/ions/text"));
-var icon_1 = __importDefault(require("./atomic/ions/icon"));
+var Text_1 = __importDefault(require("./Text"));
+var Icon_1 = __importDefault(require("./Icon"));
 var Block_1 = __importDefault(require("./Block"));
 var height = react_native_1.Dimensions.get("screen").height;
 function NavBar(_a) {
     var _b = _a.back, back = _b === void 0 ? false : _b, hideLeft = _a.hideLeft, hideRight = _a.hideRight, left = _a.left, leftIconColor = _a.leftIconColor, leftHitSlop = _a.leftHitSlop, leftIconSize = _a.leftIconSize, leftIconName = _a.leftIconName, leftStyle = _a.leftStyle, leftIconFamily = _a.leftIconFamily, _c = _a.onLeftPress, onLeftPress = _c === void 0 ? function () { } : _c, right = _a.right, rightStyle = _a.rightStyle, style = _a.style, _d = _a.transparent, transparent = _d === void 0 ? false : _d, title = _a.title, titleStyle = _a.titleStyle, titleNumberOfLines = _a.titleNumberOfLines, titleTextProps = _a.titleTextProps, accessibilityLabel = _a.accessibilityLabel;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     var renderTitle = (0, react_1.useCallback)(function () {
         if (typeof title === "string") {
-            return (<react_native_1.View style={styles(theme).title}>
-          <text_1.default numberOfLines={titleNumberOfLines || 1} style={[styles(theme).titleTextStyle, titleStyle]} {...titleTextProps}>
+            return (<react_native_1.View style={styles(theme, colors).title}>
+          <Text_1.default numberOfLines={titleNumberOfLines || 1} style={[styles(theme, colors).titleTextStyle, titleStyle]} {...titleTextProps}>
             {title}
-          </text_1.default>
+          </Text_1.default>
         </react_native_1.View>);
         }
         if (!title)
             return null;
         return title;
-    }, [title, titleStyle, titleNumberOfLines, titleTextProps, theme]);
+    }, [title, titleStyle, titleNumberOfLines, titleTextProps, theme, colors]);
     var renderLeft = (0, react_1.useCallback)(function () {
         if (!hideLeft) {
             if (leftIconName || (back && !left)) {
-                return (<react_native_1.View style={[styles(theme).left, leftStyle]}>
+                return (<react_native_1.View style={[styles(theme, colors).left, leftStyle]}>
             <react_native_1.Pressable onPress={onLeftPress} hitSlop={leftHitSlop} accessibilityRole="button" accessibilityLabel={accessibilityLabel || "Back button"}>
-              <icon_1.default name={leftIconName || (back ? "chevron-left" : "navicon")} family={leftIconFamily || "material"} color={leftIconColor || theme.COLORS.LIGHT_MODE.icon} size={leftIconSize || theme.SIZES.BASE * 2.2}/>
+              <Icon_1.default name={leftIconName || (back ? "chevron-left" : "navicon")} family={leftIconFamily || "material"} color={leftIconColor || colors.text} size={leftIconSize || theme.sizes.BASE * 2.2}/>
             </react_native_1.Pressable>
           </react_native_1.View>);
             }
-            return <react_native_1.View style={[styles(theme).left, leftStyle]}>{left}</react_native_1.View>;
+            return <react_native_1.View style={[styles(theme, colors).left, leftStyle]}>{left}</react_native_1.View>;
         }
-        return <react_native_1.View style={styles(theme).left}/>;
+        return <react_native_1.View style={styles(theme, colors).left}/>;
     }, [
         hideLeft,
         leftIconName,
@@ -94,20 +95,21 @@ function NavBar(_a) {
         leftIconColor,
         leftIconSize,
         theme,
+        colors,
     ]);
     var renderRight = (0, react_1.useCallback)(function () {
         var hasIcons = react_1.default.Children.count(right) > 1;
-        var rightStyles = __assign(__assign({}, styles(theme).right), rightStyle);
+        var rightStyles = __assign(__assign({}, styles(theme, colors).right), rightStyle);
         if (!hideRight) {
             return (<react_native_1.View style={rightStyles}>
-          {hasIcons ? (<react_native_1.View style={styles(theme).rightIconsContainer}>{right}</react_native_1.View>) : (right)}
+          {hasIcons ? (<react_native_1.View style={styles(theme, colors).rightIconsContainer}>{right}</react_native_1.View>) : (right)}
         </react_native_1.View>);
         }
-        return <react_native_1.View style={styles(theme).right}/>;
-    }, [hideRight, right, rightStyle, theme]);
+        return <react_native_1.View style={styles(theme, colors).right}/>;
+    }, [hideRight, right, rightStyle, theme, colors]);
     var navStyles = (0, react_1.useMemo)(function () {
-        var defaultStyles = styles(theme).navBar;
-        var transparentStyles = transparent ? styles(theme).transparent : {};
+        var defaultStyles = styles(theme, colors).navBar;
+        var transparentStyles = transparent ? styles(theme, colors).transparent : {};
         var merged = react_native_1.StyleSheet.flatten([
             defaultStyles,
             transparentStyles,
@@ -117,16 +119,16 @@ function NavBar(_a) {
             merged.height = defaultStyles.height;
         }
         return merged;
-    }, [theme, transparent, style]);
+    }, [theme, colors, transparent, style]);
     return (<Block_1.default style={navStyles}>
       {renderLeft()}
       {renderTitle()}
       {renderRight()}
     </Block_1.default>);
 }
-var styles = function (theme) {
+var styles = function (theme, colors) {
     return react_native_1.StyleSheet.create({
-        navBar: __assign({ flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly", backgroundColor: theme.COLORS.LIGHT_MODE.white, paddingVertical: theme.SIZES.BASE * 0.5, height: theme.SIZES.BASE * 4.125, width: "auto", borderBottomWidth: 1, borderBottomColor: theme.COLORS.LIGHT_MODE.grey || "#f0f0f0" }, react_native_1.Platform.select({
+        navBar: __assign({ flexDirection: 'row', alignItems: "center", justifyContent: "space-evenly", backgroundColor: colors.white, paddingVertical: theme.sizes.BASE * 0.5, height: theme.sizes.BASE * 4.125, width: "auto", borderBottomWidth: 1, borderBottomColor: colors.border || "#f0f0f0" }, react_native_1.Platform.select({
             ios: {
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 2 },
@@ -148,8 +150,8 @@ var styles = function (theme) {
         },
         titleTextStyle: {
             fontWeight: "700",
-            fontSize: theme.SIZES.FONT * 0.875,
-            color: theme.COLORS.LIGHT_MODE.black,
+            fontSize: theme.sizes.FONT * 0.875,
+            color: colors.black,
             textAlign: "center",
             letterSpacing: 0.3,
         },
@@ -157,13 +159,13 @@ var styles = function (theme) {
             height: height * 0.07,
             justifyContent: "center",
             alignItems: "center",
-            marginLeft: theme.SIZES.BASE,
+            marginLeft: theme.sizes.BASE,
         },
         right: {
             height: height * 0.07,
             alignItems: "center",
             justifyContent: "center",
-            marginRight: theme.SIZES.BASE,
+            marginRight: theme.sizes.BASE,
         },
         transparent: {
             backgroundColor: "transparent",

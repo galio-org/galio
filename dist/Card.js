@@ -17,58 +17,62 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_native_1 = require("react-native");
 var Block_1 = __importDefault(require("./Block"));
 var theme_1 = require("./theme");
-var icon_1 = __importDefault(require("./atomic/ions/icon"));
-var text_1 = __importDefault(require("./atomic/ions/text"));
+var Icon_1 = __importDefault(require("./Icon"));
+var Text_1 = __importDefault(require("./Text"));
 function renderImage(_a) {
     var image = _a.image, imageBlockStyle = _a.imageBlockStyle, imageStyle = _a.imageStyle;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     if (!image)
         return null;
-    return (<Block_1.default card style={[styles(theme).imageBlock, imageBlockStyle]}>
-            <react_native_1.Image source={{ uri: image }} style={[styles(theme).image, imageStyle]}/>
+    return (<Block_1.default card style={[styles(theme, colors).imageBlock, imageBlockStyle]}>
+            <react_native_1.Image source={{ uri: image }} style={[styles(theme, colors).image, imageStyle]}/>
         </Block_1.default>);
 }
 function renderAvatar(_a) {
     var avatar = _a.avatar;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     if (!avatar)
         return null;
-    return <react_native_1.Image source={{ uri: avatar }} style={styles(theme).avatar}/>;
+    return <react_native_1.Image source={{ uri: avatar }} style={styles(theme, colors).avatar}/>;
 }
 function renderLocation(_a) {
     var location = _a.location, locationColor = _a.locationColor;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     if (!location)
         return null;
     if (typeof location !== 'string') {
         return location;
     }
     return (<Block_1.default row style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
-            <icon_1.default name="map-pin" family="feather" color={locationColor || theme.COLORS.LIGHT_MODE.muted} size={theme.SIZES.FONT * 0.75}/>
-            <text_1.default muted size={theme.SIZES.FONT * 0.75} color={locationColor || theme.COLORS.LIGHT_MODE.muted} style={{
-            marginLeft: theme.SIZES.BASE * 0.25,
+            <Icon_1.default name="map-pin" family="feather" color={locationColor || colors.textSecondary} size={theme.sizes.FONT * 0.75}/>
+            <Text_1.default muted size={theme.sizes.FONT * 0.75} color={locationColor || colors.textSecondary} style={{
+            marginLeft: theme.sizes.BASE * 0.25,
             textAlign: 'right',
             flexShrink: 1
         }} numberOfLines={1}>
                 {location}
-            </text_1.default>
+            </Text_1.default>
         </Block_1.default>);
 }
 function renderAuthor(_a) {
     var avatar = _a.avatar, title = _a.title, titleColor = _a.titleColor, caption = _a.caption, captionColor = _a.captionColor, location = _a.location, locationColor = _a.locationColor, footerStyle = _a.footerStyle, rightSideComponent = _a.rightSideComponent;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     if (!title && !caption)
         return null;
-    return (<Block_1.default flex style={[styles(theme).footer, footerStyle]}>
+    return (<Block_1.default flex style={[styles(theme, colors).footer, footerStyle]}>
             <Block_1.default row space="between" style={{ marginBottom: 4 }}>
                 <Block_1.default flex={0.2} style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
                     {renderAvatar({ avatar: avatar })}
                 </Block_1.default>
                 <Block_1.default flex={1.8} style={{ paddingLeft: 8 }}>
-                    {title && (<Block_1.default style={styles(theme).title}>
-                            <text_1.default size={theme.SIZES.FONT * 0.875} color={titleColor} numberOfLines={1}>
+                    {title && (<Block_1.default style={styles(theme, colors).title}>
+                            <Text_1.default size={theme.sizes.FONT * 0.875} color={titleColor} numberOfLines={1}>
                                 {title}
-                            </text_1.default>
+                            </Text_1.default>
                         </Block_1.default>)}
                 </Block_1.default>
                 {rightSideComponent && (<Block_1.default flex={0.5} style={{ alignItems: 'flex-end', justifyContent: 'center' }}>
@@ -78,9 +82,9 @@ function renderAuthor(_a) {
             
             <Block_1.default row space="between" style={{ alignItems: 'flex-end' }}>
                 {caption && (<Block_1.default flex={1} style={{ marginRight: 8 }}>
-                        <text_1.default p muted size={theme.SIZES.FONT * 0.875} color={captionColor || theme.COLORS.LIGHT_MODE.muted} numberOfLines={2}>
+                        <Text_1.default p muted size={theme.sizes.FONT * 0.875} color={captionColor || colors.textSecondary} numberOfLines={2}>
                             {caption}
-                        </text_1.default>
+                        </Text_1.default>
                     </Block_1.default>)}
                 {location && (<Block_1.default style={{ alignItems: 'flex-end', justifyContent: 'flex-end', minWidth: 0 }}>
                         {renderLocation({ location: location, locationColor: locationColor })}
@@ -90,7 +94,8 @@ function renderAuthor(_a) {
 }
 function Card(_a) {
     var avatar = _a.avatar, title = _a.title, titleColor = _a.titleColor, caption = _a.caption, captionColor = _a.captionColor, location = _a.location, locationColor = _a.locationColor, _b = _a.borderless, borderless = _b === void 0 ? false : _b, footerStyle = _a.footerStyle, image = _a.image, imageBlockStyle = _a.imageBlockStyle, imageStyle = _a.imageStyle, children = _a.children, _c = _a.card, card = _c === void 0 ? true : _c, _d = _a.shadow, shadow = _d === void 0 ? true : _d, style = _a.style, _e = _a.neutral, neutral = _e === void 0 ? false : _e, _f = _a.fullBackgroundImage, fullBackgroundImage = _f === void 0 ? false : _f, authorImageSrc = _a.authorImageSrc, authorTitle = _a.authorTitle, authorSubTitle = _a.authorSubTitle, onPress = _a.onPress, rightSideComponent = _a.rightSideComponent, _g = _a.flex, flex = _g === void 0 ? false : _g, shadowColor = _a.shadowColor;
-    var theme = (0, theme_1.useGalioTheme)();
+    var theme = (0, theme_1.useTheme)();
+    var colors = (0, theme_1.useColors)();
     // Use authorImageSrc as avatar if provided
     var finalAvatar = authorImageSrc || avatar;
     // Use authorTitle as title if provided
@@ -107,9 +112,9 @@ function Card(_a) {
             borderRadius: 0,
         },
         flex && { flex: 1 },
-        __assign({ borderWidth: 0.5, borderColor: '#E5E5E5', borderRadius: 12, backgroundColor: theme.COLORS.LIGHT_MODE.white, marginVertical: 8 }, react_native_1.Platform.select({
+        __assign({ borderWidth: 0.5, borderColor: colors.border, borderRadius: 12, backgroundColor: colors.surface, marginVertical: 8 }, react_native_1.Platform.select({
             ios: {
-                shadowColor: shadowColor || '#000',
+                shadowColor: shadowColor || colors.border,
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
                 shadowRadius: 4,
@@ -154,11 +159,11 @@ function Card(_a) {
     }
     return cardContent;
 }
-var styles = function (theme) {
+var styles = function (theme, colors) {
     return react_native_1.StyleSheet.create({
-        card: __assign({ borderWidth: 0, backgroundColor: theme.COLORS.LIGHT_MODE.white, width: theme.SIZES.CARD_WIDTH, marginVertical: theme.SIZES.CARD_MARGIN_VERTICAL }, react_native_1.Platform.select({
+        card: __assign({ borderWidth: 0, backgroundColor: colors.surface, width: theme.sizes.CARD_WIDTH, marginVertical: theme.sizes.CARD_MARGIN_VERTICAL }, react_native_1.Platform.select({
             ios: {
-                shadowColor: theme.COLORS.LIGHT_MODE.block,
+                shadowColor: colors.border,
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.1,
                 shadowRadius: 4,
@@ -173,15 +178,15 @@ var styles = function (theme) {
         footer: {
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            paddingHorizontal: theme.SIZES.CARD_FOOTER_HORIZONTAL,
-            paddingVertical: theme.SIZES.CARD_FOOTER_VERTICAL,
-            backgroundColor: theme.COLORS.LIGHT_MODE.transparent,
+            paddingHorizontal: theme.sizes.CARD_FOOTER_HORIZONTAL,
+            paddingVertical: theme.sizes.CARD_FOOTER_VERTICAL,
+            backgroundColor: colors.transparent,
             zIndex: 1,
         },
         avatar: {
-            width: theme.SIZES.CARD_AVATAR_WIDTH,
-            height: theme.SIZES.CARD_AVATAR_HEIGHT,
-            borderRadius: theme.SIZES.CARD_AVATAR_RADIUS,
+            width: theme.sizes.CARD_AVATAR_WIDTH,
+            height: theme.sizes.CARD_AVATAR_HEIGHT,
+            borderRadius: theme.sizes.CARD_AVATAR_RADIUS,
         },
         title: {
             justifyContent: 'flex-start',
@@ -193,13 +198,13 @@ var styles = function (theme) {
         },
         image: {
             width: 'auto',
-            height: theme.SIZES.CARD_IMAGE_HEIGHT,
+            height: theme.sizes.CARD_IMAGE_HEIGHT,
         },
         round: {
-            borderRadius: theme.SIZES.CARD_ROUND,
+            borderRadius: theme.sizes.CARD_ROUND,
         },
         rounded: {
-            borderRadius: theme.SIZES.CARD_ROUNDED,
+            borderRadius: theme.sizes.CARD_ROUNDED,
         },
     });
 };

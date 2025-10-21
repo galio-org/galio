@@ -11,7 +11,13 @@ interface MainAccordionProps {
     onAccordionClose?: (item: any, index: number) => void;
     listStyle?: ViewStyle;
     style?: ViewStyle;
+    titleStyle?: TextStyle;
+    /**
+     * Semantic shadow level: 'none', 'xs', 'sm', 'md', 'lg', 'xl'.
+     * If not set, no shadow is applied.
+     */
+    shadow?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
-declare function Accordion({ dataArray, icon, expandedIcon, headerStyle, contentStyle, opened, onAccordionOpen, onAccordionClose, listStyle, style }: MainAccordionProps): JSX.Element;
+declare function Accordion({ dataArray, icon, expandedIcon, headerStyle, contentStyle, opened, onAccordionOpen, onAccordionClose, listStyle, style, titleStyle, shadow, }: MainAccordionProps): JSX.Element;
 export default Accordion;
 //# sourceMappingURL=Accordion.d.ts.map

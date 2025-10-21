@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, JSX, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   View,
   Animated,
@@ -7,7 +7,7 @@ import {
   LayoutChangeEvent,
   ViewStyle,
 } from 'react-native';
-import { useGalioTheme } from './theme';
+import { useTheme, useColors } from './theme';
 
 interface SliderProps {
   value?: number;
@@ -16,7 +16,7 @@ interface SliderProps {
   step?: number;
   disabled?: boolean;
   trackStyle?: ViewStyle;
-  activeColor?: string;
+  activeColor?: keyof ReturnType<typeof useColors> | string;
   thumbStyle?: ViewStyle;
   containerStyle?: ViewStyle;
   onValueChange?: (value: number) => void;
@@ -37,9 +37,9 @@ const Slider: React.FC<SliderProps> = ({
   thumbStyle,
   accessibilityLabel,
   accessibilityHint,
-}: SliderProps):JSX.Element => {
-  
-  const theme = useGalioTheme();
+}) => {
+  const theme = useTheme();
+  const colors = useColors();
   const [containerWidth, setContainerWidth] = useState(0);
   const trackWidth = useRef(0);
   const thumbX = useRef(new Animated.Value(0)).current;
@@ -53,7 +53,6 @@ const Slider: React.FC<SliderProps> = ({
     return ratio * trackWidth.current;
   };
 
-  
   const positionToValue = (pos: number) => {
     const ratio = pos / trackWidth.current;
     const rawValue = ratio * (maximumValue - minimumValue) + minimumValue;
@@ -77,31 +76,26 @@ const Slider: React.FC<SliderProps> = ({
       onMoveShouldSetPanResponder: () => !disabled,
       onPanResponderGrant: (_, gestureState) => {
         if (disabled) return;
-        
         const relativeX = gestureState.x0 - trackLayout.current.x;
-        const thumbRadius = (theme?.SIZES?.THUMB_SIZE || 25) / 2;
+        const thumbRadius = (theme?.sizes?.THUMB_SIZE || 25) / 2;
         const clampedX = Math.max(thumbRadius, Math.min(relativeX, trackWidth.current - thumbRadius));
         currentThumbPosition.current = clampedX;
         thumbX.setValue(clampedX);
       },
       onPanResponderMove: (_, gestureState) => {
         if (disabled) return;
-        
         const relativeX = gestureState.moveX - trackLayout.current.x;
-        const thumbRadius = (theme?.SIZES?.THUMB_SIZE || 25) / 2;
+        const thumbRadius = (theme?.sizes?.THUMB_SIZE || 25) / 2;
         const clampedX = Math.max(thumbRadius, Math.min(relativeX, trackWidth.current - thumbRadius));
-        
         currentThumbPosition.current = clampedX;
         thumbX.setValue(clampedX);
-        
         const newValue = positionToValue(clampedX);
         if (newValue !== currentValue.current) {
           currentValue.current = newValue;
           onValueChange?.(newValue);
         }
       },
-      onPanResponderRelease: () => {
-      },
+      onPanResponderRelease: () => {},
     })
   ).current;
 
@@ -117,66 +111,69 @@ const Slider: React.FC<SliderProps> = ({
     setContainerWidth(Math.round(width));
   };
 
+  // Resolve theme palette key for activeColor
+  const resolvedActiveColor = activeColor
+    ? colors[activeColor as keyof typeof colors] || activeColor
+    : colors.primary;
 
   return (
     <View
-        style={[styles(theme).container, containerStyle]}
-        onLayout={handleContainerLayout}
+      style={[styles(theme, colors).container, containerStyle]}
+      onLayout={handleContainerLayout}
     >
-        <View 
-            onLayout={onTrackLayout}
-            style = {[styles(theme).track, trackStyle]}
-            ></View>
-        <View style={[
-            styles(theme).track,
-            {
-                position: 'absolute',
-                width: trackWidth.current,
-                backgroundColor: activeColor || theme?.COLORS?.LIGHT_MODE?.primary || '#007AFF',
-            }
-        ]} 
-        >
-            <Animated.View
-                style={[
-                    styles(theme).thumb,
-                    thumbStyle,
-                    disabled && styles(theme).disabled,
-                    {transform: [{ translateX: thumbX }]},
-                ]}
-                {...panResponder.panHandlers}
-            />
-        </View>
+      <View
+        onLayout={onTrackLayout}
+        style={[styles(theme, colors).track, trackStyle]}
+      />
+      <View
+        style={[styles(theme, colors).activeTrack, { width: trackWidth.current, backgroundColor: resolvedActiveColor }]}
+      >
+        <Animated.View
+          style={[
+            styles(theme, colors).thumb,
+            thumbStyle,
+            disabled && styles(theme, colors).disabled,
+            { transform: [{ translateX: thumbX }] },
+          ]}
+          {...panResponder.panHandlers}
+        />
+      </View>
     </View>
   );
 };
 
-const styles = (theme: ReturnType<typeof useGalioTheme>) =>
-    StyleSheet.create({
-        container: {
-            height: 40,
-            justifyContent: 'center',
-        },
-        track: {
-            height: theme?.SIZES?.TRACK_SIZE || 4,
-            width: '100%',
-            borderRadius: (theme?.SIZES?.TRACK_SIZE || 4) / 2,
-            position: 'absolute',
-            backgroundColor: theme?.COLORS?.LIGHT_MODE?.grey || '#E0E0E0',
-        },
-        thumb: {
-            width: theme?.SIZES?.THUMB_SIZE || 25,
-            height: theme?.SIZES?.THUMB_SIZE || 25,
-            borderRadius: (theme?.SIZES?.THUMB_SIZE || 25) / 2,
-            borderWidth: 2,
-            borderColor: theme?.COLORS?.LIGHT_MODE?.primary || '#007AFF',
-            backgroundColor: theme?.COLORS?.LIGHT_MODE?.white || '#FFFFFF',
-            position: 'absolute',
-            marginTop: -10,
-        },
-        disabled: {
-            backgroundColor: theme?.COLORS?.LIGHT_MODE?.muted || '#999999',
-            borderColor: theme?.COLORS?.LIGHT_MODE?.muted || '#999999',
-        },
-    });
+const styles = (theme: ReturnType<typeof useTheme>, colors: ReturnType<typeof useColors>) =>
+  StyleSheet.create({
+    container: {
+      height: 40,
+      justifyContent: 'center',
+    },
+    track: {
+      height: theme?.sizes?.TRACK_SIZE || 4,
+      width: '100%',
+      borderRadius: (theme?.sizes?.TRACK_SIZE || 4) / 2,
+      position: 'absolute',
+      backgroundColor: colors.surface || colors.background || '#E0E0E0',
+    },
+    activeTrack: {
+      height: theme?.sizes?.TRACK_SIZE || 4,
+      position: 'absolute',
+      borderRadius: (theme?.sizes?.TRACK_SIZE || 4) / 2,
+    },
+    thumb: {
+      width: theme?.sizes?.THUMB_SIZE || 25,
+      height: theme?.sizes?.THUMB_SIZE || 25,
+      borderRadius: (theme?.sizes?.THUMB_SIZE || 25) / 2,
+      borderWidth: 2,
+      borderColor: colors.primary,
+      backgroundColor: colors.white,
+      position: 'absolute',
+      marginTop: -10,
+    },
+    disabled: {
+      backgroundColor: colors.surfaceVariant || colors.background || '#999999',
+      borderColor: colors.surfaceVariant || colors.background || '#999999',
+    },
+  });
 
 export default Slider;

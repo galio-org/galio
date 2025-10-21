@@ -1,5 +1,6 @@
 import { JSX, useEffect, useState, useMemo, useCallback } from "react";
-import { Animated, Dimensions, PanResponder, StyleSheet, ViewStyle } from "react-native";
+import { Animated, Dimensions, PanResponder, StyleSheet, ViewStyle, StyleProp } from "react-native";
+import { useTheme, useColors } from "./theme";
 import Block from "./Block";
 
 const { width: SCREEN_WIDTH } = Dimensions.get('screen');
@@ -7,12 +8,19 @@ const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 interface DeckSwiperProps {
     onSwipeRight?: () => void;
     onSwipeLeft?: () => void;
-    focusedElementStyle?: ViewStyle;
-    nextElementStyle?: ViewStyle;
+    focusedElementStyle?: StyleProp<ViewStyle>;
+    nextElementStyle?: StyleProp<ViewStyle>;
     components: React.ReactNode[];
-    style?: ViewStyle;
+    style?: StyleProp<ViewStyle>;
     swipeThreshold?: number;
     cardWidth?: number;
+    cardContainerStyle?: StyleProp<ViewStyle>;
+    cardShadow?: keyof ReturnType<typeof useTheme>["shadows"] | ViewStyle;
+    cardBackgroundColor?: string;
+    nextCardBackgroundColor?: string;
+    nextCardShadow?: keyof ReturnType<typeof useTheme>["shadows"] | ViewStyle;
+    borderRadius?: number;
+    showNextCard?: boolean;
 }
 
 function DeckSwiper({
@@ -24,7 +32,16 @@ function DeckSwiper({
     style,
     swipeThreshold = 110,
     cardWidth = SCREEN_WIDTH * 0.7,
+    cardContainerStyle = {},
+    cardShadow = 'md',
+    cardBackgroundColor,
+    nextCardBackgroundColor,
+    nextCardShadow = 'sm',
+    borderRadius,
+    showNextCard = true,
 }: DeckSwiperProps): JSX.Element {
+    const theme = useTheme();
+    const colors = useColors();
     const [currentIndex, setCurrentIndex] = useState(0);
     const position = useMemo(() => new Animated.ValueXY(), []);
 
@@ -114,42 +131,57 @@ function DeckSwiper({
                         style={[
                             rotateAndTranslate,
                             StyleSheet.absoluteFillObject,
-                            focusedElementStyle
+                            {
+                                backgroundColor: cardBackgroundColor || colors.surface,
+                                borderRadius: borderRadius ?? theme.sizes.CARD_BORDER_RADIUS,
+                                ...(typeof cardShadow === 'string' ? theme.shadows[cardShadow] : cardShadow),
+                            },
+                            cardContainerStyle,
+                            focusedElementStyle,
                         ]}
                         {...panResponder.panHandlers}
                     >
                         {item}
                     </Animated.View>
                 );
-            } else {
+            } else if (showNextCard && i === currentIndex + 1) {
                 return (
                     <Animated.View
                         key={i}
                         style={[
-                            StyleSheet.absoluteFillObject,
+                            nextCardAnimatedStyle,
                             {
-                                opacity: nextCardOpacity,
-                                transform: [{ scale: nextCardScale }]
-                            }
+                                backgroundColor: nextCardBackgroundColor || colors.background,
+                                borderRadius: borderRadius ?? theme.sizes.CARD_BORDER_RADIUS,
+                                ...(typeof nextCardShadow === 'string' ? theme.shadows[nextCardShadow] : nextCardShadow),
+                            },
+                            nextElementStyle,
                         ]}
                     >
                         {item}
                     </Animated.View>
                 );
+            } else {
+                return null;
             }
         }).reverse();
-    }, [currentIndex, rotateAndTranslate, focusedElementStyle, nextCardOpacity, nextCardScale, nextElementStyle, panResponder.panHandlers]);
+    }, [currentIndex, rotateAndTranslate, focusedElementStyle, nextCardAnimatedStyle, cardBackgroundColor, nextCardBackgroundColor, cardShadow, nextCardShadow, cardContainerStyle, nextElementStyle, borderRadius, theme, colors, showNextCard, panResponder.panHandlers]);
 
     useEffect(() => {
         setCurrentIndex(0);
     }, [components.length]);
 
+    const blockStyle: ViewStyle = {
+        width: cardWidth,
+        ...(Array.isArray(style) ? Object.assign({}, ...style) : (style || {})),
+    };
+
     if (components.length === 0) {
-        return <Block flex center style={{ width: cardWidth, ...style }} />;
+        return <Block flex center style={blockStyle} />;
     }
 
     return (
-        <Block flex center style={{ width: cardWidth, ...style }}>
+        <Block flex center style={blockStyle}>
             {renderComponents(components)}
         </Block>
     );
