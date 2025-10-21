@@ -32,9 +32,6 @@ Shadows can be customized for different platforms:
 - **md**: Medium shadow (default for most components)
 - **lg**: Large shadow
 - **xl**: Extra large shadow (strongest)
-- **md**: Medium shadow (default for most components)
-- **lg**: Large shadow
-- **xl**: Extra large shadow (strongest)
 
 ## Example
 
