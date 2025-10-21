@@ -232,5 +232,7 @@ exports.default = {
     LIGHT_COLORS: exports.LIGHT_COLORS,
     DARK_COLORS: exports.DARK_COLORS,
     NEUTRAL_DEFAULTS: exports.NEUTRAL_DEFAULTS,
+    // Legacy keys for Galio backward compatibility
+    COLORS: exports.LIGHT_COLORS,
 };
 //# sourceMappingURL=colors.js.map

@@ -324,12 +324,14 @@ export const DARK_MODE = {
 };
 
 // Default export with both modern and legacy structures
-export default { 
-  LIGHT_MODE, 
-  DARK_MODE, 
+export default {
+  LIGHT_MODE,
+  DARK_MODE,
   SHADOWS,
   // New semantic exports
   LIGHT_COLORS,
   DARK_COLORS,
   NEUTRAL_DEFAULTS,
+  // Legacy keys for Galio backward compatibility
+  COLORS: LIGHT_COLORS,
 };
